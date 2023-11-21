@@ -18,3 +18,7 @@ endif()
 target_include_directories(Colobot-Common PUBLIC
     $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/src>
 )
+
+if(NOT CBOT_STATIC)
+    set_target_properties(Colobot-Common PROPERTIES POSITION_INDEPENDENT_CODE ON)
+endif()
