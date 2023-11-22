@@ -3434,6 +3434,29 @@ TEST_F(CBotUT, TestTryCatch) {
         "}\n",
         CBotErrBadType1
     );
+
+    ExecuteTest(
+        "extern void TestTryCatchCondition() {\n"
+        "    int foo = 0;\n"
+        "    try {\n"
+        "        foo = 1;\n"
+        "        for(int i = 0; i < 20; ++i);  // Should suspend at least once\n"
+        "        foo = 2;  // should not get here\n"
+        "    } catch(foo == 1); // Detects foo == 1 when the try body is suspended\n"
+        "    ASSERT(foo == 1);\n"
+        "}\n"
+    );
+}
+
+TEST_F(CBotUT, TestTryShouldNotSkipConditionInStepMode) {
+    ExecuteTest(
+        "extern void TestTryShouldNotSkipConditionInStepMode() {\n"
+        "    try {\n"
+        "        for(int i = 0; i < 20; ++i); // Should suspend at least once\n"
+        "    } catch(1/0); // Should be executed when the try body is suspended\n"
+        "}\n",
+	CBotErrZeroDiv
+    );
 }
 
 TEST_F(CBotUT, TestFinally) {
