@@ -3453,7 +3453,7 @@ TEST_F(CBotUT, TestTryShouldNotSkipConditionInStepMode) {
         "extern void TestTryShouldNotSkipConditionInStepMode() {\n"
         "    try {\n"
         "        for(int i = 0; i < 20; ++i); // Should suspend at least once\n"
-        "    } catch(1/0); // Should be executed when the try body is suspended\n"
+        "    } catch(1/0 == 0); // Should be executed when the try body is suspended\n"
         "}\n",
 	CBotErrZeroDiv
     );
