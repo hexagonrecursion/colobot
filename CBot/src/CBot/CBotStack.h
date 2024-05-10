@@ -452,7 +452,7 @@ public:
      * \param[out] start Start position of currently executed token
      * \param[out] end End position of currently executed token
      */
-    void            GetRunPos(std::string& functionName, int& start, int& end);
+    void            GetRunPos(std::string& functionName, int& start, int& end, bool &isCatchCondition);
 
     /**
      * \brief Get local variables at the given stack level

@@ -51,6 +51,8 @@ public:
      */
     bool Execute(CBotStack* &pj) override;
 
+    bool IsCheckingCatchCondition(CBotStack *pile1) override;
+
     /*!
      * \brief RestoreState
      * \param pj

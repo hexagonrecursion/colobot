@@ -367,6 +367,11 @@ bool CBotInstr::HasReturn()
     return false; // end of the list
 }
 
+bool CBotInstr::IsCheckingCatchCondition(CBotStack *)
+{
+    return false;
+}
+
 std::map<std::string, CBotInstr*> CBotInstr::GetDebugLinks()
 {
     return {

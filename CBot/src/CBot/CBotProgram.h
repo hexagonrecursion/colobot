@@ -189,6 +189,8 @@ public:
      */
     bool GetRunPos(std::string& functionName, int& start, int& end);
 
+    bool IsCheckingCatchCondition();
+
     /**
      * \brief Provides the pointer to the variables on the execution stack
      * \param[out] functionName Name of the function that this stack is part of

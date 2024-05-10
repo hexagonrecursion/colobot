@@ -228,9 +228,10 @@ bool CBotProgram::GetRunPos(std::string& functionName, int& start, int& end)
 {
     functionName = "";
     start = end = 0;
+    bool _;
     if (m_stack == nullptr) return false;
 
-    m_stack->GetRunPos(functionName, start, end);
+    m_stack->GetRunPos(functionName, start, end, _);
     return true;
 }
 
@@ -421,6 +422,16 @@ void CBotProgram::Free()
 const std::unique_ptr<CBotExternalCallList>& CBotProgram::GetExternalCalls()
 {
     return m_externalCalls;
+}
+
+bool CBotProgram::IsCheckingCatchCondition()
+{
+    std::string _1;
+    int _2, _3;
+    bool isCatchCondition = false;
+    if (m_stack == nullptr) return false;
+    m_stack->GetRunPos(_1, _2, _3, isCatchCondition);
+    return isCatchCondition;
 }
 
 } // namespace CBot

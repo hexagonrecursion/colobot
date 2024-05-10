@@ -395,29 +395,31 @@ bool CScript::Step()
     if ( !m_bRun )  return true;
     if ( !m_bStepMode )  return false;
 
-    if ( m_botProg->Run(this, 0) )  // step mode
-    {
-        m_botProg->GetError(m_error, m_cursor1, m_cursor2);
-        if ( m_cursor1 < 0 || m_cursor1 > m_script.size() ||
-             m_cursor2 < 0 || m_cursor2 > m_script.size() )
+    do {
+        if ( m_botProg->Run(this, 0) )  // step mode
         {
-            m_cursor1 = 0;
-            m_cursor2 = 0;
-        }
-        if ( m_error == 0 )
-        {
-            m_cursor1 = m_cursor2 = 0;
-        }
-        m_bRun = false;
+            m_botProg->GetError(m_error, m_cursor1, m_cursor2);
+            if ( m_cursor1 < 0 || m_cursor1 > m_script.size() ||
+                 m_cursor2 < 0 || m_cursor2 > m_script.size() )
+            {
+                m_cursor1 = 0;
+                m_cursor2 = 0;
+            }
+            if ( m_error == 0 )
+            {
+                m_cursor1 = m_cursor2 = 0;
+            }
+            m_bRun = false;
 
-        if ( m_error != 0 && m_errMode == ERM_STOP )
-        {
-            std::string s;
-            GetError(s);
-            m_main->GetDisplayText()->DisplayText(s.c_str(), m_object, 10.0f, Ui::TT_ERROR);
+            if ( m_error != 0 && m_errMode == ERM_STOP )
+            {
+                std::string s;
+                GetError(s);
+                m_main->GetDisplayText()->DisplayText(s.c_str(), m_object, 10.0f, Ui::TT_ERROR);
+            }
+            return true;
         }
-        return true;
-    }
+    } while ( m_botProg->IsCheckingCatchCondition() );
     return false;
 }
 

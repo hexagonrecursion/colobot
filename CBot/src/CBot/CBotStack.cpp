@@ -627,17 +627,22 @@ void CBotStack::RestoreCall(long& nIdent, CBotToken* token, CBotVar** ppVar)
 }
 
 ////////////////////////////////////////////////////////////////////////////////
-void CBotStack::GetRunPos(std::string& functionName, int& start, int& end)
+void CBotStack::GetRunPos(std::string& functionName, int& start, int& end, bool &isCatchCondition)
 {
     CBotProgram*    prog = m_prog;                        // Current program
 
     CBotInstr*        funct = nullptr;                        // function found
     CBotInstr*        instr = nullptr;                        // the highest intruction
+    isCatchCondition = false;
 
     CBotStack*        p = this;
 
     while (p->m_next != nullptr)
     {
+        if (p->m_next->m_instr && p->m_next->m_instr->IsCheckingCatchCondition(p->m_next) )
+        {
+            isCatchCondition = true;
+        }
         if ( p->m_instr != nullptr ) instr = p->m_instr;
         if (p->m_func == IsFunction::YES && p->m_instr != nullptr ) funct = p->m_instr;
         if ( p->m_next->m_prog != prog ) break ;

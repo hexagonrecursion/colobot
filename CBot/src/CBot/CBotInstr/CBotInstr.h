@@ -276,6 +276,8 @@ public:
      */
     virtual bool HasReturn();
 
+    virtual bool IsCheckingCatchCondition(CBotStack *pile1);
+
 protected:
     friend class CBotDebug;
     /**
