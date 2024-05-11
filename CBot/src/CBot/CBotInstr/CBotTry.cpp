@@ -101,8 +101,6 @@ bool CBotTry::Execute(CBotStack* &pj)
         }
 
         val = pile1->GetError();
-        if ( val == CBotNoErr && pile1->GetTimer() == 0 )           // mode step?
-            return false;                   // don't jump to the catch
 
         pile1->IncState();
         pile2->SetState(val);                                   // stores the error number
@@ -124,8 +122,18 @@ bool CBotTry::Execute(CBotStack* &pj)
     {
         if ( --state <= 0 )
         {
-            // ask to the catch block if it feels concerned
-            if ( !pc->TestCatch(pile2, val) ) return false;     // suspend !
+            // Debugging QoL: automatically step over catch expressions
+            while ( true )
+            {
+                if ( pc->TestCatch(pile2, val) ) break;
+                if ( !pile2->IsOk() ) return false;
+                const int extraTicks = 100;
+                // Decrement and check the counter without changing pile0 state
+                if ( !pile0->SetState(1, -extraTicks) )
+                {
+                    return false; // Prevent infinite loops and external calls from hanging the game
+                }
+            }
             pile1->IncState();
         }
         if ( --state <= 0 )
