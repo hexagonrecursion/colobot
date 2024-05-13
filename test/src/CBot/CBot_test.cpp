@@ -3499,3 +3499,14 @@ TEST_F(CBotUT, TestFinally) {
         CBotErrBadType2
     );
 }
+
+TEST_F(CBotUT, TestCanNotOverloadExternal) {
+    ExecuteTest(
+        "float sin(int x) {\n"
+        "    return x;\n"
+        "}\n"
+        "extern void TestCanNotOverloadExternal() {\n"
+        "}\n",
+        CBotErrRedefFunc
+    );
+}
