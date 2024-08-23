@@ -486,6 +486,27 @@ bool CObjectInterface::EventProcess(const Event &event)
             }
         }
 
+        if ( action == EVENT_OBJECT_PANT )
+        {
+            err = m_taskExecutor->StartTaskProduce(OBJECT_ANT);
+        }
+        if ( action == EVENT_OBJECT_PBEE )
+        {
+            err = m_taskExecutor->StartTaskProduce(OBJECT_BEE);
+        }
+        if ( action == EVENT_OBJECT_PSPIDER )
+        {
+            err = m_taskExecutor->StartTaskProduce(OBJECT_SPIDER);
+        }
+        if ( action == EVENT_OBJECT_PWORM )
+        {
+            err = m_taskExecutor->StartTaskProduce(OBJECT_WORM);
+        }
+        if ( action == EVENT_OBJECT_PNEST )
+        {
+            err = m_taskExecutor->StartTaskProduce(OBJECT_NEST);
+        }
+
         if ( action == EVENT_OBJECT_BDERRICK )
         {
             err = m_taskExecutor->StartTaskBuild(OBJECT_DERRICK);
@@ -1471,6 +1492,45 @@ bool CObjectInterface::CreateInterface(bool bSelect)
         pw->CreateGroup(pos, ddim, 16, EVENT_OBJECT_CORNERdr);
     }
 
+    if (type == OBJECT_MOTHER)
+    {
+        pos.x = ox+sx*7.7f;
+        pos.y = oy+sy*0.5f;
+        pb = pw->CreateButton(pos, dim, 192+4, EVENT_OBJECT_BUILD);
+        pb->SetImmediat(true);
+        DefaultEnter(pw, EVENT_OBJECT_BUILD);
+
+        pos.x = 0.0f;
+        pos.y = oy+sy*2.6f;
+        ddim.x = 214.5f/640.0f;
+        ddim.y = 66.0f/480.0f;
+        pw->CreateGroup(pos, ddim, 6, EVENT_WINDOW3);
+
+        ddim.x = dim.x*0.9f;
+        ddim.y = dim.y*0.9f;
+        pos.y = oy+sy*3.6f;
+
+        pos.x = ox+sx*0.0f;
+        pw->CreateButton(pos, ddim, 192+11, EVENT_OBJECT_PANT);
+        DeadInterface(pw, EVENT_OBJECT_PANT, true /*m_main->CanBuild(OBJECT_ANT, m_object->GetTeam())*/);
+
+        pos.x = ox+sx*0.9f;
+        pw->CreateButton(pos, ddim, 192+12, EVENT_OBJECT_PBEE);
+        DeadInterface(pw, EVENT_OBJECT_PBEE, true /*m_main->CanBuild(OBJECT_BEE, m_object->GetTeam())*/);
+
+        pos.x = ox+sx*1.8f;
+        pw->CreateButton(pos, ddim, 192+13, EVENT_OBJECT_PSPIDER);
+        DeadInterface(pw, EVENT_OBJECT_PSPIDER, true /*m_main->CanBuild(OBJECT_SPIDER, m_object->GetTeam())*/);
+
+        pos.x = ox+sx*2.7f;
+        pw->CreateButton(pos, ddim, 192+14, EVENT_OBJECT_PWORM);
+        DeadInterface(pw, EVENT_OBJECT_PWORM, true /*m_main->CanBuild(OBJECT_WORM, m_object->GetTeam())*/);
+
+        pos.x = ox+sx*3.6f;
+        pw->CreateButton(pos, ddim, 192+15, EVENT_OBJECT_PNEST);
+        DeadInterface(pw, EVENT_OBJECT_PNEST, true /*m_main->CanBuild(OBJECT_NEST, m_object->GetTeam())*/);
+    }
+
     if ( (type == OBJECT_MOBILEfb ||
           type == OBJECT_MOBILEtb ||
           type == OBJECT_MOBILEwb ||
@@ -1887,6 +1947,26 @@ void CObjectInterface::UpdateInterface()
         }
     }
 
+    if (type == OBJECT_MOTHER)
+    {
+        if(!bEnable) m_buildInterface = false;
+        CheckInterface(pw, EVENT_OBJECT_BUILD, m_buildInterface);
+
+        auto pgr = static_cast< CGroup* >(pw->SearchControl(EVENT_WINDOW3));
+        pgr->SetState(STATE_VISIBLE, m_buildInterface);
+
+        pb = static_cast< CButton* >(pw->SearchControl(EVENT_OBJECT_PANT));
+        pb->SetState(STATE_VISIBLE, m_buildInterface);
+        pb = static_cast< CButton* >(pw->SearchControl(EVENT_OBJECT_PBEE));
+        pb->SetState(STATE_VISIBLE, m_buildInterface);
+        pb = static_cast< CButton* >(pw->SearchControl(EVENT_OBJECT_PSPIDER));
+        pb->SetState(STATE_VISIBLE, m_buildInterface);
+        pb = static_cast< CButton* >(pw->SearchControl(EVENT_OBJECT_PWORM));
+        pb->SetState(STATE_VISIBLE, m_buildInterface);
+        pb = static_cast< CButton* >(pw->SearchControl(EVENT_OBJECT_PNEST));
+        pb->SetState(STATE_VISIBLE, m_buildInterface);
+    }
+
     if ( (type == OBJECT_MOBILEfb ||
           type == OBJECT_MOBILEtb ||
           type == OBJECT_MOBILEwb ||
@@ -1896,8 +1976,8 @@ void CObjectInterface::UpdateInterface()
         if(!bEnable) m_buildInterface = false;
         CheckInterface(pw, EVENT_OBJECT_BUILD, m_buildInterface);
 
-        pb = static_cast< CButton* >(pw->SearchControl(EVENT_WINDOW3));
-        pb->SetState(STATE_VISIBLE, m_buildInterface);
+        auto pgr = static_cast< CGroup* >(pw->SearchControl(EVENT_WINDOW3));
+        pgr->SetState(STATE_VISIBLE, m_buildInterface);
 
         pb = static_cast< CButton* >(pw->SearchControl(EVENT_OBJECT_BFACTORY));
         pb->SetState(STATE_VISIBLE, m_buildInterface);
