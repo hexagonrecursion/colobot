@@ -36,6 +36,8 @@
 
 #include "object/old_object.h"
 
+#include "object/object_manager.h"
+
 #include "object/interface/programmable_object.h"
 #include "object/interface/slotted_object.h"
 #include "object/interface/task_executor_object.h"
@@ -613,9 +615,26 @@ bool CObjectInterface::EventProcess(const Event &event)
             err = m_taskExecutor->StartTaskGunGoal((event.mousePos.y-0.50f)*1.3f, (event.mousePos.x-0.50f)*2.0f);
         }
 
-        if ( action == EVENT_OBJECT_FIREANT )
+        if ( action == EVENT_OBJECT_FIREANT && !m_taskExecutor->IsForegroundTask() )
         {
-//?         err = m_taskExecutor->StartTaskFireAnt();
+            auto pw = static_cast< CWindow* >(m_interface->SearchControl(EVENT_WINDOW0));
+            glm::vec3 taskPos;
+            bool isMouseOverUi = pw != nullptr && event.mousePos.y < pw->GetDim().y;
+            const float effectiveRange = 40.0f;
+            bool isCanFindTarget = m_engine->DetectObject(event.mousePos, taskPos, true) != -1;
+            if (isMouseOverUi || !isCanFindTarget)
+            {
+                // Shoot in fornt
+                glm::mat4 mat = m_object->GetWorldMatrix(0);
+                taskPos = Math::Transform(mat, glm::vec3(effectiveRange, 0.0f, 0.0f));
+            }
+            if (glm::distance(taskPos, m_object->GetPosition()) > effectiveRange)
+            {
+                glm::vec3 offset = taskPos - m_object->GetPosition();
+                offset = effectiveRange * glm::normalize(offset);
+                taskPos = m_object->GetPosition() + offset;
+            }
+            err = m_taskExecutor->StartTaskFireAnt(taskPos);
         }
 
         if ( action == EVENT_OBJECT_SPIDEREXPLO && !m_taskExecutor->IsForegroundTask() )
@@ -1231,6 +1250,15 @@ bool CObjectInterface::CreateInterface(bool bSelect)
         DefaultEnter(pw, EVENT_OBJECT_SPIDEREXPLO);
     }
 
+    if ( type == OBJECT_ANT )
+    {
+        pos.x = ox+sx*7.7f;
+        pos.y = oy+sy*0.5f;
+        pb = pw->CreateButton(pos, dim, 42, EVENT_OBJECT_FIREANT);
+        pb->SetImmediat(true);
+        DefaultEnter(pw, EVENT_OBJECT_FIREANT);
+    }
+
     if ( type == OBJECT_MOBILEdr &&
          m_object->GetManual() )  // scribbler in manual mode?
     {
@@ -1785,6 +1813,7 @@ void CObjectInterface::UpdateInterface()
     EnableInterface(pw, EVENT_OBJECT_FIRE,        bEnable);
     EnableInterface(pw, EVENT_OBJECT_BUILD,       bEnable);
     EnableInterface(pw, EVENT_OBJECT_SPIDEREXPLO, bEnable);
+    EnableInterface(pw, EVENT_OBJECT_FIREANT,     bEnable);
     EnableInterface(pw, EVENT_OBJECT_RESET,       bEnable);
     EnableInterface(pw, EVENT_OBJECT_PEN0,        bEnable);
     EnableInterface(pw, EVENT_OBJECT_PEN1,        bEnable);
