@@ -36,6 +36,8 @@
 
 #include "object/old_object.h"
 
+#include "object/object_manager.h"
+
 #include "object/interface/programmable_object.h"
 #include "object/interface/slotted_object.h"
 #include "object/interface/task_executor_object.h"
@@ -613,9 +615,77 @@ bool CObjectInterface::EventProcess(const Event &event)
             err = m_taskExecutor->StartTaskGunGoal((event.mousePos.y-0.50f)*1.3f, (event.mousePos.x-0.50f)*2.0f);
         }
 
-        if ( action == EVENT_OBJECT_FIREANT )
+        if ( action == EVENT_OBJECT_FIREANT && !m_taskExecutor->IsForegroundTask() )
         {
-//?         err = m_taskExecutor->StartTaskFireAnt();
+            std::vector<ObjectType> type = {
+                OBJECT_HUMAN,
+                OBJECT_MOBILEwt,
+                OBJECT_MOBILEft,
+                OBJECT_MOBILEtt,
+                OBJECT_MOBILEwt,
+                OBJECT_MOBILEit,
+                OBJECT_MOBILErp,
+                OBJECT_MOBILEst,
+                OBJECT_MOBILEfa,
+                OBJECT_MOBILEta,
+                OBJECT_MOBILEwa,
+                OBJECT_MOBILEia,
+                OBJECT_MOBILEfc,
+                OBJECT_MOBILEtc,
+                OBJECT_MOBILEwc,
+                OBJECT_MOBILEic,
+                OBJECT_MOBILEfi,
+                OBJECT_MOBILEti,
+                OBJECT_MOBILEwi,
+                OBJECT_MOBILEii,
+                OBJECT_MOBILEfs,
+                OBJECT_MOBILEts,
+                OBJECT_MOBILEws,
+                OBJECT_MOBILEis,
+                OBJECT_MOBILEfb,
+                OBJECT_MOBILEtb,
+                OBJECT_MOBILEwb,
+                OBJECT_MOBILEib,
+                OBJECT_MOBILErt,
+                OBJECT_MOBILErc,
+                OBJECT_MOBILErr,
+                OBJECT_MOBILErs,
+                OBJECT_MOBILEsa,
+                OBJECT_MOBILEtg,
+                OBJECT_MOBILEdr,
+                OBJECT_POWER,
+                OBJECT_ATOMIC,
+                OBJECT_STONE,
+                OBJECT_URANIUM,
+                OBJECT_METAL,
+                OBJECT_TNT,
+                OBJECT_BOMB,
+                OBJECT_NUCLEAR,
+                OBJECT_DERRICK,
+                OBJECT_FACTORY,
+                OBJECT_STATION,
+                OBJECT_CONVERT,
+                OBJECT_REPAIR,
+                OBJECT_DESTROYER,
+                OBJECT_TOWER,
+                OBJECT_RESEARCH,
+                OBJECT_RADAR,
+                OBJECT_INFO,
+                OBJECT_ENERGY,
+                OBJECT_LABO,
+                OBJECT_NUCLEAR,
+                OBJECT_PARA,
+                OBJECT_SAFE,
+            };
+            CObject* target = CObjectManager::GetInstancePointer()->FindNearest(nullptr, m_object->GetPosition(), type, 40.0f);
+            if (target)
+            {
+                err = m_taskExecutor->StartTaskFireAnt(target->GetPosition());
+            }
+            else
+            {
+                err = ERR_FIREANT_TARGET;
+            }
         }
 
         if ( action == EVENT_OBJECT_SPIDEREXPLO && !m_taskExecutor->IsForegroundTask() )
@@ -1231,6 +1301,15 @@ bool CObjectInterface::CreateInterface(bool bSelect)
         DefaultEnter(pw, EVENT_OBJECT_SPIDEREXPLO);
     }
 
+    if ( type == OBJECT_ANT )
+    {
+        pos.x = ox+sx*7.7f;
+        pos.y = oy+sy*0.5f;
+        pb = pw->CreateButton(pos, dim, 42, EVENT_OBJECT_FIREANT);
+        pb->SetImmediat(true);
+        DefaultEnter(pw, EVENT_OBJECT_FIREANT);
+    }
+
     if ( type == OBJECT_MOBILEdr &&
          m_object->GetManual() )  // scribbler in manual mode?
     {
@@ -1785,6 +1864,7 @@ void CObjectInterface::UpdateInterface()
     EnableInterface(pw, EVENT_OBJECT_FIRE,        bEnable);
     EnableInterface(pw, EVENT_OBJECT_BUILD,       bEnable);
     EnableInterface(pw, EVENT_OBJECT_SPIDEREXPLO, bEnable);
+    EnableInterface(pw, EVENT_OBJECT_FIREANT,     bEnable);
     EnableInterface(pw, EVENT_OBJECT_RESET,       bEnable);
     EnableInterface(pw, EVENT_OBJECT_PEN0,        bEnable);
     EnableInterface(pw, EVENT_OBJECT_PEN1,        bEnable);

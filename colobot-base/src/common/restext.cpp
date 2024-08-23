@@ -657,6 +657,7 @@ void InitializeRestext()
     stringsErr[ERR_GOTO_IMPOSSIBLE] = TR("Goto: inaccessible destination");
     stringsErr[ERR_GOTO_ITER]       = TR("Goto: inaccessible destination");
     stringsErr[ERR_GOTO_BUSY]       = TR("Goto: destination occupied");
+    stringsErr[ERR_FIREANT_TARGET]  = TR("Target not found");
     stringsErr[ERR_FIRE_ENERGY]     = TR("Not enough energy");
     stringsErr[ERR_CONVERT_EMPTY]   = TR("No titanium ore to convert");
     stringsErr[ERR_DERRICK_NULL]    = TR("No ore in the subsoil");

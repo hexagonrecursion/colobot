@@ -69,6 +69,7 @@ enum Error
     ERR_GOTO_IMPOSSIBLE   = 210,      //!<  goto impossible
     ERR_GOTO_ITER         = 211,      //!<  goto too complicated
     ERR_GOTO_BUSY         = 212,      //!<  goto destination occupied
+    ERR_FIREANT_TARGET    = 220,      //!<  target not found
     ERR_DERRICK_NULL      = 300,      //!<  no ore underground
     ERR_STATION_NULL      = 301,      //!<  no energy underground
     ERR_TOWER_POWER       = 310,      //!<  no battery
