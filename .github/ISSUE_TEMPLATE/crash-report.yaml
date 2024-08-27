@@ -1,5 +1,5 @@
 name: Report a crash or hang
-about: The game has crashed or hanged
+description: The game has crashed or hanged
 labels: bug,crash,needs-triage
 
 body:
