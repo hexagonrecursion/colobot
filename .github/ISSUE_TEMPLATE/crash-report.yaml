@@ -28,15 +28,13 @@ body:
     required: true
 - type: input
   attributes:
-    label: Game version
+    label: Game version (e.g. 0.2.1-alpha)
     description: You can find this information in the bottom right corner of the main menu
-    placeholder: 0.2.1-alpha
   validations:
     required: true
 - type: input
   attributes:
-    label: Operating system
-    placeholder: Windows 11
+    label: Operating system (e.g. Windows 11)
   validations:
     required: true
 - type: textarea
