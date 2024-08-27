@@ -5,14 +5,14 @@ body:
 - type: input
   attributes:
     label: Game version
-    description: "You can find this information in the bottom right corner of the main menu"
-    placeholder: "0.2.1-alpha"
+    description: You can find this information in the bottom right corner of the main menu
+    placeholder: 0.2.1-alpha
   validations:
     required: true
 - type: input
   attributes:
     label: Operating system
-    placeholder: "Windows 11"
+    placeholder: Windows 11
   validations:
     required: true
 - type: textarea
@@ -20,10 +20,15 @@ body:
     label: log.txt
   validations:
     required: true
+- type: markdown
+  attributes:
+    value: |
+      1. Find the save dirrectory
+      2. Make a zip archive from it
+      3. Click on the "Paste, drop, or click to add files" button below and upload the archive"
 - type: textarea
   attributes:
     label: Save file
-    description: 1. Find the save dirrectory. 2. Make a zip archive from it. 3. Click on the "Paste, drop, or click to add files" button below and upload the archive
   validations:
     required: true
  
