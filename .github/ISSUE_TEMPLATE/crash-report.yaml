@@ -4,7 +4,7 @@ description: The game has crashed or hanged
 body:
 - type: markdown
   attributes:
-    value: Please **do not use** external websites (such as drop box or google drive) to upload screenshots, save files etc. External links have a tendency to eventually go dead. Upload the files to github insted by using one of the below fields.
+    value: Please **do not use** external websites (such as drop box or google drive) to upload screenshots, save files etc. External links have a tendency to become inaccessible. Upload the files to github insted by using one of the below fields.
 - type: input
   attributes:
     label: Game version
