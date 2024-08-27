@@ -48,7 +48,7 @@ body:
     required: true
 - type: input
   attributes:
-    label: Are you able to reproduce the crsah? (yes, every time/yes, but only sometimes/no)
+    label: Are you able to reproduce the crsah?
   validations:
     required: true
 - type: textarea
