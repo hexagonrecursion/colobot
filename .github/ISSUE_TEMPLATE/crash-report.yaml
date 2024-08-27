@@ -19,13 +19,20 @@ body:
 - type: markdown
   attributes:
     value: |
-      It is highly recommended to upload a save file
+      Uploading a save file makes it more likely we would be able to troubleshoot the issue
       1. Find the save dirrectory
       2. Make a zip archive from it
       3. Upload it to github by using the field below
 - type: textarea
   attributes:
     label: Save file
+- type: markdown
+  attributes:
+    value: |
+      Uploading a colobot.ini or colobot.json file makes it more likely we would be able to troubleshoot the issue
+- type: textarea
+  attributes:
+    label: colobot.ini or colobot.json
 - type: input
   attributes:
     label: Game version (e.g. 0.2.1-alpha)
