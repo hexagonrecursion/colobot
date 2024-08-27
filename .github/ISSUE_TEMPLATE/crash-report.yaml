@@ -54,4 +54,4 @@ body:
     required: true
 - type: textarea
   attributes:
-    label: Additional information
+    label: Additional information. Please post a stack trace if you know how
