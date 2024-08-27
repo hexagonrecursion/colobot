@@ -48,3 +48,12 @@ body:
       3. The game crashes
   validations:
     required: true
+- type: dropdown
+  attributes:
+    label: Are you able to reproduce the crsah?
+    options:
+      - No
+      - Yes, the game crashes every time I follow the above steps
+      - Yes, but only sometimes
+  validations:
+    required: true
