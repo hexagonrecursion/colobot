@@ -1,5 +1,6 @@
 name: Report a crash or hang
 description: The game has crashed or hanged
+labels: bug,crash,needs-triage
 
 body:
 - type: markdown
