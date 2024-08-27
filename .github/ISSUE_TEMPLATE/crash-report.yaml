@@ -19,14 +19,13 @@ body:
 - type: markdown
   attributes:
     value: |
+      It is highly recommended to upload a save file
       1. Find the save dirrectory
       2. Make a zip archive from it
       3. Upload it to github by using the field below
 - type: textarea
   attributes:
     label: Save file
-  validations:
-    required: true
 - type: input
   attributes:
     label: Game version (e.g. 0.2.1-alpha)
