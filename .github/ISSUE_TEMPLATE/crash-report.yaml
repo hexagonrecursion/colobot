@@ -2,11 +2,9 @@ name: Crash Report
 description: The game crashed or hanged
 
 body:
-  - type: textarea
-    id: description-of-bug
-    attributes:
-      label: Describe the bug
-      description: A clear and concise description of what the bug is.
-      placeholder: There is no way for aim level to increase.
-    validations:
-      required: true
+- type: input
+  attributes:
+    label: Game version
+    description: "You can find this information in the bottom right corner of the main menu"
+  validations:
+    required: true
