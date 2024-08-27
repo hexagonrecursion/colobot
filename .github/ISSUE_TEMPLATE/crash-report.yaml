@@ -46,8 +46,8 @@ body:
       3. The game crashes
   validations:
     required: true
-- type: textarea
+- type: input
   attributes:
-    label: Are you able to reproduce the crsah?
+    label: Are you able to reproduce the crsah (yes/no)?
   validations:
     required: true
