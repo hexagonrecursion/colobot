@@ -15,12 +15,12 @@ body:
     placeholder: "Windows 11"
   validations:
     required: true
-- type: markdown
+- type: textarea
   attributes:
     label: log.txt
   validations:
     required: true
-- type: markdown
+- type: textarea
   attributes:
     label: Save file
     description: 1. Find the save dirrectory. 2. Make a zip archive from it. 3. Click on the "Paste, drop, or click to add files" button below and upload the archive
