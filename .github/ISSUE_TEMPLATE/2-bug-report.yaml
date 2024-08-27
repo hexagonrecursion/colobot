@@ -1,5 +1,5 @@
 name: Report a bug
-description: The game has crashed or hanged
+description: Something went wrong
 labels: bug,needs-triage
 
 body:
@@ -46,6 +46,16 @@ body:
       1. Make a recycler
       2. Push the recycle button near a Wreck
       3. Quickly remove PowerCell from Recycler's energyCell slot using a grabber
+  validations:
+    required: true
+- type: textarea
+  attributes:
+    label: What was supposed to happen
+  validations:
+    required: true
+- type: textarea
+  attributes:
+    label: What actually happened
   validations:
     required: true
 - type: input
