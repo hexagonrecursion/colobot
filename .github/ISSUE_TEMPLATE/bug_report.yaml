@@ -1,0 +1,14 @@
+name: Crash report
+about: Report a crash
+
+body:
+- type: input
+  attributes:
+    label: Game version
+    description: ""
+  validations:
+    required: true
+    
+- type: textarea
+  attributes:
+    label: Additional context    
