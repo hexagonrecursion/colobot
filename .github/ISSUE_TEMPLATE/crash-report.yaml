@@ -1,7 +1,10 @@
-name: Crash Report
-description: The game crashed or hanged
+name: Report a crash or hang
+description: The game has crashed or hanged
 
 body:
+- type: markdown
+  attributes:
+    value: Please **do not use** external websites (such as drop box or google drive) to upload screenshots, save files etc. External links have a tendency to eventually go dead. Upload the files to github insted by using one of the below fields.
 - type: input
   attributes:
     label: Game version
@@ -25,7 +28,7 @@ body:
     value: |
       1. Find the save dirrectory
       2. Make a zip archive from it
-      3. Click on the "Paste, drop, or click to add files" button below and upload the archive"
+      3. Upload it to github by using the field below
 - type: textarea
   attributes:
     label: Save file
