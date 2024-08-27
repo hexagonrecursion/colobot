@@ -60,4 +60,10 @@ body:
     required: true
 - type: textarea
   attributes:
-    label: Additional information. Please post a stack trace if you know how
+    label: Please, post a stack trace if you know how
+- type: textarea
+  attributes:
+    label: Installed mods (if any)
+- type: textarea
+  attributes:
+    label: Additional information
