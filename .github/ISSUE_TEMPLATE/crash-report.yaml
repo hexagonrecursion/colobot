@@ -5,17 +5,9 @@ body:
 - type: markdown
   attributes:
     value: Please **do not use** external websites (such as drop box or google drive) to upload screenshots, save files etc. External links have a tendency to become dead. Upload the files to github insted by using one of the below fields.
-- type: input
+- type: textarea
   attributes:
-    label: Game version
-    description: You can find this information in the bottom right corner of the main menu
-    placeholder: 0.2.1-alpha
-  validations:
-    required: true
-- type: input
-  attributes:
-    label: Operating system
-    placeholder: Windows 11
+    label: Error message
   validations:
     required: true
 - type: textarea
@@ -34,4 +26,25 @@ body:
     label: Save file
   validations:
     required: true
- 
+- type: input
+  attributes:
+    label: Game version
+    description: You can find this information in the bottom right corner of the main menu
+    placeholder: 0.2.1-alpha
+  validations:
+    required: true
+- type: input
+  attributes:
+    label: Operating system
+    placeholder: Windows 11
+  validations:
+    required: true
+- type: textarea
+  attributes:
+    label: Steps to reproduce the crash
+    placeholder: |
+      1. Start the "Alien Queen" mission from the "On Terranova" chapter
+      2. Fly the astronaut tovards the vault and smash into it
+      3. The game crashes
+  validations:
+    required: true
