@@ -24,6 +24,7 @@
 
 #include <algorithm>
 #include <array>
+#include <cassert>
 #include <cstdarg>
 #include <cstdio>
 #include <cstdlib>
@@ -304,9 +305,10 @@ int StrUtils::UTF8CharLength(std::string_view string)
     if (string.empty()) return 0;
 
     int len = UTF8SequenceLength(static_cast<char8_t>(string.front()));
+    assert(len >= 0);
 
     // UTF-8 sequence is not long enough
-    if (string.size() < len) return 0;
+    if (string.size() < static_cast<size_t>(len)) return 0;
 
     // Check continuation bytes
     for (int i = 1; i < len; i++)
@@ -322,12 +324,13 @@ int StrUtils::UTF8StringLength(std::string_view string)
 
     while (!string.empty())
     {
-        auto count = UTF8SequenceLength(static_cast<char8_t>(string.front()));
+        int count = UTF8SequenceLength(static_cast<char8_t>(string.front()));
+        assert(count >= 0);
 
         if (count == 0)
             throw std::invalid_argument("Invalid character");
         
-        if (string.size() < count)
+        if (string.size() < static_cast<size_t>(count))
             throw std::invalid_argument("Invalid character");
         
         for (int i = 1; i < count; i++)
