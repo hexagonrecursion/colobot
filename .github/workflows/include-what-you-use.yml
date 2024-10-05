@@ -7,7 +7,7 @@ jobs:
   hello:
     runs-on: ubuntu-22.04
     steps:
-    - run: apt-get install build-essential cmake libsdl2-dev libsdl2-image-dev libsdl2-ttf-dev libsndfile1-dev libvorbis-dev libogg-dev libpng-dev libglew-dev libopenal-dev libphysfs-dev gettext git po4a vorbis-tools libglm-dev
+    - run: sudo apt-get install build-essential cmake libsdl2-dev libsdl2-image-dev libsdl2-ttf-dev libsndfile1-dev libvorbis-dev libogg-dev libpng-dev libglew-dev libopenal-dev libphysfs-dev gettext git po4a vorbis-tools libglm-dev
     - uses: actions/checkout@v4
       with:
         submodules: recursive
