@@ -8,3 +8,9 @@ jobs:
         submodules: recursive
     - run: echo world > hello.txt
     - uses: peter-evans/create-pull-request@v7
+      with:
+        commit-message: Include what you use
+        title: Include what you use
+        branch: include-what-you-use
+        body: ""
+        
