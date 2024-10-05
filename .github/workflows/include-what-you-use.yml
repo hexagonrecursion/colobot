@@ -12,7 +12,7 @@ jobs:
       with:
         submodules: recursive
     - run: cmake -S . -B build -D=TESTS=ON -D=CMAKE_CXX_INCLUDE_WHAT_YOU_USE="include-what-you-use;-Xiwyu;--no_default_mapping"
-    - run: make -C build -j | tee build/build-log.txt
+    - run: set -o pipefail; make -C build -j | tee build/build-log.txt
     - uses: peter-evans/create-pull-request@v7
       with:
         commit-message: Include what you use
