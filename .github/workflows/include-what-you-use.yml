@@ -3,4 +3,4 @@ jobs:
   hello:
     runs-on: ubuntu-22.04
     steps:
-    - run: echo Hello
+    - run: echo Hello 123
