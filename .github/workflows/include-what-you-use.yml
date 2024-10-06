@@ -22,3 +22,9 @@ jobs:
       run: set -o pipefail; iwyu_tool -j 4 -p build -- -Xiwyu --no_default_mapping -Xiwyu --mapping_file=$PWD/include-what-you-use.imp | tee build/build-log.txt
     - name: Apply include-what-you-use recommendations
       run: fix_include --nosafe_headers --ignore_re '/lib/' < build/build-log.txt
+    - run: git diff > build/include-what-you-use-diff.txt
+    - name: Upload the diff
+      uses: actions/upload-artifact@v4
+      with:
+        name: include-what-you-use-diff
+        path: build/include-what-you-use-diff.txt
