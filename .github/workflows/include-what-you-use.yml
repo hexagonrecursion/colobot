@@ -1,22 +1,21 @@
 on:
+  pull_request:
   push:
     branches:
     - iwyu  # TODO: remove
-    - dev
 jobs:
-  hello:
+  include-what-you-use:
     runs-on: ubuntu-24.04
     steps:
-    - run: sudo apt-get install iwyu build-essential cmake libsdl2-dev libsdl2-image-dev libsdl2-ttf-dev libsndfile1-dev libvorbis-dev libogg-dev libpng-dev libglew-dev libopenal-dev libphysfs-dev gettext git po4a vorbis-tools libglm-dev
-    - uses: actions/checkout@v4
+    - name: Install dependencies
+      run: sudo apt-get install iwyu build-essential cmake libsdl2-dev libsdl2-image-dev libsdl2-ttf-dev libsndfile1-dev libvorbis-dev libogg-dev libpng-dev libglew-dev libopenal-dev libphysfs-dev gettext git po4a vorbis-tools libglm-dev
+    - name: Download the code
+      uses: actions/checkout@v4
       with:
         submodules: recursive
-    - run: cmake -S . -B build -D=TESTS=ON -D=CMAKE_CXX_INCLUDE_WHAT_YOU_USE="include-what-you-use;-Xiwyu;--no_default_mapping;-Xiwyu;--mapping_file=$PWD/include-what-you-use.imp"
-    - run: set -o pipefail; make -C build | tee build/build-log.txt
-    - uses: peter-evans/create-pull-request@v7
-      with:
-        commit-message: Include what you use
-        title: Include what you use
-        branch: include-what-you-use
-        body: ""
-        
+    - name: Genarate the Makefile
+      run: cmake -S . -B build -D=TESTS=ON -D=CMAKE_CXX_INCLUDE_WHAT_YOU_USE="include-what-you-use;-Xiwyu;--no_default_mapping;-Xiwyu;--mapping_file=$PWD/include-what-you-use.imp"
+    - name: Collect include-what-you-use recommendations
+      run: set -o pipefail; make -C build | tee build/build-log.txt
+    - name: Apply include-what-you-use recommendations
+      run: fix_include --nosafe_headers < build/build-log.txt
