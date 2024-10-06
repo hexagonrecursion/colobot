@@ -11,7 +11,7 @@ jobs:
     - uses: actions/checkout@v4
       with:
         submodules: recursive
-    - run: cmake -S . -B build -D=TESTS=ON -D=CMAKE_CXX_INCLUDE_WHAT_YOU_USE="include-what-you-use;-Xiwyu;--no_default_mapping"
+    - run: cmake -S . -B build -D=TESTS=ON -D=CMAKE_CXX_INCLUDE_WHAT_YOU_USE="include-what-you-use;-Xiwyu;--no_default_mapping;-Xiwyu;--mapping_file=$PWD/include-what-you-use.imp"
     - run: set -o pipefail; make -C build | tee build/build-log.txt
     - uses: peter-evans/create-pull-request@v7
       with:
