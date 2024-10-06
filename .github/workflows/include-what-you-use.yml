@@ -13,9 +13,9 @@ jobs:
       uses: actions/checkout@v4
       with:
         submodules: recursive
-    - name: Genarate the Makefile
-      run: cmake -S . -B build -D=TESTS=ON -D=CMAKE_CXX_INCLUDE_WHAT_YOU_USE="include-what-you-use;-Xiwyu;--no_default_mapping;-Xiwyu;--mapping_file=$PWD/include-what-you-use.imp"
+    - name: Genarate a compilation database
+      run: cmake -S . -B build -D=CMAKE_EXPORT_COMPILE_COMMANDS=ON -D=TESTS=ON -D=CMAKE_CXX_INCLUDE_WHAT_YOU_USE="include-what-you-use;-Xiwyu;--no_default_mapping;-Xiwyu;--mapping_file=$PWD/include-what-you-use.imp"
     - name: Collect include-what-you-use recommendations
-      run: set -o pipefail; make -C build | tee build/build-log.txt
+      run: set -o pipefail; iwyu_tool -p build | tee build/build-log.txt
     - name: Apply include-what-you-use recommendations
       run: fix_include --nosafe_headers < build/build-log.txt
