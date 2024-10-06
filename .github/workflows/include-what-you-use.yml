@@ -30,3 +30,4 @@ jobs:
       with:
         name: include-what-you-use-diff
         path: build/include-what-you-use-diff.txt
+    - run: echo "### Hello world! :rocket:" >> $GITHUB_STEP_SUMMARY
