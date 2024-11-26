@@ -20,7 +20,6 @@ jobs:
         -- \
         -Xiwyu --no_default_mapping \
         -Xiwyu --mapping_file=$PWD/include-what-you-use.imp \
-        -Xiwyu --quoted_includes_first \
         | tee build/iwyu-log.txt
     - name: Apply include-what-you-use recommendations
       run: fix_include --nosafe_headers --noreorder --ignore_re '/lib/' < build/iwyu-log.txt
