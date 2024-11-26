@@ -1,12 +1,4 @@
-on:
-  push:  # TODO: remove
-    paths:
-    - '**.h'
-    - '**.cpp'
-  pull_request:
-    paths:
-    - '**.h'
-    - '**.cpp'
+on: [push, pull_request]
 jobs:
   include-what-you-use:
     runs-on: ubuntu-24.04
