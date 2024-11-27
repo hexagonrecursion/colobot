@@ -19,10 +19,14 @@
 
 #pragma once
 
+#include <memory>
+#include <string>
+
 #include "CBot/CBotInstr/CBotInstr.h"
 
 namespace CBot
 {
+class CBotStack;
 
 /**
  * \brief Constant -1 of type int

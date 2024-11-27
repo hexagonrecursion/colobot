@@ -19,17 +19,18 @@
 
 #pragma once
 
-#include "object/task/task.h"
-
 #include <glm/glm.hpp>
-
 #include <array>
 #include <cstdint>
 #include <memory>
 #include <vector>
 
+#include "object/task/task.h"
+#include "common/error.h"
 
 class CObject;
+class COldObject;
+struct Event;
 
 const int MAXPOINTS = 50000;
 const int NUMQUEUEBUCKETS = 32;

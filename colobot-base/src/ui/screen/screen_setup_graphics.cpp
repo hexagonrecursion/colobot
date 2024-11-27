@@ -19,20 +19,19 @@
 
 #include "ui/screen/screen_setup_graphics.h"
 
-#include "common/config.h"
-
-#include "app/app.h"
+#include <glm/glm.hpp>
+#include <map>
+#include <memory>
+#include <string>
+#include <utility>
+#include <vector>
 
 #include "common/restext.h"
-#include "common/settings.h"
 #include "common/stringutils.h"
-
 #include "graphics/core/device.h"
 #include "graphics/engine/camera.h"
 #include "graphics/engine/engine.h"
-
 #include "math/func.h"
-
 #include "ui/controls/button.h"
 #include "ui/controls/check.h"
 #include "ui/controls/editvalue.h"
@@ -40,6 +39,12 @@
 #include "ui/controls/interface.h"
 #include "ui/controls/label.h"
 #include "ui/controls/window.h"
+#include "common/event.h"
+#include "graphics/core/color.h"
+#include "graphics/core/texture.h"
+#include "graphics/engine/text.h"
+#include "level/robotmain.h"
+#include "ui/controls/control.h"
 
 namespace Ui
 {

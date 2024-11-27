@@ -21,14 +21,10 @@
 #include "object/task/task.h"
 
 #include "app/app.h"
-
 #include "graphics/engine/engine.h"
-
 #include "level/robotmain.h"
-
 #include "object/old_object.h"
-
-#include "object/interface/programmable_object.h"
+#include "object/object_interface_type.h"
 
 
 // Object's constructor.

@@ -19,40 +19,31 @@
 
 #include "ui/object_interface.h"
 
-#include "app/app.h"
+#include <SDL_keycode.h>
+#include <glm/glm.hpp>
+#include <algorithm>
+#include <array>
+#include <cassert>
+#include <cstdio>
+#include <vector>
 
+#include "app/app.h"
 #include "common/global.h"
 #include "common/restext.h"
-
 #include "graphics/core/color.h"
-
 #include "graphics/engine/engine.h"
 #include "graphics/engine/terrain.h"
 #include "graphics/engine/water.h"
-
 #include "level/robotmain.h"
-
-#include "math/geometry.h"
-
 #include "object/old_object.h"
-
 #include "object/interface/programmable_object.h"
 #include "object/interface/slotted_object.h"
 #include "object/interface/task_executor_object.h"
-
-#include "object/motion/motion.h"
-#include "object/motion/motionvehicle.h"
-
 #include "object/subclass/shielder.h"
-
 #include "physics/physics.h"
-
 #include "script/script.h"
-
 #include "sound/sound.h"
-
 #include "ui/studio.h"
-
 #include "ui/controls/button.h"
 #include "ui/controls/color.h"
 #include "ui/controls/gauge.h"
@@ -63,6 +54,27 @@
 #include "ui/controls/slider.h"
 #include "ui/controls/target.h"
 #include "ui/controls/window.h"
+#include "common/error.h"
+#include "common/key.h"
+#include "graphics/engine/camera.h"
+#include "graphics/engine/particle.h"
+#include "level/build_type.h"
+#include "level/research_type.h"
+#include "math/func.h"
+#include "object/interface/jet_flying_object.h"
+#include "object/interface/power_container_object.h"
+#include "object/interface/program_storage_object.h"
+#include "object/interface/shielded_object.h"
+#include "object/interface/trace_drawing_object.h"
+#include "object/mission_type.h"
+#include "object/object_interface_type.h"
+#include "object/object_type.h"
+#include "object/task/task.h"
+#include "object/task/taskflag.h"
+#include "object/task/taskmanip.h"
+#include "object/task/taskshield.h"
+#include "sound/sound_type.h"
+#include "ui/controls/control.h"
 
 
 namespace Ui

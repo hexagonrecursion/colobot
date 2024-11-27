@@ -19,6 +19,8 @@
 
 #include "CBot/CBotInstr/CBotInstr.h"
 
+#include <cassert>
+
 #include "CBot/CBotInstr/CBotBreak.h"
 #include "CBot/CBotInstr/CBotDefArray.h"
 #include "CBot/CBotInstr/CBotDefBoolean.h"
@@ -36,13 +38,11 @@
 #include "CBot/CBotInstr/CBotThrow.h"
 #include "CBot/CBotInstr/CBotTry.h"
 #include "CBot/CBotInstr/CBotWhile.h"
-
 #include "CBot/CBotVar/CBotVar.h"
-
 #include "CBot/CBotClass.h"
 #include "CBot/CBotStack.h"
-
-#include <cassert>
+#include "CBot/CBotCStack.h"
+#include "CBot/CBotEnums.h"
 
 namespace CBot
 {

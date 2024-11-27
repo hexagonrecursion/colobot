@@ -19,9 +19,10 @@
 
 #include "common/resources/sndfile_wrapper.h"
 
-#include "common/stringutils.h"
+#include <cstdio>
+#include <memory>
 
-#include <cstring>
+#include "common/stringutils.h"
 
 namespace
 {

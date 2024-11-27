@@ -20,17 +20,16 @@
 
 #include "common/stringutils.h"
 
-#include "common/codepoint.h"
-
 #include <algorithm>
 #include <array>
-#include <cstdarg>
 #include <cstdio>
-#include <cstdlib>
-#include <limits>
-#include <optional>
 #include <stdexcept>
 #include <vector>
+#include <cctype>
+#include <cstddef>
+#include <iterator>
+
+#include "common/codepoint.h"
 
 namespace
 {

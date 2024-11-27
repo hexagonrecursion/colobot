@@ -20,24 +20,32 @@
 
 #include "graphics/engine/engine.h"
 
+#include <SDL_surface.h>
+#include <SDL_keycode.h>
+#include <iomanip>
+#include <thread>
+#include <algorithm>
+#include <array>
+#include <cassert>
+#include <cmath>
+#include <cstddef>
+#include <iosfwd>
+#include <ostream>
+#include <sstream>
+#include <utility>
+
 #include "app/app.h"
 #include "app/input.h"
-
 #include "common/image.h"
 #include "common/key.h"
 #include "common/logger.h"
 #include "common/profiler.h"
 #include "common/stringutils.h"
-
-#include "common/system/system.h"
-
 #include "graphics/core/device.h"
 #include "graphics/core/framebuffer.h"
 #include "graphics/core/material.h"
 #include "graphics/core/renderers.h"
 #include "graphics/core/triangle.h"
-
-#include "graphics/engine/camera.h"
 #include "graphics/engine/cloud.h"
 #include "graphics/engine/lightman.h"
 #include "graphics/engine/lightning.h"
@@ -48,23 +56,19 @@
 #include "graphics/engine/terrain.h"
 #include "graphics/engine/text.h"
 #include "graphics/engine/water.h"
-
 #include "graphics/model/model_mesh.h"
 #include "graphics/model/model_shadow_spot.h"
-
 #include "level/robotmain.h"
 #include "level/player_profile.h"
-
 #include "math/geometry.h"
-
 #include "sound/sound.h"
-
 #include "ui/controls/interface.h"
-
-#include <iomanip>
-#include <SDL_surface.h>
-#include <SDL_thread.h>
-#include <thread>
+#include "common/event.h"
+#include "graphics/core/transparency.h"
+#include "graphics/model/model_triangle.h"
+#include "math/const.h"
+#include "math/func.h"
+#include "math/sphere.h"
 
 using TimeUtils::TimeUnit;
 

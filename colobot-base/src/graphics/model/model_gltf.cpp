@@ -17,19 +17,30 @@
  * along with this program. If not, see http://gnu.org/licenses
  */
 
-#include "graphics/model/model_mod.h"
-#include "graphics/model/model_gltf.h"
+#include <nlohmann/json.hpp>
+#include <glm/glm.hpp>
+#include <vector>
+#include <algorithm>
+#include <cstddef>
+#include <cstdint>
+#include <iomanip>
+#include <ios>
+#include <iosfwd>
+#include <istream>
+#include <ostream>
+#include <sstream>
+#include <string>
+#include <utility>
 
+#include "graphics/model/model_gltf.h"
 #include "common/ioutils.h"
 #include "common/logger.h"
 #include "common/stringutils.h"
 #include "common/resources/inputstream.h"
-
-#include "graphics/model/model_io_exception.h"
-#include "graphics/model/model_io_structs.h"
-
-#include <vector>
-#include <nlohmann/json.hpp>
+#include "graphics/core/color.h"
+#include "graphics/core/material.h"
+#include "graphics/core/transparency.h"
+#include "graphics/model/model_mesh.h"
 
 using namespace IOUtils;
 

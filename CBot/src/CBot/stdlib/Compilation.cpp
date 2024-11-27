@@ -19,7 +19,8 @@
 
 #include "CBot/stdlib/Compilation.h"
 
-#include "CBot/CBot.h"
+#include "CBot/CBotEnums.h"
+#include "CBot/CBotVar/CBotVar.h"
 
 namespace CBot
 {

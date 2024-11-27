@@ -19,6 +19,8 @@
 
 #include "common/regex_utils.h"
 
+#include <memory>
+
 static std::string FormatAssertRegexMatchError(const std::string& text,
                                         const std::string& pattern)
 {

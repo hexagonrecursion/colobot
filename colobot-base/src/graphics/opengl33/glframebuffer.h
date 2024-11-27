@@ -19,9 +19,9 @@
 
 #pragma once
 
-#include "graphics/core/framebuffer.h"
+#include <GL/glew.h>
 
-#include "graphics/opengl33/glutil.h"
+#include "graphics/core/framebuffer.h"
 
 namespace Gfx
 {

@@ -19,35 +19,37 @@
 
 #include "object/object_factory.h"
 
+#include <glm/glm.hpp>
+#include <string>
+#include <utility>
+
 #include "graphics/engine/engine.h"
-#include "graphics/engine/lightning.h"
 #include "graphics/engine/oldmodelmanager.h"
 #include "graphics/engine/terrain.h"
-
-#include "graphics/model/model_manager.h"
-
 #include "level/robotmain.h"
-
 #include "math/geometry.h"
-
 #include "object/object_create_params.h"
 #include "object/old_object.h"
-
 #include "object/auto/autoegg.h"
 #include "object/auto/autoflag.h"
-#include "object/auto/autojostle.h"
 #include "object/auto/autokid.h"
 #include "object/auto/automush.h"
 #include "object/auto/autoroot.h"
-
 #include "object/subclass/base_alien.h"
 #include "object/subclass/base_building.h"
 #include "object/subclass/base_robot.h"
 #include "object/subclass/exchange_post.h"
 #include "object/subclass/shielder.h"
 #include "object/subclass/static_object.h"
-
-#include "physics/physics.h"
+#include "graphics/core/color.h"
+#include "graphics/engine/particle.h"
+#include "math/const.h"
+#include "math/func.h"
+#include "math/sphere.h"
+#include "object/auto/auto.h"
+#include "object/crash_sphere.h"
+#include "object/object_type.h"
+#include "sound/sound_type.h"
 
 using COldObjectUPtr = std::unique_ptr<COldObject>;
 

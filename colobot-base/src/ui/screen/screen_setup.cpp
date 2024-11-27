@@ -19,19 +19,19 @@
 
 #include "ui/screen/screen_setup.h"
 
-#include "common/config.h"
-
-#include "app/app.h"
+#include <SDL_keycode.h>
+#include <glm/glm.hpp>
+#include <filesystem>
+#include <string>
 
 #include "common/restext.h"
 #include "common/settings.h"
-#include "common/stringutils.h"
-
-#include "graphics/engine/camera.h"
-
 #include "ui/controls/button.h"
 #include "ui/controls/interface.h"
 #include "ui/controls/window.h"
+#include "common/event.h"
+#include "common/key.h"
+#include "ui/controls/control.h"
 
 namespace Ui
 {

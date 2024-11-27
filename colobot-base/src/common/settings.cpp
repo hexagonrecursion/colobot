@@ -19,19 +19,24 @@
 
 #include "common/settings.h"
 
+#include <memory>
+#include <string>
+#include <vector>
+
 #include "app/app.h"
 #include "app/input.h"
-
 #include "common/config_file.h"
 #include "common/logger.h"
-
 #include "graphics/core/device.h"
 #include "graphics/engine/camera.h"
 #include "graphics/engine/engine.h"
-
 #include "level/robotmain.h"
-
 #include "sound/sound.h"
+#include "graphics/core/color.h"
+
+namespace Gfx {
+enum class TextureFilter : unsigned char;
+}  // namespace Gfx
 
 void CSettings::SaveResolutionSettings(const Gfx::DeviceConfig& config)
 {

@@ -19,9 +19,12 @@
 
 #include "object/implementation/task_executor_impl.h"
 
+#include <cassert>
+#include <type_traits>
+#include <utility>
+
 #include "object/object.h"
 #include "object/old_object.h"
-
 #include "object/task/taskadvance.h"
 #include "object/task/taskbuild.h"
 #include "object/task/taskdeletemark.h"
@@ -37,6 +40,9 @@
 #include "object/task/taskterraform.h"
 #include "object/task/taskturn.h"
 #include "object/task/taskwait.h"
+#include "object/task/task.h"
+
+struct Event;
 
 CTaskExecutorObjectImpl::CTaskExecutorObjectImpl(ObjectInterfaceTypes& types, CObject* object)
     : CTaskExecutorObject(types)

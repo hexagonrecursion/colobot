@@ -20,28 +20,32 @@
 
 #include "common/system/system.h"
 
-#include "common/logger.h"
-#include "common/stringutils.h"
-#include "common/version.h"
-
-#include "common/resources/resourcemanager.h"
-
-#include "level/robotmain.h"
-
 #include <SDL.h>
-
-#include <algorithm>
-#include <cassert>
 #include <csignal>
 #include <iostream>
 #include <thread>
+#include <chrono>
+#include <exception>
+#include <iosfwd>
+#include <ostream>
+#include <sstream>
+#include <typeinfo>
+
+#include "common/logger.h"
+#include "common/stringutils.h"
+#include "common/version.h"
+#include "common/resources/resourcemanager.h"
+#include "level/robotmain.h"
+#include "common/config.h"
+#include "level/level_category.h"
 
 // Symbol demangler
 #if HAVE_DEMANGLE
+#include <cxxabi.h>
 // For gcc and clang
 #include <cstdlib>
 #include <memory>
-#include <cxxabi.h>
+
 static std::string demangle(const char* name)
 {
     int status;

@@ -24,17 +24,13 @@
 
 #pragma once
 
-#include "common/singleton.h"
-
-#include "common/logger.h"
-
 #include <nlohmann/json.hpp>
-
-#include <optional>
 #include <string>
-#include <sstream>
 #include <vector>
-#include <stdexcept>
+#include <exception>
+
+#include "common/singleton.h"
+#include "common/logger.h"
 
 
 /**

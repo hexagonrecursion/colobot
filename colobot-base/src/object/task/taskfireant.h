@@ -20,9 +20,13 @@
 #pragma once
 
 
-#include "object/task/task.h"
-
 #include <glm/glm.hpp>
+
+#include "object/task/task.h"
+#include "common/error.h"
+
+class COldObject;
+struct Event;
 
 
 enum TaskFireAnt

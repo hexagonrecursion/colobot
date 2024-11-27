@@ -19,10 +19,12 @@
 
 
 #include "sound/oalsound/alsound.h"
-#include "common/stringutils.h"
 
+#include <al.h>
 #include <algorithm>
-#include <iomanip>
+#include <cmath>
+
+#include "common/logger.h"
 
 
 CALSound::CALSound()

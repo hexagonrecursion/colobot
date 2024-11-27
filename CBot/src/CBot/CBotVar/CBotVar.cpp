@@ -20,7 +20,8 @@
 
 #include "CBot/CBotVar/CBotVar.h"
 
-#include "CBot/CBotStack.h"
+#include <cassert>
+#include <string>
 
 #include "CBot/CBotInstr/CBotInstr.h"
 #include "CBot/CBotVar/CBotVarArray.h"
@@ -35,16 +36,9 @@
 #include "CBot/CBotVar/CBotVarPointer.h"
 #include "CBot/CBotVar/CBotVarShort.h"
 #include "CBot/CBotVar/CBotVarString.h"
-
 #include "CBot/CBotClass.h"
 #include "CBot/CBotToken.h"
-
 #include "CBot/CBotEnums.h"
-
-#include <cassert>
-#include <cmath>
-#include <cstdio>
-#include <string>
 
 
 namespace CBot

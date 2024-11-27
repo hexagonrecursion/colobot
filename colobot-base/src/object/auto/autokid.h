@@ -22,6 +22,9 @@
 
 #include "object/auto/auto.h"
 
+class COldObject;
+struct Event;
+
 
 class CAutoKid : public CAuto
 {

@@ -18,11 +18,11 @@
  */
 
 #include "CBot/CBotInstr/CBotPostIncExpr.h"
+
 #include "CBot/CBotInstr/CBotExprVar.h"
-
 #include "CBot/CBotStack.h"
-
 #include "CBot/CBotVar/CBotVar.h"
+#include "CBot/CBotEnums.h"
 
 namespace CBot
 {

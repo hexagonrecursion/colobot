@@ -19,8 +19,15 @@
 
 #include "CBot/CBotFileUtils.h"
 
+#include <cstddef>
+#include <ios>
+#include <istream>
+#include <memory>
+#include <ostream>
+
 #include "CBot/CBotClass.h"
 #include "CBot/CBotEnums.h"
+#include "CBot/CBotTypResult.h"
 
 namespace CBot
 {

@@ -19,18 +19,23 @@
 
 #include "ui/screen/screen_quit.h"
 
+#include <SDL_keycode.h>
+#include <glm/glm.hpp>
+#include <filesystem>
+#include <string>
+
 #include "app/app.h"
-
 #include "common/restext.h"
-#include "common/stringutils.h"
-
 #include "level/robotmain.h"
-
 #include "ui/controls/button.h"
 #include "ui/controls/edit.h"
 #include "ui/controls/interface.h"
 #include "ui/controls/label.h"
 #include "ui/controls/window.h"
+#include "common/event.h"
+#include "common/key.h"
+#include "graphics/engine/text.h"
+#include "ui/controls/control.h"
 
 namespace Ui
 {

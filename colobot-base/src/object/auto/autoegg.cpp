@@ -20,23 +20,25 @@
 
 #include "object/auto/autoegg.h"
 
-#include "common/stringutils.h"
+#include <glm/glm.hpp>
+#include <memory>
 
+#include "common/stringutils.h"
 #include "graphics/engine/engine.h"
 #include "graphics/engine/pyro_manager.h"
-
 #include "level/parser/parser.h"
 #include "level/parser/parserline.h"
 #include "level/parser/parserparam.h"
-
 #include "math/geometry.h"
-
 #include "object/object_manager.h"
 #include "object/old_object.h"
-
 #include "object/interface/program_storage_object.h"
 #include "object/interface/programmable_object.h"
 #include "object/interface/transportable_object.h"
+#include "common/event.h"
+#include "graphics/engine/pyro_type.h"
+#include "object/object.h"
+#include "object/object_interface_type.h"
 
 
 // Object's constructor.

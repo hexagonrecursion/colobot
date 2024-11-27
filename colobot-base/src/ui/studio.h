@@ -19,21 +19,18 @@
 
 #pragma once
 
+#include <glm/glm.hpp>
 #include <filesystem>
 #include <memory>
 #include <string>
 
-#include <glm/glm.hpp>
-
 class CApplication;
 class CEventQueue;
-class CFileDialog;
 class CRobotMain;
 class CScript;
 class CSettings;
 class CSoundInterface;
 class CPauseManager;
-
 struct ActivePause;
 struct Event;
 struct Program;
@@ -42,7 +39,6 @@ namespace Gfx
 {
 class CCamera;
 class CEngine;
-
 enum CameraType : unsigned char;
 }
 

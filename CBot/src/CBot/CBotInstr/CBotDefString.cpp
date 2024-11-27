@@ -22,11 +22,12 @@
 #include "CBot/CBotInstr/CBotLeftExprVar.h"
 #include "CBot/CBotInstr/CBotDefArray.h"
 #include "CBot/CBotInstr/CBotTwoOpExpr.h"
-
 #include "CBot/CBotStack.h"
 #include "CBot/CBotCStack.h"
-
 #include "CBot/CBotVar/CBotVar.h"
+#include "CBot/CBotEnums.h"
+#include "CBot/CBotToken.h"
+#include "CBot/CBotTypResult.h"
 
 namespace CBot
 {

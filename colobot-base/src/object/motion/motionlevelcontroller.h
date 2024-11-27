@@ -20,7 +20,15 @@
 #pragma once
 
 
+#include <glm/glm.hpp>
+
 #include "object/motion/motion.h"
+#include "object/object_type.h"
+
+class COldObject;
+namespace Gfx {
+class COldModelManager;
+}  // namespace Gfx
 
 class CMotionLevelController : public CMotion
 {

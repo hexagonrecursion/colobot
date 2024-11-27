@@ -19,16 +19,20 @@
 
 #include "object/task/taskpen.h"
 
+#include <cmath>
+
 #include "graphics/engine/engine.h"
 #include "graphics/engine/particle.h"
-
 #include "math/geometry.h"
-
 #include "object/old_object.h"
-
 #include "physics/physics.h"
-
 #include "sound/sound.h"
+#include "common/event.h"
+#include "math/const.h"
+#include "math/func.h"
+#include "object/interface/trace_drawing_object.h"
+#include "object/object_type.h"
+#include "sound/sound_type.h"
 
 
 // Object's constructor.

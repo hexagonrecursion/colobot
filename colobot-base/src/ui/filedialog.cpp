@@ -20,16 +20,20 @@
 
 #include "ui/filedialog.h"
 
-#include "app/app.h"
+#include <SDL_keycode.h>
+#include <algorithm>
+#include <ctime>
+#include <ios>
+#include <iosfwd>
+#include <ostream>
+#include <sstream>
 
+#include "app/app.h"
 #include "common/logger.h"
 #include "common/restext.h"
 #include "common/stringutils.h"
-
 #include "common/resources/resourcemanager.h"
-
 #include "level/robotmain.h"
-
 #include "ui/controls/check.h"
 #include "ui/controls/control.h"
 #include "ui/controls/edit.h"
@@ -38,10 +42,9 @@
 #include "ui/controls/label.h"
 #include "ui/controls/list.h"
 #include "ui/controls/window.h"
-
-#include <algorithm>
-#include <stdio.h>
-#include <ctime>
+#include "common/key.h"
+#include "graphics/engine/text.h"
+#include "ui/controls/button.h"
 
 
 namespace Ui

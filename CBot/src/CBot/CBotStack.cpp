@@ -19,20 +19,22 @@
 
 #include "CBot/CBotStack.h"
 
-#include "CBot/CBotClass.h"
-
-#include "CBot/CBotInstr/CBotFunction.h"
-
-#include "CBot/CBotVar/CBotVarPointer.h"
-#include "CBot/CBotVar/CBotVarClass.h"
-
-#include "CBot/CBotUtils.h"
-#include "CBot/CBotExternalCall.h"
-
 #include <cassert>
 #include <cstdint>
 #include <cstdlib>
 #include <cstring>
+
+#include "CBot/CBotClass.h"
+#include "CBot/CBotInstr/CBotFunction.h"
+#include "CBot/CBotVar/CBotVarPointer.h"
+#include "CBot/CBotVar/CBotVarClass.h"
+#include "CBot/CBotExternalCall.h"
+#include "CBot/CBotDefines.h"
+#include "CBot/CBotFileUtils.h"
+#include "CBot/CBotInstr/CBotInstr.h"
+#include "CBot/CBotProgram.h"
+#include "CBot/CBotToken.h"
+#include "CBot/CBotVar/CBotVar.h"
 
 
 namespace CBot

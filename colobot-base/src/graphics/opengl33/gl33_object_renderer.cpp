@@ -19,19 +19,21 @@
 
 #include "graphics/opengl33/gl33_object_renderer.h"
 
+#include <GL/glew.h>
+#include <array>
+#include <cstdio>
+#include <memory>
+#include <string>
+
 #include "graphics/opengl33/gl33_device.h"
 #include "graphics/opengl33/glutil.h"
-
 #include "graphics/core/material.h"
 #include "graphics/core/transparency.h"
 #include "graphics/core/vertex.h"
-
 #include "common/logger.h"
-
-#include <GL/glew.h>
-
-#include <glm/ext.hpp>
-#include <glm/gtc/type_ptr.hpp>
+#include "graphics/core/color.h"
+#include "graphics/core/device.h"
+#include "graphics/core/texture.h"
 
 using namespace Gfx;
 

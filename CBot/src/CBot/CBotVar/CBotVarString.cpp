@@ -19,6 +19,8 @@
 
 #include "CBot/CBotVar/CBotVarString.h"
 
+#include "CBot/CBotFileUtils.h"
+
 namespace CBot
 {
 

@@ -19,7 +19,10 @@
 
 #pragma once
 
+#include <memory>
+
 #include "object/old_object.h"
+#include "object/object_type.h"
 
 struct ObjectCreateParams;
 

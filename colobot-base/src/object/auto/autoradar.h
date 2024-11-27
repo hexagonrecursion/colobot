@@ -20,7 +20,13 @@
 #pragma once
 
 
+#include <glm/glm.hpp>
+
 #include "object/auto/auto.h"
+#include "common/error.h"
+
+class COldObject;
+struct Event;
 
 
 

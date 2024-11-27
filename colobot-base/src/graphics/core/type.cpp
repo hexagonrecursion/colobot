@@ -24,8 +24,6 @@
 
 #include "graphics/core/type.h"
 
-#include <cassert>
-
 // Graphics module namespace
 namespace Gfx
 {

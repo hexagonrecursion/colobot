@@ -20,31 +20,33 @@
 
 #include "graphics/engine/text.h"
 
-#include "app/app.h"
+#include <SDL_ttf.h>
+#include <SDL_pixels.h>
+#include <SDL_surface.h>
+#include <algorithm>
+#include <filesystem>
+#include <utility>
+#include <cassert>
+#include <cstddef>
+#include <initializer_list>
+#include <map>
+#include <optional>
+#include <stdexcept>
 
 #include "common/font_loader.h"
 #include "common/image.h"
 #include "common/logger.h"
 #include "common/stringutils.h"
 #include "common/codepoint.h"
-
 #include "common/resources/resourcemanager.h"
-
 #include "graphics/core/device.h"
 #include "graphics/core/renderers.h"
 #include "graphics/core/transparency.h"
-
 #include "graphics/engine/engine.h"
-
 #include "math/func.h"
-
-#include <SDL.h>
-#include <SDL_ttf.h>
-
-#include <algorithm>
-#include <array>
-#include <filesystem>
-#include <utility>
+#include "common/resources/sdl_memory_wrapper.h"
+#include "graphics/core/texture.h"
+#include "graphics/core/vertex.h"
 
 using namespace std::literals;
 

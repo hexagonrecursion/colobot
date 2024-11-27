@@ -19,8 +19,6 @@
 
 #pragma once
 
-#include "common/logger.h"
-
 #include <al.h>
 
 bool CheckOpenALError();

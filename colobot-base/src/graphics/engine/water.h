@@ -24,12 +24,16 @@
 
 #pragma once
 
-#include "graphics/engine/particle.h"
+#include <glm/glm.hpp>
 #include <filesystem>
+#include <vector>
 
+#include "graphics/engine/particle.h"
+#include "graphics/core/color.h"
 
 class CSoundInterface;
 struct Event;
+class CObject;
 
 
 // Graphics module namespace
@@ -38,6 +42,7 @@ namespace Gfx
 
 class CEngine;
 class CTerrain;
+class CDevice;
 
 /**
  * \enum WaterType

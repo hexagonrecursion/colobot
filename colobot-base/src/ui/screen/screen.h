@@ -19,10 +19,8 @@
 
 #pragma once
 
-#include <string>
-#include <filesystem>
-
 #include <glm/glm.hpp>
+#include <filesystem>
 
 class CRobotMain;
 class CApplication;

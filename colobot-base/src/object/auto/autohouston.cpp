@@ -19,14 +19,15 @@
 
 #include "object/auto/autohouston.h"
 
+#include <cmath>
+
 #include "graphics/engine/engine.h"
-
 #include "math/geometry.h"
-
 #include "object/old_object.h"
-
 #include "ui/controls/interface.h"
 #include "ui/controls/window.h"
+#include "common/event.h"
+#include "math/func.h"
 
 
 // Object's constructor.

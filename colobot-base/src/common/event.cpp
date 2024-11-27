@@ -20,10 +20,12 @@
 
 #include "common/event.h"
 
+#include <sstream>
+#include <iosfwd>
+#include <ostream>
+
 #include "common/logger.h"
 #include "common/stringutils.h"
-
-#include <sstream>
 
 namespace
 {

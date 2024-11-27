@@ -19,19 +19,25 @@
 
 #include "graphics/opengl33/glutil.h"
 
-#include "graphics/core/renderers.h"
-
-#include "graphics/opengl33/gl33_device.h"
-
-#include "common/image.h"
-#include "common/logger.h"
-
-#include <SDL.h>
 #include <physfs.h>
-#include <cstring>
+#include <SDL_pixels.h>
+#include <SDL_surface.h>
 #include <vector>
 #include <sstream>
 #include <algorithm>
+#include <cassert>
+#include <cstdio>
+#include <iosfwd>
+#include <istream>
+#include <ostream>
+
+#include "graphics/core/renderers.h"
+#include "graphics/opengl33/gl33_device.h"
+#include "common/image.h"
+#include "common/logger.h"
+#include "graphics/core/device.h"
+#include "graphics/core/texture.h"
+#include "graphics/core/type.h"
 
 // Graphics module namespace
 namespace Gfx

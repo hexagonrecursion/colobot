@@ -24,17 +24,13 @@
 
 #pragma once
 
-#include "CBot/CBot.h"
-
 #include "common/error.h"
-
-#include <string>
-#include <unordered_map>
-#include <memory>
+#include "CBot/CBotTypResult.h"
 
 class CObject;
 class CScript;
 class CExchangePost;
+
 namespace CBot
 {
 class CBotVar;

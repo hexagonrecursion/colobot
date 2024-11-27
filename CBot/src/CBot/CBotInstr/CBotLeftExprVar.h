@@ -19,10 +19,17 @@
 
 #pragma once
 
+#include <memory>
+#include <string>
+
 #include "CBot/CBotInstr/CBotInstr.h"
+#include "CBot/CBotTypResult.h"
 
 namespace CBot
 {
+class CBotCStack;
+class CBotStack;
+class CBotToken;
 
 /**
  * \brief A variable on the left side of an assignment

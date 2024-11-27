@@ -25,14 +25,16 @@
 #pragma once
 
 
-#include "math/const.h"
-
 #include <glm/glm.hpp>
-
 #include <cmath>
 #include <cstdlib>
 #include <sstream>
 #include <string>
+#include <iosfwd>
+#include <memory>
+#include <ostream>
+
+#include "math/const.h"
 
 
 // Math module namespace

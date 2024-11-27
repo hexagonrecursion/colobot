@@ -20,13 +20,18 @@
 
 #pragma once
 
-#include "object/subclass/base_building.h"
-
-#include "object/auto/auto.h"
-
+#include <glm/glm.hpp>
 #include <optional>
 #include <string>
 #include <vector>
+#include <memory>
+
+#include "object/subclass/base_building.h"
+#include "object/auto/auto.h"
+#include "common/error.h"
+
+class CLevelParserLine;
+struct Event;
 
 struct ExchangePostInfo
 {
@@ -100,6 +105,7 @@ protected:
 protected:
     CExchangePost*  m_exchangePost;
     enum class Phase : unsigned int;
+
     Phase           m_phase;
     float           m_progress;
     float           m_speed;

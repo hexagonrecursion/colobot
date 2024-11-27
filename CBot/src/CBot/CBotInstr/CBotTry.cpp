@@ -20,9 +20,11 @@
 #include "CBot/CBotInstr/CBotTry.h"
 
 #include "CBot/CBotInstr/CBotBlock.h"
-
 #include "CBot/CBotStack.h"
 #include "CBot/CBotCStack.h"
+#include "CBot/CBotEnums.h"
+#include "CBot/CBotInstr/CBotCatch.h"
+#include "CBot/CBotToken.h"
 
 namespace CBot
 {

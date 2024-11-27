@@ -20,39 +20,31 @@
 
 #include "ui/displayinfo.h"
 
+#include <cassert>
+
 #include "app/app.h"
 #include "app/pausemanager.h"
-
-#include "common/restext.h"
 #include "common/settings.h"
-#include "common/stringutils.h"
-
 #include "graphics/core/light.h"
-
 #include "graphics/engine/engine.h"
 #include "graphics/engine/lightman.h"
 #include "graphics/engine/particle.h"
-
 #include "level/robotmain.h"
-
 #include "object/object.h"
 #include "object/object_manager.h"
-
 #include "object/interface/movable_object.h"
-
-#include "object/motion/motion.h"
 #include "object/motion/motiontoto.h"
-
-#include "script/cbottoken.h"
-
 #include "ui/controls/button.h"
 #include "ui/controls/edit.h"
 #include "ui/controls/group.h"
 #include "ui/controls/interface.h"
 #include "ui/controls/slider.h"
 #include "ui/controls/window.h"
-
-#include <string.h>
+#include "common/event.h"
+#include "graphics/core/color.h"
+#include "graphics/engine/text.h"
+#include "object/object_type.h"
+#include "ui/controls/control.h"
 
 
 namespace Ui

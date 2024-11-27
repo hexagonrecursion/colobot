@@ -19,30 +19,34 @@
 
 #include "ui/debug_menu.h"
 
-#include "app/app.h"
+#include <SDL_clipboard.h>
+#include <SDL_keycode.h>
+#include <map>
+#include <memory>
+#include <string>
+#include <utility>
 
 #include "common/event.h"
 #include "common/stringutils.h"
 #include "common/global.h"
-
 #include "graphics/engine/engine.h"
 #include "graphics/engine/lightning.h"
 #include "graphics/engine/terrain.h"
-
 #include "level/robotmain.h"
-
 #include "object/object.h"
 #include "object/object_manager.h"
-
 #include "sound/sound.h"
-
 #include "ui/controls/button.h"
 #include "ui/controls/check.h"
 #include "ui/controls/interface.h"
 #include "ui/controls/label.h"
 #include "ui/controls/window.h"
-
-#include <SDL_clipboard.h>
+#include "common/key.h"
+#include "common/logger.h"
+#include "graphics/engine/text.h"
+#include "object/object_create_params.h"
+#include "sound/sound_type.h"
+#include "ui/controls/control.h"
 
 namespace Ui
 {

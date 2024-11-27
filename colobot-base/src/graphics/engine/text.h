@@ -25,14 +25,13 @@
 #pragma once
 
 
-#include "graphics/core/color.h"
-
-#include <map>
+#include <glm/glm.hpp>
 #include <memory>
 #include <string_view>
 #include <vector>
+#include <string>
 
-#include <glm/glm.hpp>
+#include "graphics/core/color.h"
 
 namespace StrUtils
 {
@@ -174,7 +173,6 @@ struct CharTexture
 // Definition is private - in text.cpp
 class FontsCache;
 struct CachedFont;
-struct MultisizeFont;
 struct FontTexture;
 
 /**
@@ -323,6 +321,7 @@ protected:
     std::vector<FontTexture> m_fontTextures;
 
     class CQuadBatch;
+
     std::unique_ptr<CQuadBatch> m_quadBatch;
 };
 

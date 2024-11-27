@@ -20,28 +20,36 @@
 
 #include "object/motion/motionvehicle.h"
 
-#include "app/app.h"
+#include <array>
+#include <cassert>
+#include <cmath>
+#include <cstdio>
+#include <memory>
+#include <string>
 
 #include "common/stringutils.h"
-
 #include "graphics/engine/engine.h"
 #include "graphics/engine/oldmodelmanager.h"
 #include "graphics/engine/particle.h"
 #include "graphics/engine/terrain.h"
-
 #include "math/geometry.h"
-
 #include "object/object_manager.h"
 #include "object/old_object.h"
-
-#include "object/interface/programmable_object.h"
 #include "object/interface/slotted_object.h"
 #include "object/interface/transportable_object.h"
-
 #include "physics/physics.h"
-
-#include <stdio.h>
-#include <string.h>
+#include "common/event.h"
+#include "graphics/core/color.h"
+#include "graphics/engine/camera.h"
+#include "math/const.h"
+#include "math/func.h"
+#include "math/sphere.h"
+#include "object/crash_sphere.h"
+#include "object/interface/destroyable_object.h"
+#include "object/object.h"
+#include "object/old_object_interface.h"
+#include "object/task/task.h"
+#include "sound/sound_type.h"
 
 
 

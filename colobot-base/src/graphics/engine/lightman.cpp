@@ -20,17 +20,16 @@
 
 #include "graphics/engine/lightman.h"
 
-#include "common/logger.h"
-
-#include "graphics/core/device.h"
-
-#include "graphics/engine/engine.h"
-
-#include "math/geometry.h"
-
-
 #include <cmath>
 #include <algorithm>
+#include <string>
+
+#include "common/logger.h"
+#include "graphics/engine/engine.h"
+#include "math/geometry.h"
+#include "graphics/core/color.h"
+#include "math/const.h"
+#include "math/func.h"
 
 
 // Graphics module namespace

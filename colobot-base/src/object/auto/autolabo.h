@@ -21,8 +21,15 @@
 
 
 #include "object/auto/auto.h"
-
 #include "level/research_type.h"
+#include "common/error.h"
+#include "common/event.h"
+
+class CLevelParserLine;
+class COldObject;
+namespace Ui {
+class CWindow;
+}  // namespace Ui
 
 
 enum AutoLaboPhase

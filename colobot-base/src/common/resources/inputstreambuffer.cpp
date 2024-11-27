@@ -19,10 +19,11 @@
 
 #include "common/resources/inputstreambuffer.h"
 
-#include "common/resources/resourcemanager.h"
-
 #include <stdexcept>
-#include <sstream>
+#include <cstddef>
+#include <string>
+
+#include "common/resources/resourcemanager.h"
 
 CInputStreamBuffer::CInputStreamBuffer(std::size_t bufferSize)
   : m_bufferSize(bufferSize)

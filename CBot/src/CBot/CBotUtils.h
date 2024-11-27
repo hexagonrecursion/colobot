@@ -19,8 +19,6 @@
 
 #pragma once
 
-#include "CBot/CBotFileUtils.h"
-
 #include <string>
 #include <cassert>
 

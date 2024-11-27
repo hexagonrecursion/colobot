@@ -19,10 +19,11 @@
 
 #pragma once
 
-#include "ui/controls/slider.h"
-
 #include <vector>
 #include <map>
+#include <string>
+
+#include "ui/controls/slider.h"
 
 namespace Ui
 {

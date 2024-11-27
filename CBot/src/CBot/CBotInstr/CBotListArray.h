@@ -19,10 +19,19 @@
 
 #pragma once
 
+#include <map>
+#include <memory>
+#include <string>
+
 #include "CBot/CBotInstr/CBotInstr.h"
+#include "CBot/CBotTypResult.h"
 
 namespace CBot
 {
+class CBotCStack;
+class CBotStack;
+class CBotToken;
+class CBotVar;
 
 /**
  * \brief Compilation of assignment of an array - {{1, 2, 3}, {3, 2, 1}}

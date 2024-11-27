@@ -23,9 +23,10 @@
 #include "CBot/CBotInstr/CBotDefString.h"
 #include "CBot/CBotInstr/CBotExpression.h"
 #include "CBot/CBotInstr/CBotListExpression.h"
-
 #include "CBot/CBotStack.h"
 #include "CBot/CBotCStack.h"
+#include "CBot/CBotEnums.h"
+#include "CBot/CBotToken.h"
 
 namespace CBot
 {

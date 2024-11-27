@@ -20,31 +20,38 @@
 
 #include "script/script.h"
 
-#include "CBot/CBot.h"
+#include <libintl.h>
+#include <array>
+#include <cassert>
+#include <cstdlib>
+#include <map>
+#include <set>
+#include <string_view>
+#include <utility>
+#include <vector>
 
 #include "common/restext.h"
 #include "common/stringutils.h"
-
 #include "common/resources/inputstream.h"
-#include "common/resources/outputstream.h"
 #include "common/resources/resourcemanager.h"
-
 #include "graphics/engine/engine.h"
 #include "graphics/engine/text.h"
-
 #include "level/robotmain.h"
-
 #include "object/old_object.h"
-
 #include "script/cbottoken.h"
-
 #include "ui/displaytext.h"
-
 #include "ui/controls/edit.h"
 #include "ui/controls/interface.h"
 #include "ui/controls/list.h"
-
-#include <libintl.h>
+#include "CBot/CBotFileUtils.h"
+#include "CBot/CBotProgram.h"
+#include "CBot/CBotToken.h"
+#include "CBot/CBotUtils.h"
+#include "CBot/CBotVar/CBotVar.h"
+#include "common/error.h"
+#include "common/event.h"
+#include "object/interface/task_executor_object.h"
+#include "ui/controls/control.h"
 
 const int CBOT_IPF = 100;       // CBOT: default number of instructions / frame
 

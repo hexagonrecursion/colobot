@@ -25,11 +25,21 @@
 
 #pragma once
 
-#include "ui/controls/control.h"
-
+#include <glm/glm.hpp>
 #include <array>
 #include <filesystem>
 #include <memory>
+#include <iosfwd>
+#include <string>
+#include <vector>
+
+#include "ui/controls/control.h"
+#include "common/event.h"
+#include "graphics/engine/text.h"
+
+namespace Gfx {
+struct Color;
+}  // namespace Gfx
 
 namespace Ui
 {

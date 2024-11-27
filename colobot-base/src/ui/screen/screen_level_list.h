@@ -19,13 +19,14 @@
 
 #pragma once
 
-#include "ui/screen/screen.h"
-
-#include "level/level_category.h"
-
 #include <map>
 #include <vector>
 #include <filesystem>
+
+#include "ui/screen/screen.h"
+
+enum class LevelCategory;
+struct Event;
 
 namespace Ui
 {

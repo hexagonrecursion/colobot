@@ -19,22 +19,25 @@
 
 #include "app/modman.h"
 
-#include "common/config.h"
-
-#include "app/app.h"
-#include "app/pathman.h"
-
-#include "common/config_file.h"
-#include "common/logger.h"
-#include "common/stringutils.h"
-
-#include "common/resources/resourcemanager.h"
-
-#include "level/parser/parser.h"
-
 #include <algorithm>
 #include <filesystem>
 #include <map>
+#include <iosfwd>
+#include <iterator>
+#include <ostream>
+#include <sstream>
+#include <utility>
+
+#include "app/app.h"
+#include "app/pathman.h"
+#include "common/config_file.h"
+#include "common/logger.h"
+#include "common/stringutils.h"
+#include "common/resources/resourcemanager.h"
+#include "level/parser/parser.h"
+#include "level/parser/parserexceptions.h"
+#include "level/parser/parserline.h"
+#include "level/parser/parserparam.h"
 
 CModManager::CModManager(CApplication* app, CPathManager* pathManager)
     : m_app{app},
