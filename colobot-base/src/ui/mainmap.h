@@ -19,10 +19,7 @@
 
 #pragma once
 
-#include "graphics/core/color.h"
-
 #include <glm/glm.hpp>
-
 #include <filesystem>
 
 class CObject;
@@ -31,6 +28,7 @@ class CEventQueue;
 namespace Gfx
 {
 class CEngine;
+struct Color;
 } // namespace Gfx
 
 namespace Ui

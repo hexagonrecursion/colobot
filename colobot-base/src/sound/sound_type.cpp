@@ -19,9 +19,10 @@
 
 #include "sound/sound_type.h"
 
-#include "common/logger.h"
-
 #include <unordered_map>
+#include <utility>
+
+#include "common/logger.h"
 
 namespace
 {

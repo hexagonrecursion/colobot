@@ -19,19 +19,19 @@
 
 #include "ui/screen/screen_level_list.h"
 
-#include "app/app.h"
+#include <SDL_keycode.h>
+#include <glm/glm.hpp>
+#include <algorithm>
+#include <array>
+#include <cstdio>
+#include <memory>
+#include <string>
 
 #include "common/settings.h"
-#include "common/stringutils.h"
-
 #include "common/resources/resourcemanager.h"
-
 #include "level/player_profile.h"
-
 #include "level/parser/parser.h"
-
 #include "ui/maindialog.h"
-
 #include "ui/controls/button.h"
 #include "ui/controls/check.h"
 #include "ui/controls/edit.h"
@@ -39,8 +39,16 @@
 #include "ui/controls/label.h"
 #include "ui/controls/list.h"
 #include "ui/controls/window.h"
-
-#include <algorithm>
+#include "common/event.h"
+#include "common/key.h"
+#include "common/restext.h"
+#include "graphics/engine/text.h"
+#include "level/level_category.h"
+#include "level/parser/parserexceptions.h"
+#include "level/parser/parserline.h"
+#include "level/parser/parserparam.h"
+#include "level/robotmain.h"
+#include "ui/controls/control.h"
 
 namespace Ui
 {

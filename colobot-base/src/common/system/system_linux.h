@@ -22,6 +22,10 @@
  * \brief Linux-specific implementation of system functions
  */
 
+#include <filesystem>
+#include <string>
+#include <vector>
+
 #include "common/system/system.h"
 
 //@colobot-lint-exclude UndefinedFunctionRule

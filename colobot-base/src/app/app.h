@@ -24,23 +24,20 @@
 
 #pragma once
 
-#include "common/event.h"
-#include "common/language.h"
-#include "common/singleton.h"
-#include "common/timeutils.h"
-
-#include "level/level_category.h"
-
 #include <glm/glm.hpp>
-
 #include <array>
 #include <string>
 #include <vector>
 #include <map>
 #include <filesystem>
+#include <memory>
 
+#include "common/event.h"
+#include "common/language.h"
+#include "common/singleton.h"
+#include "common/timeutils.h"
+#include "level/level_category.h"
 
-class CEventQueue;
 class CController;
 class CSoundInterface;
 class CInput;

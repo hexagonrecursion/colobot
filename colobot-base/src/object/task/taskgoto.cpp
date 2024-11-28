@@ -20,27 +20,37 @@
 
 #include "object/task/taskgoto.h"
 
-#include "common/event.h"
-#include "common/global.h"
-#include "common/image.h"
+#include <algorithm>
+#include <cassert>
+#include <cmath>
+#include <cstdlib>
+#include <cstring>
+#include <limits>
+#include <utility>
 
+#include "common/event.h"
+#include "common/image.h"
 #include "graphics/engine/engine.h"
 #include "graphics/engine/terrain.h"
 #include "graphics/engine/water.h"
-
 #include "math/geometry.h"
-
 #include "object/object_manager.h"
 #include "object/old_object.h"
-
 #include "object/interface/slotted_object.h"
 #include "object/interface/transportable_object.h"
-
 #include "object/subclass/base_alien.h"
-
 #include "physics/physics.h"
-
-#include <string.h>
+#include "common/logger.h"
+#include "graphics/core/color.h"
+#include "graphics/core/vertex.h"
+#include "math/const.h"
+#include "math/func.h"
+#include "math/sphere.h"
+#include "object/crash_sphere.h"
+#include "object/interface/jet_flying_object.h"
+#include "object/object.h"
+#include "object/object_interface_type.h"
+#include "object/object_type.h"
 
 
 const float FLY_DIST_GROUND = 80.0f;    // minimum distance to remain on the ground

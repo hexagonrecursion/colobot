@@ -18,13 +18,15 @@
  */
 
 #include "CBot/CBotInstr/CBotCatch.h"
+
 #include "CBot/CBotInstr/CBotBlock.h"
 #include "CBot/CBotInstr/CBotExpression.h"
-
 #include "CBot/CBotStack.h"
 #include "CBot/CBotCStack.h"
-
 #include "CBot/CBotVar/CBotVar.h"
+#include "CBot/CBotEnums.h"
+#include "CBot/CBotToken.h"
+#include "CBot/CBotTypResult.h"
 
 namespace CBot
 {

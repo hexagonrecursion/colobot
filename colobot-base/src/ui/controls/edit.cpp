@@ -20,34 +20,39 @@
 
 #include "ui/controls/edit.h"
 
-#include "common/config.h"
+#include <SDL_clipboard.h>
+#include <SDL_keycode.h>
+#include <SDL_stdinc.h>
+#include <cstring>
+#include <algorithm>
+#include <cassert>
+#include <cctype>
+#include <cstdlib>
+#include <ios>
+#include <istream>
+#include <limits>
+#include <ostream>
+#include <sstream>
+#include <string_view>
 
 #include "app/app.h"
 #include "app/input.h"
-
 #include "common/codepoint.h"
 #include "common/logger.h"
 #include "common/stringutils.h"
-
 #include "common/resources/inputstream.h"
 #include "common/resources/outputstream.h"
-
 #include "graphics/core/renderers.h"
 #include "graphics/core/transparency.h"
-
 #include "graphics/engine/engine.h"
-
 #include "level/parser/parser.h"
-
 #include "math/func.h"
-
 #include "script/script.h"
-
 #include "ui/controls/scroll.h"
-
-#include <SDL.h>
-
-#include <cstring>
+#include "common/key.h"
+#include "graphics/core/color.h"
+#include "graphics/core/texture.h"
+#include "graphics/core/vertex.h"
 
 namespace Ui
 {

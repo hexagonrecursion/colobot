@@ -19,13 +19,12 @@
 
 #include "common/system/system_linux.h"
 
+#include <cstdlib>
+#include <memory>
+
 #include "common/logger.h"
 #include "common/stringutils.h"
 #include "common/version.h"
-
-#include <stdlib.h>
-#include <unistd.h>
-#include <time.h>
 
 #ifdef COLOBOT_APPIMAGE_BASEPATH_OVERRIDE
 #include <SDL2/SDL.h>

@@ -19,25 +19,34 @@
 
 #include "object/subclass/exchange_post.h"
 
+#include <array>
+#include <cmath>
+#include <cstdio>
+#include <regex>
+#include <utility>
+
 #include "common/regex_utils.h"
 #include "common/stringutils.h"
-
 #include "graphics/engine/engine.h"
 #include "graphics/engine/oldmodelmanager.h"
-
 #include "level/parser/parserexceptions.h"
 #include "level/parser/parserline.h"
 #include "level/parser/parserparam.h"
-
 #include "math/func.h"
-
 #include "object/object_create_params.h"
-
 #include "sound/sound.h"
-
 #include "ui/controls/interface.h"
 #include "ui/controls/list.h"
 #include "ui/controls/window.h"
+#include "common/event.h"
+#include "graphics/engine/particle.h"
+#include "math/const.h"
+#include "math/sphere.h"
+#include "object/crash_sphere.h"
+#include "object/object_type.h"
+#include "object/old_object.h"
+#include "sound/sound_type.h"
+#include "ui/controls/control.h"
 
 
 CExchangePost::CExchangePost(int id)

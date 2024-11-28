@@ -19,6 +19,9 @@
 
 #pragma once
 
+#include <memory>
+#include <string>
+
 #include "common/event.h"
 
 class COldObject;

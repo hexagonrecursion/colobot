@@ -20,20 +20,26 @@
 
 #include "object/auto/autopowerstation.h"
 
+#include <cassert>
+
 #include "graphics/engine/engine.h"
 #include "graphics/engine/particle.h"
 #include "graphics/engine/terrain.h"
-
 #include "math/geometry.h"
-
 #include "object/object_manager.h"
 #include "object/old_object.h"
-
 #include "sound/sound.h"
-
 #include "ui/controls/gauge.h"
 #include "ui/controls/interface.h"
 #include "ui/controls/window.h"
+#include "common/event.h"
+#include "math/func.h"
+#include "object/interface/power_container_object.h"
+#include "object/interface/slotted_object.h"
+#include "object/object.h"
+#include "object/object_interface_type.h"
+#include "object/object_type.h"
+#include "sound/sound_type.h"
 
 
 

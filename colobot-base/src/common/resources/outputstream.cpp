@@ -19,6 +19,8 @@
 
 #include "common/resources/outputstream.h"
 
+#include <string>
+
 #include "common/resources/outputstreambuffer.h"
 
 

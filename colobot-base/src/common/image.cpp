@@ -20,21 +20,24 @@
 
 #include "common/image.h"
 
-#include "common/stringutils.h"
-
-#include "common/resources/outputstream.h"
-#include "common/resources/resourcemanager.h"
-
-#include "math/func.h"
-
-#include <cstdlib>
-#include <cstdio>
-#include <cstring>
-#include <cassert>
-
-#include <SDL.h>
 #include <SDL_image.h>
 #include <png.h>
+#include <SDL_endian.h>
+#include <SDL_pixels.h>
+#include <SDL_stdinc.h>
+#include <SDL_surface.h>
+#include <cstring>
+#include <cassert>
+#include <csetjmp>
+#include <ios>
+#include <iosfwd>
+#include <ostream>
+
+#include "common/stringutils.h"
+#include "common/resources/outputstream.h"
+#include "common/resources/resourcemanager.h"
+#include "math/func.h"
+#include "common/resources/sdl_file_wrapper.h"
 
 
 /* <---------------------------------------------------------------> */

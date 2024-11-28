@@ -19,13 +19,12 @@
 
 #pragma once
 
-#include "CBot/CBotEnums.h"
-#include "CBot/CBotUtils.h"
-
-#include <vector>
 #include <string>
 #include <map>
 #include <memory>
+
+#include "CBot/CBotEnums.h"
+#include "CBot/CBotUtils.h"
 
 namespace CBot
 {

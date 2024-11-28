@@ -19,12 +19,14 @@
 
 #include "CBot/CBotInstr/CBotIndexExpr.h"
 
+#include <cassert>
+
 #include "CBot/CBotStack.h"
 #include "CBot/CBotCStack.h"
-
 #include "CBot/CBotVar/CBotVarArray.h"
-
-#include <cassert>
+#include "CBot/CBotEnums.h"
+#include "CBot/CBotToken.h"
+#include "CBot/CBotVar/CBotVar.h"
 
 namespace CBot
 {

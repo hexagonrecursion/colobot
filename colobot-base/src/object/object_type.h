@@ -25,6 +25,7 @@
 #pragma once
 
 #include <functional>
+#include <iosfwd>
 
 /**
  * \enum ObjectType

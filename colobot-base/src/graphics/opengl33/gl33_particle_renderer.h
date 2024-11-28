@@ -24,18 +24,19 @@
 
 #pragma once
 
-#include "graphics/core/renderers.h"
-
 #include <GL/glew.h>
+#include <glm/glm.hpp>
 
-#include <array>
-#include <vector>
+#include "graphics/core/renderers.h"
 
   // Graphics module namespace
 namespace Gfx
 {
 
 class CGL33Device;
+enum class TransparencyMode : unsigned char;
+struct Texture;
+struct VertexParticle;
 
 class CGL33ParticleRenderer : public CParticleRenderer
 {

@@ -19,26 +19,32 @@
 
 #include "ui/screen/screen_player_select.h"
 
-#include "app/app.h"
+#include <SDL_keycode.h>
+#include <glm/glm.hpp>
+#include <filesystem>
+#include <memory>
+#include <string>
+#include <vector>
 
 #include "common/logger.h"
 #include "common/stringutils.h"
-
 #include "level/player_profile.h"
 #include "level/robotmain.h"
-
 #include "sound/sound.h"
-
 #include "ui/maindialog.h"
-
 #include "ui/controls/button.h"
 #include "ui/controls/edit.h"
-#include "ui/controls/gauge.h"
 #include "ui/controls/group.h"
 #include "ui/controls/interface.h"
 #include "ui/controls/label.h"
 #include "ui/controls/list.h"
 #include "ui/controls/window.h"
+#include "common/event.h"
+#include "common/key.h"
+#include "common/restext.h"
+#include "graphics/engine/text.h"
+#include "sound/sound_type.h"
+#include "ui/controls/control.h"
 
 namespace Ui
 {

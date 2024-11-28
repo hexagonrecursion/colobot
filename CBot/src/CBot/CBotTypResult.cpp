@@ -19,11 +19,12 @@
 
 #include "CBot/CBotTypResult.h"
 
-#include "CBot/CBotEnums.h"
-
-#include "CBot/CBotClass.h"
-
 #include <sstream>
+#include <iosfwd>
+#include <ostream>
+
+#include "CBot/CBotEnums.h"
+#include "CBot/CBotClass.h"
 
 
 namespace CBot

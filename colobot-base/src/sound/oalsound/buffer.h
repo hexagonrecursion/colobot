@@ -24,14 +24,10 @@
 
 #pragma once
 
-#include "sound/sound.h"
-
-#include <string>
-#include <vector>
-#include <array>
+#include <al.h>
 #include <filesystem>
 
-#include <al.h>
+#include "sound/sound_type.h"
 
 class CBuffer
 {

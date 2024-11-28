@@ -20,12 +20,11 @@
 
 #include "ui/controls/interface.h"
 
+#include <iterator>
+#include <utility>
+
 #include "app/app.h"
-
 #include "graphics/engine/engine.h"
-
-#include "level/robotmain.h"
-
 #include "ui/controls/button.h"
 #include "ui/controls/check.h"
 #include "ui/controls/color.h"

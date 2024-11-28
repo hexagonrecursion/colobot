@@ -19,7 +19,10 @@
 
 #pragma once
 
+#include <memory>
+
 #include "object/subclass/base_vehicle.h"
+#include "object/object_type.h"
 
 struct ObjectCreateParams;
 

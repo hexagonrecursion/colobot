@@ -21,17 +21,17 @@
 
 #include "CBot/CBotInstr/CBotExprRetVar.h"
 #include "CBot/CBotInstr/CBotInstrUtils.h"
-
 #include "CBot/CBotInstr/CBotLeftExprVar.h"
 #include "CBot/CBotInstr/CBotTwoOpExpr.h"
 #include "CBot/CBotInstr/CBotDefArray.h"
-
 #include "CBot/CBotStack.h"
 #include "CBot/CBotCStack.h"
 #include "CBot/CBotClass.h"
-
-#include "CBot/CBotVar/CBotVarPointer.h"
 #include "CBot/CBotVar/CBotVarClass.h"
+#include "CBot/CBotEnums.h"
+#include "CBot/CBotToken.h"
+#include "CBot/CBotTypResult.h"
+#include "CBot/CBotVar/CBotVar.h"
 
 namespace CBot
 {

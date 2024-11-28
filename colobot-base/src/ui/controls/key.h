@@ -24,13 +24,11 @@
 
 #pragma once
 
+#include <glm/glm.hpp>
+
 #include "ui/controls/control.h"
-
 #include "app/input.h"
-
 #include "common/event.h"
-#include "common/key.h"
-#include "common/restext.h"
 
 
 namespace Ui

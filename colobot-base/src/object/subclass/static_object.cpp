@@ -19,20 +19,24 @@
 
 #include "object/subclass/static_object.h"
 
+#include <filesystem>
+#include <cassert>
+#include <utility>
+
 #include "graphics/engine/engine.h"
 #include "graphics/engine/terrain.h"
-
 #include "graphics/model/model.h"
 #include "graphics/model/model_io_exception.h"
 #include "graphics/model/model_manager.h"
-
 #include "math/geometry.h"
-
 #include "object/object_create_exception.h"
-
 #include "common/stringutils.h"
+#include "math/sphere.h"
 
-#include <filesystem>
+class CLevelParserLine;
+namespace Gfx {
+class CModelMesh;
+}  // namespace Gfx
 
 const std::unordered_map<ObjectType, std::filesystem::path, ObjectTypeHash> CStaticObject::m_staticModelNames{};
 // TODO: commenting out temporarily

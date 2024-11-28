@@ -19,9 +19,11 @@
 
 #include "level/parser/parserexceptions.h"
 
-#include "level/parser/parser.h"
+#include <memory>
 
 #include "common/stringutils.h"
+#include "level/parser/parserline.h"
+#include "level/parser/parserparam.h"
 
 
 static std::string FormatMissingParamError(CLevelParserParam* thisParam) noexcept

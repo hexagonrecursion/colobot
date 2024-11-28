@@ -19,10 +19,17 @@
 
 #pragma once
 
+#include <memory>
+#include <string>
+
 #include "CBot/CBotInstr/CBotInstr.h"
 
 namespace CBot
 {
+class CBotCStack;
+class CBotStack;
+class CBotToken;
+class CBotVar;
 
 /**
  * \brief Accessing a class field using dot operator - toto.x

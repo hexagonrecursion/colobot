@@ -20,10 +20,9 @@
 
 #pragma once
 
+#include <SDL_rwops.h>
 #include <filesystem>
 #include <memory>
-
-#include <SDL.h>
 
 class CSDLMemoryWrapper final
 {

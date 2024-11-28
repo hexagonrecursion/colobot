@@ -20,15 +20,19 @@
 
 #include "object/auto/autoportico.h"
 
+#include <cmath>
+#include <memory>
+
 #include "graphics/engine/engine.h"
-
-#include "common/stringutils.h"
-
 #include "level/robotmain.h"
-
 #include "object/old_object.h"
-
 #include "sound/sound.h"
+#include "common/event.h"
+#include "graphics/engine/camera.h"
+#include "math/const.h"
+#include "sound/sound_type.h"
+
+class CObject;
 
 
 const int PARAM_DEPOSE = 2;     // run=2 -> deposits the spaceship

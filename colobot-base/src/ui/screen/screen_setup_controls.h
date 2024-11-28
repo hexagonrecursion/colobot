@@ -20,6 +20,7 @@
 #pragma once
 
 #include "ui/screen/screen_setup.h"
+#include "common/event.h"
 
 class CInput;
 

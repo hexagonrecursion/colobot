@@ -19,10 +19,11 @@
 
 
 #include "common/logger.h"
+
+#include <ostream>
+
 #include "common/stringutils.h"
 #include "common/version.h"
-
-#include <stdio.h>
 
 CLogger::CLogger()
 {

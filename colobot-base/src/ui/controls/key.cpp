@@ -20,17 +20,18 @@
 
 #include "ui/controls/key.h"
 
-#include "common/global.h"
-#include "common/stringutils.h"
+#include <SDL_keycode.h>
+#include <filesystem>
+#include <string>
 
 #include "graphics/core/renderers.h"
 #include "graphics/core/transparency.h"
-
 #include "graphics/engine/engine.h"
-
 #include "sound/sound.h"
-
-#include <cstring>
+#include "common/key.h"
+#include "common/restext.h"
+#include "graphics/engine/text.h"
+#include "sound/sound_type.h"
 
 namespace Ui
 {

@@ -21,6 +21,8 @@
 
 #include "ui/screen/screen.h"
 
+struct Event;
+
 namespace Ui
 {
 

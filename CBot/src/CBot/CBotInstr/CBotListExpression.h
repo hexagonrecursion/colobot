@@ -19,10 +19,17 @@
 
 #pragma once
 
+#include <map>
+#include <memory>
+#include <string>
+
 #include "CBot/CBotInstr/CBotInstr.h"
 
 namespace CBot
 {
+class CBotCStack;
+class CBotStack;
+class CBotToken;
 
 /**
  * \brief Compile a comma-separated list of expressions or variable definitions

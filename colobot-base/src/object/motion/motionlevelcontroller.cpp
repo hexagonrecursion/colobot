@@ -21,10 +21,13 @@
 #include "object/motion/motionlevelcontroller.h"
 
 #include "graphics/engine/engine.h"
-
 #include "object/old_object.h"
-
 #include "physics/physics.h"
+#include "math/const.h"
+
+namespace Gfx {
+class COldModelManager;
+}  // namespace Gfx
 
 // Object's constructor.
 

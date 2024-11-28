@@ -21,8 +21,11 @@
 
 
 #include "object/task/task.h"
+#include "common/error.h"
 
 class CExchangePost;
+class COldObject;
+struct Event;
 
 class CTaskInfo : public CForegroundTask
 {

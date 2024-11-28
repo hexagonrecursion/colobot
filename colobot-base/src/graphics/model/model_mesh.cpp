@@ -20,6 +20,9 @@
 #include "graphics/model/model_mesh.h"
 
 #include <array>
+#include <utility>
+
+#include "graphics/core/vertex.h"
 
 namespace Gfx
 {

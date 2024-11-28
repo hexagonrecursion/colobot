@@ -19,15 +19,24 @@
 
 #include "CBot/CBotDebug.h"
 
-#include "CBot/CBotProgram.h"
-#include "CBot/CBotInstr/CBotFunction.h"
-#include "CBot/CBotInstr/CBotInstrCall.h"
-
 #include <array>
 #include <functional>
 #include <sstream>
 #include <iostream>
-#include <iomanip>
+#include <cstdio>
+#include <iosfwd>
+#include <list>
+#include <map>
+#include <memory>
+#include <ostream>
+#include <set>
+#include <string>
+#include <utility>
+
+#include "CBot/CBotProgram.h"
+#include "CBot/CBotInstr/CBotFunction.h"
+#include "CBot/CBotInstr/CBotInstrCall.h"
+#include "CBot/CBotInstr/CBotInstr.h"
 
 namespace CBot
 {

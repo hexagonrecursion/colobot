@@ -19,14 +19,14 @@
 
 #include "object/subclass/base_building.h"
 
+#include <glm/glm.hpp>
+#include <utility>
+
 #include "graphics/engine/engine.h"
 #include "graphics/engine/oldmodelmanager.h"
 #include "graphics/engine/terrain.h"
-
 #include "math/geometry.h"
-
 #include "object/object_create_params.h"
-
 #include "object/auto/autobase.h"
 #include "object/auto/autoconvert.h"
 #include "object/auto/autoderrick.h"
@@ -45,6 +45,11 @@
 #include "object/auto/autoresearch.h"
 #include "object/auto/autotower.h"
 #include "object/auto/autovault.h"
+#include "math/const.h"
+#include "math/sphere.h"
+#include "object/auto/auto.h"
+#include "object/crash_sphere.h"
+#include "sound/sound_type.h"
 
 
 CBaseBuilding::CBaseBuilding(int id, ObjectType type)

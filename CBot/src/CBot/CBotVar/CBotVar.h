@@ -19,13 +19,14 @@
 
 #pragma once
 
-#include "CBot/CBotDefines.h"
+#include <cstdint>
+#include <string>
+#include <iosfwd>
+#include <memory>
+
 #include "CBot/CBotTypResult.h"
 #include "CBot/CBotEnums.h"
 #include "CBot/CBotUtils.h"
-
-#include <cstdint>
-#include <string>
 
 namespace CBot
 {

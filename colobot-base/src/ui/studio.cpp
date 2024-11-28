@@ -20,52 +20,33 @@
 
 #include "ui/studio.h"
 
+#include <cctype>
+
 #include "app/app.h"
 #include "app/pausemanager.h"
-
 #include "common/event.h"
-#include "common/logger.h"
 #include "common/settings.h"
-#include "common/stringutils.h"
-
-#include "common/resources/resourcemanager.h"
-
 #include "graphics/engine/camera.h"
 #include "graphics/engine/engine.h"
-
 #include "level/player_profile.h"
 #include "level/robotmain.h"
-
-#include "object/object.h"
-
 #include "object/interface/program_storage_object.h"
-#include "object/interface/programmable_object.h"
-
 #include "script/cbottoken.h"
 #include "script/script.h"
-
 #include "sound/sound.h"
-
 #include "ui/filedialog.h"
-
-#include "ui/controls/check.h"
-#include "ui/controls/color.h"
 #include "ui/controls/control.h"
 #include "ui/controls/edit.h"
 #include "ui/controls/group.h"
-#include "ui/controls/image.h"
 #include "ui/controls/interface.h"
-#include "ui/controls/key.h"
-#include "ui/controls/label.h"
 #include "ui/controls/list.h"
-#include "ui/controls/map.h"
-#include "ui/controls/shortcut.h"
 #include "ui/controls/slider.h"
-#include "ui/controls/target.h"
 #include "ui/controls/window.h"
-
-#include <stdio.h>
-#include <ctime>
+#include "common/restext.h"
+#include "graphics/engine/text.h"
+#include "object/object_type.h"
+#include "sound/sound_type.h"
+#include "ui/controls/button.h"
 
 
 namespace Ui

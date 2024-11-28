@@ -24,9 +24,7 @@
   calculated using GNU Octave.
  */
 
-#include "math/func.h"
 
-#include <gtest/gtest.h>
 
 
 const float TEST_TOLERANCE = 1e-6f;

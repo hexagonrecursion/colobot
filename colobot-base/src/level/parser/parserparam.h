@@ -24,37 +24,31 @@
 
 #pragma once
 
-#include "graphics/core/color.h"
-
-#include "graphics/engine/camera.h"
-#include "graphics/engine/planet_type.h"
-#include "graphics/engine/pyro_type.h"
-#include "graphics/engine/water.h"
-
-#include "level/scoreboard.h"
-
-#include "object/drive_type.h"
-#include "object/mission_type.h"
-#include "object/object_type.h"
-#include "object/tool_type.h"
-
 #include <glm/glm.hpp>
-
 #include <string>
 #include <vector>
 #include <memory>
 #include <filesystem>
 
-class CLevelParserLine;
+#include "graphics/core/color.h"
+#include "graphics/engine/camera.h"
+#include "graphics/engine/planet_type.h"
+#include "graphics/engine/pyro_type.h"
+#include "graphics/engine/water.h"
+#include "level/scoreboard.h"
+#include "object/drive_type.h"
+#include "object/mission_type.h"
+#include "object/object_type.h"
+#include "object/tool_type.h"
 
+class CLevelParserLine;
 class CLevelParserParam;
+
 using CLevelParserParamUPtr = std::unique_ptr<CLevelParserParam>;
 using CLevelParserParamVec = std::vector<CLevelParserParamUPtr>;
 
 namespace Gfx
 {
-class CEngine;
-
 enum EngineObjectType : unsigned char;
 }
 

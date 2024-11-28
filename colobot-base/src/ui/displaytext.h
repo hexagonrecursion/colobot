@@ -19,10 +19,11 @@
 
 #pragma once
 
+#include <glm/glm.hpp>
+#include <array>
+
 #include "common/error.h"
 #include "common/event.h"
-
-#include <array>
 
 class CObject;
 class CSoundInterface;

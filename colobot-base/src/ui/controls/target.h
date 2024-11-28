@@ -19,11 +19,11 @@
 
 #pragma once
 
-#include "ui/controls/control.h"
-
-#include "common/event.h"
-
+#include <glm/glm.hpp>
 #include <string>
+
+#include "ui/controls/control.h"
+#include "common/event.h"
 
 class CObject;
 

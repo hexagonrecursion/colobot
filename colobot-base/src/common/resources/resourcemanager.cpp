@@ -20,12 +20,12 @@
 
 #include "common/resources/resourcemanager.h"
 
-#include "common/config.h"
+#include <physfs.h>
+#include <algorithm>
+#include <cassert>
+
 #include "common/logger.h"
 #include "common/stringutils.h"
-
-#include <algorithm>
-#include <physfs.h>
 
 
 CResourceManager::CResourceManager(const char *argv0)

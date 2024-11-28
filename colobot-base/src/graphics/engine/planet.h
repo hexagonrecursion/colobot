@@ -24,13 +24,11 @@
 
 #pragma once
 
-#include "graphics/engine/planet_type.h"
-
 #include <glm/glm.hpp>
-
-#include <string>
 #include <vector>
 #include <filesystem>
+
+#include "graphics/engine/planet_type.h"
 
 struct Event;
 

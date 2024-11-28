@@ -19,6 +19,8 @@
 
 #include "CBot/CBotVar/CBotVarFloat.h"
 
+#include "CBot/CBotFileUtils.h"
+
 namespace CBot
 {
 

@@ -20,24 +20,23 @@
 
 #include "ui/controls/map.h"
 
-#include "common/image.h"
-#include "common/stringutils.h"
+#include <cmath>
 
+#include "common/image.h"
 #include "graphics/core/renderers.h"
 #include "graphics/core/transparency.h"
-
 #include "graphics/engine/engine.h"
 #include "graphics/engine/terrain.h"
 #include "graphics/engine/water.h"
-
 #include "level/robotmain.h"
-
 #include "math/geometry.h"
-
 #include "object/interface/controllable_object.h"
 #include "object/interface/transportable_object.h"
-
-#include <cstring>
+#include "graphics/core/vertex.h"
+#include "math/const.h"
+#include "math/func.h"
+#include "object/object.h"
+#include "object/object_interface_type.h"
 
 
 namespace Ui

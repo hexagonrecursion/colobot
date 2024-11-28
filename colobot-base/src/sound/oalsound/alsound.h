@@ -24,21 +24,19 @@
 
 #pragma once
 
-#include "sound/sound.h"
-
-#include "common/thread/worker_thread.h"
-
-#include "sound/oalsound/buffer.h"
-#include "sound/oalsound/channel.h"
-#include "sound/oalsound/check.h"
-
+#include <alc.h>
+#include <glm/glm.hpp>
 #include <map>
 #include <memory>
-#include <string>
 #include <list>
 #include <filesystem>
+#include <utility>
 
-#include <al.h>
+#include "sound/sound.h"
+#include "common/thread/worker_thread.h"
+#include "sound/oalsound/buffer.h"
+#include "sound/oalsound/channel.h"
+#include "sound/sound_type.h"
 
 
 struct OldMusic

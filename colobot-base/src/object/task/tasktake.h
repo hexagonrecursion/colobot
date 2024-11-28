@@ -19,14 +19,15 @@
 
 #pragma once
 
-#include "object/task/task.h"
-
-#include "object/object_type.h"
-
 #include <glm/glm.hpp>
 
+#include "object/task/task.h"
+#include "object/object_type.h"
+#include "common/error.h"
 
 class CObject;
+class COldObject;
+struct Event;
 
 enum TaskTakeOrder
 {

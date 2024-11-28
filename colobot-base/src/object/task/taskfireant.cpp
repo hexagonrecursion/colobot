@@ -22,16 +22,16 @@
 
 #include "graphics/engine/engine.h"
 #include "graphics/engine/particle.h"
-
 #include "math/geometry.h"
-
 #include "object/old_object.h"
-
 #include "object/motion/motionant.h"
-
 #include "object/subclass/base_alien.h"
-
 #include "physics/physics.h"
+#include "common/event.h"
+#include "math/const.h"
+#include "math/func.h"
+#include "object/motion/motion.h"
+#include "object/object_type.h"
 
 
 

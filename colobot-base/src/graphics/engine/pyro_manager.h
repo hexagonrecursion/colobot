@@ -24,10 +24,11 @@
 
 #pragma once
 
-#include "graphics/engine/pyro_type.h"
-
 #include <memory>
 #include <set>
+
+#include "graphics/engine/pyro_type.h"
+#include "graphics/engine/pyro.h"
 
 struct Event;
 class CObject;
@@ -35,7 +36,6 @@ class CObject;
 namespace Gfx
 {
 
-class CPyro;
 using CPyroUPtr = std::unique_ptr<CPyro>;
 
 class CPyroManager

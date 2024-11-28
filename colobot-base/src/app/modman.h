@@ -21,8 +21,9 @@
 
 #include <filesystem>
 #include <string>
-#include <unordered_map>
 #include <vector>
+#include <cstddef>
+#include <memory>
 
 class CApplication;
 class CPathManager;

@@ -20,18 +20,16 @@
 
 #include "ui/controls/slider.h"
 
+#include <cmath>
+#include <filesystem>
+
 #include "common/event.h"
 #include "common/stringutils.h"
-
 #include "graphics/core/renderers.h"
 #include "graphics/core/transparency.h"
-
 #include "graphics/engine/engine.h"
 #include "graphics/engine/text.h"
-
 #include "ui/controls/button.h"
-
-#include <stdio.h>
 
 
 namespace Ui

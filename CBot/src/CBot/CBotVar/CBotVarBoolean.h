@@ -19,10 +19,15 @@
 
 #pragma once
 
+#include <iosfwd>
+
 #include "CBot/CBotVar/CBotVarValue.h"
+#include "CBot/CBotEnums.h"
 
 namespace CBot
 {
+class CBotToken;
+class CBotVar;
 
 /**
  * \brief CBotVar subclass for managing boolean values (::CBotTypBoolean)

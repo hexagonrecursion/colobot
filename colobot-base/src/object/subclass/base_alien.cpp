@@ -19,18 +19,20 @@
 
 #include "object/subclass/base_alien.h"
 
+#include <cassert>
+#include <utility>
+
 #include "level/parser/parserline.h"
 #include "level/parser/parserparam.h"
-
 #include "object/object_create_params.h"
-
 #include "object/motion/motionant.h"
 #include "object/motion/motionbee.h"
 #include "object/motion/motionqueen.h"
 #include "object/motion/motionspider.h"
 #include "object/motion/motionworm.h"
-
 #include "physics/physics.h"
+#include "object/motion/motion.h"
+#include "object/old_object.h"
 
 
 CBaseAlien::CBaseAlien(int id, ObjectType type)
