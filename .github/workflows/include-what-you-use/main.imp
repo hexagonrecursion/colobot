@@ -2,7 +2,7 @@
     { "include": [ "@\"gtest/.*\"", "private", "<gtest/gtest.h>", "public" ] },
     { "include": [ "@<gtest/.*>", "private", "<gtest/gtest.h>", "public" ] },
     { "include": [ "\"nlohmann/json.hpp\"", "private", "<nlohmann/json.hpp>", "public" ] },
-    { "include": [ "@<glm/.*>", "private", "<glm/glm.hpp>", "public" ] },
+    { "ref": "glm.imp" },
     { "include": [ "<pngconf.h>", "private", "<png.h>", "public" ] },
     { "include": [ "<bits/chrono.h>", "private", "<chrono>", "public" ] },
     { "include": [ "<bits/stdint-intn.h>", "private", "<cstdint>", "public" ] },
