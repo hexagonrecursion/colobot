@@ -5183,6 +5183,18 @@ void MockRepository::BasicRegisterExpect(mock<Z> *zMock, int baseOffset, int fun
 
 	if (funcIndex > VIRT_FUNC_LIMIT) RAISEEXCEPTION(NotImplementedException(this));
         std::cerr<<"B"<<std::endl;
+        std::cerr<< "( (unsigned int)baseOffset * sizeof(void*) + sizeof(void*)-1 > sizeof(Z) )"<<std::endl;
+        std::cerr<< ( (unsigned int)baseOffset * sizeof(void*) + sizeof(void*)-1 > sizeof(Z) )<<std::endl;
+        std::cerr<< "( (unsigned int)baseOffset * sizeof(void*) + sizeof(void*)-1 ) << sizeof(Z)" <<std::endl;
+        std::cerr<< ( (unsigned int)baseOffset * sizeof(void*) + sizeof(void*)-1 ) << ' ' << sizeof(Z) <<std::endl;
+        std::cerr<< "(unsigned int)baseOffset * sizeof(void*) + sizeof(void*)" <<std::endl;
+        std::cerr<< (unsigned int)baseOffset * sizeof(void*) + sizeof(void*) <<std::endl;
+        std::cerr<< "(unsigned int)baseOffset << sizeof(void*)" <<std::endl;
+        std::cerr<< (unsigned int)baseOffset << sizeof(void*) <<std::endl;
+        std::cerr<< "(unsigned int)baseOffset" <<std::endl;
+        std::cerr<< (unsigned int)baseOffset <<std::endl;
+        std::cerr<< "baseOffset" <<std::endl;
+        std::cerr<< baseOffset <<std::endl;
 
 	if ((unsigned int)baseOffset * sizeof(void*) + sizeof(void*)-1 > sizeof(Z)) RAISEEXCEPTION(NotImplementedException(this));
         std::cerr<<"C"<<std::endl;
