@@ -5179,8 +5179,14 @@ void mock<T>::mockedDestructor(int)
 template <typename Z>
 void MockRepository::BasicRegisterExpect(mock<Z> *zMock, int baseOffset, int funcIndex, void (base_mock::*func)(), int X)
 {
+        std::cerr<<"A"<<std::endl;
+
 	if (funcIndex > VIRT_FUNC_LIMIT) RAISEEXCEPTION(NotImplementedException(this));
+        std::cerr<<"B"<<std::endl;
+
 	if ((unsigned int)baseOffset * sizeof(void*) + sizeof(void*)-1 > sizeof(Z)) RAISEEXCEPTION(NotImplementedException(this));
+        std::cerr<<"C"<<std::endl;
+
 	if (zMock->funcMap.find(std::make_pair(baseOffset, funcIndex)) == zMock->funcMap.end())
 	{
 		if (zMock->funcTables.find(baseOffset) == zMock->funcTables.end())
