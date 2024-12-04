@@ -1196,6 +1196,7 @@ template <typename T>
 std::pair<int, int> virtual_index(T t)
 {
 #if defined(__GNUG__)
+#error GNUG
 	union {
 		T t;
 		struct
@@ -1217,6 +1218,7 @@ std::pair<int, int> virtual_index(T t)
 #endif
 
 #elif defined(_MSC_VER)
+#error MSC
 	union {
 		T t;
 		struct
@@ -1231,6 +1233,7 @@ std::pair<int, int> virtual_index(T t)
 	if (value != -1)
 		return std::pair<int, int>((int)(conv.u.baseoffs/sizeof(void*)), value);
 #elif defined(__EDG__)
+#error EDG
 	union {
 		T t;
 		struct {
