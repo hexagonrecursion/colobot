@@ -26,6 +26,7 @@
 
 #include <gtest/gtest.h>
 #include <hippomocks.h>
+#include <cpptrace/from_current.hpp>  ///////////
 
 using namespace HippoMocks;
 namespace ph = std::placeholders;
@@ -79,15 +80,21 @@ protected:
 
 void CApplicationUT::SetUp()
 {
-    m_systemUtils = m_mocks.Mock<CSystemUtils>();
+    CPPTRACE_TRY {
+        m_systemUtils = m_mocks.Mock<CSystemUtils>();
 
-    m_mocks.OnCall(m_systemUtils, CSystemUtils::GetDataPath).Return("");
-    m_mocks.OnCall(m_systemUtils, CSystemUtils::GetLangPath).Return("");
-    m_mocks.OnCall(m_systemUtils, CSystemUtils::GetSaveDir).Return("");
+        m_mocks.OnCall(m_systemUtils, CSystemUtils::GetDataPath).Return("");
+        m_mocks.OnCall(m_systemUtils, CSystemUtils::GetLangPath).Return("");
+        m_mocks.OnCall(m_systemUtils, CSystemUtils::GetSaveDir).Return("");
 
-    m_app = std::make_unique<CApplicationWrapper>(m_systemUtils);
+        m_app = std::make_unique<CApplicationWrapper>(m_systemUtils);
 
-    m_currentTime = m_app->GetBaseTimeStamp();
+        m_currentTime = m_app->GetBaseTimeStamp();
+
+    } CPPTRACE_CATCH(const std::exception& e) {
+        std::cerr<<"Exception: "<<e.what()<<std::endl;
+        cpptrace::from_current_exception().print();
+    }
 }
 
 void CApplicationUT::TearDown()

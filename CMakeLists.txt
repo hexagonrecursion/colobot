@@ -281,6 +281,14 @@ if(DESKTOP)
 endif()
 
 if(TESTS)
+    include(FetchContent)
+    FetchContent_Declare(
+      cpptrace
+      GIT_REPOSITORY https://github.com/jeremy-rifkin/cpptrace.git
+      GIT_TAG        v0.7.3 # <HASH or TAG>
+    )
+    FetchContent_MakeAvailable(cpptrace)
+
     # Google Test library
     find_package(GTest 1.11.0 QUIET)
     if(NOT(FORCE_BUNDLED_GTEST) AND GTEST_FOUND)

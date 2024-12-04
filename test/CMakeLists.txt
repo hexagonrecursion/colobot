@@ -41,6 +41,7 @@ target_link_libraries(Colobot-UnitTests PRIVATE
     GTest::GTest
     hippomocks
     Colobot-Base
+    cpptrace::cpptrace
 )
 
 gtest_discover_tests(Colobot-UnitTests
