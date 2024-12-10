@@ -19,7 +19,7 @@
 
 #include "graphics/engine/terrain.h"
 
-#include <SDL_surface.h>
+#include <SDL_surface.h>  // IWYU pragma: keep https://github.com/include-what-you-use/include-what-you-use/issues/1665
 #include <math.h>
 #include <sstream>
 #include <algorithm>
