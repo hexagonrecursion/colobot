@@ -21,12 +21,12 @@
 
 #include <gtest/gtest-message.h>
 #include <gtest/gtest-test-part.h>
-#include <gtest/gtest.h>
 #include <memory>
 
 #include "math/func.h"
 #include "math/geometry.h"
 #include "math/const.h"
+#include "gtest/gtest_pred_impl.h"
 
 
 const float TEST_TOLERANCE = 1e-5;
