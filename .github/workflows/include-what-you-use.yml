@@ -11,6 +11,8 @@ jobs:
         submodules: recursive
     - name: Genarate a compilation database
       run: cmake -S . -B build -D=CMAKE_EXPORT_COMPILE_COMMANDS=ON -D=TESTS=ON
+    - name: Generate iwyu mappings for C++
+      run: .github/workflows/include-what-you-use/c-to-cpp.py /usr/share/include-what-you-use ./build
     - name: Collect include-what-you-use recommendations
       run: |
         set -o pipefail;
@@ -19,7 +21,8 @@ jobs:
         -p build \
         -- \
         -Xiwyu --no_default_mapping \
-        -Xiwyu --mapping_file=$PWD/.github/workflows/include-what-you-use/main.imp \
+        -Xiwyu --mapping_file=$PWD/build/iwyu.gcc.imp \
+        -Xiwyu --mapping_file=$PWD/.github/workflows/include-what-you-use/glm.imp \
         | tee build/iwyu-log.txt
     - name: Apply include-what-you-use recommendations
       run: fix_include --nosafe_headers --noreorder --ignore_re '/lib/' < build/iwyu-log.txt
