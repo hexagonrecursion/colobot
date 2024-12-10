@@ -24,18 +24,18 @@
 
 #pragma once
 
-#include "graphics/core/renderers.h"
-
 #include <GL/glew.h>
+#include <glm/glm.hpp>
 
-#include <array>
-#include <vector>
+#include "graphics/core/renderers.h"
 
 // Graphics module namespace
 namespace Gfx
 {
 
 class CGL33Device;
+class CVertexBuffer;
+struct Texture;
 
 class CGL33ShadowRenderer : public CShadowRenderer
 {

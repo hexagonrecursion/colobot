@@ -20,36 +20,41 @@
 
 #include "object/auto/autofactory.h"
 
+#include <assert.h>
+#include <regex>
+#include <cmath>
+#include <filesystem>
+#include <memory>
+#include <vector>
+
 #include "common/stringutils.h"
-
 #include "graphics/engine/engine.h"
-
 #include "level/robotmain.h"
-
 #include "level/parser/parser.h"
 #include "level/parser/parserline.h"
 #include "level/parser/parserparam.h"
-
 #include "math/geometry.h"
-
 #include "object/object_create_params.h"
 #include "object/object_manager.h"
 #include "object/old_object.h"
-
 #include "object/interface/program_storage_object.h"
 #include "object/interface/programmable_object.h"
 #include "object/interface/transportable_object.h"
-
 #include "physics/physics.h"
-
 #include "script/script.h"
-
 #include "sound/sound.h"
-
 #include "ui/controls/interface.h"
 #include "ui/controls/window.h"
-
-#include <regex>
+#include "graphics/engine/particle.h"
+#include "math/const.h"
+#include "math/func.h"
+#include "math/sphere.h"
+#include "object/crash_sphere.h"
+#include "object/interface/movable_object.h"
+#include "object/object.h"
+#include "object/object_interface_type.h"
+#include "object/object_type.h"
+#include "sound/sound_type.h"
 
 // Object's constructor.
 

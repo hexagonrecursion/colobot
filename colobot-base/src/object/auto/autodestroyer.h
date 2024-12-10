@@ -21,9 +21,15 @@
 
 
 #include "object/auto/auto.h"
-
+#include "common/error.h"
+#include "common/event.h"
 
 class CObject;
+class CLevelParserLine;
+class COldObject;
+namespace Ui {
+class CWindow;
+}  // namespace Ui
 
 
 enum AutoDestroyerPhase

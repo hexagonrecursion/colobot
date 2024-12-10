@@ -20,29 +20,29 @@
 
 #include "ui/maindialog.h"
 
-#include "common/config.h"
+#include <SDL_keycode.h>
+#include <stdlib.h>
 
 #include "app/app.h"
-
 #include "common/event.h"
-#include "common/logger.h"
 #include "common/settings.h"
-
 #include "graphics/engine/engine.h"
-
 #include "level/player_profile.h"
 #include "level/robotmain.h"
-
 #include "math/func.h"
-
 #include "sound/sound.h"
-
 #include "ui/controls/button.h"
 #include "ui/controls/interface.h"
 #include "ui/controls/label.h"
 #include "ui/controls/window.h"
-
 #include "ui/screen/screen_setup.h"
+#include "common/key.h"
+#include "graphics/engine/particle.h"
+#include "graphics/engine/text.h"
+#include "level/level_category.h"
+#include "object/mission_type.h"
+#include "sound/sound_type.h"
+#include "ui/controls/control.h"
 
 namespace Ui
 {

@@ -19,18 +19,27 @@
 
 #include "level/player_profile.h"
 
+#include <assert.h>
+#include <stdio.h>
+#include <algorithm>
+#include <ios>
+#include <memory>
+#include <ostream>
+#include <utility>
+
 #include "common/config_file.h"
 #include "common/logger.h"
 #include "common/restext.h"
 #include "common/stringutils.h"
-
 #include "common/resources/inputstream.h"
 #include "common/resources/outputstream.h"
 #include "common/resources/resourcemanager.h"
-
 #include "level/robotmain.h"
-
 #include "level/parser/parser.h"
+#include "level/level_category.h"
+#include "level/parser/parserexceptions.h"
+#include "level/parser/parserline.h"
+#include "level/parser/parserparam.h"
 
 
 void PlayerAppearance::DefPerso()

@@ -19,22 +19,19 @@
 
 #include "object/object.h"
 
+#include <assert.h>
+#include <stdexcept>
+
 #include "common/global.h"
 #include "common/restext.h"
 #include "common/stringutils.h"
-
 #include "graphics/model/model_crash_sphere.h"
-
 #include "level/robotmain.h"
-
 #include "level/parser/parserline.h"
 #include "level/parser/parserparam.h"
-
 #include "math/const.h"
-
 #include "script/scriptfunc.h"
-
-#include <stdexcept>
+#include "sound/sound_type.h"
 
 
 CObject::CObject(int id, ObjectType type)

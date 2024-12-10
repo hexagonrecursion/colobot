@@ -19,6 +19,10 @@
 
 #include "ui/controls/window.h"
 
+#include <algorithm>
+#include <filesystem>
+#include <utility>
+
 #include "ui/controls/button.h"
 #include "ui/controls/check.h"
 #include "ui/controls/color.h"
@@ -37,13 +41,12 @@
 #include "ui/controls/shortcut.h"
 #include "ui/controls/slider.h"
 #include "ui/controls/target.h"
-
 #include "graphics/core/renderers.h"
 #include "graphics/core/transparency.h"
-
 #include "graphics/engine/engine.h"
-
-#include <algorithm>
+#include "common/restext.h"
+#include "graphics/core/texture.h"
+#include "graphics/engine/text.h"
 
 
 namespace Ui

@@ -24,18 +24,21 @@
 
 #pragma once
 
-#include "CBot/CBot.h"
-
 #include <filesystem>
 #include <limits>
 #include <memory>
 #include <optional>
 #include <string>
+#include <iosfwd>
+
+#include "CBot/CBotEnums.h"
 
 class COldObject;
 class CTaskExecutorObject;
 class CRobotMain;
-class CScriptFunctions;
+namespace CBot {
+class CBotProgram;
+}  // namespace CBot
 
 namespace Ui
 {

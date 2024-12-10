@@ -19,10 +19,17 @@
 
 #pragma once
 
+#include <map>
+#include <string>
+
 #include "CBot/CBotInstr/CBotInstr.h"
+#include "CBot/CBotTypResult.h"
 
 namespace CBot
 {
+class CBotCStack;
+class CBotStack;
+class CBotToken;
 
 /**
  * \brief A call to a function - func()

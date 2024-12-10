@@ -20,9 +20,14 @@
 
 #include "object/auto/autojostle.h"
 
-#include "object/old_object.h"
+#include <glm/glm.hpp>
+#include <cmath>
 
+#include "object/old_object.h"
 #include "graphics/engine/engine.h"
+#include "common/event.h"
+#include "math/const.h"
+#include "object/object_type.h"
 
 
 // Object's constructor.

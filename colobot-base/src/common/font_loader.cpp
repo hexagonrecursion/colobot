@@ -19,20 +19,17 @@
 
 #include "common/font_loader.h"
 
-#include "common/logger.h"
-#include "common/stringutils.h"
-
-#include "common/resources/inputstream.h"
-#include "common/resources/outputstream.h"
-
-#include "common/system/system.h"
-
-#include "graphics/engine/text.h"
-
-#include <map>
 #include <memory>
 #include <utility>
-#include <cstring>
+#include <exception>
+#include <iosfwd>
+#include <istream>
+#include <vector>
+
+#include "common/logger.h"
+#include "common/stringutils.h"
+#include "common/resources/inputstream.h"
+#include "graphics/engine/text.h"
 
 
 CFontLoader::CFontLoader()

@@ -22,24 +22,22 @@
  * \brief Entry point of application - main() function
  */
 
-#include "common/config.h"
+#include <filesystem>
+#include <fstream>
+#include <iostream>
+#include <vector>
+#include <algorithm>
+#include <iosfwd>
+#include <string>
 
 #include "app/app.h"
-
 #include "common/logger.h"
 #include "common/profiler.h"
 #include "common/restext.h"
 #include "common/version.h"
-
 #include "common/resources/resourcemanager.h"
-
 #include "common/system/system.h"
-
-#include <filesystem>
-#include <fstream>
-#include <iostream>
-#include <memory>
-#include <vector>
+#include "common/event.h"
 
 /**
 \mainpage

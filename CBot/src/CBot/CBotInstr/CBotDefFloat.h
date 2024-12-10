@@ -19,10 +19,18 @@
 
 #pragma once
 
+#include <map>
+#include <string>
+
 #include "CBot/CBotInstr/CBotInstr.h"
+#include "CBot/CBotEnums.h"
+#include "CBot/CBotTypResult.h"
 
 namespace CBot
 {
+class CBotCStack;
+class CBotStack;
+class CBotToken;
 
 /**
  * \brief Definition of a float variable - float a, b = 12.4

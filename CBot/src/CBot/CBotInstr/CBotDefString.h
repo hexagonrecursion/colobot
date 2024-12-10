@@ -19,10 +19,16 @@
 
 #pragma once
 
+#include <map>
+#include <string>
+
 #include "CBot/CBotInstr/CBotInstr.h"
 
 namespace CBot
 {
+class CBotCStack;
+class CBotStack;
+class CBotToken;
 
 /**
  * \brief Definition of a string variable - string a, b = "text";

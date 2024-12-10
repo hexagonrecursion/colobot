@@ -19,13 +19,15 @@
 
 #include "CBot/CBotVar/CBotVarClass.h"
 
+#include <assert.h>
+
 #include "CBot/CBotClass.h"
 #include "CBot/CBotStack.h"
 #include "CBot/CBotDefines.h"
-
 #include "CBot/CBotInstr/CBotInstr.h"
-
-#include <cassert>
+#include "CBot/CBotEnums.h"
+#include "CBot/CBotFileUtils.h"
+#include "CBot/CBotToken.h"
 
 namespace CBot
 {

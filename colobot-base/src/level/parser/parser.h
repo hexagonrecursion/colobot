@@ -24,18 +24,16 @@
 
 #pragma once
 
-#include "level/level_category.h"
-#include "level/robotmain.h"
-
-#include "level/parser/parserexceptions.h"
-#include "level/parser/parserline.h"
-#include "level/parser/parserparam.h"
-
 #include <filesystem>
 #include <string>
 #include <string_view>
 #include <vector>
 #include <memory>
+
+#include "level/robotmain.h"
+#include "level/parser/parserline.h"
+
+enum class LevelCategory;
 
 class CLevelParser
 {

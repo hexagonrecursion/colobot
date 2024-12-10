@@ -20,20 +20,24 @@
 
 #include "object/task/tasksearch.h"
 
+#include <glm/glm.hpp>
+
 #include "graphics/engine/engine.h"
 #include "graphics/engine/particle.h"
 #include "graphics/engine/terrain.h"
-
 #include "level/robotmain.h"
-
 #include "math/geometry.h"
-
 #include "object/object_manager.h"
 #include "object/old_object.h"
-
 #include "physics/physics.h"
-
 #include "sound/sound.h"
+#include "common/event.h"
+#include "graphics/engine/camera.h"
+#include "math/const.h"
+#include "math/func.h"
+#include "sound/sound_type.h"
+
+class CObject;
 
 
 // Object's constructor.

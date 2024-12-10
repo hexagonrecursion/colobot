@@ -20,10 +20,16 @@
 #pragma once
 
 
-#include "object/auto/auto.h"
+#include <glm/glm.hpp>
 
+#include "object/auto/auto.h"
+#include "common/error.h"
+#include "object/object_type.h"
 
 class CObject;
+class CLevelParserLine;
+class COldObject;
+struct Event;
 
 enum AutoDerrickPhase
 {

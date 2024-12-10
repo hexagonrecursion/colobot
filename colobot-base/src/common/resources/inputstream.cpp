@@ -19,6 +19,8 @@
 
 #include "common/resources/inputstream.h"
 
+#include <string>
+
 #include "common/resources/inputstreambuffer.h"
 
 

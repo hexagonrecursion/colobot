@@ -25,20 +25,11 @@
 #pragma once
 
 #include "CBot/CBot.h"
-
 #include "common/error.h"
-
-#include <string>
-#include <unordered_map>
-#include <memory>
 
 class CObject;
 class CScript;
 class CExchangePost;
-namespace CBot
-{
-class CBotVar;
-}
 
 
 class CScriptFunctions

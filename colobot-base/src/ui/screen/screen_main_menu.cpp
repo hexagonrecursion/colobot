@@ -19,22 +19,31 @@
 
 #include "ui/screen/screen_main_menu.h"
 
-#include "app/app.h"
+#include <SDL_keycode.h>
+#include <glm/glm.hpp>
+#include <filesystem>
+#include <string>
 
 #include "common/logger.h"
 #include "common/restext.h"
-
 #include "level/parser/parser.h"
-
 #include "sound/sound.h"
-
 #include "ui/controls/button.h"
 #include "ui/controls/group.h"
 #include "ui/controls/interface.h"
 #include "ui/controls/label.h"
 #include "ui/controls/window.h"
-
 #include "ui/screen/screen_setup.h"
+#include "common/event.h"
+#include "common/key.h"
+#include "graphics/engine/text.h"
+#include "level/level_category.h"
+#include "level/parser/parserexceptions.h"
+#include "level/parser/parserline.h"
+#include "level/parser/parserparam.h"
+#include "level/robotmain.h"
+#include "sound/sound_type.h"
+#include "ui/controls/control.h"
 
 namespace Ui
 {

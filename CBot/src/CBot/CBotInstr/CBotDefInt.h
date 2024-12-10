@@ -19,10 +19,18 @@
 
 #pragma once
 
+#include <map>
+#include <string>
+
 #include "CBot/CBotInstr/CBotInstr.h"
+#include "CBot/CBotEnums.h"
+#include "CBot/CBotTypResult.h"
 
 namespace CBot
 {
+class CBotCStack;
+class CBotStack;
+class CBotToken;
 
 /**
  * \brief Definition of an integer variable - int a, b = 12

@@ -18,9 +18,13 @@
  */
 
 #include "CBot/CBotToken.h"
-#include "CBot/CBotProgram.h"
 
-#include <gtest/gtest.h>
+#include <gtest/gtest-message.h>
+#include <gtest/gtest-test-part.h>
+#include <vector>
+
+#include "CBot/CBotProgram.h"
+#include "gtest/gtest_pred_impl.h"
 
 using namespace CBot;
 

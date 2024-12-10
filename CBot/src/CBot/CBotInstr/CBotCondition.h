@@ -23,6 +23,8 @@
 
 namespace CBot
 {
+class CBotCStack;
+class CBotToken;
 
 /**
  * \brief A condition - boolean expression enclosed in brackets - (condition)

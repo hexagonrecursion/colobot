@@ -18,7 +18,16 @@
  */
 #include "CBot/CBotFileUtils.h"
 
-#include <gtest/gtest.h>
+#include <gtest/gtest-message.h>
+#include <gtest/gtest-param-test.h>
+#include <gtest/gtest-test-part.h>
+#include <ios>
+#include <istream>
+#include <limits>
+#include <ostream>
+#include <sstream>
+
+#include "gtest/gtest_pred_impl.h"
 
 namespace
 {

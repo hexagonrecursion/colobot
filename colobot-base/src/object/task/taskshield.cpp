@@ -20,28 +20,31 @@
 
 #include "object/task/taskshield.h"
 
-#include "graphics/core/light.h"
+#include <assert.h>
+#include <cmath>
 
+#include "graphics/core/light.h"
 #include "graphics/engine/engine.h"
 #include "graphics/engine/lightman.h"
 #include "graphics/engine/particle.h"
-
-#include "level/robotmain.h"
-
 #include "math/geometry.h"
-
 #include "object/object_manager.h"
 #include "object/old_object.h"
-
 #include "object/interface/slotted_object.h"
-
 #include "object/subclass/shielder.h"
-
 #include "physics/physics.h"
-
 #include "sound/sound.h"
-
-#include <string.h>
+#include "common/event.h"
+#include "graphics/core/color.h"
+#include "graphics/engine/camera.h"
+#include "math/const.h"
+#include "math/func.h"
+#include "object/interface/power_container_object.h"
+#include "object/interface/shielded_object.h"
+#include "object/object.h"
+#include "object/object_interface_type.h"
+#include "object/object_type.h"
+#include "sound/sound_type.h"
 
 const float ENERGY_TIME = 20.0f;        // maximum duration if full battery
 

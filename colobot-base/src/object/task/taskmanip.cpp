@@ -20,23 +20,31 @@
 
 #include "object/task/taskmanip.h"
 
+#include <assert.h>
+#include <math.h>
+#include <vector>
+
 #include "graphics/engine/engine.h"
 #include "graphics/engine/pyro_manager.h"
 #include "graphics/engine/terrain.h"
-
 #include "level/robotmain.h"
-
 #include "math/geometry.h"
-
 #include "object/object_manager.h"
 #include "object/old_object.h"
-
 #include "object/interface/slotted_object.h"
 #include "object/interface/transportable_object.h"
-
 #include "physics/physics.h"
-
 #include "sound/sound.h"
+#include "common/event.h"
+#include "graphics/engine/camera.h"
+#include "graphics/engine/pyro_type.h"
+#include "math/const.h"
+#include "math/func.h"
+#include "math/sphere.h"
+#include "object/crash_sphere.h"
+#include "object/object.h"
+#include "object/object_interface_type.h"
+#include "sound/sound_type.h"
 
 const int INVALID_SLOT = -1;
 

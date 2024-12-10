@@ -19,11 +19,23 @@
 
 #pragma once
 
-#include "object/interface/task_executor_object.h"
-
+#include <glm/glm.hpp>
 #include <memory>
 
+#include "object/interface/task_executor_object.h"
+#include "common/error.h"
+#include "object/interface/trace_drawing_object.h"
+#include "object/object_interface_type.h"
+#include "object/object_type.h"
+#include "object/task/taskflag.h"
+#include "object/task/taskgoto.h"
+#include "object/task/taskmanip.h"
+#include "object/task/taskshield.h"
+
 class CObject;
+class CBackgroundTask;
+class CForegroundTask;
+struct Event;
 
 class CTaskExecutorObjectImpl : public CTaskExecutorObject
 {

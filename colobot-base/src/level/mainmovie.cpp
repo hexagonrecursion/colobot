@@ -20,22 +20,19 @@
 
 #include "level/mainmovie.h"
 
+#include <assert.h>
+#include <cmath>
+
 #include "app/app.h"
-
 #include "graphics/engine/engine.h"
-
 #include "level/robotmain.h"
-
 #include "math/geometry.h"
-
 #include "object/object.h"
-
 #include "object/interface/movable_object.h"
-
 #include "object/motion/motionhuman.h"
-
-
-#include <cstdio>
+#include "common/event.h"
+#include "graphics/engine/camera.h"
+#include "object/motion/motion.h"
 
 
 // Constructor of the application card.

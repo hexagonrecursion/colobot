@@ -19,12 +19,17 @@
 
 #pragma once
 
-#include "CBot/CBotInstr/CBotInstr.h"
-
 #include <unordered_map>
+#include <map>
+#include <string>
+
+#include "CBot/CBotInstr/CBotInstr.h"
 
 namespace CBot
 {
+class CBotCStack;
+class CBotStack;
+class CBotToken;
 
 /**
  * \brief The switch structure

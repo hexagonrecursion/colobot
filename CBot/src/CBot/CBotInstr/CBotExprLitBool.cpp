@@ -19,10 +19,13 @@
 
 #include "CBot/CBotInstr/CBotExprLitBool.h"
 
+#include <memory>
+
 #include "CBot/CBotStack.h"
 #include "CBot/CBotCStack.h"
-
 #include "CBot/CBotVar/CBotVar.h"
+#include "CBot/CBotEnums.h"
+#include "CBot/CBotToken.h"
 
 namespace CBot
 {

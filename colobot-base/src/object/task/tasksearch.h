@@ -21,8 +21,11 @@
 
 
 #include "object/task/task.h"
-
 #include "object/object_type.h"
+#include "common/error.h"
+
+class COldObject;
+struct Event;
 
 
 

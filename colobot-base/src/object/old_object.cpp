@@ -20,52 +20,48 @@
 
 #include "object/old_object.h"
 
-#include "app/app.h"
+#include <assert.h>
+#include <cmath>
+#include <utility>
+#include <vector>
 
+#include "app/app.h"
 #include "common/global.h"
 #include "common/settings.h"
 #include "common/stringutils.h"
-
 #include "graphics/engine/engine.h"
 #include "graphics/engine/lightman.h"
 #include "graphics/engine/lightning.h"
 #include "graphics/engine/particle.h"
 #include "graphics/engine/pyro_manager.h"
 #include "graphics/engine/terrain.h"
-
 #include "level/robotmain.h"
 #include "level/scoreboard.h"
-
-#include "level/parser/parserexceptions.h"
 #include "level/parser/parserline.h"
 #include "level/parser/parserparam.h"
-
 #include "math/geometry.h"
-
-#include "object/object_manager.h"
-
 #include "object/auto/auto.h"
 #include "object/auto/autobase.h"
 #include "object/auto/autojostle.h"
-
 #include "object/motion/motion.h"
-#include "object/motion/motionvehicle.h"
-
 #include "object/subclass/base_alien.h"
-#include "object/subclass/exchange_post.h"
-
 #include "physics/physics.h"
-
 #include "script/cbottoken.h"
-#include "script/script.h"
 #include "script/scriptfunc.h"
-
 #include "ui/object_interface.h"
-#include "ui/studio.h"
-
-#include "ui/controls/edit.h"
-
-#include <iomanip>
+#include "common/error.h"
+#include "graphics/core/color.h"
+#include "graphics/core/light.h"
+#include "graphics/engine/pyro_type.h"
+#include "level/mainmovie.h"
+#include "level/research_type.h"
+#include "math/const.h"
+#include "math/func.h"
+#include "object/crash_sphere.h"
+#include "object/interface/damageable_object.h"
+#include "object/mission_type.h"
+#include "object/object_interface_type.h"
+#include "object/task/task.h"
 
 
 const float VIRUS_DELAY     = 60.0f;        // duration of virus infection

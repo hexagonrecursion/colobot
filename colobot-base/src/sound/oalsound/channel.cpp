@@ -21,6 +21,8 @@
 #include "sound/oalsound/channel.h"
 
 #include "sound/oalsound/buffer.h"
+#include "common/logger.h"
+#include "sound/oalsound/check.h"
 
 CChannel::CChannel()
     : m_buffer(nullptr),

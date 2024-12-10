@@ -19,11 +19,14 @@
 
 #pragma once
 
-#include "object/task/task.h"
-
-#include "object/interface/trace_drawing_object.h"
-
 #include <glm/glm.hpp>
+
+#include "object/task/task.h"
+#include "common/error.h"
+
+class COldObject;
+enum class TraceColor;
+struct Event;
 
 
 enum TaskPenPhase

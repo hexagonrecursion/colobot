@@ -20,32 +20,32 @@
 
 #include "graphics/engine/camera.h"
 
+#include <assert.h>
+#include <math.h>
+#include <stdlib.h>
+
 #include "app/app.h"
 #include "app/input.h"
-
 #include "common/event.h"
-
 #include "graphics/core/transparency.h"
-
 #include "graphics/engine/engine.h"
 #include "graphics/engine/terrain.h"
 #include "graphics/engine/water.h"
-
 #include "level/robotmain.h"
-
 #include "math/const.h"
 #include "math/func.h"
 #include "math/geometry.h"
-
 #include "object/object.h"
 #include "object/object_manager.h"
-
 #include "object/interface/controllable_object.h"
 #include "object/interface/movable_object.h"
 #include "object/interface/slotted_object.h"
 #include "object/interface/transportable_object.h"
-
 #include "physics/physics.h"
+#include "common/key.h"
+#include "math/sphere.h"
+#include "object/object_interface_type.h"
+#include "object/object_type.h"
 
 
 // Graphics module namespace

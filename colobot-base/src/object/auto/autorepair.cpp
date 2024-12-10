@@ -20,22 +20,28 @@
 
 #include "object/auto/autorepair.h"
 
-#include "graphics/engine/engine.h"
+#include <assert.h>
+#include <glm/glm.hpp>
+#include <memory>
 
+#include "graphics/engine/engine.h"
 #include "level/parser/parserline.h"
 #include "level/parser/parserparam.h"
-
 #include "math/func.h"
-
 #include "object/object_manager.h"
 #include "object/old_object.h"
-
 #include "physics/physics.h"
-
 #include "sound/sound.h"
-
 #include "ui/controls/interface.h"
 #include "ui/controls/window.h"
+#include "common/event.h"
+#include "graphics/engine/particle.h"
+#include "math/const.h"
+#include "object/interface/movable_object.h"
+#include "object/interface/shielded_object.h"
+#include "object/object.h"
+#include "object/object_interface_type.h"
+#include "sound/sound_type.h"
 
 
 

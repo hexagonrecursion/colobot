@@ -19,13 +19,16 @@
 
 #include "CBot/CBotInstr/CBotLeftExprVar.h"
 
+#include <assert.h>
+#include <sstream>
+#include <iosfwd>
+#include <ostream>
+
 #include "CBot/CBotStack.h"
 #include "CBot/CBotCStack.h"
-
 #include "CBot/CBotVar/CBotVar.h"
-
-#include <cassert>
-#include <sstream>
+#include "CBot/CBotEnums.h"
+#include "CBot/CBotToken.h"
 
 namespace CBot
 {

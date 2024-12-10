@@ -19,9 +19,17 @@
 
 #pragma once
 
-#include "object/motion/motion.h"
-
 #include <glm/glm.hpp>
+
+#include "object/motion/motion.h"
+#include "common/error.h"
+#include "object/object_type.h"
+
+class COldObject;
+namespace Gfx {
+class COldModelManager;
+}  // namespace Gfx
+struct Event;
 
 
 enum MotionTotoAction

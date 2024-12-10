@@ -19,12 +19,12 @@
 
 #pragma once
 
-#include "common/resources/inputstreambuffer.h"
-
-#include <cstddef>
+#include <stddef.h>
 #include <filesystem>
 #include <istream>
-#include <string>
+#include <iosfwd>
+
+#include "common/resources/inputstreambuffer.h"
 
 
 class CInputStreamBufferContainer

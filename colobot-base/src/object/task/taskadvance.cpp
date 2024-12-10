@@ -20,16 +20,14 @@
 
 #include "object/task/taskadvance.h"
 
+#include <math.h>
+
 #include "graphics/engine/engine.h"
-
 #include "math/geometry.h"
-
-#include "object/object.h"
 #include "object/old_object.h"
-
 #include "object/subclass/base_alien.h"
-
 #include "physics/physics.h"
+#include "common/event.h"
 
 
 

@@ -19,10 +19,14 @@
 
 /* Unit tests for functions in geometry.h */
 
+#include <gtest/gtest-message.h>
+#include <gtest/gtest-test-part.h>
+#include <memory>
+
 #include "math/func.h"
 #include "math/geometry.h"
-
-#include <gtest/gtest.h>
+#include "gtest/gtest_pred_impl.h"
+#include "math/const.h"
 
 
 const float TEST_TOLERANCE = 1e-5;

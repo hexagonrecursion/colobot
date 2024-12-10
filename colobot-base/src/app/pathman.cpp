@@ -18,18 +18,14 @@
  */
 
 
-#include "app/app.h"
-#include "app/pathman.h"
+#include <filesystem>
+#include <exception>
 
-#include "common/config.h"
+#include "app/pathman.h"
 #include "common/logger.h"
 #include "common/stringutils.h"
-
 #include "common/resources/resourcemanager.h"
-
 #include "common/system/system.h"
-
-#include <filesystem>
 
 CPathManager::CPathManager(CSystemUtils* systemUtils)
     : m_dataPath(systemUtils->GetDataPath())

@@ -19,15 +19,18 @@
 
 #pragma once
 
-#include "object/interface/programmable_object.h"
-#include "object/interface/interactive_object.h"
-#include "object/interface/trace_drawing_object.h"
-
 #include <glm/glm.hpp>
+#include <iosfwd>
+#include <memory>
+#include <vector>
 
-#include <sstream>
+#include "object/interface/programmable_object.h"
+#include "object/object_interface_type.h"
 
 class CObject;
+enum class TraceColor;
+struct Event;
+struct Program;
 
 enum TraceOper
 {

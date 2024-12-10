@@ -20,29 +20,21 @@
 
 #include "ui/mainui.h"
 
+#include <assert.h>
+#include <stdlib.h>
+#include <cmath>
+
 #include "app/app.h"
-
 #include "common/event.h"
-#include "common/logger.h"
 #include "common/settings.h"
-#include "common/stringutils.h"
-#include "common/resources/resourcemanager.h"
-
 #include "level/robotmain.h"
-
 #include "math/func.h"
-
 #include "sound/sound.h"
-
 #include "ui/maindialog.h"
-
 #include "ui/particles_generator.h"
-
 #include "ui/controls/group.h"
 #include "ui/controls/interface.h"
-#include "ui/controls/label.h"
 #include "ui/controls/window.h"
-
 #include "ui/screen/screen.h"
 #include "ui/screen/screen_appearance.h"
 #include "ui/screen/screen_io_read.h"
@@ -59,10 +51,13 @@
 #include "ui/screen/screen_setup_graphics.h"
 #include "ui/screen/screen_setup_sound.h"
 #include "ui/screen/screen_welcome.h"
-
 #include "graphics/core/transparency.h"
-
 #include "graphics/engine/engine.h"
+#include "graphics/core/color.h"
+#include "graphics/engine/camera.h"
+#include "graphics/engine/particle.h"
+#include "sound/sound_type.h"
+#include "ui/screen/screen_setup.h"
 
 namespace Ui
 {

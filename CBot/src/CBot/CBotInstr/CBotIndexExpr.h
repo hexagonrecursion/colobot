@@ -19,10 +19,17 @@
 
 #pragma once
 
+#include <map>
+#include <string>
+
 #include "CBot/CBotInstr/CBotInstr.h"
 
 namespace CBot
 {
+class CBotCStack;
+class CBotStack;
+class CBotToken;
+class CBotVar;
 
 /**
  * \brief Instruction accessing an array element - array[x]

@@ -20,29 +20,40 @@
 
 #include "object/auto/autobase.h"
 
+#include <assert.h>
+#include <stdlib.h>
+#include <cmath>
+#include <vector>
+
 #include "graphics/engine/cloud.h"
 #include "graphics/engine/engine.h"
 #include "graphics/engine/lightning.h"
 #include "graphics/engine/planet.h"
 #include "graphics/engine/terrain.h"
-
 #include "level/robotmain.h"
-
 #include "math/geometry.h"
-
 #include "object/object_manager.h"
 #include "object/old_object.h"
-
 #include "object/interface/transportable_object.h"
-
 #include "physics/physics.h"
-
 #include "sound/sound.h"
-
 #include "ui/controls/interface.h"
 #include "ui/controls/window.h"
-
-#include "common/stringutils.h"
+#include "common/event.h"
+#include "graphics/engine/camera.h"
+#include "graphics/engine/particle.h"
+#include "graphics/engine/planet_type.h"
+#include "math/const.h"
+#include "math/func.h"
+#include "math/sphere.h"
+#include "object/crash_sphere.h"
+#include "object/interface/controllable_object.h"
+#include "object/interface/movable_object.h"
+#include "object/object.h"
+#include "object/object_interface_type.h"
+#include "object/object_type.h"
+#include "object/old_object_interface.h"
+#include "sound/sound_type.h"
 
 
 

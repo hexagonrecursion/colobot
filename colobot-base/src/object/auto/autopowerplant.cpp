@@ -20,27 +20,33 @@
 
 #include "object/auto/autopowerplant.h"
 
+#include <assert.h>
+#include <stdlib.h>
+#include <glm/glm.hpp>
+#include <memory>
+
 #include "graphics/engine/engine.h"
 #include "graphics/engine/terrain.h"
-
 #include "level/robotmain.h"
-
 #include "level/parser/parserline.h"
 #include "level/parser/parserparam.h"
-
 #include "math/geometry.h"
-
 #include "object/object_manager.h"
 #include "object/old_object.h"
-
-#include "object/interface/slotted_object.h"
 #include "object/interface/transportable_object.h"
-
 #include "sound/sound.h"
-
 #include "ui/controls/gauge.h"
 #include "ui/controls/interface.h"
 #include "ui/controls/window.h"
+#include "common/event.h"
+#include "graphics/engine/particle.h"
+#include "math/const.h"
+#include "math/func.h"
+#include "math/sphere.h"
+#include "object/crash_sphere.h"
+#include "object/object.h"
+#include "object/object_type.h"
+#include "sound/sound_type.h"
 
 
 const float POWERPLANT_POWER    =  0.4f;    // Necessary energy for a battery

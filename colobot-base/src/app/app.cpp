@@ -23,41 +23,52 @@
 #include "app/input.h"
 #include "app/modman.h"
 #include "app/pathman.h"
-
 #include "common/config_file.h"
-#include "common/image.h"
 #include "common/key.h"
 #include "common/logger.h"
 #include "common/profiler.h"
 #include "common/stringutils.h"
 #include "common/version.h"
-
-#include "common/resources/resourcemanager.h"
-
 #include "common/system/system.h"
-
 #include "graphics/core/device.h"
 #include "graphics/engine/engine.h"
 #include "graphics/opengl33/glutil.h"
-
 #include "level/robotmain.h"
-
-#include "object/object_manager.h"
-
 #include "sound/sound.h"
+#include "common/config.h"
 #ifdef OPENAL_SOUND
     #include "sound/oalsound/alsound.h"
 #endif
 
 #include <SDL.h>
 #include <SDL_image.h>
-
 #include <stdlib.h>
 #include <getopt.h>
 #include <localename.h>
-#include <thread>
-
 #include <libintl.h>
+#include <SDL_error.h>
+#include <SDL_events.h>
+#include <SDL_haptic.h>
+#include <SDL_joystick.h>
+#include <SDL_keyboard.h>
+#include <SDL_keycode.h>
+#include <SDL_mouse.h>
+#include <SDL_stdinc.h>
+#include <SDL_timer.h>
+#include <SDL_video.h>
+#include <assert.h>
+#include <locale.h>
+#include <stdio.h>
+#include <string.h>
+#include <unistd.h>
+#include <thread>
+#include <algorithm>
+#include <ios>
+#include <iosfwd>
+#include <istream>
+#include <locale>
+#include <sstream>
+#include <utility>
 
 using TimeUtils::TimeStamp;
 using TimeUtils::TimeUnit;

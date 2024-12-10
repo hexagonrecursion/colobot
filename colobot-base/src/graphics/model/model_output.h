@@ -19,8 +19,6 @@
 
 #pragma once
 
-#include "graphics/model/model.h"
-
 #include <filesystem>
 
 namespace Gfx

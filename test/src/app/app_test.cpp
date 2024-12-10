@@ -19,13 +19,16 @@
 
 #include "app/app.h"
 
-#include "common/system/system_other.h"
-
+#include <hippomocks.h>
+#include <SDL.h>
+#include <bits/chrono.h>
+#include <gtest/gtest-message.h>
+#include <gtest/gtest-test-part.h>
 #include <functional>
 #include <memory>
 
-#include <gtest/gtest.h>
-#include <hippomocks.h>
+#include "common/system/system.h"
+#include "gtest/gtest_pred_impl.h"
 
 using namespace HippoMocks;
 namespace ph = std::placeholders;

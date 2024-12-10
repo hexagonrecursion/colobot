@@ -20,24 +20,23 @@
 
 #include "object/auto/auto.h"
 
+#include <assert.h>
+#include <glm/glm.hpp>
+#include <memory>
+
 #include "app/app.h"
-
 #include "common/event.h"
-
 #include "graphics/engine/engine.h"
-
 #include "level/robotmain.h"
-
 #include "level/parser/parserline.h"
 #include "level/parser/parserparam.h"
-
 #include "object/old_object.h"
-
-#include "sound/sound.h"
-
 #include "ui/controls/gauge.h"
 #include "ui/controls/interface.h"
 #include "ui/controls/window.h"
+#include "object/interface/shielded_object.h"
+#include "object/object_interface_type.h"
+#include "ui/controls/control.h"
 
 
 // Object's constructor.

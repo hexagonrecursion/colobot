@@ -19,32 +19,28 @@
 
 #include "object/implementation/programmable_impl.h"
 
-#include "CBot/CBot.h"
+#include <assert.h>
+#include <iomanip>
+#include <ostream>
+#include <sstream>
+#include <string>
 
+#include "CBot/CBot.h"
 #include "common/global.h"
 #include "common/profiler.h"
-
 #include "level/robotmain.h"
-
-#include "math/all.h"
-
 #include "object/object.h"
-#include "object/old_object.h"
-
 #include "object/interface/controllable_object.h"
-#include "object/interface/task_executor_object.h"
-
-#include "object/motion/motion.h"
-#include "object/motion/motionvehicle.h"
-
 #include "physics/physics.h"
-
 #include "script/script.h"
-
-#include "ui/controls/edit.h"
-
-#include <algorithm>
-#include <iomanip>
+#include "common/event.h"
+#include "common/logger.h"
+#include "math/const.h"
+#include "math/geometry.h"
+#include "object/interface/destroyable_object.h"
+#include "object/interface/movable_object.h"
+#include "object/interface/program_storage_object.h"
+#include "object/interface/trace_drawing_object.h"
 
 CProgrammableObjectImpl::CProgrammableObjectImpl(ObjectInterfaceTypes& types, CObject* object)
     : CProgrammableObject(types),

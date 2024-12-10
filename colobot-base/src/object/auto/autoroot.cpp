@@ -20,13 +20,15 @@
 
 #include "object/auto/autoroot.h"
 
+#include <cmath>
+
 #include "graphics/engine/engine.h"
 #include "graphics/engine/particle.h"
 #include "graphics/engine/terrain.h"
-
 #include "math/geometry.h"
-
 #include "object/old_object.h"
+#include "common/event.h"
+#include "math/func.h"
 
 
 

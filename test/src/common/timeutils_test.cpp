@@ -19,7 +19,12 @@
 
 #include "common/timeutils.h"
 
-#include <gtest/gtest.h>
+#include <gtest/gtest-message.h>
+#include <gtest/gtest-test-part.h>
+#include <compare>
+#include <memory>
+
+#include "gtest/gtest_pred_impl.h"
 
 namespace TimeUtils
 {

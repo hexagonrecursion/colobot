@@ -19,10 +19,10 @@
 
 #pragma once
 
-#include "CBot/CBotFileUtils.h"  // IWYU pragma: export
-
+#include <assert.h>
 #include <string>
-#include <cassert>
+
+#include "CBot/CBotFileUtils.h"  // IWYU pragma: export
 
 namespace CBot
 {

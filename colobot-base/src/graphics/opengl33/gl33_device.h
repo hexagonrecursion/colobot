@@ -24,17 +24,21 @@
 
 #pragma once
 
-#include "graphics/core/device.h"
-
-#include "graphics/opengl33/glframebuffer.h"
-#include "graphics/opengl33/glutil.h"
-
+#include <GL/glew.h>
+#include <glm/glm.hpp>
 #include <map>
 #include <memory>
 #include <set>
 #include <string>
-#include <vector>
 #include <unordered_set>
+#include <cstddef>
+
+#include "graphics/core/device.h"
+#include "graphics/core/framebuffer.h"
+#include "graphics/core/texture.h"
+
+class CImage;
+struct ImageData;
 
 
 // Graphics module namespace
@@ -43,6 +47,14 @@ namespace Gfx
 
 enum class CullFace : unsigned char;
 enum class TransparencyMode : unsigned char;
+class CObjectRenderer;
+class CParticleRenderer;
+class CShadowRenderer;
+class CTerrainRenderer;
+class CUIRenderer;
+enum class PrimitiveType : unsigned char;
+struct Color;
+struct Vertex3D;
 
 class CGL33VertexBuffer : public CVertexBuffer
 {

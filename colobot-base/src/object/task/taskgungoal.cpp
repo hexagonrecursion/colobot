@@ -18,15 +18,15 @@
  */
 
 
+#include <math.h>
+
 #include "math/func.h"
-
 #include "graphics/engine/engine.h"
-
 #include "object/task/taskgungoal.h"
-
 #include "object/old_object.h"
-
 #include "sound/sound.h"
+#include "common/event.h"
+#include "sound/sound_type.h"
 
 
 // Object's constructor.

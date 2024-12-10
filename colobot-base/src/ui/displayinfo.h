@@ -20,9 +20,7 @@
 #pragma once
 
 #include <glm/glm.hpp>
-
 #include <filesystem>
-#include <string>
 
 class CRobotMain;
 class CObject;

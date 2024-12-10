@@ -20,15 +20,18 @@
 
 #include "ui/controls/editvalue.h"
 
+#include <SDL_keycode.h>
+#include <stdio.h>
+#include <array>
+#include <string>
+#include <utility>
+
 #include "common/event.h"
-
 #include "level/robotmain.h"
-
 #include "ui/controls/button.h"
 #include "ui/controls/edit.h"
 #include "ui/controls/interface.h"
-
-#include <cstdio>
+#include "common/key.h"
 
 
 

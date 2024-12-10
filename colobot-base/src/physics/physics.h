@@ -25,14 +25,10 @@
 #pragma once
 
 
-#include "common/error.h"
-
-#include "object/object_type.h"
-
-#include "object/interface/trace_drawing_object.h"
-
 #include <glm/glm.hpp>
 
+#include "common/error.h"
+#include "object/object_type.h"
 
 class CObject;
 class COldObject;
@@ -41,6 +37,7 @@ class CSoundInterface;
 class CLevelParserLine;
 class CJostleableObject;
 struct Event;
+enum class TraceColor;
 
 namespace Gfx
 {

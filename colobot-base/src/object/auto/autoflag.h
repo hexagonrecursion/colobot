@@ -21,6 +21,10 @@
 
 
 #include "object/auto/auto.h"
+#include "common/error.h"
+
+class COldObject;
+struct Event;
 
 
 

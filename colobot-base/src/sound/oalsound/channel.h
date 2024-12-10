@@ -24,18 +24,12 @@
 
 #pragma once
 
-#include "sound/sound.h"
-
-#include "sound/oalsound/check.h"
-
 #include <glm/glm.hpp>
-
-#include <string>
-#include <deque>
-#include <cassert>
-
 #include <al.h>
-#include <alc.h>
+#include <deque>
+
+#include "sound/sound.h"
+#include "sound/sound_type.h"
 
 class CBuffer;
 

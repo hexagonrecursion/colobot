@@ -19,30 +19,33 @@
 
 #include "ui/screen/screen_io.h"
 
+#include <ctype.h>
+#include <time.h>
+#include <algorithm>
+#include <string>
+
 #include "common/logger.h"
 #include "common/restext.h"
 #include "common/stringutils.h"
-
 #include "graphics/engine/engine.h"
-
 #include "level/player_profile.h"
 #include "level/robotmain.h"
-
 #include "level/parser/parser.h"
-
 #include "sound/sound.h"
-
 #include "ui/controls/button.h"
 #include "ui/controls/edit.h"
 #include "ui/controls/image.h"
 #include "ui/controls/interface.h"
 #include "ui/controls/list.h"
 #include "ui/controls/window.h"
-
 #include "ui/screen/screen_level_list.h"
-
-#include <ctime>
-#include <cstring>
+#include "common/event.h"
+#include "level/level_category.h"
+#include "level/parser/parserexceptions.h"
+#include "level/parser/parserline.h"
+#include "level/parser/parserparam.h"
+#include "sound/sound_type.h"
+#include "ui/controls/control.h"
 
 namespace Ui
 {

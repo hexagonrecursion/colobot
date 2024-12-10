@@ -19,12 +19,11 @@
 
 #pragma once
 
-#include "graphics/model/model.h"
-
 #include <memory>
-#include <string>
 #include <map>
 #include <filesystem>
+
+#include "graphics/model/model.h"
 
 namespace Gfx
 {

@@ -19,22 +19,25 @@
 
 #include "graphics/engine/terrain.h"
 
-#include "app/app.h"
+#include <SDL_surface.h>
+#include <math.h>
+#include <sstream>
+#include <algorithm>
+#include <iosfwd>
+#include <map>
+#include <memory>
+#include <ostream>
+#include <string>
+#include <utility>
 
 #include "common/image.h"
 #include "common/logger.h"
 #include "common/stringutils.h"
-
-#include "graphics/core/triangle.h"
-
 #include "graphics/engine/engine.h"
 #include "graphics/engine/water.h"
-
 #include "math/geometry.h"
-
-#include <sstream>
-
-#include <SDL.h>
+#include "graphics/core/material.h"
+#include "math/func.h"
 
 
 // Graphics module namespace

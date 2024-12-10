@@ -20,6 +20,7 @@
 #pragma once
 
 #include "object/interface/power_container_object.h"
+#include "object/object_interface_type.h"
 
 
 class CPowerContainerObjectImpl : public CPowerContainerObject

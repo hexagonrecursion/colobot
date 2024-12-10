@@ -19,30 +19,36 @@
 
 #include "graphics/engine/lightning.h"
 
+#include <assert.h>
+#include <stddef.h>
+#include <algorithm>
+#include <filesystem>
+#include <limits>
+
 #include "app/app.h"
-
-#include "common/logger.h"
-
 #include "graphics/core/device.h"
 #include "graphics/core/transparency.h"
-
 #include "graphics/engine/camera.h"
 #include "graphics/engine/engine.h"
 #include "graphics/engine/terrain.h"
-
 #include "level/robotmain.h"
-
 #include "math/geometry.h"
-
 #include "object/object.h"
 #include "object/object_manager.h"
-
 #include "object/auto/autopowercaptor.h"
-
 #include "object/interface/destroyable_object.h"
 #include "object/interface/transportable_object.h"
-
 #include "sound/sound.h"
+#include "common/event.h"
+#include "graphics/core/color.h"
+#include "graphics/core/renderers.h"
+#include "graphics/core/vertex.h"
+#include "math/const.h"
+#include "math/func.h"
+#include "object/interface/damageable_object.h"
+#include "object/object_interface_type.h"
+#include "object/object_type.h"
+#include "sound/sound_type.h"
 
 
 // Graphics module namespace

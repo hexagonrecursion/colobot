@@ -19,13 +19,11 @@
 
 #pragma once
 
-#include "common/restext.h"
-
 #include <glm/glm.hpp>
-
-#include <vector>
 #include <functional>
+#include <string>
 
+#include "common/restext.h"
 
 class CSettings;
 class CSoundInterface;

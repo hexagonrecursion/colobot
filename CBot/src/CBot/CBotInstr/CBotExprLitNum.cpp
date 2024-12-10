@@ -18,15 +18,19 @@
  */
 
 #include "CBot/CBotInstr/CBotExprLitNum.h"
-#include "CBot/CBotStack.h"
 
-#include "CBot/CBotCStack.h"
-#include "CBot/CBotVar/CBotVar.h"
-
-#include "CBot/CBotUtils.h"
-
+#include <assert.h>
 #include <limits>
 #include <sstream>
+#include <cstdint>
+#include <iosfwd>
+#include <ostream>
+
+#include "CBot/CBotStack.h"
+#include "CBot/CBotCStack.h"
+#include "CBot/CBotVar/CBotVar.h"
+#include "CBot/CBotUtils.h"
+#include "CBot/CBotToken.h"
 
 namespace CBot
 {

@@ -19,19 +19,21 @@
 
 #include "CBot/CBotInstr/CBotDefArray.h"
 
+#include <sstream>
+#include <iosfwd>
+#include <ostream>
+
 #include "CBot/CBotInstr/CBotLeftExprVar.h"
 #include "CBot/CBotInstr/CBotExpression.h"
 #include "CBot/CBotInstr/CBotListArray.h"
 #include "CBot/CBotInstr/CBotEmpty.h"
 #include "CBot/CBotInstr/CBotTwoOpExpr.h"
-
 #include "CBot/CBotStack.h"
 #include "CBot/CBotCStack.h"
 #include "CBot/CBotDefines.h"
-
 #include "CBot/CBotVar/CBotVar.h"
-
-#include <sstream>
+#include "CBot/CBotEnums.h"
+#include "CBot/CBotToken.h"
 
 namespace CBot
 {

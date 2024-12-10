@@ -24,18 +24,20 @@
 
 #pragma once
 
-#include "graphics/core/renderers.h"
-
 #include <GL/glew.h>
-
-#include <array>
+#include <glm/glm.hpp>
 #include <vector>
+
+#include "graphics/core/renderers.h"
+#include "graphics/core/vertex.h"
 
 // Graphics module namespace
 namespace Gfx
 {
 
 class CGL33Device;
+enum class TransparencyMode : unsigned char;
+struct Texture;
 
 class CGL33UIRenderer : public CUIRenderer
 {

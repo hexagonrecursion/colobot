@@ -25,8 +25,12 @@
 #pragma once
 
 
-#include <sstream>
 #include <glm/glm.hpp>
+#include <sstream>
+#include <cmath>
+#include <iosfwd>
+#include <ostream>
+#include <string>
 
 
 // Graphics module namespace

@@ -20,16 +20,14 @@
 
 #include "ui/controls/check.h"
 
-#include "common/event.h"
-#include "common/restext.h"
+#include <filesystem>
+#include <string>
 
+#include "common/event.h"
 #include "graphics/core/renderers.h"
 #include "graphics/core/transparency.h"
-
 #include "graphics/engine/engine.h"
 #include "graphics/engine/text.h"
-
-#include <string.h>
 
 
 namespace Ui

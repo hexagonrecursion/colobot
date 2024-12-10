@@ -19,10 +19,15 @@
 
 #pragma once
 
+#include <string>
+
 #include "CBot/CBotInstr/CBotInstr.h"
 
 namespace CBot
 {
+class CBotCStack;
+class CBotStack;
+class CBotToken;
 
 /**
  * \brief A boolean literal - true/false

@@ -19,10 +19,16 @@
 
 #pragma once
 
+#include <map>
+#include <string>
+
 #include "CBot/CBotInstr/CBotInstr.h"
+#include "CBot/CBotToken.h"
 
 namespace CBot
 {
+class CBotCStack;
+class CBotStack;
 
 /**
  * \brief Creation of a class instance - "new" operator - new SomeClass()

@@ -20,9 +20,13 @@
 #pragma once
 
 
-#include "object/task/task.h"
-
 #include <glm/glm.hpp>
+
+#include "object/task/task.h"
+#include "common/error.h"
+
+class COldObject;
+struct Event;
 
 
 const float RADIUS_SHIELD_MIN = 40.0f;      // minimum radius of the protected zone

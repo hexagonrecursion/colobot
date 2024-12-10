@@ -24,8 +24,6 @@
 
 #pragma once
 
-#include "object/object_type.h"
-
 #include <memory>
 
 namespace Gfx

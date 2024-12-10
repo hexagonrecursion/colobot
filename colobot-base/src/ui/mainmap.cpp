@@ -20,17 +20,19 @@
 
 #include "ui/mainmap.h"
 
+#include <cmath>
+
 #include "app/app.h"
-
 #include "graphics/engine/engine.h"
-
 #include "level/robotmain.h"
-
 #include "ui/controls/interface.h"
 #include "ui/controls/map.h"
 #include "ui/controls/scroll.h"
 #include "ui/controls/slider.h"
 #include "ui/controls/window.h"
+#include "common/event.h"
+#include "graphics/core/color.h"
+#include "ui/controls/control.h"
 
 
 namespace Ui

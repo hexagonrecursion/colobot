@@ -20,30 +20,29 @@
 
 #include "ui/displaytext.h"
 
-#include "app/app.h"
+#include <assert.h>
+#include <string>
 
+#include "app/app.h"
 #include "common/event.h"
 #include "common/restext.h"
-
 #include "graphics/engine/engine.h"
-
 #include "level/robotmain.h"
-
 #include "object/object.h"
 #include "object/object_manager.h"
-
 #include "object/interface/movable_object.h"
-
 #include "object/motion/motion.h"
 #include "object/motion/motiontoto.h"
-
 #include "sound/sound.h"
-
 #include "ui/controls/button.h"
 #include "ui/controls/group.h"
 #include "ui/controls/interface.h"
 #include "ui/controls/label.h"
 #include "ui/controls/window.h"
+#include "graphics/engine/text.h"
+#include "object/object_type.h"
+#include "sound/sound_type.h"
+#include "ui/controls/control.h"
 
 
 

@@ -20,10 +20,14 @@
 
 #include "common/resources/sdl_file_wrapper.h"
 
+#include <physfs.h>
+#include <SDL_error.h>
+#include <SDL_stdinc.h>
+#include <assert.h>
+#include <cstddef>
+
 #include "common/logger.h"
 #include "common/stringutils.h"
-
-#include <physfs.h>
 
 namespace
 {

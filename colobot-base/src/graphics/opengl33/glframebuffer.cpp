@@ -19,6 +19,8 @@
 
 #include "graphics/opengl33/glframebuffer.h"
 
+#include <string_view>
+
 #include "common/logger.h"
 
 namespace Gfx

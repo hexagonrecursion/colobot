@@ -20,14 +20,18 @@
 
 #include "ui/controls/list.h"
 
+#include <assert.h>
+#include <string.h>
+#include <algorithm>
+#include <filesystem>
+#include <utility>
+
 #include "graphics/core/renderers.h"
 #include "graphics/core/transparency.h"
 #include "graphics/engine/engine.h"
-
 #include "math/func.h"
-
-#include <cassert>
-#include <cstring>
+#include "ui/controls/button.h"
+#include "ui/controls/scroll.h"
 
 namespace Ui
 {

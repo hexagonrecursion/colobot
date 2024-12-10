@@ -19,25 +19,23 @@
 
 #include "graphics/engine/water.h"
 
+#include <cmath>
+
 #include "app/app.h"
-
-#include "common/logger.h"
-#include "common/stringutils.h"
-
 #include "graphics/core/device.h"
 #include "graphics/core/renderers.h"
 #include "graphics/core/transparency.h"
-
 #include "graphics/engine/engine.h"
 #include "graphics/engine/terrain.h"
-
 #include "level/robotmain.h"
-
-#include "math/geometry.h"
-
 #include "object/object.h"
-
 #include "sound/sound.h"
+#include "common/event.h"
+#include "graphics/core/texture.h"
+#include "graphics/core/vertex.h"
+#include "math/func.h"
+#include "object/object_type.h"
+#include "sound/sound_type.h"
 
 
 // Graphics module namespace

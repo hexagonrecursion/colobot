@@ -19,9 +19,9 @@
 
 #include "object/interface/trace_drawing_object.h"
 
-#include "graphics/core/color.h"
+#include <assert.h>
 
-#include <cassert>
+#include "graphics/core/color.h"
 
 std::string TraceColorName(TraceColor color)
 {

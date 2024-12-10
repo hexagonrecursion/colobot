@@ -20,23 +20,25 @@
 
 #include "object/auto/autopowercaptor.h"
 
-#include "graphics/engine/engine.h"
+#include <memory>
 
+#include "graphics/engine/engine.h"
 #include "level/parser/parserline.h"
 #include "level/parser/parserparam.h"
-
 #include "math/geometry.h"
-
 #include "object/object_manager.h"
 #include "object/old_object.h"
-
 #include "object/interface/slotted_object.h"
 #include "object/interface/transportable_object.h"
-
 #include "sound/sound.h"
-
 #include "ui/controls/interface.h"
 #include "ui/controls/window.h"
+#include "common/event.h"
+#include "graphics/engine/particle.h"
+#include "math/func.h"
+#include "object/interface/power_container_object.h"
+#include "object/object.h"
+#include "object/object_interface_type.h"
 
 
 

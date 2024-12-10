@@ -20,13 +20,11 @@
 
 #include "script/cbottoken.h"
 
-#include "app/app.h"
-
-#include "object/object_type.h"
-#include "common/stringutils.h"
-
 #include <string.h>
 #include <filesystem>
+
+#include "app/app.h"
+#include "object/object_type.h"
 
 
 // Seeking the name of an object.

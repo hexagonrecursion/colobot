@@ -24,8 +24,8 @@
 
 #pragma once
 
-#include <cassert>
-#include <chrono>
+#include <bits/chrono.h>
+#include <ratio>
 
 namespace TimeUtils
 {

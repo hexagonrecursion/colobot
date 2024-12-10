@@ -20,18 +20,22 @@
 
 #include "object/auto/autoradar.h"
 
+#include <math.h>
+
 #include "graphics/engine/engine.h"
-
 #include "math/geometry.h"
-
 #include "object/object_manager.h"
 #include "object/old_object.h"
-
 #include "sound/sound.h"
-
 #include "ui/controls/gauge.h"
 #include "ui/controls/interface.h"
 #include "ui/controls/window.h"
+#include "common/event.h"
+#include "math/const.h"
+#include "math/func.h"
+#include "object/object.h"
+#include "object/object_type.h"
+#include "sound/sound_type.h"
 
 
 

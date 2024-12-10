@@ -19,9 +19,8 @@
 
 #include "common/profiler.h"
 
-#include "common/system/system.h"
-
-#include <cassert>
+#include <assert.h>
+#include <algorithm>
 
 using TimeUtils::TimeStamp;
 

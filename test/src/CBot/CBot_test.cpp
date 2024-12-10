@@ -19,9 +19,20 @@
 
 #include "CBot/CBot.h"
 
-#include <gtest/gtest.h>
-#include <limits>
+#include <gtest/gtest-message.h>
+#include <gtest/gtest-test-part.h>
 #include <stdexcept>
+#include <ios>
+#include <iosfwd>
+#include <istream>
+#include <memory>
+#include <ostream>
+#include <sstream>
+#include <string>
+#include <vector>
+
+#include "CBot/CBotEnums.h"
+#include "gtest/gtest_pred_impl.h"
 
 extern bool g_cbotTestSaveState;
 bool g_cbotTestSaveState = false;

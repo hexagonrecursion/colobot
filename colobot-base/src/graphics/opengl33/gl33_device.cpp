@@ -19,39 +19,37 @@
 
 #include "graphics/opengl33/gl33_device.h"
 
+#include <SDL_surface.h>
+#include <utility>
+#include <vector>
+
 #include "graphics/opengl33/gl33_object_renderer.h"
 #include "graphics/opengl33/gl33_particle_renderer.h"
 #include "graphics/opengl33/gl33_shadow_renderer.h"
 #include "graphics/opengl33/gl33_terrain_renderer.h"
 #include "graphics/opengl33/gl33_ui_renderer.h"
 #include "graphics/opengl33/glframebuffer.h"
-
-#include "common/config.h"
-
-#include "common/config_file.h"
 #include "common/image.h"
 #include "common/logger.h"
 #include "common/version.h"
-
-#include "graphics/core/light.h"
 #include "graphics/core/material.h"
 #include "graphics/core/transparency.h"
-
 #include "graphics/engine/engine.h"
-
-#include "math/geometry.h"
-
-#include <SDL.h>
-#include <physfs.h>
-
-#include <cassert>
-
-#include <glm/gtc/type_ptr.hpp>
+#include "graphics/core/color.h"
+#include "graphics/core/vertex.h"
+#include "graphics/opengl33/glutil.h"
+#include "math/func.h"
 
 
 // Graphics module namespace
 namespace Gfx
 {
+class CObjectRenderer;
+class CParticleRenderer;
+class CShadowRenderer;
+class CTerrainRenderer;
+class CUIRenderer;
+enum class PrimitiveType : unsigned char;
 
 CGL33VertexBuffer::CGL33VertexBuffer(PrimitiveType type, size_t size)
     : CVertexBuffer(type, size)

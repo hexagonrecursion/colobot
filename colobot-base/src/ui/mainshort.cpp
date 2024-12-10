@@ -20,25 +20,23 @@
 
 #include "ui/mainshort.h"
 
+#include <assert.h>
+#include <algorithm>
+
 #include "app/app.h"
 #include "app/pausemanager.h"
-
 #include "common/logger.h"
-
 #include "graphics/engine/engine.h"
-
 #include "level/robotmain.h"
-
 #include "object/object.h"
 #include "object/object_manager.h"
-
 #include "object/interface/controllable_object.h"
 #include "object/interface/programmable_object.h"
-
 #include "ui/controls/interface.h"
 #include "ui/controls/shortcut.h"
-
-#include <algorithm>
+#include "object/interface/damageable_object.h"
+#include "object/object_interface_type.h"
+#include "ui/controls/control.h"
 
 
 namespace Ui

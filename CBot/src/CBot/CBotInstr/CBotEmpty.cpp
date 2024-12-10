@@ -19,9 +19,11 @@
 
 #include "CBot/CBotInstr/CBotEmpty.h"
 
-#include "CBot/CBotStack.h"
+#include <memory>
 
+#include "CBot/CBotStack.h"
 #include "CBot/CBotVar/CBotVar.h"
+#include "CBot/CBotEnums.h"
 
 namespace CBot
 {

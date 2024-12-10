@@ -17,12 +17,13 @@
  * along with this program. If not, see http://gnu.org/licenses
  */
 
-#include "common/stringutils.h"
-
+#include <stddef.h>
 #include <array>
 #include <atomic>
-#include <cstddef>
 #include <mutex>
+#include <iterator>
+
+#include "common/stringutils.h"
 
 namespace
 {

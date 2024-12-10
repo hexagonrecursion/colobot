@@ -20,6 +20,7 @@
 #include "CBot/stdlib/Compilation.h"
 
 #include "CBot/CBot.h"
+#include "CBot/CBotEnums.h"
 
 namespace CBot
 {

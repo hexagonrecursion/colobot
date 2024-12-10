@@ -20,17 +20,17 @@
 
 #include "object/auto/autokid.h"
 
+#include <glm/glm.hpp>
+#include <cmath>
+
 #include "graphics/engine/engine.h"
 #include "graphics/engine/particle.h"
 #include "graphics/engine/water.h"
-
 #include "math/func.h"
-
 #include "object/old_object.h"
-
 #include "sound/sound.h"
-
-#include <stdio.h>
+#include "common/event.h"
+#include "object/object_type.h"
 
 
 // Object's constructor.

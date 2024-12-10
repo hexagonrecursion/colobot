@@ -19,10 +19,10 @@
 
 #include "common/resources/outputstreambuffer.h"
 
-#include "common/resources/resourcemanager.h"
-
 #include <stdexcept>
-#include <sstream>
+#include <string>
+
+#include "common/resources/resourcemanager.h"
 
 COutputStreamBuffer::COutputStreamBuffer(std::size_t bufferSize)
     : m_file(nullptr)

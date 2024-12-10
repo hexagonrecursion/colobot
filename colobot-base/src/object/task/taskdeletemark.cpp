@@ -20,21 +20,18 @@
 
 #include "object/task/taskdeletemark.h"
 
+#include <vector>
+
 #include "common/global.h"
-
 #include "graphics/engine/engine.h"
-#include "graphics/engine/particle.h"
 #include "graphics/engine/pyro_manager.h"
-#include "graphics/engine/terrain.h"
-
-#include "level/robotmain.h"
-
-#include "math/geometry.h"
-
 #include "object/object_manager.h"
 #include "object/old_object.h"
+#include "graphics/engine/pyro_type.h"
+#include "object/object_type.h"
 
-#include "physics/physics.h"
+class CObject;
+struct Event;
 
 
 CTaskDeleteMark::CTaskDeleteMark(COldObject* object) : CForegroundTask(object)

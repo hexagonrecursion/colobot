@@ -19,10 +19,16 @@
 
 #pragma once
 
+#include <string>
+
 #include "CBot/CBotInstr/CBotInstr.h"
+#include "CBot/CBotEnums.h"
 
 namespace CBot
 {
+class CBotCStack;
+class CBotStack;
+class CBotToken;
 
 CBotInstr* CompileExprLitNum(CBotToken* &p, CBotCStack* pStack);
 

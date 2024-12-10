@@ -19,9 +19,11 @@
 
 #include "CBot/CBotToken.h"
 
-#include <cstdarg>
-#include <cassert>
+#include <assert.h>
+#include <stdarg.h>
+#include <stdio.h>
 #include <map>
+#include <utility>
 
 namespace CBot
 {

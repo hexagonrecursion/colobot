@@ -21,8 +21,8 @@
 
 #include "CBot/CBotCStack.h"
 #include "CBot/CBotInstr/CBotListInstr.h"
-
-#include "CBot/CBotDefines.h"
+#include "CBot/CBotEnums.h"
+#include "CBot/CBotToken.h"
 
 namespace CBot
 {

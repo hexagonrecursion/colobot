@@ -17,12 +17,14 @@
  * along with this program. If not, see http://gnu.org/licenses
  */
 
-#include "CBot/stdlib/stdlib.h"
-
-#include "CBot/CBot.h"
-
+#include <stdlib.h>
 #include <cmath>
-#include <cstdlib>
+#include <memory>
+
+#include "CBot/stdlib/stdlib.h"
+#include "CBot/CBot.h"
+#include "CBot/CBotEnums.h"
+#include "CBot/stdlib/Compilation.h"
 
 namespace CBot
 {

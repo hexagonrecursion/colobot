@@ -19,56 +19,76 @@
 
 #include "script/scriptfunc.h"
 
+#include <assert.h>
+#include <glm/glm.hpp>
+#include <cmath>
+#include <filesystem>
+#include <functional>
+#include <ios>
+#include <iosfwd>
+#include <memory>
+#include <optional>
+#include <ostream>
+#include <string>
+#include <utility>
+#include <vector>
+
 #include "CBot/CBot.h"
-
 #include "app/app.h"
-
 #include "common/global.h"
 #include "common/logger.h"
 #include "common/stringutils.h"
-
 #include "common/resources/inputstream.h"
 #include "common/resources/outputstream.h"
 #include "common/resources/resourcemanager.h"
-
 #include "graphics/engine/engine.h"
 #include "graphics/engine/terrain.h"
 #include "graphics/engine/water.h"
-
 #include "level/robotmain.h"
-
 #include "level/parser/parser.h"
-
-#include "math/all.h"
-
 #include "object/object.h"
 #include "object/object_manager.h"
-
 #include "object/auto/auto.h"
 #include "object/auto/autobase.h"
 #include "object/auto/autofactory.h"
-
 #include "object/interface/destroyable_object.h"
 #include "object/interface/programmable_object.h"
 #include "object/interface/task_executor_object.h"
 #include "object/interface/trace_drawing_object.h"
-
 #include "object/subclass/base_alien.h"
 #include "object/subclass/exchange_post.h"
 #include "object/subclass/shielder.h"
-
 #include "object/task/taskinfo.h"
-
 #include "physics/physics.h"
-
 #include "script/cbottoken.h"
 #include "script/script.h"
-
 #include "sound/sound.h"
-
 #include "ui/displaytext.h"
-
-#include <cmath>
+#include "CBot/CBotDefines.h"
+#include "CBot/CBotEnums.h"
+#include "CBot/stdlib/Compilation.h"
+#include "common/event.h"
+#include "graphics/engine/camera.h"
+#include "level/build_type.h"
+#include "level/research_type.h"
+#include "math/const.h"
+#include "math/func.h"
+#include "math/geometry.h"
+#include "object/interface/controllable_object.h"
+#include "object/interface/jet_flying_object.h"
+#include "object/interface/program_storage_object.h"
+#include "object/interface/shielded_object.h"
+#include "object/interface/slotted_object.h"
+#include "object/interface/transportable_object.h"
+#include "object/object_create_params.h"
+#include "object/object_interface_type.h"
+#include "object/object_type.h"
+#include "object/old_object.h"
+#include "object/task/task.h"
+#include "object/task/taskflag.h"
+#include "object/task/taskgoto.h"
+#include "object/task/taskmanip.h"
+#include "object/task/taskshield.h"
 
 using namespace CBot;
 

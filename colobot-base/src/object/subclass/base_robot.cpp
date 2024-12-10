@@ -19,16 +19,15 @@
 
 #include "object/subclass/base_robot.h"
 
-#include "graphics/engine/oldmodelmanager.h"
+#include <utility>
 
 #include "object/object_create_params.h"
-
 #include "object/motion/motionhuman.h"
 #include "object/motion/motionlevelcontroller.h"
 #include "object/motion/motiontoto.h"
 #include "object/motion/motionvehicle.h"
-
 #include "physics/physics.h"
+#include "object/motion/motion.h"
 
 
 CBaseRobot::CBaseRobot(int id, ObjectType type)

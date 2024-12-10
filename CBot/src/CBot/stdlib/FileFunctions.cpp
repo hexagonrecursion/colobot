@@ -17,15 +17,18 @@
  * along with this program. If not, see http://gnu.org/licenses
  */
 
-#include "CBot/stdlib/stdlib.h"
-
-#include "common/stringutils.h"
-
-#include "CBot/CBot.h"
-
+#include <assert.h>
 #include <memory>
 #include <unordered_map>
-#include <cassert>
+#include <filesystem>
+#include <string>
+#include <utility>
+
+#include "CBot/stdlib/stdlib.h"
+#include "common/stringutils.h"
+#include "CBot/CBot.h"
+#include "CBot/CBotEnums.h"
+#include "CBot/stdlib/Compilation.h"
 
 namespace CBot
 {

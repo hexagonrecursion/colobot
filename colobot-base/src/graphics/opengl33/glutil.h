@@ -19,19 +19,13 @@
 
 #pragma once
 
-// config.h must be included first
-#include "common/config.h"
-
 #include <GL/glew.h>
 #include <glm/glm.hpp>
-
 #include <string>
 #include <memory>
 #include <vector>
 
 struct SDL_Surface;
-
-class CImage;
 struct ImageData;
 
 // Graphics module namespace

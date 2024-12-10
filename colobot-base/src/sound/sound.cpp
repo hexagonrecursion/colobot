@@ -19,14 +19,14 @@
 
 #include "sound/sound.h"
 
-#include "common/logger.h"
-#include "common/stringutils.h"
-
-#include "math/func.h"
-
-#include <iostream>
 #include <iomanip>
 #include <sstream>
+#include <iosfwd>
+#include <ostream>
+#include <string>
+
+#include "common/logger.h"
+#include "common/stringutils.h"
 
 
 CSoundInterface::CSoundInterface()

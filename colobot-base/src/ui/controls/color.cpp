@@ -20,15 +20,15 @@
 
 #include "ui/controls/color.h"
 
-#include "common/event.h"
-#include "common/restext.h"
+#include <filesystem>
+#include <string>
 
+#include "common/event.h"
 #include "graphics/core/renderers.h"
 #include "graphics/core/transparency.h"
-
 #include "graphics/engine/engine.h"
-
-#include <string.h>
+#include "graphics/core/texture.h"
+#include "graphics/core/vertex.h"
 
 
 namespace Ui

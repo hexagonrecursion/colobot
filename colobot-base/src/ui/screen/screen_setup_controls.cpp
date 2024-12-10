@@ -19,10 +19,12 @@
 
 #include "ui/screen/screen_setup_controls.h"
 
+#include <math.h>
+#include <glm/glm.hpp>
+#include <string>
+#include <vector>
+
 #include "app/app.h"
-
-#include "common/settings.h"
-
 #include "ui/controls/button.h"
 #include "ui/controls/check.h"
 #include "ui/controls/editvalue.h"
@@ -33,6 +35,12 @@
 #include "ui/controls/list.h"
 #include "ui/controls/scroll.h"
 #include "ui/controls/window.h"
+#include "app/input.h"
+#include "common/key.h"
+#include "common/restext.h"
+#include "graphics/engine/text.h"
+#include "level/robotmain.h"
+#include "ui/controls/control.h"
 
 namespace Ui
 {

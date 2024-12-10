@@ -25,17 +25,14 @@
 #pragma once
 
 
-#include "common/error.h"
-
-#include "graphics/core/color.h"
-
-#include "graphics/engine/pyro_type.h"
-
-#include "math/sphere.h"
-
-#include "object/object_type.h"
-
+#include <glm/glm.hpp>
 #include <vector>
+
+#include "common/error.h"
+#include "graphics/core/color.h"
+#include "graphics/engine/pyro_type.h"
+#include "math/sphere.h"
+#include "object/object_type.h"
 
 class CObject;
 class CRobotMain;

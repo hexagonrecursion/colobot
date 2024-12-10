@@ -19,15 +19,16 @@
 
 #pragma once
 
-#include "ui/controls/control.h"
-
-#include "common/event.h"
-
-#include "object/object_type.h"
-
+#include <glm/glm.hpp>
 #include <filesystem>
 
+#include "ui/controls/control.h"
+#include "common/event.h"
+#include "object/object_type.h"
+#include "graphics/core/color.h"
+
 class CObject;
+class CRobotMain;
 
 namespace Gfx
 {

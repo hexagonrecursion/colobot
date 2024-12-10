@@ -19,18 +19,21 @@
 
 #include "level/scoreboard.h"
 
+#include <assert.h>
+#include <glm/glm.hpp>
+#include <algorithm>
+#include <set>
+#include <string>
+
 #include "common/restext.h"
 #include "common/stringutils.h"
-
 #include "level/robotmain.h"
-
 #include "level/parser/parserline.h"
-
 #include "object/object.h"
-
 #include "ui/displaytext.h"
-
-#include <algorithm>
+#include "common/error.h"
+#include "common/logger.h"
+#include "level/parser/parserparam.h"
 
 void CScoreboard::CScoreboardRule::Read(CLevelParserLine* line)
 {

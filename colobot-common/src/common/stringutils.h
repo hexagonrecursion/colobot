@@ -24,12 +24,12 @@
 
 #pragma once
 
-#include <cstddef>
 #include <filesystem>
 #include <sstream>
 #include <string>
 #include <string_view>
 #include <vector>
+#include <iosfwd>
 
 namespace StrUtils
 {

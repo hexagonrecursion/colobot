@@ -19,12 +19,16 @@
 
 #include "CBot/CBotExternalCall.h"
 
+#include <assert.h>
+#include <utility>
+
 #include "CBot/CBotToken.h"
 #include "CBot/CBotStack.h"
 #include "CBot/CBotCStack.h"
 #include "CBot/CBotUtils.h"
-
 #include "CBot/CBotVar/CBotVar.h"
+#include "CBot/CBotEnums.h"
+#include "CBot/CBotTypResult.h"
 
 namespace CBot
 {

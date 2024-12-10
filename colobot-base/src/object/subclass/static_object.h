@@ -19,13 +19,19 @@
 
 #pragma once
 
-#include "object/object.h"
-
 #include <glm/glm.hpp>
-
 #include <memory>
 #include <unordered_map>
 #include <filesystem>
+#include <string>
+
+#include "object/object.h"
+#include "object/object_type.h"
+
+class CLevelParserLine;
+namespace Math {
+struct Sphere;
+}  // namespace Math
 
 namespace Gfx
 {
@@ -36,6 +42,7 @@ class CTerrain;
 } // namespace Gfx
 
 class CStaticObject;
+
 using CStaticObjectUPtr = std::unique_ptr<CStaticObject>;
 
 class CStaticObject : public CObject

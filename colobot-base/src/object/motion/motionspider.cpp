@@ -20,21 +20,27 @@
 
 #include "object/motion/motionspider.h"
 
-#include "app/app.h"
+#include <stdio.h>
+#include <assert.h>
+#include <math.h>
+#include <stdlib.h>
+#include <array>
+#include <memory>
 
 #include "graphics/engine/engine.h"
 #include "graphics/engine/oldmodelmanager.h"
 #include "graphics/engine/particle.h"
-
 #include "math/func.h"
-
 #include "object/old_object.h"
-
 #include "object/subclass/base_alien.h"
-
 #include "physics/physics.h"
-
-#include <stdio.h>
+#include "common/event.h"
+#include "math/const.h"
+#include "math/sphere.h"
+#include "object/crash_sphere.h"
+#include "object/interface/destroyable_object.h"
+#include "object/old_object_interface.h"
+#include "sound/sound_type.h"
 
 
 

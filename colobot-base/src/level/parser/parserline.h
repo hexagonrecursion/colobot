@@ -24,15 +24,17 @@
 
 #pragma once
 
-#include "level/parser/parserparam.h"
-
 #include <filesystem>
 #include <string>
 #include <map>
 #include <memory>
+#include <iosfwd>
+
+#include "level/parser/parserparam.h"
 
 class CLevelParser;
 class CLevelParserLine;
+
 using CLevelParserLineUPtr = std::unique_ptr<CLevelParserLine>;
 
 class CLevelParserLine

@@ -19,13 +19,16 @@
 
 #pragma once
 
+#include <filesystem>
+#include <memory>
+#include <string>
+#include <vector>
+
 #include "object/interface/program_storage_object.h"
-
-#include <glm/glm.hpp>
-
-#include <sstream>
+#include "object/object_interface_type.h"
 
 class CObject;
+class CLevelParserLine;
 
 class CProgramStorageObjectImpl : public CProgramStorageObject
 {

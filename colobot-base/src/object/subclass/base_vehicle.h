@@ -20,6 +20,7 @@
 #pragma once
 
 #include "object/old_object.h"
+#include "object/object_type.h"
 
 /**
  * \class CBaseVehicle

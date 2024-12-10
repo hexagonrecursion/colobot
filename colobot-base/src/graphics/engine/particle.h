@@ -24,13 +24,13 @@
 
 #pragma once
 
-#include "graphics/core/color.h"
-
-#include "object/interface/trace_drawing_object.h"
-
-#include "sound/sound_type.h"
-
+#include <glm/glm.hpp>
 #include <vector>
+
+#include "graphics/core/color.h"
+#include "object/interface/trace_drawing_object.h"
+#include "sound/sound_type.h"
+#include "graphics/core/triangle.h"
 
 class CRobotMain;
 class CObject;
@@ -46,8 +46,6 @@ class CEngine;
 class CParticleRenderer;
 class CTerrain;
 class CWater;
-
-struct EngineTriangle;
 
 const short MAXPARTICULE = 500;
 const short MAXPARTITYPE = 6;

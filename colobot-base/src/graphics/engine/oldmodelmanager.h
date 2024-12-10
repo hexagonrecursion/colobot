@@ -19,13 +19,12 @@
 
 #pragma once
 
-#include "common/singleton.h"
-
-#include "graphics/model/model_triangle.h"
-
 #include <string>
 #include <vector>
 #include <map>
+#include <filesystem>
+
+#include "graphics/model/model_triangle.h"
 
 namespace Gfx
 {

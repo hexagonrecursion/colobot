@@ -20,9 +20,14 @@
 #pragma once
 
 
-#include "object/auto/auto.h"
+#include <glm/glm.hpp>
 
+#include "object/auto/auto.h"
 #include "graphics/engine/particle.h"
+#include "common/error.h"
+
+class COldObject;
+struct Event;
 
 
 

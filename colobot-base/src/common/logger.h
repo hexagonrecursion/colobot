@@ -25,13 +25,15 @@
 #pragma once
 
 
-#include "common/singleton.h"
-
+#include <stddef.h>
 #include <filesystem>
-#include <ostream>
 #include <string>
 #include <string_view>
 #include <vector>
+#include <iosfwd>
+#include <utility>
+
+#include "common/singleton.h"
 
 
 /**
