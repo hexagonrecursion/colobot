@@ -27,7 +27,6 @@
 #include <array>
 #include <stdexcept>
 #include <vector>
-#include <cstddef>
 #include <iterator>
 
 #include "common/codepoint.h"

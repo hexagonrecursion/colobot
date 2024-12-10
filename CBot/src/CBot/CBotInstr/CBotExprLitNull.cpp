@@ -19,8 +19,6 @@
 
 #include "CBot/CBotInstr/CBotExprLitNull.h"
 
-#include <memory>
-
 #include "CBot/CBotStack.h"
 #include "CBot/CBotVar/CBotVar.h"
 #include "CBot/CBotEnums.h"

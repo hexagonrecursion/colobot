@@ -20,7 +20,6 @@
 #include "common/profiler.h"
 
 #include <assert.h>
-#include <algorithm>
 
 using TimeUtils::TimeStamp;
 

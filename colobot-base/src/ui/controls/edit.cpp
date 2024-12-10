@@ -28,8 +28,6 @@
 #include <stdlib.h>
 #include <string.h>
 #include <algorithm>
-#include <ios>
-#include <istream>
 #include <limits>
 #include <ostream>
 #include <sstream>

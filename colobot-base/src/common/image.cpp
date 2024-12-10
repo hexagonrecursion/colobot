@@ -30,7 +30,6 @@
 #include <pngconf.h>
 #include <setjmp.h>
 #include <string.h>
-#include <ios>
 #include <iosfwd>
 #include <ostream>
 

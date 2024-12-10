@@ -19,10 +19,7 @@
 
 #pragma once
 
-#include <ios>
 #include <iosfwd>
-#include <istream>
-#include <ostream>
 #include <sstream>
 #include <string>
 

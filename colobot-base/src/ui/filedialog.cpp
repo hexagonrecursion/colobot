@@ -23,7 +23,6 @@
 #include <SDL_keycode.h>
 #include <time.h>
 #include <algorithm>
-#include <ios>
 #include <iosfwd>
 #include <ostream>
 #include <sstream>

@@ -18,10 +18,10 @@
  */
 
 #include <locale.h>
+#include <gtest/gtest.h>
 #include <string>
 
 #include "common/logger.h"
-#include "gtest/gtest_pred_impl.h"
 
 extern bool g_cbotTestSaveState;
 

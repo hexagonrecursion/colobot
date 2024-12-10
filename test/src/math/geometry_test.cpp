@@ -21,11 +21,11 @@
 
 #include <gtest/gtest-message.h>
 #include <gtest/gtest-test-part.h>
+#include <gtest/gtest.h>
 #include <memory>
 
 #include "math/func.h"
 #include "math/geometry.h"
-#include "gtest/gtest_pred_impl.h"
 #include "math/const.h"
 
 

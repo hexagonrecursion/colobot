@@ -40,6 +40,7 @@ enum class CullFace : unsigned char;
 struct Color;
 struct Texture;
 struct Vertex3D;
+enum class TransparencyMode : unsigned char;
 
 class CGL33ObjectRenderer : public CObjectRenderer
 {
