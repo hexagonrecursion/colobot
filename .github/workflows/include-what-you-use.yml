@@ -1,7 +1,6 @@
 on: [push, pull_request]
 jobs:
   include-what-you-use:
-    if: false
     runs-on: ubuntu-24.04
     steps:
     - name: Install dependencies
