@@ -20,25 +20,26 @@
 
 #include "object/auto/autodestroyer.h"
 
+#include <cassert>
+#include <glm/glm.hpp>
+#include <memory>
+
 #include "graphics/engine/engine.h"
-#include "graphics/engine/pyro_manager.h"
-
 #include "level/robotmain.h"
-
 #include "level/parser/parserline.h"
 #include "level/parser/parserparam.h"
-
 #include "math/func.h"
-
 #include "object/object_manager.h"
 #include "object/old_object.h"
-
 #include "sound/sound.h"
-
 #include "ui/controls/interface.h"
 #include "ui/controls/window.h"
-
-#include <limits>
+#include "object/interface/destroyable_object.h"
+#include "object/object.h"
+#include "object/object_interface_type.h"
+#include "object/object_type.h"
+#include "sound/sound_type.h"
+#include "ui/controls/control.h"
 
 
 // Object's constructor.

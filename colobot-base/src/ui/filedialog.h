@@ -19,16 +19,12 @@
 
 #pragma once
 
-#include "common/event.h"
-
 #include <glm/glm.hpp>
-
 #include <filesystem>
 #include <string>
 #include <vector>
 
-
-struct Event;
+#include "common/event.h"
 
 namespace Ui
 {

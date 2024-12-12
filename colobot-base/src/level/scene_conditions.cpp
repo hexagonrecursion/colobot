@@ -19,20 +19,18 @@
 
 #include "level/scene_conditions.h"
 
+#include <limits>
+#include <memory>
+
 #include "level/parser/parserline.h"
-
 #include "math/geometry.h"
-
 #include "object/object.h"
 #include "object/object_manager.h"
-
 #include "object/interface/power_container_object.h"
 #include "object/interface/slotted_object.h"
 #include "object/interface/transportable_object.h"
-
-#include "common/stringutils.h"
-
-#include <limits>
+#include "level/parser/parserparam.h"
+#include "object/object_interface_type.h"
 
 
 void CObjectCondition::Read(CLevelParserLine* line)

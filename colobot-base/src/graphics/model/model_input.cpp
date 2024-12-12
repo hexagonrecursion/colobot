@@ -19,12 +19,12 @@
 
 #include "graphics/model/model_input.h"
 
+#include <string>
+
 #include "graphics/model/model_gltf.h"
 #include "graphics/model/model_mod.h"
 #include "graphics/model/model_txt.h"
-
 #include "graphics/model/model_io_exception.h"
-
 #include "common/stringutils.h"
 
 namespace Gfx

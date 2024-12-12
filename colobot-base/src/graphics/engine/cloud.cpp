@@ -20,17 +20,17 @@
 
 #include "graphics/engine/cloud.h"
 
-#include "graphics/core/material.h"
+#include <cmath>
+#include <algorithm>
+
 #include "graphics/core/renderers.h"
 #include "graphics/core/transparency.h"
-
 #include "graphics/engine/engine.h"
 #include "graphics/engine/terrain.h"
-
 #include "level/robotmain.h"
-
 #include "math/geometry.h"
-#include "common/stringutils.h"
+#include "common/event.h"
+#include "graphics/core/vertex.h"
 
 // Graphics module namespace
 namespace Gfx

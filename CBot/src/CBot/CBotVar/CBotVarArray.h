@@ -19,10 +19,16 @@
 
 #pragma once
 
+#include <iosfwd>
+#include <string>
+
 #include "CBot/CBotVar/CBotVar.h"
 
 namespace CBot
 {
+class CBotToken;
+class CBotTypResult;
+class CBotVarClass;
 
 /**
  * \brief CBotVar subclass for managing arrays (::CBotTypArrayPointer)

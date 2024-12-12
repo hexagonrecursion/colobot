@@ -21,9 +21,13 @@
 
 
 #include "object/auto/auto.h"
-
+#include "common/error.h"
+#include "object/object_type.h"
 
 class CObject;
+class CLevelParserLine;
+class COldObject;
+struct Event;
 
 enum AutoConvertPhase
 {

@@ -19,22 +19,23 @@
 
 #include "graphics/engine/terrain.h"
 
-#include "app/app.h"
+#include <SDL_surface.h>  // IWYU pragma: keep https://github.com/include-what-you-use/include-what-you-use/issues/1665
+#include <sstream>
+#include <algorithm>
+#include <cmath>
+#include <map>
+#include <memory>
+#include <string>
+#include <utility>
 
 #include "common/image.h"
 #include "common/logger.h"
 #include "common/stringutils.h"
-
-#include "graphics/core/triangle.h"
-
 #include "graphics/engine/engine.h"
 #include "graphics/engine/water.h"
-
 #include "math/geometry.h"
-
-#include <sstream>
-
-#include <SDL_surface.h>  // IWYU pragma: keep https://github.com/include-what-you-use/include-what-you-use/issues/1665
+#include "graphics/core/material.h"
+#include "math/func.h"
 
 // Graphics module namespace
 namespace Gfx

@@ -19,10 +19,16 @@
 
 #pragma once
 
+#include <sstream>
+#include <string>
+
 #include "CBot/CBotVar/CBotVarValue.h"
+#include "CBot/CBotEnums.h"
+#include "CBot/CBotVar/CBotVar.h"
 
 namespace CBot
 {
+class CBotToken;
 
 /**
  * \brief CBotVar subclass for managing string values (::CBotTypString)

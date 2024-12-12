@@ -24,21 +24,20 @@
 
 #pragma once
 
-#include "common/singleton.h"
-
-#include "math/const.h"
-
-#include "object/object_create_params.h"
-#include "object/object_interface_type.h"
-#include "object/object_type.h"
-
-#include "object/interface/destroyable_object.h"
-
 #include <glm/glm.hpp>
-
 #include <map>
 #include <vector>
 #include <memory>
+#include <utility>
+
+#include "common/singleton.h"
+#include "math/const.h"
+#include "object/object_type.h"
+#include "object/interface/destroyable_object.h"
+#include "object/object.h"
+
+enum class ObjectInterfaceType;
+struct ObjectCreateParams;
 
 namespace Gfx
 {
@@ -49,7 +48,6 @@ class CParticle;
 class CTerrain;
 } // namespace Gfx
 
-class CObject;
 class CObjectFactory;
 
 enum RadarFilter

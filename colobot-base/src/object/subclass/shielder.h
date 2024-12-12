@@ -19,9 +19,12 @@
 
 #pragma once
 
+#include <memory>
+
 #include "object/subclass/base_robot.h"
 
 struct ObjectCreateParams;
+class CLevelParserLine;
 
 namespace Gfx
 {

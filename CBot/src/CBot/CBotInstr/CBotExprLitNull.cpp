@@ -20,8 +20,8 @@
 #include "CBot/CBotInstr/CBotExprLitNull.h"
 
 #include "CBot/CBotStack.h"
-
 #include "CBot/CBotVar/CBotVar.h"
+#include "CBot/CBotEnums.h"
 
 namespace CBot
 {

@@ -18,14 +18,11 @@
  */
 
 #include "common/config_file.h"
-#include "common/logger.h"
 
-#include "common/system/system.h"
-
-#include <iostream>
+#include <gtest/gtest.h>
 #include <string>
 #include <vector>
-#include <gtest/gtest.h>
+#include <algorithm>
 
 
 class CConfigFileTest : public testing::Test

@@ -19,13 +19,10 @@
 
 #include "graphics/model/model_manager.h"
 
+#include <utility>
+
 #include "common/logger.h"
-#include "common/stringutils.h"
-
-#include "common/resources/inputstream.h"
-
 #include "graphics/model/model_input.h"
-#include "graphics/model/model_io_exception.h"
 
 namespace Gfx
 {

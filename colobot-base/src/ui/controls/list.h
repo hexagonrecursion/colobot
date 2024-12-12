@@ -19,20 +19,20 @@
 
 #pragma once
 
-#include "ui/controls/control.h"
-
-#include "common/event.h"
-
-#include "graphics/engine/text.h"
-
-#include "ui/controls/button.h"
-#include "ui/controls/scroll.h"
-
+#include <glm/glm.hpp>
 #include <array>
 #include <memory>
+#include <string>
+#include <vector>
+
+#include "ui/controls/control.h"
+#include "common/event.h"
+#include "graphics/engine/text.h"
 
 namespace Ui
 {
+class CButton;
+class CScroll;
 
 const int LISTMAXDISPLAY = 20;  // maximum number of visible lines
 

@@ -24,12 +24,10 @@
 
 #pragma once
 
-#include "sound/sound_type.h"
-
 #include <glm/glm.hpp>
-
-#include <string>
 #include <filesystem>
+
+#include "sound/sound_type.h"
 
 /*!
  * Maximum possible audio volume

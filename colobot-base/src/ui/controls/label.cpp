@@ -20,9 +20,11 @@
 
 #include "ui/controls/label.h"
 
-#include "graphics/engine/engine.h"
-
 #include <sstream>
+#include <string>
+
+#include "graphics/engine/engine.h"
+#include "graphics/engine/text.h"
 
 namespace Ui
 {

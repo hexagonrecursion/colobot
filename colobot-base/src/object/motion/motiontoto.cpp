@@ -20,23 +20,24 @@
 
 #include "object/motion/motiontoto.h"
 
-#include "app/app.h"
+#include <cstdlib>
+#include <cmath>
+#include <memory>
 
 #include "graphics/engine/engine.h"
 #include "graphics/engine/oldmodelmanager.h"
 #include "graphics/engine/terrain.h"
 #include "graphics/engine/water.h"
-
 #include "level/robotmain.h"
-
 #include "math/geometry.h"
-
 #include "object/old_object.h"
-
 #include "sound/sound.h"
-
-
-#include <stdio.h>
+#include "common/event.h"
+#include "graphics/engine/particle.h"
+#include "math/const.h"
+#include "math/func.h"
+#include "object/object.h"
+#include "sound/sound_type.h"
 
 
 

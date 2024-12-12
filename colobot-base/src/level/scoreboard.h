@@ -24,13 +24,15 @@
 
 #pragma once
 
-#include "level/scene_conditions.h"
-
 #include <memory>
 #include <vector>
 #include <map>
+#include <utility>
+
+#include "level/scene_conditions.h"
 
 class CObject;
+class CLevelParserLine;
 
 /**
  * \class CScoreboard

@@ -19,12 +19,15 @@
 
 #pragma once
 
-#include "CBot/CBotInstr/CBotInstr.h"
+#include <string>
 
-#include <cstdint>
+#include "CBot/CBotInstr/CBotInstr.h"
 
 namespace CBot
 {
+class CBotCStack;
+class CBotStack;
+class CBotToken;
 
 /**
  * \brief A character literal

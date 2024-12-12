@@ -19,14 +19,14 @@
 
 #pragma once
 
-#include "graphics/core/color.h"
-
-#include "level/level_category.h"
-
 #include <filesystem>
 #include <string>
 #include <map>
 #include <vector>
+
+#include "graphics/core/color.h"
+
+enum class LevelCategory;
 
 struct LevelInfo
 {

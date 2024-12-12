@@ -21,6 +21,7 @@
 
 #include <stdexcept>
 #include <regex>
+#include <string>
 
 namespace RegexUtils
 {

@@ -20,14 +20,16 @@
 
 #include "sound/oalsound/buffer.h"
 
-#include "common/resources/resourcemanager.h"
-
-#include "common/stringutils.h"
-
-#include "sound/oalsound/check.h"
-
+#include <cstdint>
 #include <cstddef>
 #include <memory>
+#include <array>
+#include <vector>
+
+#include "common/resources/resourcemanager.h"
+#include "sound/oalsound/check.h"
+#include "common/logger.h"
+#include "common/resources/sndfile_wrapper.h"
 
 
 CBuffer::CBuffer()

@@ -24,15 +24,13 @@
 
 #pragma once
 
-#include "graphics/core/vertex.h"
-
-#include "math/const.h"
-
 #include <glm/glm.hpp>
-
-#include <string>
 #include <vector>
 #include <filesystem>
+
+#include "graphics/core/vertex.h"
+#include "math/const.h"
+#include "graphics/core/color.h"
 
 
 // Graphics module namespace
@@ -261,6 +259,7 @@ protected:
     bool        CreateSquare(int x, int y);
 
     struct TerrainMaterial;
+
     //! Seeks a material based on its ID
     TerrainMaterial* FindMaterial(int id);
     //! Seeks a material based on neighbor values

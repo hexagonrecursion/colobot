@@ -20,20 +20,19 @@
 
 #include "common/restext.h"
 
-#include "CBot/CBot.h"
+#include <SDL_keyboard.h>
+#include <libintl.h>
+#include <SDL_keycode.h>
+#include <cassert>
+#include <cstring>
 
 #include "app/input.h"
-
 #include "common/error.h"
 #include "common/event.h"
-#include "common/logger.h"
 #include "common/stringutils.h"
-
 #include "object/object_type.h"
-
-#include <SDL_keyboard.h>
-
-#include <libintl.h>
+#include "CBot/CBotEnums.h"
+#include "common/key.h"
 
 const char* stringsText[RT_MAX]         = { nullptr };
 const char* stringsEvent[EVENT_STD_MAX] = { nullptr };

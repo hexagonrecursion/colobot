@@ -20,25 +20,32 @@
 
 #include "object/task/tasktake.h"
 
+#include <cassert>
+#include <cmath>
+#include <vector>
+
 #include "graphics/engine/engine.h"
 #include "graphics/engine/terrain.h"
 #include "graphics/engine/water.h"
-
 #include "level/robotmain.h"
-
 #include "math/geometry.h"
-
 #include "object/object_manager.h"
 #include "object/old_object.h"
-
 #include "object/interface/slotted_object.h"
 #include "object/interface/transportable_object.h"
-
 #include "object/motion/motionhuman.h"
-
 #include "physics/physics.h"
-
 #include "sound/sound.h"
+#include "common/event.h"
+#include "graphics/engine/camera.h"
+#include "math/const.h"
+#include "math/func.h"
+#include "math/sphere.h"
+#include "object/crash_sphere.h"
+#include "object/motion/motion.h"
+#include "object/object.h"
+#include "object/object_interface_type.h"
+#include "sound/sound_type.h"
 
 
 

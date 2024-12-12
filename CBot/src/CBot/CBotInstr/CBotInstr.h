@@ -19,14 +19,18 @@
 
 #pragma once
 
-#include "CBot/CBotToken.h"
-#include "CBot/CBotCStack.h"
-
 #include <vector>
+#include <map>
+#include <string>
+
+#include "CBot/CBotToken.h"
+#include "CBot/CBotTypResult.h"
 
 namespace CBot
 {
-class CBotDebug;
+class CBotCStack;
+class CBotStack;
+class CBotVar;
 
 /**
  * \brief Class for one CBot instruction

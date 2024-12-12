@@ -18,12 +18,14 @@
  */
 
 #include "CBot/CBotVar/CBotVarArray.h"
-#include "CBot/CBotVar/CBotVarClass.h"
-#include "CBot/CBotToken.h"
-
-#include "CBot/CBotEnums.h"
 
 #include <cassert>
+
+#include "CBot/CBotVar/CBotVarClass.h"
+#include "CBot/CBotToken.h"
+#include "CBot/CBotEnums.h"
+#include "CBot/CBotFileUtils.h"
+#include "CBot/CBotTypResult.h"
 
 
 namespace CBot

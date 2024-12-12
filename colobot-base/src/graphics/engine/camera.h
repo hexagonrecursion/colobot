@@ -24,6 +24,8 @@
 
 #pragma once
 
+#include <glm/glm.hpp>
+
 #include "graphics/core/color.h"
 
 class CObject;
@@ -39,7 +41,6 @@ namespace Gfx
 class CEngine;
 class CTerrain;
 class CWater;
-
 enum class TransparencyMode : unsigned char;
 
 /**

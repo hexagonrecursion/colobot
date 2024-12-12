@@ -19,22 +19,28 @@
 
 #include "ui/screen/screen_io_read.h"
 
-#include "app/app.h"
+#include <SDL_keycode.h>
+#include <glm/glm.hpp>
+#include <filesystem>
+#include <optional>
+#include <string>
 
 #include "common/restext.h"
-
 #include "level/robotmain.h"
 #include "level/player_profile.h"
-
 #include "ui/controls/button.h"
 #include "ui/controls/image.h"
 #include "ui/controls/interface.h"
 #include "ui/controls/list.h"
 #include "ui/controls/window.h"
 #include "ui/maindialog.h"
+#include "common/event.h"
+#include "common/key.h"
+#include "ui/controls/control.h"
 
 namespace Ui
 {
+class CScreenLevelList;
 
 CScreenIORead::CScreenIORead(CScreenLevelList* screenLevelList, CMainDialog* dialog)
     : CScreenIO(screenLevelList),

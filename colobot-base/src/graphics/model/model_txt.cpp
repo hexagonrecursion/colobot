@@ -17,15 +17,27 @@
  * along with this program. If not, see http://gnu.org/licenses
  */
 
-#include "graphics/model/model_mod.h"
-#include "graphics/model/model_txt.h"
+#include <glm/glm.hpp>
+#include <exception>
+#include <sstream>
+#include <string>
+#include <utility>
 
+#include "graphics/model/model_txt.h"
 #include "common/ioutils.h"
 #include "common/stringutils.h"
 #include "common/resources/inputstream.h"
-
 #include "graphics/model/model_io_exception.h"
 #include "graphics/model/model_io_structs.h"
+#include "graphics/core/color.h"
+#include "graphics/core/material.h"
+#include "graphics/core/transparency.h"
+#include "graphics/core/vertex.h"
+#include "graphics/model/model_crash_sphere.h"
+#include "graphics/model/model_mesh.h"
+#include "graphics/model/model_shadow_spot.h"
+#include "graphics/model/model_triangle.h"
+#include "math/sphere.h"
 
 using namespace IOUtils;
 

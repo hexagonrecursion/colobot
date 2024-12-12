@@ -19,10 +19,6 @@
 
 #pragma once
 
-#include "CBot/CBotUtils.h"
-#include "CBot/CBotEnums.h"
-#include "CBot/CBotDefines.h"
-
 #include <string>
 #include <map>
 #include <memory>

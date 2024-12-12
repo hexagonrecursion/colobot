@@ -19,10 +19,10 @@
 
 #pragma once
 
-#include "graphics/model/model.h"
-
 #include <filesystem>
-#include <istream>
+#include <memory>
+
+#include "graphics/model/model.h"
 
 /**
  * \namespace ModelInput

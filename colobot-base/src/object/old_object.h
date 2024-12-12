@@ -24,29 +24,46 @@
 
 #pragma once
 
+#include <glm/glm.hpp>
+#include <limits>
+#include <memory>
+#include <string>
+
 #include "common/event.h"
-
 #include "object/object.h"
-
 #include "object/implementation/power_container_impl.h"
 #include "object/implementation/program_storage_impl.h"
 #include "object/implementation/programmable_impl.h"
 #include "object/implementation/task_executor_impl.h"
-
 #include "object/interface/controllable_object.h"
-#include "object/interface/flying_object.h"
 #include "object/interface/interactive_object.h"
 #include "object/interface/jet_flying_object.h"
 #include "object/interface/jostleable_object.h"
-#include "object/interface/movable_object.h"
-#include "object/interface/power_container_object.h"
-#include "object/interface/programmable_object.h"
 #include "object/interface/ranged_object.h"
 #include "object/interface/shielded_auto_regen_object.h"
 #include "object/interface/slotted_object.h"
-#include "object/interface/task_executor_object.h"
 #include "object/interface/trace_drawing_object.h"
 #include "object/interface/transportable_object.h"
+#include "graphics/engine/camera.h"
+#include "math/sphere.h"
+#include "object/interface/destroyable_object.h"
+#include "object/object_type.h"
+#include "object/old_object_interface.h"
+
+class CAuto;
+class CLevelParserLine;
+class CMotion;
+class CPhysics;
+class CRobotMain;
+class CSoundInterface;
+enum class DamageType;
+namespace Gfx {
+class CEngine;
+class CLightManager;
+class CParticle;
+class CTerrain;
+struct Color;
+}  // namespace Gfx
 
 // The father of all parts must always be the part number zero!
 const int OBJECTMAXPART         = 40;

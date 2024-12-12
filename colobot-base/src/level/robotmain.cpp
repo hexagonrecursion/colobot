@@ -19,12 +19,24 @@
 
 #include "level/robotmain.h"
 
-#include "CBot/CBot.h"
+#include <SDL_clipboard.h>
+#include <SDL_keycode.h>
+#include <cassert>
+#include <cstdio>
+#include <algorithm>
+#include <iomanip>
+#include <stdexcept>
+#include <cmath>
+#include <ctime>
+#include <functional>
+#include <iterator>
+#include <sstream>
+#include <utility>
 
+#include "CBot/CBot.h"
 #include "app/app.h"
 #include "app/input.h"
 #include "app/pausemanager.h"
-
 #include "common/config_file.h"
 #include "common/event.h"
 #include "common/logger.h"
@@ -32,15 +44,10 @@
 #include "common/settings.h"
 #include "common/stringutils.h"
 #include "common/version.h"
-
 #include "common/system/system.h"
-
 #include "common/resources/inputstream.h"
 #include "common/resources/outputstream.h"
 #include "common/resources/resourcemanager.h"
-
-#include "graphics/core/material.h"
-
 #include "graphics/engine/camera.h"
 #include "graphics/engine/cloud.h"
 #include "graphics/engine/engine.h"
@@ -53,46 +60,27 @@
 #include "graphics/engine/terrain.h"
 #include "graphics/engine/text.h"
 #include "graphics/engine/water.h"
-
 #include "graphics/model/model_manager.h"
-
 #include "level/mainmovie.h"
 #include "level/player_profile.h"
 #include "level/scene_conditions.h"
 #include "level/scoreboard.h"
-
 #include "level/parser/parser.h"
-
 #include "math/const.h"
 #include "math/func.h"
 #include "math/geometry.h"
-
 #include "object/object.h"
 #include "object/object_create_exception.h"
 #include "object/object_manager.h"
-
 #include "object/auto/auto.h"
-
 #include "object/interface/slotted_object.h"
-
 #include "object/motion/motion.h"
 #include "object/motion/motionhuman.h"
-#include "object/motion/motiontoto.h"
-
-#include "object/subclass/exchange_post.h"
-
-#include "object/task/task.h"
 #include "object/task/taskbuild.h"
 #include "object/task/taskmanip.h"
-
-#include "physics/physics.h"
-
 #include "script/cbottoken.h"
-#include "script/script.h"
 #include "script/scriptfunc.h"
-
 #include "sound/sound.h"
-
 #include "ui/debug_menu.h"
 #include "ui/displayinfo.h"
 #include "ui/displaytext.h"
@@ -100,24 +88,42 @@
 #include "ui/mainmap.h"
 #include "ui/mainshort.h"
 #include "ui/mainui.h"
-
 #include "ui/controls/button.h"
 #include "ui/controls/edit.h"
 #include "ui/controls/group.h"
 #include "ui/controls/interface.h"
 #include "ui/controls/label.h"
 #include "ui/controls/map.h"
-#include "ui/controls/shortcut.h"
-#include "ui/controls/slider.h"
 #include "ui/controls/window.h"
-
 #include "ui/screen/screen_loading.h"
-
-#include <algorithm>
-#include <iomanip>
-#include <stdexcept>
-#include <cmath>
-#include <ctime>
+#include "common/key.h"
+#include "graphics/core/light.h"
+#include "graphics/core/transparency.h"
+#include "graphics/engine/pyro_type.h"
+#include "level/parser/parserexceptions.h"
+#include "level/parser/parserline.h"
+#include "level/parser/parserparam.h"
+#include "math/sphere.h"
+#include "object/crash_sphere.h"
+#include "object/drive_type.h"
+#include "object/interface/controllable_object.h"
+#include "object/interface/destroyable_object.h"
+#include "object/interface/interactive_object.h"
+#include "object/interface/jet_flying_object.h"
+#include "object/interface/movable_object.h"
+#include "object/interface/power_container_object.h"
+#include "object/interface/program_storage_object.h"
+#include "object/interface/programmable_object.h"
+#include "object/interface/ranged_object.h"
+#include "object/interface/shielded_object.h"
+#include "object/interface/task_executor_object.h"
+#include "object/interface/transportable_object.h"
+#include "object/object_create_params.h"
+#include "object/object_interface_type.h"
+#include "object/old_object.h"
+#include "object/tool_type.h"
+#include "sound/sound_type.h"
+#include "ui/controls/control.h"
 
 
 // Global variables.

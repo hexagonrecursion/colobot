@@ -20,9 +20,14 @@
 #pragma once
 
 
+#include <glm/glm.hpp>
+
 #include "object/auto/auto.h"
+#include "common/error.h"
 
 class CObject;
+class COldObject;
+struct Event;
 
 
 class CAutoPowerStation : public CAuto

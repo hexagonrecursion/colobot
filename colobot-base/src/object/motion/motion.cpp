@@ -20,23 +20,17 @@
 
 #include "object/motion/motion.h"
 
+#include <memory>
+
 #include "app/app.h"
-
 #include "graphics/engine/engine.h"
-
 #include "level/robotmain.h"
-
 #include "level/parser/parserline.h"
 #include "level/parser/parserparam.h"
-
 #include "math/func.h"
-
 #include "object/old_object.h"
-
-
-
-#include <cstdio>
-#include <cstring>
+#include "common/event.h"
+#include "graphics/engine/water.h"
 
 
 // Object's constructor.

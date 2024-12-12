@@ -20,6 +20,7 @@
 #include "common/stringutils.h"
 
 #include <gtest/gtest.h>
+#include <stdexcept>
 
 namespace StringUtilsTesta
 {

@@ -19,36 +19,24 @@
 
 #include "object/implementation/program_storage_impl.h"
 
-#include "common/global.h"
+#include <cassert>
+#include <cstdlib>
+#include <algorithm>
+#include <regex>
+#include <utility>
+
 #include "common/logger.h"
 #include "common/stringutils.h"
-
 #include "common/resources/resourcemanager.h"
-
-#include "level/robotmain.h"
-
 #include "level/parser/parserline.h"
-
-#include "math/all.h"
-
 #include "object/object.h"
 #include "object/old_object.h"
-
 #include "object/interface/controllable_object.h"
-#include "object/interface/task_executor_object.h"
-
-#include "object/motion/motion.h"
-#include "object/motion/motionvehicle.h"
-
-#include "physics/physics.h"
-
 #include "script/script.h"
-
 #include "ui/controls/edit.h"
-
-#include <algorithm>
-#include <iomanip>
-#include <regex>
+#include "level/parser/parserparam.h"
+#include "object/interface/programmable_object.h"
+#include "object/object_type.h"
 
 CProgramStorageObjectImpl::CProgramStorageObjectImpl(ObjectInterfaceTypes& types, CObject* object)
     : CProgramStorageObject(types),

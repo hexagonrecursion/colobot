@@ -19,18 +19,19 @@
 
 #include "object/subclass/shielder.h"
 
-#include "graphics/engine/oldmodelmanager.h"
+#include <cassert>
+#include <utility>
 
 #include "level/parser/parserline.h"
 #include "level/parser/parserparam.h"
-
 #include "object/object_create_params.h"
-
 #include "object/motion/motionvehicle.h"
-
 #include "object/task/taskshield.h"
-
 #include "physics/physics.h"
+#include "object/motion/motion.h"
+#include "object/object_type.h"
+#include "object/old_object.h"
+#include "object/task/task.h"
 
 
 CShielder::CShielder(int id)

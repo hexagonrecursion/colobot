@@ -19,33 +19,31 @@
 
 #include "ui/screen/screen_mod_list.h"
 
-#include "common/config.h"
+#include <SDL_keycode.h>
+#include <glm/glm.hpp>
+#include <filesystem>
+#include <string>
+#include <vector>
 
 #include "app/app.h"
 #include "app/modman.h"
-
-#include "common/logger.h"
 #include "common/restext.h"
 #include "common/stringutils.h"
-
 #include "common/resources/resourcemanager.h"
-
 #include "common/system/system.h"
-
 #include "level/robotmain.h"
-
-#include "math/func.h"
-
 #include "sound/sound.h"
-
 #include "ui/controls/button.h"
 #include "ui/controls/edit.h"
 #include "ui/controls/interface.h"
 #include "ui/controls/label.h"
 #include "ui/controls/list.h"
 #include "ui/controls/window.h"
-
-#include <algorithm>
+#include "common/event.h"
+#include "common/key.h"
+#include "graphics/engine/text.h"
+#include "ui/controls/control.h"
+#include "ui/maindialog.h"
 
 namespace Ui
 {

@@ -22,14 +22,13 @@
 
 #include "graphics/engine/engine.h"
 #include "graphics/engine/pyro_manager.h"
-
 #include "object/old_object.h"
-
 #include "object/motion/motionspider.h"
-
 #include "object/subclass/base_alien.h"
-
 #include "physics/physics.h"
+#include "common/event.h"
+#include "graphics/engine/pyro_type.h"
+#include "object/motion/motion.h"
 
 
 

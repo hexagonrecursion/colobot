@@ -21,8 +21,9 @@
 #include "object/task/taskwait.h"
 
 #include "graphics/engine/engine.h"
+#include "common/event.h"
 
-#include "object/old_object.h"
+class COldObject;
 
 // Object's constructor.
 

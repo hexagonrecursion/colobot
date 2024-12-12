@@ -19,21 +19,21 @@
 
 #include "object/object_manager.h"
 
+#include <cassert>
+#include <algorithm>
+#include <iterator>
+
 #include "common/global.h"
-
 #include "math/all.h"
-
 #include "object/object.h"
 #include "object/object_create_exception.h"
 #include "object/object_create_params.h"
 #include "object/object_factory.h"
 #include "object/old_object.h"
-
-#include "object/auto/auto.h"
-
 #include "physics/physics.h"
-
-#include <algorithm>
+#include "object/interface/movable_object.h"
+#include "object/interface/transportable_object.h"
+#include "object/object_interface_type.h"
 
 CObjectManager::CObjectManager(Gfx::CEngine* engine,
                                Gfx::CTerrain* terrain,

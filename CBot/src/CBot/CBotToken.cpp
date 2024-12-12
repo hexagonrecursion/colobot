@@ -19,9 +19,11 @@
 
 #include "CBot/CBotToken.h"
 
+#include <cstdio>
 #include <cstdarg>
 #include <cassert>
 #include <unordered_map>
+#include <utility>
 
 namespace CBot
 {

@@ -19,16 +19,16 @@
 
 #pragma once
 
-#include "app/modman.h"
-
-#include "ui/maindialog.h"
+#include <cstddef>
 
 #include "ui/screen/screen.h"
 
-#include <map>
+class CModManager;
+struct Event;
 
 namespace Ui
 {
+class CMainDialog;
 
 /**
  * \class CScreenModList

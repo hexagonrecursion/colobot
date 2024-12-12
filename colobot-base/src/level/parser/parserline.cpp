@@ -19,8 +19,8 @@
 
 #include "level/parser/parserline.h"
 
-#include "common/logger.h"
-#include "common/stringutils.h"
+#include <ostream>
+#include <utility>
 
 #include "level/parser/parser.h"
 

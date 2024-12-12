@@ -24,14 +24,14 @@
 
 #pragma once
 
-#include "common/singleton.h"
-
-#include "graphics/engine/text.h"
-
 #include <filesystem>
 #include <optional>
 #include <string>
 #include <unordered_map>
+
+namespace Gfx {
+enum FontType : unsigned char;
+}  // namespace Gfx
 
 /**
 * \class CFontLoader

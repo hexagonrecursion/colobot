@@ -19,11 +19,10 @@
 
 #pragma once
 
-#include "common/resources/outputstreambuffer.h"
-
 #include <filesystem>
 #include <ostream>
-#include <string>
+
+#include "common/resources/outputstreambuffer.h"
 
 
 class COutputStreamBufferContainer

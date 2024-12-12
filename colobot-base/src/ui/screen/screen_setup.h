@@ -20,10 +20,10 @@
 #pragma once
 
 #include "ui/screen/screen.h"
-
 #include "level/robotmain.h"
 
 class CSettings;
+struct Event;
 
 namespace Gfx
 {

@@ -19,15 +19,25 @@
 
 #include "graphics/model/model_mod.h"
 
+#include <glm/glm.hpp>
+#include <exception>
+#include <iomanip>
+#include <sstream>
+#include <string>
+#include <utility>
+#include <vector>
+
 #include "common/ioutils.h"
 #include "common/stringutils.h"
 #include "common/resources/inputstream.h"
-
 #include "graphics/model/model_io_exception.h"
 #include "graphics/model/model_io_structs.h"
-
-#include <array>
-#include <iostream>
+#include "graphics/core/color.h"
+#include "graphics/core/material.h"
+#include "graphics/core/transparency.h"
+#include "graphics/core/vertex.h"
+#include "graphics/model/model_mesh.h"
+#include "graphics/model/model_triangle.h"
 
 using namespace IOUtils;
 

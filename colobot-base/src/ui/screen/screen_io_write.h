@@ -21,8 +21,11 @@
 
 #include "ui/screen/screen_io.h"
 
+struct Event;
+
 namespace Ui
 {
+class CScreenLevelList;
 
 class CScreenIOWrite : public CScreenIO
 {

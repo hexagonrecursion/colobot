@@ -19,10 +19,9 @@
 
 
 #include "common/logger.h"
+
 #include "common/stringutils.h"
 #include "common/version.h"
-
-#include <stdio.h>
 
 CLogger::CLogger()
 {

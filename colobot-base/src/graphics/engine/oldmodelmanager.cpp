@@ -19,20 +19,20 @@
 
 #include "graphics/engine/oldmodelmanager.h"
 
-#include "app/app.h"
+#include <cassert>
+#include <algorithm>
+#include <memory>
+#include <utility>
 
 #include "common/logger.h"
 #include "common/stringutils.h"
-
-#include "common/resources/inputstream.h"
 #include "common/resources/resourcemanager.h"
-
 #include "graphics/engine/engine.h"
-
 #include "graphics/model/model_input.h"
 #include "graphics/model/model_io_exception.h"
-
-#include <cstdio>
+#include "graphics/core/vertex.h"
+#include "graphics/model/model.h"
+#include "graphics/model/model_mesh.h"
 
 namespace Gfx
 {

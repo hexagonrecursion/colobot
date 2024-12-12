@@ -19,13 +19,11 @@
 
 #pragma once
 
+#include <physfs.h>
 #include <cstddef>
 #include <filesystem>
 #include <memory>
-#include <streambuf>
-#include <string>
-
-#include <physfs.h>
+#include <ios>
 
 class CInputStreamBuffer : public std::streambuf
 {

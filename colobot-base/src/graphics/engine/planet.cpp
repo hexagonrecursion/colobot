@@ -20,16 +20,17 @@
 
 #include "graphics/engine/planet.h"
 
-#include "common/event.h"
-#include "common/stringutils.h"
+#include <cmath>
 
+#include "common/event.h"
 #include "graphics/core/device.h"
 #include "graphics/core/renderers.h"
 #include "graphics/core/transparency.h"
-
 #include "graphics/engine/engine.h"
-
 #include "math/func.h"
+#include "graphics/core/color.h"
+#include "graphics/core/vertex.h"
+#include "math/const.h"
 
 
 // Graphics module namespace

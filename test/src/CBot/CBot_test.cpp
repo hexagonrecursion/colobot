@@ -20,8 +20,13 @@
 #include "CBot/CBot.h"
 
 #include <gtest/gtest.h>
-#include <limits>
 #include <stdexcept>
+#include <memory>
+#include <sstream>
+#include <string>
+#include <vector>
+
+#include "CBot/CBotEnums.h"
 
 extern bool g_cbotTestSaveState;
 bool g_cbotTestSaveState = false;

@@ -20,14 +20,19 @@
 
 #include "object/auto/autonest.h"
 
+#include <memory>
+#include <vector>
+
 #include "graphics/engine/engine.h"
 #include "graphics/engine/terrain.h"
-
 #include "level/parser/parserline.h"
 #include "level/parser/parserparam.h"
-
 #include "object/object_manager.h"
 #include "object/old_object.h"
+#include "common/event.h"
+#include "math/sphere.h"
+#include "object/crash_sphere.h"
+#include "object/object.h"
 
 
 // Object's constructor.

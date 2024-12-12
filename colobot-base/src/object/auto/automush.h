@@ -21,6 +21,11 @@
 
 
 #include "object/auto/auto.h"
+#include "common/error.h"
+
+class CLevelParserLine;
+class COldObject;
+struct Event;
 
 
 

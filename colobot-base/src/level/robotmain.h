@@ -24,32 +24,36 @@
 
 #pragma once
 
-#include "app/pausemanager.h"
-
-#include "common/error.h"
-#include "common/event.h"
-#include "common/singleton.h"
-
-#include "graphics/engine/camera.h"
-#include "graphics/engine/particle.h"
-
-#include "level/build_type.h"
-#include "level/level_category.h"
-#include "level/mainmovie.h"
-#include "level/research_type.h"
-
-#include "object/drive_type.h"
-#include "object/mission_type.h"
-#include "object/object_type.h"
-#include "object/tool_type.h"
-
+#include <glm/glm.hpp>
 #include <filesystem>
 #include <deque>
 #include <map>
 #include <set>
 #include <stdexcept>
+#include <array>
+#include <iosfwd>
+#include <memory>
+#include <string>
+#include <vector>
 
-#include <glm/glm.hpp>
+#include "app/pausemanager.h"
+#include "common/error.h"
+#include "common/event.h"
+#include "common/singleton.h"
+#include "graphics/engine/particle.h"
+#include "level/build_type.h"
+#include "level/level_category.h"
+#include "level/mainmovie.h"
+#include "level/research_type.h"
+#include "object/mission_type.h"
+#include "object/object_type.h"
+#include "graphics/core/color.h"
+#include "level/scene_conditions.h"
+
+class CObject;
+namespace Gfx {
+class CCamera;
+}  // namespace Gfx
 
 enum Phase
 {
@@ -86,18 +90,14 @@ bool IsPhaseWithWorld(Phase phase);
 bool IsMainMenuPhase(Phase phase);
 
 class CApplication;
-class CEventQueue;
 class CSoundInterface;
 class CLevelParserLine;
 class CInput;
 class CObjectManager;
-class CSceneEndCondition;
-class CAudioChangeCondition;
 class CScoreboard;
 class CPlayerProfile;
 class CSettings;
 class COldObject;
-class CPauseManager;
 struct ActivePause;
 
 namespace Gfx

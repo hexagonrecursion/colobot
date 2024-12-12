@@ -20,41 +20,53 @@
 
 #include "physics/physics.h"
 
-#include "app/app.h"
+#include <cassert>
+#include <cstdlib>
+#include <cmath>
+#include <memory>
+#include <vector>
 
+#include "app/app.h"
 #include "common/event.h"
 #include "common/global.h"
-
 #include "graphics/engine/camera.h"
 #include "graphics/engine/engine.h"
 #include "graphics/engine/lightman.h"
 #include "graphics/engine/pyro_manager.h"
 #include "graphics/engine/terrain.h"
 #include "graphics/engine/water.h"
-
 #include "level/robotmain.h"
-
 #include "level/parser/parserline.h"
 #include "level/parser/parserparam.h"
-
 #include "math/geometry.h"
-
 #include "object/object_manager.h"
 #include "object/old_object.h"
-
 #include "object/interface/jostleable_object.h"
 #include "object/interface/slotted_object.h"
 #include "object/interface/transportable_object.h"
-
 #include "object/motion/motion.h"
 #include "object/motion/motionhuman.h"
-#include "object/motion/motionvehicle.h"
-
 #include "object/subclass/base_alien.h"
-
 #include "object/task/task.h"
-
 #include "sound/sound.h"
+#include "graphics/engine/particle.h"
+#include "graphics/engine/pyro_type.h"
+#include "math/const.h"
+#include "math/func.h"
+#include "math/sphere.h"
+#include "object/crash_sphere.h"
+#include "object/drive_type.h"
+#include "object/interface/damageable_object.h"
+#include "object/interface/destroyable_object.h"
+#include "object/interface/jet_flying_object.h"
+#include "object/interface/movable_object.h"
+#include "object/interface/power_container_object.h"
+#include "object/interface/program_storage_object.h"
+#include "object/interface/trace_drawing_object.h"
+#include "object/object.h"
+#include "object/object_interface_type.h"
+#include "object/old_object_interface.h"
+#include "sound/sound_type.h"
 
 
 

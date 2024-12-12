@@ -20,7 +20,14 @@
 #pragma once
 
 
+#include <glm/glm.hpp>
+
 #include "object/auto/auto.h"
+#include "common/error.h"
+
+class CLevelParserLine;
+class COldObject;
+struct Event;
 
 
 

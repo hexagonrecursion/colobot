@@ -21,12 +21,10 @@
 
 #include "CBot/CBotToken.h"
 #include "CBot/CBotClass.h"
-#include "CBot/CBotStack.h"
 #include "CBot/CBotCStack.h"
-
 #include "CBot/CBotVar/CBotVar.h"
-
-#include <cstring>
+#include "CBot/CBotEnums.h"
+#include "CBot/CBotTypResult.h"
 
 namespace CBot
 {

@@ -19,12 +19,11 @@
 
 #pragma once
 
-#include "ui/screen/screen.h"
-
 #include <filesystem>
 #include <optional>
-#include <string>
 #include <vector>
+
+#include "ui/screen/screen.h"
 
 namespace Ui
 {

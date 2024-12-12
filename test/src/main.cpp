@@ -17,11 +17,11 @@
  * along with this program. If not, see http://gnu.org/licenses
  */
 
-#include "common/logger.h"
-
 #include <gtest/gtest.h>
-
 #include <clocale>
+#include <string>
+
+#include "common/logger.h"
 
 extern bool g_cbotTestSaveState;
 

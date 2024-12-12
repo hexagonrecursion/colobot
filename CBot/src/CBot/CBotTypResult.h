@@ -19,8 +19,6 @@
 
 #pragma once
 
-#include "CBot/CBotEnums.h"
-
 #include <string>
 #include <memory>
 

@@ -20,17 +20,23 @@
 
 #include "object/auto/automush.h"
 
-#include "graphics/engine/engine.h"
+#include <cmath>
+#include <glm/glm.hpp>
+#include <memory>
 
+#include "graphics/engine/engine.h"
 #include "level/parser/parserline.h"
 #include "level/parser/parserparam.h"
-
 #include "math/func.h"
-
 #include "object/object_manager.h"
 #include "object/old_object.h"
-
 #include "sound/sound.h"
+#include "common/event.h"
+#include "graphics/engine/particle.h"
+#include "math/const.h"
+#include "object/object.h"
+#include "object/object_type.h"
+#include "sound/sound_type.h"
 
 
 // Object's constructor.

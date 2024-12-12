@@ -19,6 +19,9 @@
 
 #include "ui/controls/enumslider.h"
 
+#include <cmath>
+#include <utility>
+
 #include "common/stringutils.h"
 
 namespace Ui

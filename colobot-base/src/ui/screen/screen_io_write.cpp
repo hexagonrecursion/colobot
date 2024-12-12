@@ -19,12 +19,12 @@
 
 #include "ui/screen/screen_io_write.h"
 
-#include "app/app.h"
+#include <SDL_keycode.h>
+#include <glm/glm.hpp>
+#include <string>
 
 #include "common/restext.h"
-
 #include "level/robotmain.h"
-
 #include "ui/controls/button.h"
 #include "ui/controls/edit.h"
 #include "ui/controls/image.h"
@@ -32,9 +32,14 @@
 #include "ui/controls/label.h"
 #include "ui/controls/list.h"
 #include "ui/controls/window.h"
+#include "common/event.h"
+#include "common/key.h"
+#include "graphics/engine/text.h"
+#include "ui/controls/control.h"
 
 namespace Ui
 {
+class CScreenLevelList;
 
 CScreenIOWrite::CScreenIOWrite(CScreenLevelList* screenLevelList)
     : CScreenIO(screenLevelList)

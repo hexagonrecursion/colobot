@@ -21,6 +21,8 @@
 
 #include "level/robotmain.h"
 
+enum class LevelCategory;
+
 
 
 CController::CController()

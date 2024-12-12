@@ -19,13 +19,14 @@
 
 #include "app/app.h"
 
-#include "common/system/system_other.h"
-
-#include <functional>
-#include <memory>
-
 #include <gtest/gtest.h>
 #include <hippomocks.h>
+#include <SDL.h>
+#include <functional>
+#include <memory>
+#include <chrono>
+
+#include "common/system/system.h"
 
 using namespace HippoMocks;
 namespace ph = std::placeholders;

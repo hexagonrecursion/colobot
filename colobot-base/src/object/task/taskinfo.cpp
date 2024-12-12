@@ -20,16 +20,19 @@
 
 #include "object/task/taskinfo.h"
 
-#include "common/global.h"
+#include <glm/glm.hpp>
+#include <memory>
 
+#include "common/global.h"
 #include "graphics/engine/engine.h"
 #include "graphics/engine/particle.h"
-
 #include "object/object_manager.h"
-
 #include "object/subclass/exchange_post.h"
-
-#include <string.h>
+#include "common/event.h"
+#include "object/auto/auto.h"
+#include "object/object.h"
+#include "object/object_type.h"
+#include "object/old_object.h"
 
 
 

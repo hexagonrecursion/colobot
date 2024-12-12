@@ -20,18 +20,23 @@
 
 #include "object/task/taskfire.h"
 
+#include <cassert>
+#include <cstdlib>
+#include <glm/glm.hpp>
+
 #include "graphics/engine/engine.h"
 #include "graphics/engine/particle.h"
-
 #include "math/geometry.h"
-
 #include "object/old_object.h"
-
 #include "object/interface/slotted_object.h"
-
 #include "physics/physics.h"
-
 #include "sound/sound.h"
+#include "common/event.h"
+#include "math/const.h"
+#include "math/func.h"
+#include "object/interface/power_container_object.h"
+#include "object/object_type.h"
+#include "sound/sound_type.h"
 
 
 const float ENERGY_FIRE     = (0.25f/2.5f); // energy consumed/shot

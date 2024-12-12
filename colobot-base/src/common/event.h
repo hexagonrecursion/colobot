@@ -24,13 +24,13 @@
 
 #pragma once
 
-#include "common/key.h"
-
 #include <glm/glm.hpp>
-
 #include <memory>
 #include <mutex>
 #include <string>
+#include <utility>
+
+#include "common/key.h"
 
 /**
   \enum EventType

@@ -19,18 +19,18 @@
 
 #include "ui/screen/screen.h"
 
+#include <string>
+
 #include "app/app.h"
-
 #include "common/version.h"
-#include "common/stringutils.h"
-
 #include "graphics/engine/engine.h"
-
 #include "level/robotmain.h"
-
 #include "ui/controls/interface.h"
 #include "ui/controls/label.h"
 #include "ui/controls/window.h"
+#include "common/event.h"
+#include "graphics/core/color.h"
+#include "graphics/engine/text.h"
 
 namespace Ui
 {

@@ -20,8 +20,9 @@
 
 #include "ui/controls/gauge.h"
 
-#include "graphics/engine/engine.h"
+#include <filesystem>
 
+#include "graphics/engine/engine.h"
 #include "graphics/core/renderers.h"
 #include "graphics/core/transparency.h"
 

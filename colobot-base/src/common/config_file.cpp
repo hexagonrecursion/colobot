@@ -20,17 +20,13 @@
 
 #include "common/config_file.h"
 
-#include "common/logger.h"
-
-#include "common/resources/inputstream.h"
-#include "common/resources/outputstream.h"
-
-#include "common/system/system.h"
-
 #include <memory>
 #include <utility>
-#include <cstring>
 #include <fstream>
+
+#include "common/logger.h"
+#include "common/resources/inputstream.h"
+#include "common/resources/outputstream.h"
 
 CConfigFile::CConfigFile() = default;
 

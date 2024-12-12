@@ -20,7 +20,6 @@
 #include "math/half.h"
 
 #include <cmath>
-#include <iomanip>
 #include <limits>
 
 // Math module namespace

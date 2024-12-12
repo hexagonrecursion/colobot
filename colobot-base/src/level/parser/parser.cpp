@@ -19,23 +19,23 @@
 
 #include "level/parser/parser.h"
 
+#include <cassert>
+#include <string>
+#include <sstream>
+#include <set>
+#include <algorithm>
+#include <cstddef>
+#include <utility>
+
 #include "app/app.h"
-
 #include "common/stringutils.h"
-
 #include "common/resources/inputstream.h"
 #include "common/resources/outputstream.h"
 #include "common/resources/resourcemanager.h"
-
 #include "level/robotmain.h"
-
 #include "level/parser/parserexceptions.h"
-
-#include <string>
-#include <exception>
-#include <sstream>
-#include <iomanip>
-#include <set>
+#include "level/level_category.h"
+#include "level/parser/parserparam.h"
 
 CLevelParser::CLevelParser()
 {

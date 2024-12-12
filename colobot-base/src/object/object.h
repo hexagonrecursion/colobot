@@ -24,13 +24,17 @@
 
 #pragma once
 
+#include <glm/glm.hpp>
+#include <vector>
+#include <optional>
+#include <string>
+
 #include "object/crash_sphere.h"
 #include "object/object_create_params.h"
 #include "object/object_interface_type.h"
 #include "object/old_object_interface.h"
-
-#include <vector>
-#include <optional>
+#include "math/sphere.h"
+#include "object/object_type.h"
 
 namespace Gfx
 {

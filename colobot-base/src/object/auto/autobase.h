@@ -20,14 +20,17 @@
 #pragma once
 
 
-#include "object/auto/auto.h"
-
-#include "graphics/core/color.h"
-
+#include <glm/glm.hpp>
 #include <set>
 #include <filesystem>
 
+#include "object/auto/auto.h"
+#include "graphics/core/color.h"
+#include "common/error.h"
+
 class CObject;
+class COldObject;
+struct Event;
 
 enum AutoBaseParam
 {

@@ -20,36 +20,40 @@
 
 #include "graphics/engine/particle.h"
 
+#include <cassert>
+#include <cstdlib>
+#include <filesystem>
+#include <algorithm>
+#include <cmath>
+#include <limits>
+#include <string_view>
+
 #include "app/app.h"
-
 #include "common/logger.h"
-#include "common/stringutils.h"
 #include "common/codepoint.h"
-
 #include "graphics/core/device.h"
 #include "graphics/core/renderers.h"
 #include "graphics/core/triangle.h"
-
 #include "graphics/engine/engine.h"
 #include "graphics/engine/terrain.h"
 #include "graphics/engine/text.h"
 #include "graphics/engine/water.h"
-
 #include "level/robotmain.h"
-
 #include "math/geometry.h"
-
 #include "object/object.h"
 #include "object/object_manager.h"
-
 #include "object/interface/damageable_object.h"
-
 #include "object/subclass/shielder.h"
-
 #include "sound/sound.h"
-
-#include <cstring>
-#include <filesystem>
+#include "graphics/core/material.h"
+#include "graphics/core/transparency.h"
+#include "graphics/core/vertex.h"
+#include "math/const.h"
+#include "math/func.h"
+#include "math/sphere.h"
+#include "object/crash_sphere.h"
+#include "object/object_interface_type.h"
+#include "object/object_type.h"
 
 
 // Graphics module namespace

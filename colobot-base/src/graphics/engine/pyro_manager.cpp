@@ -19,7 +19,10 @@
 
 #include "graphics/engine/pyro_manager.h"
 
+#include <utility>
+
 #include "graphics/engine/pyro.h"
+#include "common/error.h"
 
 namespace Gfx
 {

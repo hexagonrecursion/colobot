@@ -20,25 +20,29 @@
 
 #include "object/task/taskrecover.h"
 
-#include "common/global.h"
+#include <cassert>
+#include <stdexcept>
+#include <vector>
 
+#include "common/global.h"
 #include "graphics/engine/engine.h"
 #include "graphics/engine/particle.h"
-
-#include "level/robotmain.h"
-
 #include "math/geometry.h"
-
 #include "object/object_manager.h"
 #include "object/old_object.h"
-
 #include "object/interface/slotted_object.h"
-
 #include "physics/physics.h"
-
 #include "sound/sound.h"
-
-#include <stdexcept>
+#include "common/event.h"
+#include "graphics/engine/camera.h"
+#include "math/const.h"
+#include "math/func.h"
+#include "object/interface/destroyable_object.h"
+#include "object/interface/power_container_object.h"
+#include "object/object.h"
+#include "object/object_interface_type.h"
+#include "object/object_type.h"
+#include "sound/sound_type.h"
 
 const float ENERGY_RECOVER  = 0.25f;        // energy consumed by recovery
 const float RECOVER_DIST    = 11.8f;

@@ -19,21 +19,22 @@
 
 #pragma once
 
-#include "level/robotmain.h"
-
-#include "ui/particles_generator.h"
-
 #include <glm/glm.hpp>
-
 #include <array>
 #include <string>
 #include <vector>
 #include <filesystem>
+#include <memory>
 
+#include "level/robotmain.h"
 
 class CApplication;
 class CSettings;
 class CSoundInterface;
+namespace UI {
+class CParticlesGenerator;
+}  // namespace UI
+struct Event;
 
 namespace Gfx
 {
@@ -45,7 +46,6 @@ namespace Ui
 {
 class CInterface;
 class CMainDialog;
-
 class CScreen;
 class CScreenAppearance;
 class CScreenIORead;

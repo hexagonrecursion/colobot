@@ -20,31 +20,42 @@
 
 #include "graphics/engine/pyro.h"
 
+#include <cassert>
+#include <cmath>
+#include <cstdlib>
+#include <filesystem>
+
 #include "app/app.h"
-
-#include "common/logger.h"
-
 #include "graphics/core/triangle.h"
-
 #include "graphics/engine/engine.h"
 #include "graphics/engine/lightman.h"
 #include "graphics/engine/particle.h"
 #include "graphics/engine/terrain.h"
-
 #include "level/robotmain.h"
-
 #include "math/geometry.h"
-
 #include "object/object_manager.h"
 #include "object/old_object.h"
-
 #include "object/interface/slotted_object.h"
-
 #include "object/motion/motionhuman.h"
-
 #include "object/subclass/shielder.h"
-
 #include "sound/sound.h"
+#include "common/event.h"
+#include "graphics/core/light.h"
+#include "graphics/core/vertex.h"
+#include "graphics/engine/camera.h"
+#include "math/const.h"
+#include "math/func.h"
+#include "object/crash_sphere.h"
+#include "object/interface/controllable_object.h"
+#include "object/interface/damageable_object.h"
+#include "object/interface/destroyable_object.h"
+#include "object/interface/movable_object.h"
+#include "object/interface/transportable_object.h"
+#include "object/motion/motion.h"
+#include "object/object.h"
+#include "object/object_interface_type.h"
+#include "object/old_object_interface.h"
+#include "sound/sound_type.h"
 
 
 // Graphics module namespace

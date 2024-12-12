@@ -18,11 +18,12 @@
  */
 
 #include "CBot/CBotInstr/CBotBoolExpr.h"
+
 #include "CBot/CBotInstr/CBotTwoOpExpr.h"
-
 #include "CBot/CBotCStack.h"
-
-#include "CBot/CBotDefines.h"
+#include "CBot/CBotEnums.h"
+#include "CBot/CBotToken.h"
+#include "CBot/CBotTypResult.h"
 
 namespace CBot
 {

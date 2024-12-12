@@ -19,14 +19,14 @@
 
 #include "app/pausemanager.h"
 
-#include "app/app.h"
+#include <algorithm>
+#include <cstdlib>
+#include <string>
+#include <string_view>
+#include <utility>
 
 #include "common/logger.h"
-
 #include "level/robotmain.h"
-
-#include <algorithm>
-#include <numeric>
 
 struct ActivePause
 {

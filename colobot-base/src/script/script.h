@@ -29,11 +29,11 @@
 #include <memory>
 #include <optional>
 #include <string>
+#include <iosfwd>
 
 class COldObject;
 class CTaskExecutorObject;
 class CRobotMain;
-class CScriptFunctions;
 
 namespace CBot
 {

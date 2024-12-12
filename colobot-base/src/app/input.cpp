@@ -19,19 +19,21 @@
 
 #include "app/input.h"
 
+#include <SDL_keyboard.h>
+#include <SDL_keycode.h>
+#include <sstream>
+#include <algorithm>
+#include <cstddef>
+#include <utility>
+#include <vector>
+
 #include "common/config_file.h"
 #include "common/logger.h"
 #include "common/restext.h"
 #include "common/stringutils.h"
-
 #include "graphics/engine/engine.h"
-
-#include "level/robotmain.h"
-
 #include "math/func.h"
-
-#include <sstream>
-#include <SDL_system.h>
+#include "common/event.h"
 
 CInput::CInput()
     : m_keyPresses()

@@ -19,19 +19,19 @@
 
 #include "level/parser/parserparam.h"
 
-#include "app/app.h"
+#include <cassert>
+#include <sstream>
+#include <string_view>
+#include <utility>
 
-#include "common/logger.h"
 #include "common/stringutils.h"
-
-#include "common/resources/resourcemanager.h"
-
 #include "graphics/engine/engine.h"
-
-#include "level/robotmain.h"
 #include "level/scoreboard.h"
-
 #include "level/parser/parser.h"
+#include "level/build_type.h"
+#include "level/parser/parserexceptions.h"
+#include "level/parser/parserline.h"
+#include "level/research_type.h"
 
 CLevelParserParam::CLevelParserParam(std::string name, std::string value)
   : m_name(name)

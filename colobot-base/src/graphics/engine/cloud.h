@@ -24,14 +24,11 @@
 
 #pragma once
 
-#include "graphics/core/color.h"
-
 #include <glm/glm.hpp>
-
 #include <vector>
-#include <string>
 #include <filesystem>
 
+#include "graphics/core/color.h"
 
 struct Event;
 

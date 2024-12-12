@@ -19,13 +19,19 @@
 
 #pragma once
 
-#include "graphics/model/model_triangle.h"
-
+#include <cstddef>
+#include <glm/glm.hpp>
 #include <memory>
 #include <vector>
+#include <cstdint>
+#include <string>
+
+#include "graphics/model/model_triangle.h"
+#include "graphics/core/material.h"
 
 namespace Gfx
 {
+struct Vertex3D;
 
 /**
  * \enum VertexAttribute

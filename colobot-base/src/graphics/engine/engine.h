@@ -24,18 +24,7 @@
 
 #pragma once
 
-#include "common/singleton.h"
-#include "common/timeutils.h"
-
-#include "graphics/core/color.h"
-#include "graphics/core/texture.h"
-#include "graphics/core/renderers.h"
-#include "graphics/core/vertex.h"
-
-#include "math/sphere.h"
-
 #include <glm/glm.hpp>
-
 #include <filesystem>
 #include <string>
 #include <vector>
@@ -44,12 +33,20 @@
 #include <memory>
 #include <unordered_map>
 
+#include "common/singleton.h"
+#include "common/timeutils.h"
+#include "graphics/core/color.h"
+#include "graphics/core/texture.h"
+#include "graphics/core/vertex.h"
+#include "common/image.h"
 
 class CApplication;
 class CSoundInterface;
-class CImage;
 class CSystemUtils;
 struct Event;
+namespace Math {
+struct Sphere;
+}  // namespace Math
 
 
 // Graphics module namespace
@@ -70,14 +67,12 @@ class CPlanet;
 class CTerrain;
 class CPyroManager;
 class CModelMesh;
-class CVertexBuffer;
 struct EngineBaseObjDataTier;
 struct EngineBaseObject;
 struct EngineTriangle;
 struct Material;
 struct ModelShadowSpot;
 struct ModelTriangle;
-
 enum class TransparencyMode : unsigned char;
 
 /**

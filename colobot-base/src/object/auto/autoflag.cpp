@@ -20,12 +20,15 @@
 
 #include "object/auto/autoflag.h"
 
+#include <cmath>
+#include <glm/glm.hpp>
+
 #include "graphics/engine/engine.h"
 #include "graphics/engine/terrain.h"
-
 #include "math/geometry.h"
-
 #include "object/old_object.h"
+#include "common/event.h"
+#include "math/const.h"
 
 
 // Object's constructor.

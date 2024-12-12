@@ -19,9 +19,12 @@
 
 #pragma once
 
-#include "ui/screen/screen.h"
+#include <string>
 
+#include "ui/screen/screen.h"
 #include "common/restext.h"
+
+struct Event;
 
 namespace Ui
 {

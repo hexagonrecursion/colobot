@@ -19,24 +19,28 @@
 
 #include "ui/screen/screen_appearance.h"
 
-#include "app/app.h"
+#include <SDL_keycode.h>
+#include <glm/glm.hpp>
+#include <cmath>
+#include <string>
 
 #include "common/restext.h"
-
 #include "graphics/engine/camera.h"
 #include "graphics/engine/engine.h"
-
 #include "level/player_profile.h"
 #include "level/robotmain.h"
-
 #include "math/geometry.h"
-
 #include "ui/controls/button.h"
 #include "ui/controls/color.h"
 #include "ui/controls/interface.h"
 #include "ui/controls/label.h"
 #include "ui/controls/slider.h"
 #include "ui/controls/window.h"
+#include "common/event.h"
+#include "common/key.h"
+#include "graphics/core/color.h"
+#include "graphics/engine/text.h"
+#include "ui/controls/control.h"
 
 namespace Ui
 {

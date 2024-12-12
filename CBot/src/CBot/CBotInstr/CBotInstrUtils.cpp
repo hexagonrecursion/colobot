@@ -24,8 +24,9 @@
 #include "CBot/CBotTypResult.h"
 #include "CBot/CBotInstr/CBotExpression.h"
 #include "CBot/CBotClass.h"
-
 #include "CBot/CBotVar/CBotVar.h"
+#include "CBot/CBotEnums.h"
+#include "CBot/CBotInstr/CBotInstr.h"
 
 namespace CBot
 {
