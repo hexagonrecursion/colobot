@@ -45,6 +45,9 @@
         },
         {
             "name": "brotli", "version": "1.0.9"
+        },
+        {
+            "name": "openal-soft", "version": "1.23.0"
         }
     ]
 }
