@@ -19,11 +19,13 @@
 
 #include "CBot/CBotExternalCall.h"
 
+#include <cassert>
+#include <utility>
+
 #include "CBot/CBotToken.h"
 #include "CBot/CBotStack.h"
 #include "CBot/CBotCStack.h"
 #include "CBot/CBotUtils.h"
-
 #include "CBot/CBotVar/CBotVar.h"
 
 namespace CBot

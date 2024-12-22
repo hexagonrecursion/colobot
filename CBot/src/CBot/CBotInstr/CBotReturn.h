@@ -19,10 +19,14 @@
 
 #pragma once
 
+#include <string>
+
 #include "CBot/CBotInstr/CBotInstr.h"
 
 namespace CBot
 {
+class CBotCStack;
+class CBotToken;
 
 /**
  * \brief The "return" instruction

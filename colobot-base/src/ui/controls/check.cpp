@@ -29,7 +29,7 @@
 #include "graphics/engine/engine.h"
 #include "graphics/engine/text.h"
 
-#include <string.h>
+#include <cstring>
 
 
 namespace Ui

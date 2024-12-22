@@ -19,10 +19,10 @@
 
 #include "CBot/CBotInstr/CBotReturn.h"
 
+#include <map>
+
 #include "CBot/CBotInstr/CBotInstrUtils.h"
-
 #include "CBot/CBotInstr/CBotExpression.h"
-
 #include "CBot/CBotStack.h"
 #include "CBot/CBotCStack.h"
 

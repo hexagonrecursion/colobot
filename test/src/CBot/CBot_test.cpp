@@ -22,6 +22,10 @@
 #include <gtest/gtest.h>
 #include <limits>
 #include <stdexcept>
+#include <memory>
+#include <sstream>
+#include <string>
+#include <vector>
 
 extern bool g_cbotTestSaveState;
 bool g_cbotTestSaveState = false;

@@ -18,8 +18,10 @@
  */
 
 #include "CBot/CBotInstr/CBotThrow.h"
-#include "CBot/CBotInstr/CBotExpression.h"
 
+#include <map>
+
+#include "CBot/CBotInstr/CBotExpression.h"
 #include "CBot/CBotStack.h"
 #include "CBot/CBotCStack.h"
 

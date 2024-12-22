@@ -19,6 +19,8 @@
 
 #include "CBot/CBotInstr/CBotLogicExpr.h"
 
+#include <map>
+
 #include "CBot/CBotStack.h"
 
 namespace CBot

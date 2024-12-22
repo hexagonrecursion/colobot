@@ -18,15 +18,14 @@
  */
 
 #include <sstream>
-#include "CBot/CBotInstr/CBotNew.h"
+#include <map>
 
+#include "CBot/CBotInstr/CBotNew.h"
 #include "CBot/CBotStack.h"
 #include "CBot/CBotCStack.h"
 #include "CBot/CBotClass.h"
-
 #include "CBot/CBotInstr/CBotExprRetVar.h"
 #include "CBot/CBotInstr/CBotInstrUtils.h"
-
 #include "CBot/CBotVar/CBotVar.h"
 
 namespace CBot

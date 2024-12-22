@@ -28,7 +28,7 @@
 
 #include "graphics/engine/engine.h"
 
-#include <string.h>
+#include <cstring>
 
 
 namespace Ui

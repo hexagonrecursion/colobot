@@ -18,9 +18,11 @@
  */
 
 #include "CBot/CBotInstr/CBotDo.h"
+
+#include <map>
+
 #include "CBot/CBotInstr/CBotBlock.h"
 #include "CBot/CBotInstr/CBotCondition.h"
-
 #include "CBot/CBotStack.h"
 #include "CBot/CBotCStack.h"
 

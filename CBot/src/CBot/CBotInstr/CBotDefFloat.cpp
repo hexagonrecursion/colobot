@@ -19,13 +19,13 @@
 
 #include "CBot/CBotInstr/CBotDefFloat.h"
 
+#include <map>
+
 #include "CBot/CBotInstr/CBotLeftExprVar.h"
 #include "CBot/CBotInstr/CBotTwoOpExpr.h"
 #include "CBot/CBotInstr/CBotDefArray.h"
-
 #include "CBot/CBotStack.h"
 #include "CBot/CBotCStack.h"
-
 #include "CBot/CBotVar/CBotVar.h"
 
 namespace CBot

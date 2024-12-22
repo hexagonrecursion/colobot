@@ -19,6 +19,10 @@
 
 #include "CBot/CBotClass.h"
 
+#include <cassert>
+#include <algorithm>
+#include <memory>
+
 #include "CBot/CBotInstr/CBotInstrUtils.h"
 #include "CBot/CBotInstr/CBotNew.h"
 #include "CBot/CBotInstr/CBotLeftExprVar.h"
@@ -28,16 +32,12 @@
 #include "CBot/CBotInstr/CBotExpression.h"
 #include "CBot/CBotInstr/CBotListArray.h"
 #include "CBot/CBotInstr/CBotEmpty.h"
-
 #include "CBot/CBotVar/CBotVar.h"
-
 #include "CBot/CBotExternalCall.h"
 #include "CBot/CBotStack.h"
 #include "CBot/CBotCStack.h"
 #include "CBot/CBotDefParam.h"
 #include "CBot/CBotUtils.h"
-
-#include <algorithm>
 
 namespace CBot
 {

@@ -17,13 +17,14 @@
  * along with this program. If not, see http://gnu.org/licenses
  */
 
+#include <map>
+
 #include "CBot/CBotInstr/CBotDefBoolean.h"
 #include "CBot/CBotInstr/CBotDefFloat.h"
 #include "CBot/CBotInstr/CBotDefInt.h"
 #include "CBot/CBotInstr/CBotDefString.h"
 #include "CBot/CBotInstr/CBotExpression.h"
 #include "CBot/CBotInstr/CBotListExpression.h"
-
 #include "CBot/CBotStack.h"
 #include "CBot/CBotCStack.h"
 

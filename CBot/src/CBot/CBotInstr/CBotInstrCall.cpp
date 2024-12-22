@@ -18,16 +18,15 @@
  */
 
 #include "CBot/CBotInstr/CBotInstrCall.h"
-#include "CBot/CBotInstr/CBotExprRetVar.h"
-#include "CBot/CBotInstr/CBotInstrUtils.h"
-
-#include "CBot/CBotStack.h"
-
-#include "CBot/CBotCStack.h"
-
-#include "CBot/CBotVar/CBotVar.h"
 
 #include <sstream>
+#include <map>
+
+#include "CBot/CBotInstr/CBotExprRetVar.h"
+#include "CBot/CBotInstr/CBotInstrUtils.h"
+#include "CBot/CBotStack.h"
+#include "CBot/CBotCStack.h"
+#include "CBot/CBotVar/CBotVar.h"
 
 namespace CBot
 {

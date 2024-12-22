@@ -19,6 +19,8 @@
 
 #pragma once
 
+#include <string>
+
 #include "CBot/CBotToken.h"
 #include "CBot/CBotStack.h"
 #include "CBot/CBotUtils.h"
@@ -27,8 +29,8 @@ namespace CBot
 {
 
 class CBotCStack;
-class CBotStack;
 class CBotVar;
+class CBotInstr;
 
 /*!
  * \brief The CBotDefParam class A list of parameters.

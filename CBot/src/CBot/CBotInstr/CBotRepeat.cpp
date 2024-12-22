@@ -19,9 +19,10 @@
 
 #include "CBot/CBotInstr/CBotRepeat.h"
 
+#include <map>
+
 #include "CBot/CBotInstr/CBotBlock.h"
 #include "CBot/CBotInstr/CBotExpression.h"
-
 #include "CBot/CBotCStack.h"
 #include "CBot/CBotStack.h"
 

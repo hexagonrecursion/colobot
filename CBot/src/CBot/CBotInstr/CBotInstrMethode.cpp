@@ -17,16 +17,16 @@
  * along with this program. If not, see http://gnu.org/licenses
  */
 
+#include <cassert>
 #include <sstream>
-#include "CBot/CBotInstr/CBotInstrMethode.h"
+#include <map>
 
+#include "CBot/CBotInstr/CBotInstrMethode.h"
 #include "CBot/CBotInstr/CBotExprRetVar.h"
 #include "CBot/CBotInstr/CBotInstrUtils.h"
-
 #include "CBot/CBotStack.h"
 #include "CBot/CBotCStack.h"
 #include "CBot/CBotClass.h"
-
 #include "CBot/CBotVar/CBotVar.h"
 
 namespace CBot

@@ -19,8 +19,9 @@
 
 #include "CBot/CBotInstr/CBotCase.h"
 
-#include "CBot/CBotInstr/CBotTwoOpExpr.h"
+#include <map>
 
+#include "CBot/CBotInstr/CBotTwoOpExpr.h"
 #include "CBot/CBotStack.h"
 #include "CBot/CBotCStack.h"
 

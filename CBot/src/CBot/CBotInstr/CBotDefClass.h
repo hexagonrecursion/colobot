@@ -19,10 +19,15 @@
 
 #pragma once
 
+#include <string>
+
 #include "CBot/CBotInstr/CBotInstr.h"
 
 namespace CBot
 {
+class CBotCStack;
+class CBotClass;
+class CBotToken;
 
 /**
  * \brief Definition of class instance variable

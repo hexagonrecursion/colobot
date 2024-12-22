@@ -17,12 +17,15 @@
  * along with this program. If not, see http://gnu.org/licenses
  */
 
-#include "CBot/CBotInstr/CBotCatch.h"
+#include <string>
 
+#include "CBot/CBotInstr/CBotCatch.h"
 #include "CBot/CBotInstr/CBotInstr.h"
 
 namespace CBot
 {
+class CBotCStack;
+class CBotToken;
 
 /**
  * \brief The "try" structure

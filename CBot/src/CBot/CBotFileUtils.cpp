@@ -19,6 +19,8 @@
 
 #include "CBot/CBotFileUtils.h"
 
+#include <cstddef>
+
 #include "CBot/CBotClass.h"
 #include "CBot/CBotEnums.h"
 

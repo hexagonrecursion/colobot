@@ -52,7 +52,7 @@
 #include "ui/controls/slider.h"
 #include "ui/controls/window.h"
 
-#include <string.h>
+#include <cstring>
 
 
 namespace Ui

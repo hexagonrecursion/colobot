@@ -23,7 +23,7 @@
 #include "common/stringutils.h"
 #include "common/version.h"
 
-#include <stdlib.h>
+#include <cstdlib>
 #include <unistd.h>
 
 // MacOS-specific headers

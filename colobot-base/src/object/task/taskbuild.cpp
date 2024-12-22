@@ -45,7 +45,7 @@
 
 #include "sound/sound.h"
 
-#include <string.h>
+#include <cstring>
 
 // Object's constructor.
 

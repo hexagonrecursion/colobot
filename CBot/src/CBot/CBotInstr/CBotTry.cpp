@@ -19,8 +19,9 @@
 
 #include "CBot/CBotInstr/CBotTry.h"
 
-#include "CBot/CBotInstr/CBotBlock.h"
+#include <map>
 
+#include "CBot/CBotInstr/CBotBlock.h"
 #include "CBot/CBotStack.h"
 #include "CBot/CBotCStack.h"
 

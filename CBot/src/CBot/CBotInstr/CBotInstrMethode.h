@@ -19,10 +19,15 @@
 
 #pragma once
 
+#include <string>
+
 #include "CBot/CBotInstr/CBotInstr.h"
 
 namespace CBot
 {
+class CBotCStack;
+class CBotToken;
+class CBotVar;
 
 /**
  * \brief A call to class method - var.func()

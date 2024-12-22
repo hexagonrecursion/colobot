@@ -19,11 +19,12 @@
 
 #pragma once
 
-#include "CBot/CBotVar/CBotVar.h"
-#include "CBot/CBotProgram.h"
-
 #include <list>
 #include <memory>
+#include <string>
+
+#include "CBot/CBotVar/CBotVar.h"
+#include "CBot/CBotProgram.h"
 
 namespace CBot
 {
@@ -31,6 +32,8 @@ namespace CBot
 class CBotInstr;
 class CBotDefParam;
 class CBotToken;
+class CBotClass;
+class CBotFunction;
 
 /*!
  * \brief The CBotCStack class Management of the stack of compilation.

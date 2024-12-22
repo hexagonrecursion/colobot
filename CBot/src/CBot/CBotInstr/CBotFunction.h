@@ -19,12 +19,21 @@
 
 #pragma once
 
-#include "CBot/CBotInstr/CBotInstr.h"
-
 #include <set>
+#include <list>
+#include <map>
+#include <string>
+
+#include "CBot/CBotInstr/CBotInstr.h"
 
 namespace CBot
 {
+class CBotCStack;
+class CBotClass;
+class CBotDefParam;
+class CBotProgram;
+class CBotStack;
+class CBotVar;
 
 /**
  * \brief A function declaration in the code

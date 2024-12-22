@@ -19,20 +19,20 @@
 
 #pragma once
 
+#include <cstdio>
+#include <string>
+#include <iosfwd>
+
 #include "CBot/CBotDefines.h"
 #include "CBot/CBotTypResult.h"
 #include "CBot/CBotEnums.h"
 #include "CBot/CBotVar/CBotVar.h"
-
-#include <cstdio>
-#include <string>
 
 namespace CBot
 {
 
 class CBotInstr;
 class CBotExternalCall;
-class CBotVar;
 class CBotProgram;
 class CBotToken;
 

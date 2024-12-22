@@ -19,12 +19,16 @@
 
 #pragma once
 
-#include "CBot/CBotVar/CBotVar.h"
-
 #include <set>
+#include <iosfwd>
+#include <string>
+
+#include "CBot/CBotVar/CBotVar.h"
 
 namespace CBot
 {
+class CBotClass;
+class CBotToken;
 
 /**
  * \brief CBotVar subclass for managing classes (::CBotTypClass, ::CBotTypIntrinsic)

@@ -19,13 +19,17 @@
 
 #pragma once
 
-#include "CBot/CBotDefines.h"
+#include <string>
 
+#include "CBot/CBotDefines.h"
 #include "CBot/CBotInstr/CBotInstr.h"
 #include "CBot/CBotVar/CBotVar.h"
 
 namespace CBot
 {
+class CBotCStack;
+class CBotStack;
+class CBotToken;
 
 /**
  * \brief Expression representing a variable name

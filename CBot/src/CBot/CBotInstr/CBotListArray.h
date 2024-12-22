@@ -19,10 +19,14 @@
 
 #pragma once
 
+#include <string>
+
 #include "CBot/CBotInstr/CBotInstr.h"
 
 namespace CBot
 {
+class CBotCStack;
+class CBotToken;
 
 /**
  * \brief Compilation of assignment of an array - {{1, 2, 3}, {3, 2, 1}}

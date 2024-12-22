@@ -19,12 +19,15 @@
 
 #pragma once
 
-#include "CBot/CBotInstr/CBotLeftExpr.h"
+#include <string>
 
+#include "CBot/CBotInstr/CBotLeftExpr.h"
 #include "CBot/CBotInstr/CBotInstr.h"
 
 namespace CBot
 {
+class CBotCStack;
+class CBotToken;
 
 /**
  * \brief An arithmetic expression, with or without assignment

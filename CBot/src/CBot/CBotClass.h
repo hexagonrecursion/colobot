@@ -19,19 +19,19 @@
 
 #pragma once
 
-#include "CBot/CBotDefines.h"
-#include "CBot/CBotTypResult.h"
-#include "CBot/CBotVar/CBotVar.h"
-
 #include <string>
 #include <deque>
 #include <set>
 #include <list>
+#include <iosfwd>
+
+#include "CBot/CBotDefines.h"
+#include "CBot/CBotTypResult.h"
+#include "CBot/CBotVar/CBotVar.h"
 
 namespace CBot
 {
 
-class CBotCallMethode;
 class CBotFunction;
 class CBotProgram;
 class CBotStack;

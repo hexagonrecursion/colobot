@@ -19,10 +19,14 @@
 
 #pragma once
 
+#include <iosfwd>
+#include <string>
+
 #include "CBot/CBotVar/CBotVarValue.h"
 
 namespace CBot
 {
+class CBotToken;
 
 /**
  * \brief CBotVar subclass for managing integer values (::CBotTypInt)

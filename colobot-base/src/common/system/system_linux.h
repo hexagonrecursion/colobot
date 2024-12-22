@@ -22,6 +22,8 @@
  * \brief Linux-specific implementation of system functions
  */
 
+#include <string>
+
 #include "common/system/system.h"
 
 //@colobot-lint-exclude UndefinedFunctionRule

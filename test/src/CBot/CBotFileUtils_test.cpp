@@ -19,6 +19,8 @@
 #include "CBot/CBotFileUtils.h"
 
 #include <gtest/gtest.h>
+#include <limits>
+#include <sstream>
 
 namespace
 {

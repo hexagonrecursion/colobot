@@ -19,6 +19,9 @@
 
 #include "CBot/CBotInstr/CBotParExpr.h"
 
+#include <cmath>
+#include <string>
+
 #include "CBot/CBotInstr/CBotExpression.h"
 #include "CBot/CBotInstr/CBotExprLitBool.h"
 #include "CBot/CBotInstr/CBotExprLitChar.h"
@@ -33,12 +36,8 @@
 #include "CBot/CBotInstr/CBotPostIncExpr.h"
 #include "CBot/CBotInstr/CBotPreIncExpr.h"
 #include "CBot/CBotInstr/CBotTwoOpExpr.h"
-
 #include "CBot/CBotVar/CBotVar.h"
-
 #include "CBot/CBotCStack.h"
-
-#include <cmath>
 
 namespace CBot
 {

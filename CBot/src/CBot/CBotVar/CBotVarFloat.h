@@ -19,10 +19,13 @@
 
 #pragma once
 
+#include <iosfwd>
+
 #include "CBot/CBotVar/CBotVarValue.h"
 
 namespace CBot
 {
+class CBotToken;
 
 /**
  * \brief CBotVar subclass for managing float values (::CBotTypFloat)

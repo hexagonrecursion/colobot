@@ -52,7 +52,7 @@
 #include <SDL.h>
 #include <SDL_image.h>
 
-#include <stdlib.h>
+#include <cstdlib>
 #include <getopt.h>
 #include <localename.h>
 #include <thread>
