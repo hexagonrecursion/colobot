@@ -19,6 +19,7 @@
             "generator": "Ninja",
             "inherits": ["CI"],
             "cacheVariables": {
+                "CMAKE_MAKE_PROGRAM": "ninja.exe",
                 "CMAKE_C_COMPILER": "cl.exe",
                 "CMAKE_CXX_COMPILER": "cl.exe",
                 "CMAKE_BUILD_TYPE": "RelWithDebInfo",
