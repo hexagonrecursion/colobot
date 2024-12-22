@@ -38,9 +38,6 @@
             "name": "zlib", "version": "1.2.13"
         },
         {
-            "name": "libiconv", "version": "1.17"
-        },
-        {
             "name": "physfs", "version": "3.0.2"
         }
     ]

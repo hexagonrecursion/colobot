@@ -200,7 +200,7 @@ jobs:
         cmake --build --preset Windows-CI -j $nproc
       shell: pwsh
     - name: Install
-      run: cmake --build --preset Windows-CI --target install
+      run: cmake --build --preset Windows-CI --target install -Wdev --debug-output --trace
     - name: Upload build
       uses: actions/upload-artifact@v3
       with:
