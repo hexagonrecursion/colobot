@@ -22,6 +22,7 @@
 #include "CBot/CBotInstr/CBotInstr.h"
 
 #include <unordered_map>
+#include <string>
 
 namespace CBot
 {

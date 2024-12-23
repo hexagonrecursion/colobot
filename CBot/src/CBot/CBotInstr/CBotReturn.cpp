@@ -20,11 +20,11 @@
 #include "CBot/CBotInstr/CBotReturn.h"
 
 #include "CBot/CBotInstr/CBotInstrUtils.h"
-
 #include "CBot/CBotInstr/CBotExpression.h"
-
 #include "CBot/CBotStack.h"
 #include "CBot/CBotCStack.h"
+
+#include <map>
 
 namespace CBot
 {

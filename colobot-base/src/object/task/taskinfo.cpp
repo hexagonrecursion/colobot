@@ -29,7 +29,7 @@
 
 #include "object/subclass/exchange_post.h"
 
-#include <string.h>
+#include <cstring>
 
 
 

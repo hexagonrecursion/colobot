@@ -23,9 +23,12 @@
 #include "common/stringutils.h"
 #include "common/version.h"
 
-#include <stdlib.h>
+#include <cstdlib>
 #include <unistd.h>
-#include <time.h>
+#include <ctime>
+#include <filesystem>
+#include <memory>
+#include <vector>
 
 #ifdef COLOBOT_APPIMAGE_BASEPATH_OVERRIDE
 #include <SDL2/SDL.h>

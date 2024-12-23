@@ -40,7 +40,7 @@
 #include "ui/controls/window.h"
 
 #include <algorithm>
-#include <stdio.h>
+#include <cstdio>
 #include <ctime>
 
 

@@ -21,6 +21,9 @@
 
 #include "CBot/CBotVar/CBotVarValue.h"
 
+#include <sstream>
+#include <string>
+
 namespace CBot
 {
 

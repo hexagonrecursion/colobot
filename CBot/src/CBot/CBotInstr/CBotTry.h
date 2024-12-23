@@ -18,8 +18,9 @@
  */
 
 #include "CBot/CBotInstr/CBotCatch.h"
-
 #include "CBot/CBotInstr/CBotInstr.h"
+
+#include <string>
 
 namespace CBot
 {

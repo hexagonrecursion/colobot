@@ -22,7 +22,7 @@
 #include "common/stringutils.h"
 #include "common/version.h"
 
-#include <stdio.h>
+#include <cstdio>
 
 CLogger::CLogger()
 {

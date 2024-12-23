@@ -36,13 +36,12 @@
 #include "CBot/CBotInstr/CBotThrow.h"
 #include "CBot/CBotInstr/CBotTry.h"
 #include "CBot/CBotInstr/CBotWhile.h"
-
 #include "CBot/CBotVar/CBotVar.h"
-
 #include "CBot/CBotClass.h"
 #include "CBot/CBotStack.h"
 
 #include <cassert>
+#include <utility>
 
 namespace CBot
 {

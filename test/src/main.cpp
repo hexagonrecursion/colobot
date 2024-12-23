@@ -20,8 +20,8 @@
 #include "common/logger.h"
 
 #include <gtest/gtest.h>
-
 #include <clocale>
+#include <string>
 
 extern bool g_cbotTestSaveState;
 

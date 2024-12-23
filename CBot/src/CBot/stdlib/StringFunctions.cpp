@@ -18,12 +18,12 @@
  */
 
 #include "CBot/stdlib/stdlib.h"
-
 #include "CBot/CBot.h"
-
 #include "CBot/CBotUtils.h"
 
 #include <common/stringutils.h>
+#include <cstddef>
+#include <string>
 
 namespace CBot
 {

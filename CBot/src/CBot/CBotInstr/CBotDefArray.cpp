@@ -24,14 +24,13 @@
 #include "CBot/CBotInstr/CBotListArray.h"
 #include "CBot/CBotInstr/CBotEmpty.h"
 #include "CBot/CBotInstr/CBotTwoOpExpr.h"
-
 #include "CBot/CBotStack.h"
 #include "CBot/CBotCStack.h"
 #include "CBot/CBotDefines.h"
-
 #include "CBot/CBotVar/CBotVar.h"
 
 #include <sstream>
+#include <map>
 
 namespace CBot
 {

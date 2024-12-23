@@ -41,7 +41,7 @@
 
 #include "sound/sound.h"
 
-#include <string.h>
+#include <cstring>
 
 const float ENERGY_TIME = 20.0f;        // maximum duration if full battery
 

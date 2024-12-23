@@ -23,6 +23,7 @@
 #include <atomic>
 #include <cstddef>
 #include <mutex>
+#include <iterator>
 
 namespace
 {

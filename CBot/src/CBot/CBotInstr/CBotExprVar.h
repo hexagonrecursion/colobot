@@ -20,9 +20,10 @@
 #pragma once
 
 #include "CBot/CBotDefines.h"
-
 #include "CBot/CBotInstr/CBotInstr.h"
 #include "CBot/CBotVar/CBotVar.h"
+
+#include <string>
 
 namespace CBot
 {

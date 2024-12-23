@@ -27,6 +27,7 @@
 #include <deque>
 #include <set>
 #include <list>
+#include <iosfwd>
 
 namespace CBot
 {

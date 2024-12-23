@@ -20,9 +20,10 @@
 #include "CBot/CBotInstr/CBotCase.h"
 
 #include "CBot/CBotInstr/CBotTwoOpExpr.h"
-
 #include "CBot/CBotStack.h"
 #include "CBot/CBotCStack.h"
+
+#include <map>
 
 namespace CBot
 {

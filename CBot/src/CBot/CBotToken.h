@@ -22,6 +22,8 @@
 #include "CBot/CBotEnums.h"
 #include "CBot/CBotUtils.h"
 
+#include <cstddef>
+#include <cstdint>
 #include <string>
 #include <map>
 #include <memory>

@@ -24,7 +24,7 @@
 
 #include "object/interface/power_container_object.h"
 
-#include <assert.h>
+#include <cassert>
 
 #include <glm/glm.hpp>
 

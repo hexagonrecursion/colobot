@@ -22,6 +22,7 @@
 #include "common/logger.h"
 
 #include <unordered_map>
+#include <utility>
 
 namespace
 {

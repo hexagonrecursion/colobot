@@ -23,8 +23,10 @@
 #include "CBot/CBotStack.h"
 #include "CBot/CBotCStack.h"
 #include "CBot/CBotUtils.h"
-
 #include "CBot/CBotVar/CBotVar.h"
+
+#include <cassert>
+#include <utility>
 
 namespace CBot
 {

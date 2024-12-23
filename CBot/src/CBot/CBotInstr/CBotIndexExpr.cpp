@@ -21,10 +21,10 @@
 
 #include "CBot/CBotStack.h"
 #include "CBot/CBotCStack.h"
-
 #include "CBot/CBotVar/CBotVarArray.h"
 
 #include <cassert>
+#include <map>
 
 namespace CBot
 {

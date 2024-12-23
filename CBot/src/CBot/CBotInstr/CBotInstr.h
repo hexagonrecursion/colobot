@@ -23,6 +23,8 @@
 #include "CBot/CBotCStack.h"
 
 #include <vector>
+#include <map>
+#include <string>
 
 namespace CBot
 {

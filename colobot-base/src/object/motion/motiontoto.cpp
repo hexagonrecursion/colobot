@@ -36,7 +36,7 @@
 #include "sound/sound.h"
 
 
-#include <stdio.h>
+#include <cstdio>
 
 
 

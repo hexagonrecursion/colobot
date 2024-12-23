@@ -23,6 +23,8 @@
 #include "CBot/CBotStack.h"
 #include "CBot/CBotUtils.h"
 
+#include <string>
+
 namespace CBot
 {
 

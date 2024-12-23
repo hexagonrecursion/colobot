@@ -20,6 +20,8 @@
 #include "common/timeutils.h"
 
 #include <gtest/gtest.h>
+#include <compare>
+#include <string>
 
 namespace TimeUtils
 {

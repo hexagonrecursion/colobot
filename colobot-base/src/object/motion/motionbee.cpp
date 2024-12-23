@@ -32,7 +32,7 @@
 #include "physics/physics.h"
 
 
-#include <stdio.h>
+#include <cstdio>
 
 
 const float START_TIME = 1000.0f;       // beginning of the relative time

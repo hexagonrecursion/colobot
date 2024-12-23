@@ -18,11 +18,11 @@
  */
 
 #include "CBot/stdlib/stdlib.h"
-
 #include "CBot/CBot.h"
 
 #include <cmath>
 #include <cstdlib>
+#include <string>
 
 namespace CBot
 {

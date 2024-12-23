@@ -25,6 +25,7 @@
 #include <memory>
 #include <string>
 #include <vector>
+#include <iosfwd>
 
 namespace CBot
 {

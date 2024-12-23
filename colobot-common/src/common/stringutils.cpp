@@ -31,6 +31,8 @@
 #include <optional>
 #include <stdexcept>
 #include <vector>
+#include <cctype>
+#include <iterator>
 
 namespace
 {

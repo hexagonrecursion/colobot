@@ -33,12 +33,11 @@
 #include "CBot/CBotInstr/CBotPostIncExpr.h"
 #include "CBot/CBotInstr/CBotPreIncExpr.h"
 #include "CBot/CBotInstr/CBotTwoOpExpr.h"
-
 #include "CBot/CBotVar/CBotVar.h"
-
 #include "CBot/CBotCStack.h"
 
 #include <cmath>
+#include <string>
 
 namespace CBot
 {

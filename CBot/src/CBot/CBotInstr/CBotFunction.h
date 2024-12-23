@@ -22,6 +22,9 @@
 #include "CBot/CBotInstr/CBotInstr.h"
 
 #include <set>
+#include <list>
+#include <map>
+#include <string>
 
 namespace CBot
 {

@@ -18,11 +18,13 @@
  */
 
 #include "CBot/CBotInstr/CBotDo.h"
+
 #include "CBot/CBotInstr/CBotBlock.h"
 #include "CBot/CBotInstr/CBotCondition.h"
-
 #include "CBot/CBotStack.h"
 #include "CBot/CBotCStack.h"
+
+#include <map>
 
 namespace CBot
 {

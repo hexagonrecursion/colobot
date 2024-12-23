@@ -28,6 +28,12 @@
 #include <sstream>
 #include <iostream>
 #include <iomanip>
+#include <cstdio>
+#include <list>
+#include <map>
+#include <set>
+#include <string>
+#include <utility>
 
 namespace CBot
 {

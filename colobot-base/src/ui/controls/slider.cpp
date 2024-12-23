@@ -31,7 +31,7 @@
 
 #include "ui/controls/button.h"
 
-#include <stdio.h>
+#include <cstdio>
 
 
 namespace Ui

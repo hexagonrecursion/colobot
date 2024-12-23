@@ -18,13 +18,14 @@
  */
 
 #include "CBot/CBotInstr/CBotExprLitNum.h"
-#include "CBot/CBotStack.h"
 
+#include "CBot/CBotStack.h"
 #include "CBot/CBotCStack.h"
 #include "CBot/CBotVar/CBotVar.h"
-
 #include "CBot/CBotUtils.h"
 
+#include <cassert>
+#include <cstdint>
 #include <limits>
 #include <sstream>
 

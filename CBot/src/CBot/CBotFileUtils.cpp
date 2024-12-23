@@ -22,6 +22,8 @@
 #include "CBot/CBotClass.h"
 #include "CBot/CBotEnums.h"
 
+#include <cstddef>
+
 namespace CBot
 {
 

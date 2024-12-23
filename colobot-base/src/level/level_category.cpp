@@ -20,6 +20,7 @@
 #include "level/level_category.h"
 
 #include <map>
+#include <utility>
 
 // NOTE: Because of how save filenames are built, the first letter of category directories MUST be unique!!
 // TODO: I'm not sure about "challenges" + "custom". It may be messing things up already right now.

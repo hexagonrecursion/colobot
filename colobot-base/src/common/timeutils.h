@@ -26,6 +26,7 @@
 
 #include <cassert>
 #include <chrono>
+#include <ratio>
 
 namespace TimeUtils
 {

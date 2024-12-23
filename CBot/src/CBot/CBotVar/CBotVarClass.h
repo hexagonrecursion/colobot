@@ -22,6 +22,8 @@
 #include "CBot/CBotVar/CBotVar.h"
 
 #include <set>
+#include <iosfwd>
+#include <string>
 
 namespace CBot
 {

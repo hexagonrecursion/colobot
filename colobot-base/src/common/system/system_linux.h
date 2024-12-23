@@ -24,6 +24,8 @@
 
 #include "common/system/system.h"
 
+#include <string>
+
 //@colobot-lint-exclude UndefinedFunctionRule
 
 class CSystemUtilsLinux : public CSystemUtils

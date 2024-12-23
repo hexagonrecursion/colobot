@@ -26,6 +26,7 @@
 
 #include <cstdio>
 #include <string>
+#include <iosfwd>
 
 namespace CBot
 {

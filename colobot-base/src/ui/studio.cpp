@@ -64,7 +64,7 @@
 #include "ui/controls/target.h"
 #include "ui/controls/window.h"
 
-#include <stdio.h>
+#include <cstdio>
 #include <ctime>
 
 

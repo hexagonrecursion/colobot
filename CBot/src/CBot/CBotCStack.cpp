@@ -23,10 +23,11 @@
 #include "CBot/CBotClass.h"
 #include "CBot/CBotToken.h"
 #include "CBot/CBotExternalCall.h"
-
 #include "CBot/CBotVar/CBotVar.h"
-
 #include "CBot/CBotInstr/CBotFunction.h"
+
+#include <set>
+#include <utility>
 
 namespace CBot
 {

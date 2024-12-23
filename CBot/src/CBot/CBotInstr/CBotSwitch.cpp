@@ -18,12 +18,15 @@
  */
 
 #include "CBot/CBotInstr/CBotSwitch.h"
+
 #include "CBot/CBotInstr/CBotCase.h"
 #include "CBot/CBotInstr/CBotBlock.h"
 #include "CBot/CBotInstr/CBotExpression.h"
-
 #include "CBot/CBotStack.h"
 #include "CBot/CBotCStack.h"
+
+#include <map>
+#include <utility>
 
 namespace CBot
 {

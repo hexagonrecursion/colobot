@@ -20,14 +20,13 @@
 #include "CBot/CBotInstr/CBotListArray.h"
 
 #include "CBot/CBotInstr/CBotInstrUtils.h"
-
 #include "CBot/CBotInstr/CBotExprLitNull.h"
 #include "CBot/CBotInstr/CBotTwoOpExpr.h"
-
 #include "CBot/CBotStack.h"
 #include "CBot/CBotCStack.h"
-
 #include "CBot/CBotVar/CBotVar.h"
+
+#include <map>
 
 namespace CBot
 {

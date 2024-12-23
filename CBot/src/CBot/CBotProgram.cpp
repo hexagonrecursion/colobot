@@ -18,18 +18,20 @@
  */
 
 #include "CBot/CBotVar/CBotVar.h"
-
 #include "CBot/CBotExternalCall.h"
 #include "CBot/CBotStack.h"
 #include "CBot/CBotCStack.h"
 #include "CBot/CBotClass.h"
 #include "CBot/CBotUtils.h"
-
 #include "CBot/CBotInstr/CBotFunction.h"
-
 #include "CBot/stdlib/stdlib.h"
 
 #include <algorithm>
+#include <iosfwd>
+#include <list>
+#include <memory>
+#include <string>
+#include <vector>
 
 namespace CBot
 {

@@ -21,6 +21,8 @@
 
 #include "CBot/CBotStack.h"
 
+#include <map>
+
 namespace CBot
 {
 
