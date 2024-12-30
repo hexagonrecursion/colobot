@@ -25,7 +25,7 @@
 namespace CBot
 {
 
-struct CBotUserPointer
+class CBotUserPointer
 {
 public:
 
