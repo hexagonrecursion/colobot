@@ -19,7 +19,7 @@
 
 #include "CBot/stdlib/stdlib.h"
 
-#include "CBot/CBot.h"
+#include "CBot/CBotVar/CBotVar.h"
 
 #include "CBot/context/cbot_context.h"
 
@@ -251,6 +251,31 @@ bool rIsNAN(CBotVar* var, CBotVar* result, int& exception, void* user)
     return true;
 }
 
+CBotTypResult cSizeOf( CBotVar* &pVar, void* pUser )
+{
+    if ( pVar == nullptr ) return CBotTypResult( CBotErrLowParam );
+    if ( pVar->GetType() != CBotTypArrayPointer )
+                        return CBotTypResult( CBotErrBadParam );
+    return CBotTypResult( CBotTypInt );
+}
+
+bool rSizeOf( CBotVar* pVar, CBotVar* pResult, int& ex, void* pUser )
+{
+    if ( pVar == nullptr ) { ex = CBotErrLowParam; return true; }
+
+    int i = 0;
+    pVar = pVar->GetItemList();
+
+    while ( pVar != nullptr )
+    {
+        i++;
+        pVar = pVar->GetNext();
+    }
+
+    pResult->SetValInt(i);
+    return true;
+}
+
 } // namespace
 
 void InitErrorConstants(const std::shared_ptr<CBotContext>& context)
@@ -274,26 +299,25 @@ void InitErrorConstants(const std::shared_ptr<CBotContext>& context)
 void InitMathLibrary(const std::shared_ptr<CBotContext>& context)
 {
     context->AddConstant<float>("PI", PI);
-}
 
-void InitMathFunctions()
-{
-    CBotProgram::AddFunction("sin",   rSin,   cOneFloat);
-    CBotProgram::AddFunction("cos",   rCos,   cOneFloat);
-    CBotProgram::AddFunction("tan",   rTan,   cOneFloat);
-    CBotProgram::AddFunction("asin",  raSin,  cOneFloat);
-    CBotProgram::AddFunction("acos",  raCos,  cOneFloat);
-    CBotProgram::AddFunction("atan",  raTan,  cOneFloat);
-    CBotProgram::AddFunction("atan2", raTan2, cTwoFloat);
-    CBotProgram::AddFunction("sqrt",  rSqrt,  cOneFloat);
-    CBotProgram::AddFunction("pow",   rPow,   cTwoFloat);
-    CBotProgram::AddFunction("rand",  rRand,  cNull);
-    CBotProgram::AddFunction("abs",   rAbs,   cAbs);
-    CBotProgram::AddFunction("floor", rFloor, cOneFloat);
-    CBotProgram::AddFunction("ceil",  rCeil,  cOneFloat);
-    CBotProgram::AddFunction("round", rRound, cOneFloat);
-    CBotProgram::AddFunction("trunc", rTrunc, cOneFloat);
-    CBotProgram::AddFunction("isnan", rIsNAN, cIsNAN);
+    context->AddFunction("sin",   rSin,   cOneFloat);
+    context->AddFunction("cos",   rCos,   cOneFloat);
+    context->AddFunction("tan",   rTan,   cOneFloat);
+    context->AddFunction("asin",  raSin,  cOneFloat);
+    context->AddFunction("acos",  raCos,  cOneFloat);
+    context->AddFunction("atan",  raTan,  cOneFloat);
+    context->AddFunction("atan2", raTan2, cTwoFloat);
+    context->AddFunction("sqrt",  rSqrt,  cOneFloat);
+    context->AddFunction("pow",   rPow,   cTwoFloat);
+    context->AddFunction("rand",  rRand,  cNull);
+    context->AddFunction("abs",   rAbs,   cAbs);
+    context->AddFunction("floor", rFloor, cOneFloat);
+    context->AddFunction("ceil",  rCeil,  cOneFloat);
+    context->AddFunction("round", rRound, cOneFloat);
+    context->AddFunction("trunc", rTrunc, cOneFloat);
+    context->AddFunction("isnan", rIsNAN, cIsNAN);
+
+    context->AddFunction("sizeof", rSizeOf, cSizeOf);
 }
 
 } // namespace CBot

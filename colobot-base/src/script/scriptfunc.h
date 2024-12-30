@@ -45,6 +45,7 @@ class CScriptFunctions
 {
 public:
     static void Init();
+    static void InitFunctions(const std::shared_ptr<CBot::CBotContext>& context);
     static void InitContextGlobal(const std::shared_ptr<CBot::CBotContext>& globalContext);
 
     static CBot::CBotVar* CreateObjectVar(CObject* obj);
@@ -155,6 +156,8 @@ private:
     static bool rFactory(CBot::CBotVar* var, CBot::CBotVar* result, int& exception, void* user);
     static bool rResearch(CBot::CBotVar* var, CBot::CBotVar* result, int& exception, void* user);
     static bool rDestroy(CBot::CBotVar* var, CBot::CBotVar* result, int& exception, void* user);
+
+    static bool rDeleteFile(CBot::CBotVar* var, CBot::CBotVar* result, int& exception, void* user);
 
     static CBot::CBotTypResult cClassNull(CBot::CBotVar* thisclass, CBot::CBotVar* &var);
     static CBot::CBotTypResult cClassOneFloat(CBot::CBotVar* thisclass, CBot::CBotVar* &var);

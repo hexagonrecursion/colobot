@@ -6260,6 +6260,7 @@ std::shared_ptr<CBot::CBotContext> CRobotMain::GetCBotContextForTeam(int team)
     if (auto context = m_teamCBotContext[team].lock()) return context;
 
     auto newContext = CBot::CBotContext::Create(m_globalCBotContext);
+    CScriptFunctions::InitFunctions(newContext);
 
     m_teamCBotContext[team] = newContext;
     return newContext;

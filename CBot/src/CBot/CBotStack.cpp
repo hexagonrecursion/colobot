@@ -607,7 +607,7 @@ bool CBotStack::ExecuteCall(long& nIdent, CBotToken* token, CBotVar** ppVar, con
     // if not found (recompile?) seeks by name
 
     nIdent = 0;
-    res = m_prog->GetExternalCalls()->DoCall(token, nullptr, ppVar, this, rettype);
+    res = m_data->context->DoCall(token, nullptr, ppVar, this, rettype);
     if (res >= 0) return res;
 
     res = CBotFunction::DoCall(m_prog, m_prog->GetFunctions(), nIdent, token->GetString(), ppVar, this, token);
@@ -622,7 +622,7 @@ void CBotStack::RestoreCall(long& nIdent, CBotToken* token, CBotVar** ppVar)
 {
     if (m_next == nullptr) return;
 
-    if (m_prog->GetExternalCalls()->RestoreCall(token, nullptr, ppVar, this))
+    if (m_data->context->RestoreCall(token, nullptr, ppVar, this))
         return;
 
     CBotFunction::RestoreCall(m_prog->GetFunctions(), nIdent, token->GetString(), ppVar, this);

@@ -36,8 +36,6 @@
 namespace CBot
 {
 
-std::unique_ptr<CBotExternalCallList> CBotProgram::m_externalCalls;
-
 CBotProgram::CBotProgram()
 {
 }
@@ -89,7 +87,7 @@ bool CBotProgram::Compile(const std::string& program, std::vector<std::string>& 
     CBotToken* p = tokens.get()->GetNext();                 // skips the first token (separator)
 
     pStack->SetProgram(this);                               // defined used routines
-    m_externalCalls->SetUserPtr(pUser);
+    m_context->SetUserPtr(pUser);
 
     // Step 2. Find all function and class definitions
     while ( pStack->IsOk() && p != nullptr && p->GetType() != 0)
@@ -293,40 +291,6 @@ bool CBotProgram::ClassExists(std::string name)
     return false;
 }
 
-////////////////////////////////////////////////////////////////////////////////
-static CBotTypResult cSizeOf( CBotVar* &pVar, void* pUser )
-{
-    if ( pVar == nullptr ) return CBotTypResult( CBotErrLowParam );
-    if ( pVar->GetType() != CBotTypArrayPointer )
-                        return CBotTypResult( CBotErrBadParam );
-    return CBotTypResult( CBotTypInt );
-}
-
-static bool rSizeOf( CBotVar* pVar, CBotVar* pResult, int& ex, void* pUser )
-{
-    if ( pVar == nullptr ) { ex = CBotErrLowParam; return true; }
-
-    int i = 0;
-    pVar = pVar->GetItemList();
-
-    while ( pVar != nullptr )
-    {
-        i++;
-        pVar = pVar->GetNext();
-    }
-
-    pResult->SetValInt(i);
-    return true;
-}
-
-////////////////////////////////////////////////////////////////////////////////
-bool CBotProgram::AddFunction(const std::string& name,
-                              bool rExec(CBotVar* pVar, CBotVar* pResult, int& Exception, void* pUser),
-                              CBotTypResult rCompile(CBotVar*& pVar, void* pUser))
-{
-    return m_externalCalls->AddFunction(name, std::unique_ptr<CBotExternalCall>(new CBotExternalCallDefault(rExec, rCompile)));
-}
-
 bool CBotProgram::SaveState(std::ostream &ostr)
 {
     if (!WriteLong(ostr, CBOTVERSION)) return false;
@@ -391,25 +355,12 @@ int CBotProgram::GetVersion()
 
 void CBotProgram::Init()
 {
-    m_externalCalls.reset(new CBotExternalCallList);
-
-    CBotProgram::AddFunction("sizeof", rSizeOf, cSizeOf);
-
-    InitStringFunctions();
-    InitMathFunctions();
     InitFileFunctions();
 }
 
 void CBotProgram::Free()
 {
-    m_externalCalls->Clear();
     CBotClass::ClearPublic();
-    m_externalCalls.reset();
-}
-
-const std::unique_ptr<CBotExternalCallList>& CBotProgram::GetExternalCalls()
-{
-    return m_externalCalls;
 }
 
 } // namespace CBot

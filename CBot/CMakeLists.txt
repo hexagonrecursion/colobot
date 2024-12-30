@@ -170,6 +170,7 @@ target_sources(CBot PRIVATE
     src/CBot/context/cbot_user_pointer.h
     src/CBot/context/context_observer.h
     src/CBot/context/context_owner.h
+    src/CBot/context/external_call_list_interface.h
     src/CBot/context/list_constant.cpp
     src/CBot/context/list_constant.h
     src/CBot/context/list_constant_interface.h

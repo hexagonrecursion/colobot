@@ -19,7 +19,10 @@
 
 #pragma once
 
+#include "CBot/context/external_call_list_interface.h"
 #include "CBot/context/list_constant_interface.h"
+
+#include "CBot/stdlib/stdlib_public.h"
 
 #include <memory>
 #include <unordered_map>
@@ -30,9 +33,11 @@ class CBotContext;
 class CBotVar;
 
 using CBotContextSPtr = std::shared_ptr<CBot::CBotContext>;
+using CBotFileAccessHandlerUPtr = std::unique_ptr<CBot::CBotFileAccessHandler>;
 
 class CBotContext :
     public std::enable_shared_from_this<CBotContext>,
+    public CBotExternalCallListInterface,
     public CBotListConstantInterface
 {
 private:
@@ -67,12 +72,17 @@ public:
 
     const CBotVarUPtr& GetDefinedConstant(const std::string& name) override;
 
+    CBotFileAccessHandler* GetFileAccessHandler() const;
+
+    void SetFileAccessHandler(CBotFileAccessHandlerUPtr fileHandler);
+
 private:
     CBotContextSPtr m_outerContext;
 
     struct GlobalData
     {
         long m_nextUniqueID = 10000;
+        CBotFileAccessHandlerUPtr m_fileHandler;
         std::unordered_map<long, CBotVar*> m_instances;
     };
     std::shared_ptr<CBotContext::GlobalData> m_globalData;

@@ -37,6 +37,8 @@
 #include "CBot/CBotDefParam.h"
 #include "CBot/CBotUtils.h"
 
+#include "CBot/context/cbot_context.h"
+
 #include <algorithm>
 
 namespace CBot
@@ -289,7 +291,7 @@ bool CBotClass::AddFunction(const std::string& name,
                             bool rExec(CBotVar* pThis, CBotVar* pVar, CBotVar* pResult, int& Exception, void* user),
                             CBotTypResult rCompile(CBotVar* pThis, CBotVar*& pVar))
 {
-    return m_externalMethods->AddFunction(name, std::unique_ptr<CBotExternalCall>(new CBotExternalCallClass(rExec, rCompile)));
+    return m_externalMethods->AddFunction(name, rExec, rCompile);
 }
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -443,7 +445,7 @@ bool CBotClass::CheckCall(CBotProgram* program, CBotDefParam* pParam, CBotToken*
 {
     std::string  name = pToken->GetString();
 
-    if ( program->GetExternalCalls()->CheckCall(name) ) return true;
+    if ( program->GetContext()->CheckCall(name) ) return true;
 
     for (CBotFunction* pp : m_pMethod)
     {

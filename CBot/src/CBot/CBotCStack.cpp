@@ -28,6 +28,8 @@
 
 #include "CBot/CBotInstr/CBotFunction.h"
 
+#include "CBot/context/cbot_context.h"
+
 namespace CBot
 {
 
@@ -379,7 +381,7 @@ CBotTypResult CBotCStack::CompileCall(CBotToken* &p, CBotVar** ppVars, long& nId
     nIdent = 0;
     CBotTypResult val(-1);
 
-    val = GetProgram()->GetExternalCalls()->CompileCall(p, nullptr, ppVars, this);
+    val = GetContext()->CompileCall(p, nullptr, ppVars, this);
     if (val.GetType() < 0)
     {
         val = CBotFunction::CompileCall(p->GetString(), ppVars, nIdent, GetProgram());
@@ -399,7 +401,7 @@ bool CBotCStack::CheckCall(CBotToken* &pToken, CBotDefParam* pParam, const std::
 {
     const auto& name = pToken->GetString();
 
-    if ( GetProgram()->GetExternalCalls()->CheckCall(name) ) return true;
+    if ( GetContext()->CheckCall(name) ) return true;
 
     for (CBotFunction* pp : GetProgram()->GetFunctions())
     {

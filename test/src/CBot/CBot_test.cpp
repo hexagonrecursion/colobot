@@ -35,8 +35,9 @@ public:
     {
         m_context = CBot::CBotContext::CreateGlobalContext();
         CBotProgram::Init();
-        CBotProgram::AddFunction("FAIL", rFail, cFail);
-        CBotProgram::AddFunction("ASSERT", rAssert, cAssert);
+
+        m_context->AddFunction("FAIL", rFail, cFail);
+        m_context->AddFunction("ASSERT", rAssert, cAssert);
     }
 
     ~CBotUT()

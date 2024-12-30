@@ -19,8 +19,6 @@
 
 #include "CBot/context/cbot_context.h"
 
-#include "CBot/stdlib/stdlib_public.h"
-
 namespace CBot
 {
 
@@ -28,6 +26,7 @@ CBotContextSPtr CBotContext::CreateGlobalContext()
 {
     auto newContext = std::shared_ptr<CBotContext>(new CBotContext);
     InitErrorConstants(newContext);
+    InitStringFunctions(newContext);
     InitMathLibrary(newContext);
 
     return newContext;
@@ -37,6 +36,7 @@ CBotContextSPtr CBotContext::Create(const CBotContextSPtr& outer)
 {
     auto newContext = std::shared_ptr<CBotContext>(new CBotContext(outer));
     InitErrorConstants(newContext);
+    InitStringFunctions(newContext);
     InitMathLibrary(newContext);
 
     return newContext;
@@ -96,6 +96,18 @@ const CBotVarUPtr& CBotContext::GetDefinedConstant(const std::string& name)
     if (!m_outerContext || m_listConstant.IsDefinedConstant(name))
         return m_listConstant.GetDefinedConstant(name);
     return m_outerContext->GetDefinedConstant(name);
+}
+
+void CBotContext::SetFileAccessHandler(std::unique_ptr<CBotFileAccessHandler> fileHandler)
+{
+    if (m_globalData->m_fileHandler) return; // already set
+
+    m_globalData->m_fileHandler = std::move(fileHandler);
+}
+
+CBotFileAccessHandler* CBotContext::GetFileAccessHandler() const
+{
+    return m_globalData->m_fileHandler.get();
 }
 
 } // namespace CBot

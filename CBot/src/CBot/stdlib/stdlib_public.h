@@ -23,8 +23,9 @@
 
 #include "CBot/context/cbot_user_pointer.h"
 
-#include <memory>
 #include <filesystem>
+#include <memory>
+#include <unordered_map>
 
 namespace CBot
 {
@@ -33,6 +34,7 @@ class CBotContext;
 
 void InitErrorConstants(const std::shared_ptr<CBotContext>& context);
 void InitMathLibrary(const std::shared_ptr<CBotContext>& context);
+void InitStringFunctions(const std::shared_ptr<CBotContext>& context);
 
 class CBotFile
 {
@@ -55,9 +57,11 @@ public:
     enum class OpenMode : char { Read = 'r', Write = 'w', Append = 'a' };
     virtual std::unique_ptr<CBotFile> OpenFile(const std::filesystem::path& filename, OpenMode mode) = 0;
     virtual bool DeleteFile(const std::filesystem::path& filename) = 0;
-};
 
-void SetFileAccessHandler(std::unique_ptr<CBotFileAccessHandler> fileHandler);
+    int m_nextFileId = 1;
+
+    std::unordered_map<int, std::unique_ptr<CBotFile>> m_files;
+};
 
 // TODO: provide default implementation of CBotFileAccessHandler
 

@@ -3488,7 +3488,35 @@ private:
     }
 };
 
+// Instruction "deletefile(filename)".
 
+bool CScriptFunctions::rDeleteFile(CBotVar* var, CBotVar* result, int& exception, void* user)
+{
+    std::filesystem::path filename;
+    try
+    {
+        filename = StrUtils::ToPath(var->GetValString());
+    }
+    catch(...)
+    {
+        exception = CBotErrFileOpen;
+        return false;
+    }
+
+    auto script = static_cast<CScript*>(user);
+    const auto& context = static_cast<CScript*>(user)->m_main->GetCBotContextGlobal();
+
+    if (context->GetFileAccessHandler()->DeleteFile(filename))
+    {
+        result->SetValInt(0);
+        return true;
+    }
+
+    result->SetValInt(CBotErrRead);
+    if (script->m_errMode != ERM_STOP) return true;
+    exception = CBotErrRead;
+    return false;
+}
 
 // Initializes all functions for module CBOT.
 
@@ -3530,79 +3558,88 @@ void CScriptFunctions::Init()
     bc->AddItem("team",        CBotTypResult(CBotTypInt), CBotVar::ProtectionLevel::ReadOnly);
     bc->AddItem("dead",        CBotTypResult(CBotTypBoolean), CBotVar::ProtectionLevel::ReadOnly);
     bc->AddItem("velocity",    CBotTypResult(CBotTypClass, "point"), CBotVar::ProtectionLevel::ReadOnly);
+}
 
-    CBotProgram::AddFunction("endmission",rEndMission,cEndMission);
-    CBotProgram::AddFunction("playmusic", rPlayMusic ,cPlayMusic);
-    CBotProgram::AddFunction("stopmusic", rStopMusic ,cNull);
+void CScriptFunctions::InitFunctions(const std::shared_ptr<CBot::CBotContext>& context)
+{
+    auto AddFunction = [&context](const std::string& name, CBot::DefaultRuntimeFunc rExec, CBot::DefaultCompileFunc cComp)
+    {
+        if (!context->AddFunction(name, rExec, cComp))
+            GetLogger()->Error("Function '%s()' redefined", name.c_str());
+    };
 
-    CBotProgram::AddFunction("getbuild",          rGetBuild,          cNull);
-    CBotProgram::AddFunction("getresearchenable", rGetResearchEnable, cNull);
-    CBotProgram::AddFunction("getresearchdone",   rGetResearchDone,   cNull);
-    CBotProgram::AddFunction("setbuild",          rSetBuild,          cOneInt);
-    CBotProgram::AddFunction("setresearchenable", rSetResearchEnable, cOneInt);
-    CBotProgram::AddFunction("setresearchdone",   rSetResearchDone,   cOneInt);
+    AddFunction("deletefile", rDeleteFile, cString);
 
-    CBotProgram::AddFunction("canbuild",        rCanBuild,        cOneIntReturnBool);
-    CBotProgram::AddFunction("canresearch",     rCanResearch,     cOneIntReturnBool);
-    CBotProgram::AddFunction("researched",      rResearched,      cOneIntReturnBool);
-    CBotProgram::AddFunction("buildingenabled", rBuildingEnabled, cOneIntReturnBool);
+    AddFunction("endmission", rEndMission, cEndMission);
+    AddFunction("playmusic",  rPlayMusic , cPlayMusic);
+    AddFunction("stopmusic",  rStopMusic , cNull);
 
-    CBotProgram::AddFunction("build",           rBuild,           cOneInt);
-    CBotProgram::AddFunction("flag",            rFlag,            cGrabDrop);
-    CBotProgram::AddFunction("deflag",          rDeflag,          cNull);
+    AddFunction("getbuild",          rGetBuild,          cNull);
+    AddFunction("getresearchenable", rGetResearchEnable, cNull);
+    AddFunction("getresearchdone",   rGetResearchDone,   cNull);
+    AddFunction("setbuild",          rSetBuild,          cOneInt);
+    AddFunction("setresearchenable", rSetResearchEnable, cOneInt);
+    AddFunction("setresearchdone",   rSetResearchDone,   cOneInt);
 
-    CBotProgram::AddFunction("retobject", rGetObject, cGetObject);
-    CBotProgram::AddFunction("retobjectbyid", rGetObjectById, cGetObject);
-    CBotProgram::AddFunction("delete",    rDelete,    cDelete);
-    CBotProgram::AddFunction("search",    rSearch,    cSearch);
-    CBotProgram::AddFunction("searchall", rSearchAll, cSearchAll);
-    CBotProgram::AddFunction("radar",     rRadar,     cRadar);
-    CBotProgram::AddFunction("radarall",  rRadarAll,  cRadarAll);
-    CBotProgram::AddFunction("detect",    rDetect,    cDetect);
-    CBotProgram::AddFunction("direction", rDirection, cDirection);
-    CBotProgram::AddFunction("produce",   rProduce,   cProduce);
-    CBotProgram::AddFunction("distance",  rDistance,  cDistance);
-    CBotProgram::AddFunction("distance2d",rDistance2d,cDistance);
-    CBotProgram::AddFunction("space",     rSpace,     cSpace);
-    CBotProgram::AddFunction("flatspace", rFlatSpace, cFlatSpace);
-    CBotProgram::AddFunction("flatground",rFlatGround,cFlatGround);
-    CBotProgram::AddFunction("wait",      rWait,      cOneFloat);
-    CBotProgram::AddFunction("move",      rMove,      cOneFloat);
-    CBotProgram::AddFunction("turn",      rTurn,      cOneFloat);
-    CBotProgram::AddFunction("goto",      rGoto,      cGoto);
-    CBotProgram::AddFunction("grab",      rGrab,      cGrabDrop);
-    CBotProgram::AddFunction("drop",      rDrop,      cGrabDrop);
-    CBotProgram::AddFunction("sniff",     rSniff,     cNull);
-    CBotProgram::AddFunction("receive",   rReceive,   cReceive);
-    CBotProgram::AddFunction("send",      rSend,      cSend);
-    CBotProgram::AddFunction("deleteinfo",rDeleteInfo,cDeleteInfo);
-    CBotProgram::AddFunction("testinfo",  rTestInfo,  cTestInfo);
-    CBotProgram::AddFunction("thump",     rThump,     cNull);
-    CBotProgram::AddFunction("recycle",   rRecycle,   cNull);
-    CBotProgram::AddFunction("shield",    rShield,    cShield);
-    CBotProgram::AddFunction("fire",      rFire,      cFire);
-    CBotProgram::AddFunction("aim",       rAim,       cAim);
-    CBotProgram::AddFunction("motor",     rMotor,     cMotor);
-    CBotProgram::AddFunction("jet",       rJet,       cOneFloat);
-    CBotProgram::AddFunction("topo",      rTopo,      cTopo);
-    CBotProgram::AddFunction("message",   rMessage,   cMessage);
-    CBotProgram::AddFunction("cmdline",   rCmdline,   cOneFloat);
-    CBotProgram::AddFunction("ismovie",   rIsMovie,   cNull);
-    CBotProgram::AddFunction("errmode",   rErrMode,   cOneFloat);
-    CBotProgram::AddFunction("ipf",       rIPF,       cOneFloat);
-    CBotProgram::AddFunction("abstime",   rAbsTime,   cNull);
-    CBotProgram::AddFunction("pendown",   rPenDown,   cPenDown);
-    CBotProgram::AddFunction("penup",     rPenUp,     cNull);
-    CBotProgram::AddFunction("pencolor",  rPenColor,  cOneFloat);
-    CBotProgram::AddFunction("penwidth",  rPenWidth,  cOneFloat);
-    CBotProgram::AddFunction("factory",   rFactory,   cFactory);
-    CBotProgram::AddFunction("camerafocus", rCameraFocus, cCameraFocus);
-    CBotProgram::AddFunction("takeoff",   rTakeOff,   cOneObject);
-    CBotProgram::AddFunction("isbusy",    rIsBusy,    cIsBusy);
-    CBotProgram::AddFunction("research",  rResearch,  cResearch);
-    CBotProgram::AddFunction("destroy",   rDestroy,   cOneObject);
+    AddFunction("canbuild",        rCanBuild,        cOneIntReturnBool);
+    AddFunction("canresearch",     rCanResearch,     cOneIntReturnBool);
+    AddFunction("researched",      rResearched,      cOneIntReturnBool);
+    AddFunction("buildingenabled", rBuildingEnabled, cOneIntReturnBool);
 
-    SetFileAccessHandler(std::make_unique<CBotFileAccessHandlerColobot>());
+    AddFunction("build",           rBuild,           cOneInt);
+    AddFunction("flag",            rFlag,            cGrabDrop);
+    AddFunction("deflag",          rDeflag,          cNull);
+
+    AddFunction("retobject", rGetObject, cGetObject);
+    AddFunction("retobjectbyid", rGetObjectById, cGetObject);
+    AddFunction("delete",    rDelete,    cDelete);
+    AddFunction("search",    rSearch,    cSearch);
+    AddFunction("searchall", rSearchAll, cSearchAll);
+    AddFunction("radar",     rRadar,     cRadar);
+    AddFunction("radarall",  rRadarAll,  cRadarAll);
+    AddFunction("detect",    rDetect,    cDetect);
+    AddFunction("direction", rDirection, cDirection);
+    AddFunction("produce",   rProduce,   cProduce);
+    AddFunction("distance",  rDistance,  cDistance);
+    AddFunction("distance2d",rDistance2d,cDistance);
+    AddFunction("space",     rSpace,     cSpace);
+    AddFunction("flatspace", rFlatSpace, cFlatSpace);
+    AddFunction("flatground",rFlatGround,cFlatGround);
+    AddFunction("wait",      rWait,      cOneFloat);
+    AddFunction("move",      rMove,      cOneFloat);
+    AddFunction("turn",      rTurn,      cOneFloat);
+    AddFunction("goto",      rGoto,      cGoto);
+    AddFunction("grab",      rGrab,      cGrabDrop);
+    AddFunction("drop",      rDrop,      cGrabDrop);
+    AddFunction("sniff",     rSniff,     cNull);
+    AddFunction("receive",   rReceive,   cReceive);
+    AddFunction("send",      rSend,      cSend);
+    AddFunction("deleteinfo",rDeleteInfo,cDeleteInfo);
+    AddFunction("testinfo",  rTestInfo,  cTestInfo);
+    AddFunction("thump",     rThump,     cNull);
+    AddFunction("recycle",   rRecycle,   cNull);
+    AddFunction("shield",    rShield,    cShield);
+    AddFunction("fire",      rFire,      cFire);
+    AddFunction("aim",       rAim,       cAim);
+    AddFunction("motor",     rMotor,     cMotor);
+    AddFunction("jet",       rJet,       cOneFloat);
+    AddFunction("topo",      rTopo,      cTopo);
+    AddFunction("message",   rMessage,   cMessage);
+    AddFunction("cmdline",   rCmdline,   cOneFloat);
+    AddFunction("ismovie",   rIsMovie,   cNull);
+    AddFunction("errmode",   rErrMode,   cOneFloat);
+    AddFunction("ipf",       rIPF,       cOneFloat);
+    AddFunction("abstime",   rAbsTime,   cNull);
+    AddFunction("pendown",   rPenDown,   cPenDown);
+    AddFunction("penup",     rPenUp,     cNull);
+    AddFunction("pencolor",  rPenColor,  cOneFloat);
+    AddFunction("penwidth",  rPenWidth,  cOneFloat);
+    AddFunction("factory",   rFactory,   cFactory);
+    AddFunction("camerafocus", rCameraFocus, cCameraFocus);
+    AddFunction("takeoff",   rTakeOff,   cOneObject);
+    AddFunction("isbusy",    rIsBusy,    cIsBusy);
+    AddFunction("research",  rResearch,  cResearch);
+    AddFunction("destroy",   rDestroy,   cOneObject);
 }
 
 void CScriptFunctions::InitContextGlobal(const std::shared_ptr<CBot::CBotContext>& globalContext)
@@ -3700,6 +3737,8 @@ void CScriptFunctions::InitContextGlobal(const std::shared_ptr<CBot::CBotContext
 
     AddConstant("PolskiPortalColobota", 1337);
 
+    globalContext->SetFileAccessHandler(std::make_unique<CBotFileAccessHandlerColobot>());
+    globalContext->AddFunction("deletefile", rDeleteFile, cString);
 }
 
 // Updates the class Object.

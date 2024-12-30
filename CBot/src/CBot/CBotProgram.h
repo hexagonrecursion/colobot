@@ -212,72 +212,6 @@ public:
     void Stop();
 
     /**
-     * \brief Add a function that can be called from CBot
-     *
-     * To define an external function, proceed as follows:
-     *
-     * 1. Define a function for compilation
-     *
-     * This function should take a list of function arguments (types only, no values!) and a user-defined void* pointer (can be passed in Compile()) as parameters, and return CBotTypResult.
-     *
-     * Usually, name of this function is prefixed with "c".
-     *
-     * The function should iterate through the provided parameter list and verify that they match.<br>
-     * If they don't, then return CBotTypResult with an appropariate error code (see ::CBotError).<br>
-     * If they do, return CBotTypResult with the function's return type
-     *
-     * \code
-     * CBotTypResult cMessage(CBotVar* &var, void* user)
-     * {
-     *     if (var == nullptr) return CBotTypResult(CBotErrLowParam); // Not enough parameters
-     *     if (var->GetType() != CBotTypString) return CBotTypResult(CBotErrBadString); // String expected
-     *
-     *     var = var->GetNext(); // Get the next parameter
-     *     if (var != nullptr) return CBotTypResult(CBotErrOverParam); // Too many parameters
-     *
-     *     return CBotTypResult(CBotTypFloat); // This function returns float (it may depend on parameters given!)
-     * }
-     * \endcode
-     *
-     * 2. Define a function for execution
-     *
-     * This function should take:
-     * * a list of parameters
-     * * pointer to a result variable (a variable of type given at compilation time will be provided)
-     * * pointer to an exception variable
-     * * user-defined pointer (can be passed in Run())
-     *
-     * This function returns true if execution of this function is finished, or false to suspend the program and call this function again on next Run() cycle.
-     *
-     * Usually, execution functions are prefixed with "r".
-     *
-     * \code
-     * bool rMessage(CBotVar* var, CBotVar* result, int& exception, void* user)
-     * {
-     *     std::string message = var->GetValString();
-     *     std::cout << message << std::endl;
-     *     return true; // Execution finished
-     * }
-     * \endcode
-     *
-     * 3. Call AddFunction() to register the function in the CBot engine
-     *
-     * \code
-     * AddFunction("message", rMessage, cMessage);
-     * \endcode
-     *
-     * For more sophisticated examples, see the Colobot source code, mainly the src/script/scriptfunc.cpp file
-     *
-     * \param name Name of the function
-     * \param rExec Execution function
-     * \param rCompile Compilation function
-     * \return true
-     */
-    static bool AddFunction(const std::string& name,
-                            bool rExec(CBotVar* pVar, CBotVar* pResult, int& Exception, void* pUser),
-                            CBotTypResult rCompile(CBotVar*& pVar, void* pUser));
-
-    /**
      * \brief Save the current execution status into a file
      * \param ostr Output stream
      * \return true on success, false on write error
@@ -329,14 +263,7 @@ public:
      */
     bool ClassExists(std::string name);
 
-    /**
-     * \brief Returns static list of all registered external calls
-     */
-    static const std::unique_ptr<CBotExternalCallList>& GetExternalCalls();
-
 private:
-    //! All external calls
-    static std::unique_ptr<CBotExternalCallList> m_externalCalls;
     //! All user-defined functions
     std::list<CBotFunction*> m_functions{};
     //! The entry point function
