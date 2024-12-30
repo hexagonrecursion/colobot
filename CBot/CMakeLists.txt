@@ -59,6 +59,8 @@ target_sources(CBot PRIVATE
     src/CBot/CBotInstr/CBotDo.h
     src/CBot/CBotInstr/CBotEmpty.cpp
     src/CBot/CBotInstr/CBotEmpty.h
+    src/CBot/CBotInstr/CBotExprConstant.cpp
+    src/CBot/CBotInstr/CBotExprConstant.h
     src/CBot/CBotInstr/CBotExprLitBool.cpp
     src/CBot/CBotInstr/CBotExprLitBool.h
     src/CBot/CBotInstr/CBotExprLitChar.cpp
@@ -168,6 +170,9 @@ target_sources(CBot PRIVATE
     src/CBot/context/cbot_user_pointer.h
     src/CBot/context/context_observer.h
     src/CBot/context/context_owner.h
+    src/CBot/context/list_constant.cpp
+    src/CBot/context/list_constant.h
+    src/CBot/context/list_constant_interface.h
     src/CBot/stdlib/Compilation.cpp
     src/CBot/stdlib/Compilation.h
     src/CBot/stdlib/FileFunctions.cpp

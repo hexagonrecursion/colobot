@@ -437,6 +437,7 @@ public:
     operator signed char();
     operator short();
     operator uint32_t();
+    operator char32_t();
     operator int();
     operator long();
     operator float();
@@ -446,6 +447,7 @@ public:
     void operator=(signed char x);
     void operator=(short x);
     void operator=(uint32_t x);
+    void operator=(char32_t x);
     void operator=(int x);
     void operator=(long x);
     void operator=(float x);

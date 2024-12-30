@@ -19,6 +19,8 @@
 
 #pragma once
 
+#include "CBot/context/list_constant_interface.h"
+
 #include <memory>
 #include <unordered_map>
 
@@ -30,7 +32,8 @@ class CBotVar;
 using CBotContextSPtr = std::shared_ptr<CBot::CBotContext>;
 
 class CBotContext :
-    public std::enable_shared_from_this<CBotContext>
+    public std::enable_shared_from_this<CBotContext>,
+    public CBotListConstantInterface
 {
 private:
     CBotContext();
@@ -59,6 +62,10 @@ public:
     CBotVar* FindInstance(long pos) const;
     void ClearInstanceList();
     void DeclareInstance(long pos, CBotVar* var);
+
+    bool IsDefinedConstant(const std::string& name) const override;
+
+    const CBotVarUPtr& GetDefinedConstant(const std::string& name) override;
 
 private:
     CBotContextSPtr m_outerContext;

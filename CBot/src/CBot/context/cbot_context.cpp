@@ -19,12 +19,16 @@
 
 #include "CBot/context/cbot_context.h"
 
+#include "CBot/stdlib/stdlib_public.h"
+
 namespace CBot
 {
 
 CBotContextSPtr CBotContext::CreateGlobalContext()
 {
     auto newContext = std::shared_ptr<CBotContext>(new CBotContext);
+    InitErrorConstants(newContext);
+    InitMathLibrary(newContext);
 
     return newContext;
 }
@@ -32,6 +36,8 @@ CBotContextSPtr CBotContext::CreateGlobalContext()
 CBotContextSPtr CBotContext::Create(const CBotContextSPtr& outer)
 {
     auto newContext = std::shared_ptr<CBotContext>(new CBotContext(outer));
+    InitErrorConstants(newContext);
+    InitMathLibrary(newContext);
 
     return newContext;
 }
@@ -76,6 +82,20 @@ long CBotContext::FindInstance(CBotVar* var) const
     for (const auto& item : m_globalData->m_instances)
         if (item.second == var) return item.first;
     return -1;
+}
+
+bool CBotContext::IsDefinedConstant(const std::string& name) const
+{
+    if (!m_listConstant.IsDefinedConstant(name))
+        return m_outerContext && m_outerContext->IsDefinedConstant(name);
+    return true;
+}
+
+const CBotVarUPtr& CBotContext::GetDefinedConstant(const std::string& name)
+{
+    if (!m_outerContext || m_listConstant.IsDefinedConstant(name))
+        return m_listConstant.GetDefinedConstant(name);
+    return m_outerContext->GetDefinedConstant(name);
 }
 
 } // namespace CBot

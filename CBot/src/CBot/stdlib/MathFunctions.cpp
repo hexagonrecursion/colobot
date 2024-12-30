@@ -21,6 +21,8 @@
 
 #include "CBot/CBot.h"
 
+#include "CBot/context/cbot_context.h"
+
 #include <cmath>
 #include <cstdlib>
 
@@ -250,6 +252,29 @@ bool rIsNAN(CBotVar* var, CBotVar* result, int& exception, void* user)
 }
 
 } // namespace
+
+void InitErrorConstants(const std::shared_ptr<CBotContext>& context)
+{
+    context->AddConstant<int>("CBotErrZeroDiv",    CBotErrZeroDiv);    // division by zero
+    context->AddConstant<int>("CBotErrNotInit",    CBotErrNotInit);    // uninitialized variable
+    context->AddConstant<int>("CBotErrBadThrow",   CBotErrBadThrow);   // throw a negative value
+    context->AddConstant<int>("CBotErrNoRetVal",   CBotErrNoRetVal);   // function did not return results
+    context->AddConstant<int>("CBotErrNoRun",      CBotErrNoRun);      // active Run () without a function // TODO: Is this actually a runtime error?
+    context->AddConstant<int>("CBotErrUndefFunc",  CBotErrUndefFunc);  // Calling a function that no longer exists
+    context->AddConstant<int>("CBotErrNotClass",   CBotErrNotClass);   // Class no longer exists
+    context->AddConstant<int>("CBotErrNull",       CBotErrNull);       // Attempted to use a null pointer
+    context->AddConstant<int>("CBotErrNan",        CBotErrNan);        // Can't do operations on nan
+    context->AddConstant<int>("CBotErrOutArray",   CBotErrOutArray);   // Attempted access out of bounds of an array
+    context->AddConstant<int>("CBotErrStackOver",  CBotErrStackOver);  // Stack overflow
+    context->AddConstant<int>("CBotErrDeletedPtr", CBotErrDeletedPtr); // Attempted to use deleted object
+
+    // TODO: Check the other CBotError runtime codes to see if they should be included here too...
+}
+
+void InitMathLibrary(const std::shared_ptr<CBotContext>& context)
+{
+    context->AddConstant<float>("PI", PI);
+}
 
 void InitMathFunctions()
 {

@@ -27,6 +27,8 @@
 
 #include "CBot/CBotInstr/CBotFunction.h"
 
+#include "CBot/context/cbot_context.h"
+
 #include "CBot/stdlib/stdlib.h"
 
 #include <algorithm>
@@ -74,8 +76,13 @@ bool CBotProgram::Compile(const std::string& program, std::vector<std::string>& 
     externFunctions.clear();
     m_error = CBotNoErr;
 
+    if ( !m_context )
+    {
+        m_context = CBotContext::Create(nullptr);
+    }
+
     // Step 1. Process the code into tokens
-    auto tokens = CBotToken::CompileTokens(program);
+    auto tokens = CBotToken::CompileTokens(program, *m_context);
     if (tokens == nullptr) return false;
 
     auto pStack = std::unique_ptr<CBotCStack>(new CBotCStack(nullptr));
@@ -320,13 +327,6 @@ bool CBotProgram::AddFunction(const std::string& name,
     return m_externalCalls->AddFunction(name, std::unique_ptr<CBotExternalCall>(new CBotExternalCallDefault(rExec, rCompile)));
 }
 
-bool CBotProgram::DefineNum(const std::string& name, long val)
-{
-    CBotToken::DefineNum(name, val);
-    return true;
-}
-
-////////////////////////////////////////////////////////////////////////////////
 bool CBotProgram::SaveState(std::ostream &ostr)
 {
     if (!WriteLong(ostr, CBOTVERSION)) return false;
@@ -393,19 +393,6 @@ void CBotProgram::Init()
 {
     m_externalCalls.reset(new CBotExternalCallList);
 
-    CBotProgram::DefineNum("CBotErrZeroDiv",    CBotErrZeroDiv);     // division by zero
-    CBotProgram::DefineNum("CBotErrNotInit",    CBotErrNotInit);     // uninitialized variable
-    CBotProgram::DefineNum("CBotErrBadThrow",   CBotErrBadThrow);    // throw a negative value
-    CBotProgram::DefineNum("CBotErrNoRetVal",   CBotErrNoRetVal);    // function did not return results
-    CBotProgram::DefineNum("CBotErrNoRun",      CBotErrNoRun);       // active Run () without a function // TODO: Is this actually a runtime error?
-    CBotProgram::DefineNum("CBotErrUndefFunc",  CBotErrUndefFunc);   // Calling a function that no longer exists
-    CBotProgram::DefineNum("CBotErrNotClass",   CBotErrNotClass);    // Class no longer exists
-    CBotProgram::DefineNum("CBotErrNull",       CBotErrNull);        // Attempted to use a null pointer
-    CBotProgram::DefineNum("CBotErrNan",        CBotErrNan);         // Can't do operations on nan
-    CBotProgram::DefineNum("CBotErrOutArray",   CBotErrOutArray);    // Attempted access out of bounds of an array
-    CBotProgram::DefineNum("CBotErrStackOver",  CBotErrStackOver);   // Stack overflow
-    CBotProgram::DefineNum("CBotErrDeletedPtr", CBotErrDeletedPtr);  // Attempted to use deleted object
-
     CBotProgram::AddFunction("sizeof", rSizeOf, cSizeOf);
 
     InitStringFunctions();
@@ -415,7 +402,6 @@ void CBotProgram::Init()
 
 void CBotProgram::Free()
 {
-    CBotToken::ClearDefineNum();
     m_externalCalls->Clear();
     CBotClass::ClearPublic();
     m_externalCalls.reset();

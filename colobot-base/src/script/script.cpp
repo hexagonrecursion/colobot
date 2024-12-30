@@ -164,7 +164,9 @@ bool CScript::CheckToken()
     std::map<std::string, int> cursor1;
     std::map<std::string, int> cursor2;
 
-    auto tokens = CBot::CBotToken::CompileTokens(m_script);
+    const auto& context = m_main->GetCBotContextGlobal();
+
+    auto tokens = CBot::CBotToken::CompileTokens(m_script, *context);
     CBot::CBotToken* bt = tokens.get();
     while ( bt != nullptr )
     {
@@ -654,7 +656,9 @@ void CScript::ColorizeScript(Ui::CEdit* edit, int rangeStart, int rangeEnd)
     std::string text = edit->GetText();
     text = text.substr(rangeStart, rangeEnd-rangeStart);
 
-    auto tokens = CBot::CBotToken::CompileTokens(text.c_str());
+    const auto& context = CRobotMain::GetInstancePointer()->GetCBotContextGlobal();
+
+    auto tokens = CBot::CBotToken::CompileTokens(text.c_str(), *context);
     CBot::CBotToken* bt = tokens.get();
     while ( bt != nullptr )
     {

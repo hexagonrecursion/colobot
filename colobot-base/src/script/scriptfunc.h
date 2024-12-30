@@ -35,6 +35,7 @@ class CScript;
 class CExchangePost;
 namespace CBot
 {
+class CBotContext;
 class CBotTypResult;
 class CBotVar;
 }
@@ -44,6 +45,7 @@ class CScriptFunctions
 {
 public:
     static void Init();
+    static void InitContextGlobal(const std::shared_ptr<CBot::CBotContext>& globalContext);
 
     static CBot::CBotVar* CreateObjectVar(CObject* obj);
     static void DestroyObjectVar(CBot::CBotVar* botVar, bool permanent);

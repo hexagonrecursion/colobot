@@ -3496,93 +3496,6 @@ void CScriptFunctions::Init()
 {
     CBotProgram::Init();
 
-    for (int i = 0; i < OBJECT_MAX; i++)
-    {
-        ObjectType type = static_cast<ObjectType>(i);
-        const char* token = GetObjectName(type);
-        if (token[0] != 0)
-            CBotProgram::DefineNum(token, type);
-
-        token = GetObjectAlias(type);
-        if (token[0] != 0)
-            CBotProgram::DefineNum(token, type);
-    }
-    CBotProgram::DefineNum("Any", OBJECT_NULL);
-
-    for (int i = 0; i < static_cast<int>(TraceColor::Max); i++)
-    {
-        TraceColor color = static_cast<TraceColor>(i);
-        CBotProgram::DefineNum(TraceColorName(color).c_str(), static_cast<int>(color));
-    }
-
-    CBotProgram::DefineNum("InFront",    TMA_FFRONT);
-    CBotProgram::DefineNum("Behind",     TMA_FBACK);
-    CBotProgram::DefineNum("EnergyCell", TMA_POWER);
-
-    CBotProgram::DefineNum("DisplayError",   Ui::TT_ERROR);
-    CBotProgram::DefineNum("DisplayWarning", Ui::TT_WARNING);
-    CBotProgram::DefineNum("DisplayInfo",    Ui::TT_INFO);
-    CBotProgram::DefineNum("DisplayMessage", Ui::TT_MESSAGE);
-
-    CBotProgram::DefineNum("FilterNone",        FILTER_NONE);
-    CBotProgram::DefineNum("FilterOnlyLanding", FILTER_ONLYLANDING);
-    CBotProgram::DefineNum("FilterOnlyFlying",  FILTER_ONLYFLYING);
-    CBotProgram::DefineNum("FilterFriendly",    FILTER_FRIENDLY);
-    CBotProgram::DefineNum("FilterEnemy",       FILTER_ENEMY);
-    CBotProgram::DefineNum("FilterNeutral",     FILTER_NEUTRAL);
-
-    CBotProgram::DefineNum("DestructionNone",           static_cast<int>(DestructionType::NoEffect));
-    CBotProgram::DefineNum("DestructionExplosion",      static_cast<int>(DestructionType::Explosion));
-    CBotProgram::DefineNum("DestructionExplosionWater", static_cast<int>(DestructionType::ExplosionWater));
-    CBotProgram::DefineNum("DestructionBurn",           static_cast<int>(DestructionType::Burn));
-    CBotProgram::DefineNum("DestructionDrowned",        static_cast<int>(DestructionType::Drowned));
-
-    CBotProgram::DefineNum("ResultNotEnded",  ERR_MISSION_NOTERM);
-    CBotProgram::DefineNum("ResultLost",      INFO_LOST);
-    CBotProgram::DefineNum("ResultLostQuick", INFO_LOSTq);
-    CBotProgram::DefineNum("ResultWin",       ERR_OK);
-
-    // NOTE: The Build___ constants are for use only with getbuild() and setbuild() for MissionController, not for normal players
-    CBotProgram::DefineNum("BuildBotFactory",       BUILD_FACTORY);
-    CBotProgram::DefineNum("BuildDerrick",          BUILD_DERRICK);
-    CBotProgram::DefineNum("BuildConverter",        BUILD_CONVERT);
-    CBotProgram::DefineNum("BuildRadarStation",     BUILD_RADAR);
-    CBotProgram::DefineNum("BuildPowerPlant",       BUILD_ENERGY);
-    CBotProgram::DefineNum("BuildNuclearPlant",     BUILD_NUCLEAR);
-    CBotProgram::DefineNum("BuildPowerStation",     BUILD_STATION);
-    CBotProgram::DefineNum("BuildRepairCenter",     BUILD_REPAIR);
-    CBotProgram::DefineNum("BuildDefenseTower",     BUILD_TOWER);
-    CBotProgram::DefineNum("BuildResearchCenter",   BUILD_RESEARCH);
-    CBotProgram::DefineNum("BuildAutoLab",          BUILD_LABO);
-    CBotProgram::DefineNum("BuildPowerCaptor",      BUILD_PARA);
-    CBotProgram::DefineNum("BuildExchangePost",     BUILD_INFO);
-    CBotProgram::DefineNum("BuildVault",            BUILD_SAFE);
-    CBotProgram::DefineNum("BuildDestroyer",        BUILD_DESTROYER);
-    CBotProgram::DefineNum("FlatGround",            BUILD_GFLAT);
-    CBotProgram::DefineNum("UseFlags",              BUILD_FLAG);
-
-    CBotProgram::DefineNum("ResearchTracked",       RESEARCH_TANK);
-    CBotProgram::DefineNum("ResearchWinged",        RESEARCH_FLY);
-    CBotProgram::DefineNum("ResearchShooter",       RESEARCH_CANON);
-    CBotProgram::DefineNum("ResearchDefenseTower",  RESEARCH_TOWER);
-    CBotProgram::DefineNum("ResearchNuclearPlant",  RESEARCH_ATOMIC);
-    CBotProgram::DefineNum("ResearchThumper",       RESEARCH_THUMP);
-    CBotProgram::DefineNum("ResearchShielder",      RESEARCH_SHIELD);
-    CBotProgram::DefineNum("ResearchPhazerShooter", RESEARCH_PHAZER);
-    CBotProgram::DefineNum("ResearchLegged",        RESEARCH_iPAW);
-    CBotProgram::DefineNum("ResearchOrgaShooter",   RESEARCH_iGUN);
-    CBotProgram::DefineNum("ResearchRecycler",      RESEARCH_RECYCLER);
-    CBotProgram::DefineNum("ResearchSubber",        RESEARCH_SUBM);
-    CBotProgram::DefineNum("ResearchSniffer",       RESEARCH_SNIFFER);
-    CBotProgram::DefineNum("ResearchBuilder",       RESEARCH_BUILDER);
-    CBotProgram::DefineNum("ResearchTarget",        RESEARCH_TARGET);
-
-    CBotProgram::DefineNum("CameraDefault",         static_cast<int>(CameraView::DEFAULT));
-    CBotProgram::DefineNum("CameraOnboard",         static_cast<int>(CameraView::ONBOARD));
-    CBotProgram::DefineNum("CameraBack",            static_cast<int>(CameraView::BACK));
-
-    CBotProgram::DefineNum("PolskiPortalColobota", 1337);
-
     CBotClass* bc;
 
     const auto& context = CRobotMain::GetInstancePointer()->GetCBotContextGlobal();
@@ -3692,6 +3605,102 @@ void CScriptFunctions::Init()
     SetFileAccessHandler(std::make_unique<CBotFileAccessHandlerColobot>());
 }
 
+void CScriptFunctions::InitContextGlobal(const std::shared_ptr<CBot::CBotContext>& globalContext)
+{
+    auto AddConstant = [&globalContext](const std::string& name, int num)
+    {
+        if (!globalContext->AddConstant<int>(name, num))
+            GetLogger()->Error("Constant '%%' redefined", name);
+    };
+
+    for (int i = 0; i < OBJECT_MAX; i++)
+    {
+        ObjectType type = static_cast<ObjectType>(i);
+        const char* token = GetObjectName(type);
+        if (token[0] != 0)
+            AddConstant(token, type);
+
+        token = GetObjectAlias(type);
+        if (token[0] != 0)
+            AddConstant(token, type);
+    }
+    AddConstant("Any", OBJECT_NULL);
+
+    for (int i = 0; i < static_cast<int>(TraceColor::Max); i++)
+    {
+        TraceColor color = static_cast<TraceColor>(i);
+        AddConstant(TraceColorName(color), static_cast<int>(color));
+    }
+
+    AddConstant("InFront",    TMA_FFRONT);
+    AddConstant("Behind",     TMA_FBACK);
+    AddConstant("EnergyCell", TMA_POWER);
+
+    AddConstant("DisplayError",         Ui::TT_ERROR);
+    AddConstant("DisplayWarning",       Ui::TT_WARNING);
+    AddConstant("DisplayInfo",          Ui::TT_INFO);
+    AddConstant("DisplayMessage",       Ui::TT_MESSAGE);
+
+    AddConstant("FilterNone",               FILTER_NONE);
+    AddConstant("FilterOnlyLanding",        FILTER_ONLYLANDING);
+    AddConstant("FilterOnlyFlying",         FILTER_ONLYFLYING);
+    AddConstant("FilterFriendly",           FILTER_FRIENDLY);
+    AddConstant("FilterEnemy",              FILTER_ENEMY);
+    AddConstant("FilterNeutral",            FILTER_NEUTRAL);
+
+    AddConstant("DestructionNone",           static_cast<int>(DestructionType::NoEffect));
+    AddConstant("DestructionExplosion",      static_cast<int>(DestructionType::Explosion));
+    AddConstant("DestructionExplosionWater", static_cast<int>(DestructionType::ExplosionWater));
+    AddConstant("DestructionBurn",           static_cast<int>(DestructionType::Burn));
+    AddConstant("DestructionDrowned",        static_cast<int>(DestructionType::Drowned));
+
+    AddConstant("ResultNotEnded",       ERR_MISSION_NOTERM);
+    AddConstant("ResultLost",           INFO_LOST);
+    AddConstant("ResultLostQuick",      INFO_LOSTq);
+    AddConstant("ResultWin",            ERR_OK);
+
+    // NOTE: The Build___ constants are for use only with getbuild() and setbuild() for MissionController, not for normal players
+    AddConstant("BuildBotFactory",              BUILD_FACTORY);
+    AddConstant("BuildDerrick",                 BUILD_DERRICK);
+    AddConstant("BuildConverter",               BUILD_CONVERT);
+    AddConstant("BuildRadarStation",            BUILD_RADAR);
+    AddConstant("BuildPowerPlant",              BUILD_ENERGY);
+    AddConstant("BuildNuclearPlant",            BUILD_NUCLEAR);
+    AddConstant("BuildPowerStation",            BUILD_STATION);
+    AddConstant("BuildRepairCenter",            BUILD_REPAIR);
+    AddConstant("BuildDefenseTower",            BUILD_TOWER);
+    AddConstant("BuildResearchCenter",          BUILD_RESEARCH);
+    AddConstant("BuildAutoLab",                 BUILD_LABO);
+    AddConstant("BuildPowerCaptor",             BUILD_PARA);
+    AddConstant("BuildExchangePost",            BUILD_INFO);
+    AddConstant("BuildVault",                   BUILD_SAFE);
+    AddConstant("BuildDestroyer",               BUILD_DESTROYER);
+    AddConstant("FlatGround",                   BUILD_GFLAT);
+    AddConstant("UseFlags",                     BUILD_FLAG);
+
+    AddConstant("ResearchTracked",              RESEARCH_TANK);
+    AddConstant("ResearchWinged",               RESEARCH_FLY);
+    AddConstant("ResearchShooter",              RESEARCH_CANON);
+    AddConstant("ResearchDefenseTower",         RESEARCH_TOWER);
+    AddConstant("ResearchNuclearPlant",         RESEARCH_ATOMIC);
+    AddConstant("ResearchThumper",              RESEARCH_THUMP);
+    AddConstant("ResearchShielder",             RESEARCH_SHIELD);
+    AddConstant("ResearchPhazerShooter",        RESEARCH_PHAZER);
+    AddConstant("ResearchLegged",               RESEARCH_iPAW);
+    AddConstant("ResearchOrgaShooter",          RESEARCH_iGUN);
+    AddConstant("ResearchRecycler",             RESEARCH_RECYCLER);
+    AddConstant("ResearchSubber",               RESEARCH_SUBM);
+    AddConstant("ResearchSniffer",              RESEARCH_SNIFFER);
+    AddConstant("ResearchBuilder",              RESEARCH_BUILDER);
+    AddConstant("ResearchTarget",               RESEARCH_TARGET);
+
+    AddConstant("CameraDefault", static_cast<int>(CameraView::DEFAULT));
+    AddConstant("CameraOnboard", static_cast<int>(CameraView::ONBOARD));
+    AddConstant("CameraBack",    static_cast<int>(CameraView::BACK));
+
+    AddConstant("PolskiPortalColobota", 1337);
+
+}
 
 // Updates the class Object.
 

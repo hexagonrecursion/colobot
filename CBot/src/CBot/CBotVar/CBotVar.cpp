@@ -849,6 +849,11 @@ CBotVar::operator uint32_t()
     return GetValChar();
 }
 
+CBotVar::operator char32_t()
+{
+    return GetValChar();
+}
+
 CBotVar::operator int()
 {
     return GetValInt();
@@ -890,6 +895,11 @@ void CBotVar::operator=(short x)
 }
 
 void CBotVar::operator=(uint32_t x)
+{
+    SetValChar(x);
+}
+
+void CBotVar::operator=(char32_t x)
 {
     SetValChar(x);
 }

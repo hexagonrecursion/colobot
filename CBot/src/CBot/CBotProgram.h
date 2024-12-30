@@ -48,9 +48,7 @@ class CBotExternalCallList;
  * * CBotContext
  *
  * Afterwards, you can start defining custom functions, constants and classes. See:
- * * CBotProgram::AddFunction()
- * * CBotProgram::DefineNum()
- * * CBotClass::Create()
+ * * CBotContext::AddConstant()
  *
  * Next, compile and run programs.
  * * SetContext()
@@ -278,12 +276,6 @@ public:
     static bool AddFunction(const std::string& name,
                             bool rExec(CBotVar* pVar, CBotVar* pResult, int& Exception, void* pUser),
                             CBotTypResult rCompile(CBotVar*& pVar, void* pUser));
-
-    /**
-     * \copydoc CBotToken::DefineNum()
-     * \see CBotToken::DefineNum()
-     */
-    static bool DefineNum(const std::string& name, long val);
 
     /**
      * \brief Save the current execution status into a file

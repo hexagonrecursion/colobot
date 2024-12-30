@@ -20,6 +20,8 @@
 #include "CBot/CBotToken.h"
 #include "CBot/CBotProgram.h"
 
+#include "CBot/context/cbot_context.h"
+
 #include <gtest/gtest.h>
 
 using namespace CBot;
@@ -46,7 +48,8 @@ protected:
 
     void ExecuteTest(const std::string& code, std::vector<TokenTest> data)
     {
-        auto tokens = CBotToken::CompileTokens(code);
+        auto context = CBotContext::CreateGlobalContext();
+        auto tokens = CBotToken::CompileTokens(code, *context);
         ASSERT_TRUE(tokens != nullptr);
         CBotToken* token = tokens.get()->GetNext(); // TODO: why do we always have to skip the first one :/
         ASSERT_TRUE(token != nullptr);

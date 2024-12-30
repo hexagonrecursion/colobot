@@ -280,6 +280,8 @@ CRobotMain::CRobotMain()
     SelectPlayer(CPlayerProfile::GetLastName());
 
     m_globalCBotContext = CBot::CBotContext::CreateGlobalContext();
+    CScriptFunctions::InitContextGlobal(m_globalCBotContext);
+
     CScriptFunctions::Init();
 }
 
@@ -6248,6 +6250,7 @@ const std::shared_ptr<CBot::CBotContext>& CRobotMain::GetCBotContextGlobal()
     if ( !m_globalCBotContext )
     {
         m_globalCBotContext = CBot::CBotContext::CreateGlobalContext();
+        CScriptFunctions::InitContextGlobal(m_globalCBotContext);
     }
     return m_globalCBotContext;
 }

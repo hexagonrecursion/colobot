@@ -29,6 +29,11 @@
 namespace CBot
 {
 
+class CBotContext;
+
+void InitErrorConstants(const std::shared_ptr<CBotContext>& context);
+void InitMathLibrary(const std::shared_ptr<CBotContext>& context);
+
 class CBotFile
 {
 public:
