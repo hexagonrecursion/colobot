@@ -52,9 +52,6 @@ int main(int argc, char* argv[])
         code += "\n";
     }
 
-    // Initialize the CBot engine
-    CBotProgram::Init();
-
     // Compile the program
     std::vector<std::string> externFunctions;
     std::unique_ptr<CBotProgram> program{new CBotProgram(nullptr)};
@@ -80,9 +77,6 @@ int main(int argc, char* argv[])
         CBotDebug::DumpCompiledProgram(program.get());
         program->Stop();
     }
-
-    // Free the engine
-    CBotProgram::Free();
 
     return 0;
 }
