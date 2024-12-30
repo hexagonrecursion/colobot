@@ -145,7 +145,7 @@ CBotVarSPtr CBotVarPointer::GetPointer()
 
 bool CBotVarPointer::PointerIsUnique() const
 {
-    return m_pVarClass.unique();
+    return m_pVarClass.use_count() == 1;
 }
 
 void CBotVarPointer::SetClass(CBotClass* pClass)

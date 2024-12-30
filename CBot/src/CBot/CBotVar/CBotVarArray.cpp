@@ -93,7 +93,7 @@ CBotVarSPtr CBotVarArray::GetPointer()
 
 bool CBotVarArray::PointerIsUnique() const
 {
-    return m_pInstance.unique();
+    return m_pInstance.use_count() == 1;
 }
 
 ////////////////////////////////////////////////////////////////////////////////
