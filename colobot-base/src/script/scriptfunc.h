@@ -44,7 +44,6 @@ class CBotVar;
 class CScriptFunctions
 {
 public:
-    static void Init();
     static void InitFunctions(const std::shared_ptr<CBot::CBotContext>& context);
     static void InitContextGlobal(const std::shared_ptr<CBot::CBotContext>& globalContext);
 
@@ -161,9 +160,6 @@ private:
 
     static CBot::CBotTypResult cClassNull(CBot::CBotVar* thisclass, CBot::CBotVar* &var);
     static CBot::CBotTypResult cClassOneFloat(CBot::CBotVar* thisclass, CBot::CBotVar* &var);
-
-    static CBot::CBotTypResult cPointConstructor(CBot::CBotVar* pThis, CBot::CBotVar* &var);
-    static bool rPointConstructor(CBot::CBotVar* pThis, CBot::CBotVar* var, CBot::CBotVar* pResult, int& Exception, void* user);
 
     static void uObject(CBot::CBotVar* botThis, void* user);
 

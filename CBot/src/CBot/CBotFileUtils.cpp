@@ -22,6 +22,8 @@
 #include "CBot/CBotClass.h"
 #include "CBot/CBotEnums.h"
 
+#include "CBot/context/cbot_context.h"
+
 namespace CBot
 {
 
@@ -320,9 +322,12 @@ bool ReadType(std::istream &istr, CBotTypResult &type, CBotContext& context)
 
     if ( type.Eq( CBotTypClass ) )
     {
-        std::string  s;
-        if (!ReadString(istr, s)) return false;
-        type = CBotTypResult( w, s );
+        std::string className;
+        if (!ReadString(istr, className)) return false;
+        if (className.empty()) { assert(false); return false; }
+        auto pClass = context.FindClass(className);
+        if (pClass == nullptr) { assert(false); return false; }
+        type = CBotTypResult(w, pClass);
     }
 
     if ( type.Eq( CBotTypArrayPointer ) ||
@@ -339,7 +344,10 @@ bool ReadType(std::istream &istr, CBotTypResult &type, CBotContext& context)
     {
         std::string className;
         if (!ReadString(istr, className)) return false;
-        type = CBotTypResult(w, className);
+        if (className.empty()) { assert(false); return false; }
+        auto pClass = context.FindClass(className);
+        if (pClass == nullptr) { assert(false); return false; }
+        type = CBotTypResult(w, pClass);
     }
     return true;
 }

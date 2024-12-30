@@ -34,7 +34,6 @@ public:
     CBotUT()
     {
         m_context = CBot::CBotContext::CreateGlobalContext();
-        CBotProgram::Init();
 
         m_context->AddFunction("FAIL", rFail, cFail);
         m_context->AddFunction("ASSERT", rAssert, cAssert);
@@ -42,7 +41,6 @@ public:
 
     ~CBotUT()
     {
-        CBotProgram::Free();
     }
 
 private:
@@ -213,15 +211,15 @@ private:
         if (!program->SaveState(sstr))
             throw CBotTestFail("CBotProgram::SaveState Failed");
 
-        if (!CBotClass::SaveStaticState(sstr, *context))
-            throw CBotTestFail("CBotClass::SaveStaticState Failed");
+        if (!context->WriteStaticState(sstr))
+            throw CBotTestFail("CBotContext::WriteStaticState Failed");
         // restore
         context->ClearInstanceList();
         if (!program->RestoreState(sstr))
             throw CBotTestFail("CBotProgram::RestoreState Failed");
 
-        if (!CBotClass::RestoreStaticState(sstr, *context))
-            throw CBotTestFail("CBotClass::RestoreStaticState Failed");
+        if (!CBotContext::ReadStaticState(sstr, *context))
+            throw CBotTestFail("CBotContext::ReadStaticState Failed");
     }
 
 protected:

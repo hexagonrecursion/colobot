@@ -31,12 +31,10 @@ class CBotTokenUT : public testing::Test
 public:
     CBotTokenUT()
     {
-        CBotProgram::Init();
     }
 
     ~CBotTokenUT()
     {
-        CBotProgram::Free();
     }
 
 protected:

@@ -17,6 +17,8 @@
  * along with this program. If not, see http://gnu.org/licenses
  */
 
+#include "CBot/CBotProgram.h"
+
 #include "CBot/CBotVar/CBotVar.h"
 
 #include "CBot/CBotExternalCall.h"
@@ -52,7 +54,7 @@ CBotProgram::~CBotProgram()
         c->Purge();
     m_classes.clear();
 
-    CBotClass::FreeLock(this);
+    m_context->FreeLock(this);
 
     for (CBotFunction* f : m_functions) delete f;
     m_functions.clear();
@@ -212,7 +214,7 @@ bool CBotProgram::Run(void* pUser, int timer)
         m_error = m_stack->GetError(m_errorStart, m_errorEnd);
         m_stack->Delete();
         m_stack = nullptr;
-        CBotClass::FreeLock(this);
+        m_context->FreeLock(this);
         m_entryPoint = nullptr;
         return true;                                // execution is finished!
     }
@@ -228,7 +230,7 @@ void CBotProgram::Stop()
         m_stack = nullptr;
     }
     m_entryPoint = nullptr;
-    CBotClass::FreeLock(this);
+    m_context->FreeLock(this);
 }
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -351,16 +353,6 @@ bool CBotProgram::RestoreState(std::istream &istr)
 int CBotProgram::GetVersion()
 {
     return  CBOTVERSION;
-}
-
-void CBotProgram::Init()
-{
-    InitFileFunctions();
-}
-
-void CBotProgram::Free()
-{
-    CBotClass::ClearPublic();
 }
 
 } // namespace CBot

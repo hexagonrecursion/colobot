@@ -41,19 +41,6 @@ CBotTypResult::CBotTypResult(int type)
     assert( type != CBotTypClass );
 }
 
-CBotTypResult::CBotTypResult(int type, const std::string& name)
-    : m_type(type)
-{
-    if ( type == CBotTypPointer ||
-         type == CBotTypClass   ||
-         type == CBotTypIntrinsic )
-    {
-        m_class = CBotClass::Find(name);
-        assert(m_class != nullptr);
-        if (m_class && m_class->IsIntrinsic() ) m_type = CBotTypIntrinsic;
-    }
-}
-
 CBotTypResult::CBotTypResult(int type, CBotClass* pClass)
     : m_type(type),
       m_class(pClass)

@@ -31,6 +31,7 @@
 #include "CBot/CBotCStack.h"
 #include "CBot/CBotClass.h"
 #include "CBot/CBotDefParam.h"
+#include "CBot/CBotProgram.h"
 #include "CBot/CBotUtils.h"
 
 #include "CBot/CBotVar/CBotVar.h"
@@ -184,7 +185,7 @@ CBotFunction* CBotFunction::Compile(CBotToken* &p, CBotCStack* pStack, CBotFunct
             {
                 func->m_MasterClass = pp->GetString();
                 func->m_classToken = *pp;
-                CBotClass* pClass = CBotClass::Find(pp);
+                auto pClass = pStack->FindClass(func->m_MasterClass);
                 if ( pClass == nullptr )
                 {
                     pStk->SetError(CBotErrNoClassName, pp);
@@ -219,7 +220,7 @@ CBotFunction* CBotFunction::Compile(CBotToken* &p, CBotCStack* pStack, CBotFunct
 
                 if (!func->m_MasterClass.empty())
                 {
-                    CBotClass* pClass = CBotClass::Find(func->m_MasterClass);
+                    auto pClass = pStack->FindClass(func->m_MasterClass);
 
                     pStk->CreateVarThis(pClass);
                     pStk->CreateVarSuper(pClass->GetParent());
@@ -422,7 +423,8 @@ bool CBotFunction::Execute(CBotVar** ppVars, CBotStack* &pj, CBotVar* pInstance)
         CBotVar* pThis = nullptr;
         if ( pInstance == nullptr )
         {
-            pThis = CBotVar::Create("this", CBotTypResult( CBotTypClass, m_MasterClass ));
+            auto pClass = pile->FindClass(m_MasterClass);
+            pThis = CBotVar::Create("this", CBotTypResult( CBotTypClass, pClass ));
         }
         else
         {
@@ -432,7 +434,8 @@ bool CBotFunction::Execute(CBotVar** ppVars, CBotStack* &pj, CBotVar* pInstance)
                 return false;
             }
 
-            pThis = CBotVar::Create("this", CBotTypResult( CBotTypPointer, m_MasterClass ));
+            auto pClass = pile->FindClass(m_MasterClass);
+            pThis = CBotVar::Create("this", CBotTypResult( CBotTypPointer, pClass ));
             pThis->SetPointer( pInstance->GetPointer() );
         }
         assert(pThis != nullptr);
@@ -779,7 +782,8 @@ int CBotFunction::DoCall(CBotProgram* program, const std::list<CBotFunction*>& l
                 CBotVar* pThis ;
                 if ( pInstance == nullptr )
                 {
-                    pThis = CBotVar::Create("this", CBotTypResult( CBotTypClass, pt->m_MasterClass ));
+                    auto pClass = pStack->FindClass(pt->m_MasterClass);
+                    pThis = CBotVar::Create("this", CBotTypResult( CBotTypClass, pClass ));
                 }
                 else
                 {
@@ -789,7 +793,8 @@ int CBotFunction::DoCall(CBotProgram* program, const std::list<CBotFunction*>& l
                         return false;
                     }
 
-                    pThis = CBotVar::Create("this", CBotTypResult( CBotTypPointer, pt->m_MasterClass ));
+                    auto pClass = pStack->FindClass(pt->m_MasterClass);
+                    pThis = CBotVar::Create("this", CBotTypResult( CBotTypPointer, pClass ));
                     pThis->SetPointer( pInstance->GetPointer() );
                 }
                 assert(pThis != nullptr);
@@ -922,7 +927,7 @@ CBotTypResult CBotFunction::CompileMethodCall(const std::string& name, CBotVar**
         else     // called from inside a method
         {
             CBotClass* thisClass = pThis->GetClass(); // current class
-            CBotClass* funcClass = CBotClass::Find(pt->m_MasterClass); // class of the method
+            auto funcClass = pStack->FindClass(pt->m_MasterClass); // class of the method
 
             if (pt->IsPrivate() && thisClass != funcClass)
                 type.SetType(CBotErrPrivate);

@@ -26,8 +26,9 @@
 #include "CBot/CBotVar/CBotVarPointer.h"
 #include "CBot/CBotVar/CBotVarClass.h"
 
-#include "CBot/CBotUtils.h"
 #include "CBot/CBotExternalCall.h"
+#include "CBot/CBotUtils.h"
+#include "CBot/CBotProgram.h"
 
 #include "CBot/context/cbot_context.h"
 #include "CBot/context/cbot_user_pointer.h"
@@ -947,7 +948,7 @@ bool CBotVar::RestoreVar(std::istream &istr, CBotVarUPtr& outVar, CBotContext& c
             std::string className;
             if (!ReadString(istr, className)) return false; // name of the class
             {
-                auto pClass = CBotClass::Find(className);
+                auto pClass = context.FindClass(className);
                 CBotTypResult ptrType(w, pClass);
                 pNew = CBotVar::Create(token, ptrType);        // creates a variable
 
@@ -998,6 +999,11 @@ bool CBotVar::RestoreVar(std::istream &istr, CBotVarUPtr& outVar, CBotContext& c
 bool CBotStack::IsCallFinished()
 {
     return m_callFinished;
+}
+
+CBotClass* CBotStack::FindClass(const std::string& name)
+{
+    return m_data->context->FindClass(name);
 }
 
 } // namespace CBot

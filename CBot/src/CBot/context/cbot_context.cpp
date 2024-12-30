@@ -19,6 +19,10 @@
 
 #include "CBot/context/cbot_context.h"
 
+#include "CBot/CBotClass.h"
+
+#include <cassert>
+
 namespace CBot
 {
 
@@ -26,6 +30,7 @@ CBotContextSPtr CBotContext::CreateGlobalContext()
 {
     auto newContext = std::shared_ptr<CBotContext>(new CBotContext);
     InitErrorConstants(newContext);
+    InitFileIOLibrary(newContext);
     InitStringFunctions(newContext);
     InitMathLibrary(newContext);
 
@@ -68,6 +73,69 @@ void CBotContext::ClearInstanceList()
 void CBotContext::DeclareInstance(long pos, CBotVar* var)
 {
     m_globalData->m_instances[pos] = var;
+}
+
+CBotClass* CBotContext::FindClass(const std::string& name) const
+{
+    auto it = m_classList.find(name);
+    if (it != m_classList.end()) return it->second.get();
+    return !m_outerContext ? nullptr : m_outerContext->FindClass(name);
+}
+
+CBotClass* CBotContext::CreateClass(const std::string& name, CBotClass* parent, bool intrinsic)
+{
+    if (FindClass(name) != nullptr) return nullptr;
+    auto& newClass = m_classList[name];
+    newClass.reset(CBotClass::Create(name, parent, intrinsic));
+    newClass->SetContext( shared_from_this() );
+    return newClass.get();
+}
+
+void CBotContext::FreeLock(CBotProgram* prog) const
+{
+    for (auto p = this; p != nullptr; p = p->m_outerContext.get())
+    {
+        for (auto& item : p->m_classList) item.second->FreeLock(prog);
+    }
+}
+
+bool CBotContext::WriteStaticState(std::ostream& ostr) const
+{
+    for ( auto& p : m_classList )
+    {
+        if (!WriteWord(ostr, 1)) return false;
+        // save the name of the class
+        if (!WriteString(ostr, p.second->GetName())) return false;
+
+        if (!CBotClass::SaveStaticVars(ostr, p.second.get())) return false;
+    }
+    if (!WriteWord(ostr, 0)) return false; // no more classes
+    if (!WriteWord(ostr, 0)) return false; // a flag to possibly save other data
+    return true;
+}
+
+bool CBotContext::ReadStaticState(std::istream& istr, CBotContext& context)
+{
+    unsigned short w;
+    while (true)
+    {
+        if (!ReadWord(istr, w)) return false;
+        if ( w == 0 ) break; // no more classes
+        if ( w != 1 )
+        {
+            assert(false);
+            return false;
+        }
+        std::string className;
+        if (!ReadString(istr, className)) return false;
+        CBotClass* pClass = nullptr;
+        auto it = context.m_classList.find(className);
+        pClass = it != context.m_classList.end() ? it->second.get() : nullptr;
+        if (!CBotClass::RestoreStaticVars(istr, pClass, context)) return false;
+    }
+    if (!ReadWord(istr, w)) return false;
+    if (w != 0) return false; // currently unused flag should read 0
+    return true;
 }
 
 CBotVar* CBotContext::FindInstance(long pos) const

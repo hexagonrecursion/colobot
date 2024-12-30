@@ -41,6 +41,9 @@ class CBotToken;
 class CBotCStack;
 class CBotExternalCallList;
 
+using ClassRuntimeFunc = bool (*)(CBotVar* pThis, CBotVar* pVar, CBotVar* pResult, int& Exception, void* user);
+using ClassCompileFunc = CBotTypResult (*)(CBotVar* pThis, CBotVar*& pVar);
+
 /**
  * \brief A CBot class definition
  *
@@ -107,7 +110,7 @@ class CBotExternalCallList;
  */
 class CBotClass : public CBotContextObserver
 {
-public:
+private:
     /*!
      * \brief CBotClass Constructor. Once a class is created, it is known around
      * CBot intrinsic mode gives a class that is not managed by pointers.
@@ -119,6 +122,7 @@ public:
               CBotClass* parent,
               bool bIntrinsic = false);
 
+public:
     /*!
      * \brief CBotClass Destructor.
      */
@@ -140,8 +144,8 @@ public:
      * \see CBotProgram::AddFunction
      */
     bool AddFunction(const std::string& name,
-                     bool rExec(CBotVar* pThis, CBotVar* pVar, CBotVar* pResult, int& Exception, void* user),
-                     CBotTypResult rCompile(CBotVar* pThis, CBotVar*& pVar));
+                     ClassRuntimeFunc rExec,
+                     ClassCompileFunc cCompile);
 
     /*!
      * \brief SetUpdateFunc Defines routine to be called to update the elements
@@ -188,20 +192,6 @@ public:
      * \return true also if the classes are identical
      */
     bool IsChildOf(CBotClass* pClass);
-
-    /*!
-     * \brief Find Trouve une classe d'après son nom
-     * \param pToken
-     * \return A class by it's its name.
-     */
-    static CBotClass* Find(CBotToken* &pToken);
-
-    /*!
-     * \brief Find
-     * \param name
-     * \return
-     */
-    static CBotClass* Find(const std::string& name);
 
     /*!
      * \brief GetVar Return the list of variables.
@@ -332,24 +322,22 @@ public:
      */
     void Purge();
 
-    /*!
-     * \brief Free
-     */
-    static void ClearPublic();
-
-    /*!
-     * \brief Save all static variables from each public class
+   /*!
+     * \brief Save all static variables from the given class
      * \param ostr Output stream
+     * \param pClass
      * \return true on success
      */
-    static bool SaveStaticState(std::ostream &ostr, CBotContext& context);
+    static bool SaveStaticVars(std::ostream &ostr, CBotClass* pClass);
 
     /*!
-     * \brief Restore all static variables in each public class
+     * \brief Restore all static variables in the given public class
      * \param istr Input stream
+     * \param pClass
+     * \param context
      * \return true on success
      */
-    static bool RestoreStaticState(std::istream &istr, CBotContext& context);
+    static bool RestoreStaticVars(std::istream &istr, CBotClass* pClass, CBotContext& context);
 
     /**
      * \brief Request a lock on this class (for "synchronized" keyword)
@@ -365,10 +353,10 @@ public:
     void Unlock();
 
     /**
-     * \brief Release all locks in all classes held by this program
+     * \brief Release all locks in this class held by this program
      * \param prog Program to release the locks from
      */
-    static void FreeLock(CBotProgram* prog);
+    void FreeLock(CBotProgram* prog);
 
     /*!
      * \brief CheckCall Test if a procedure name is already defined somewhere.
@@ -382,9 +370,6 @@ public:
     void Update(CBotVar* var, void* user);
 
 private:
-    //! List of all public classes
-    static std::set<CBotClass*> m_publicClasses;
-
 
     //! true if this class is fully compiled, false if only precompiled
     bool m_IsDef;

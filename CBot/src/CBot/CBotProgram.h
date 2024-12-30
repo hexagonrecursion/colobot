@@ -112,16 +112,6 @@ public:
     ~CBotProgram();
 
     /**
-     * \brief Initializes the module, should be done once (and only once) at the beginning
-     */
-    static void Init();
-
-    /**
-     * \brief Frees the static memory areas
-     */
-    static void Free();
-
-    /**
      * \brief Returns version of the CBot library
      * \return A number representing the current library version
      */

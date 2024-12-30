@@ -309,7 +309,11 @@ CBotTypResult CScriptFunctions::cGetObject(CBotVar* &var, void* user)
     var = var->GetNext();
     if ( var != nullptr )  return CBotTypResult(CBotErrOverParam);
 
-    return CBotTypResult(CBotTypPointer, "object");
+    auto script = static_cast<CScript*>(user);
+    auto& context = script->m_main->GetCBotContextGlobal();
+    auto pClass = context->FindClass("object");
+
+    return CBotTypResult(CBotTypPointer, pClass);
 }
 
 // Instruction "retobjectbyid(rank)".
@@ -815,12 +819,20 @@ static CBotTypResult compileSearch(CBotVar* &var, void* user, CBotTypResult retu
 
 CBotTypResult CScriptFunctions::cSearch(CBotVar* &var, void* user)
 {
-    return compileSearch(var, user, CBotTypResult(CBotTypPointer, "object"));
+    auto script = static_cast<CScript*>(user);
+    auto& context = script->m_main->GetCBotContextGlobal();
+    auto pClass = context->FindClass("object");
+
+    return compileSearch(var, user, CBotTypResult(CBotTypPointer, pClass));
 }
 
 CBotTypResult CScriptFunctions::cSearchAll(CBotVar* &var, void* user)
 {
-    return compileSearch(var, user, CBotTypResult(CBotTypArrayPointer, CBotTypResult(CBotTypPointer, "object")));
+    auto script = static_cast<CScript*>(user);
+    auto& context = script->m_main->GetCBotContextGlobal();
+    auto pClass = context->FindClass("object");
+
+    return compileSearch(var, user, CBotTypResult(CBotTypArrayPointer, CBotTypResult(CBotTypPointer, pClass)));
 }
 
 static bool runSearch(CBotVar* var, glm::vec3 pos, int& exception, std::function<bool(std::vector<ObjectType>, glm::vec3, float, float, bool, RadarFilter)> code)
@@ -994,14 +1006,22 @@ static CBotTypResult compileRadar(CBotVar* &var, void* user, CBotTypResult retur
 
 CBotTypResult CScriptFunctions::cRadarAll(CBotVar* &var, void* user)
 {
-    return compileRadar(var, user, CBotTypResult(CBotTypArrayPointer, CBotTypResult(CBotTypPointer, "object")));
+    auto script = static_cast<CScript*>(user);
+    auto& context = script->m_main->GetCBotContextGlobal();
+    auto pClass = context->FindClass("object");
+
+    return compileRadar(var, user, CBotTypResult(CBotTypArrayPointer, CBotTypResult(CBotTypPointer, pClass)));
 }
 
 // Compilation of instruction "radar(type, angle, focus, min, max, sens)".
 
 CBotTypResult CScriptFunctions::cRadar(CBotVar* &var, void* user)
 {
-    return compileRadar(var, user, CBotTypResult(CBotTypPointer, "object"));
+    auto script = static_cast<CScript*>(user);
+    auto& context = script->m_main->GetCBotContextGlobal();
+    auto pClass = context->FindClass("object");
+
+    return compileRadar(var, user, CBotTypResult(CBotTypPointer, pClass));
 }
 
 static bool runRadar(CBotVar* var, std::function<bool(std::vector<ObjectType>, float, float, float, float, bool, RadarFilter)> code)
@@ -1793,24 +1813,37 @@ CBotTypResult CScriptFunctions::cSpace(CBotVar* &var, void* user)
 {
     CBotTypResult   ret;
 
-    if ( var == nullptr )  return CBotTypResult(CBotTypIntrinsic, "point");
-    ret = cPoint(var, user);
-    if ( ret.GetType() != 0 )  return ret;
+    if ( var != nullptr )
+    {
+        ret = cPoint(var, user);
+        if ( ret.GetType() != 0 )  return ret;
 
-    if ( var == nullptr )  return CBotTypResult(CBotTypIntrinsic, "point");
-    if ( var->GetType() > CBotTypDouble )  return CBotTypResult(CBotErrBadNum);
-    var = var->GetNext();
+        if ( var != nullptr )
+        {
+            if ( var->GetType() > CBotTypDouble )  return CBotTypResult(CBotErrBadNum);
+            var = var->GetNext();
 
-    if ( var == nullptr )  return CBotTypResult(CBotTypIntrinsic, "point");
-    if ( var->GetType() > CBotTypDouble )  return CBotTypResult(CBotErrBadNum);
-    var = var->GetNext();
+            if ( var != nullptr )
+            {
+                if ( var->GetType() > CBotTypDouble )  return CBotTypResult(CBotErrBadNum);
+                var = var->GetNext();
 
-    if ( var == nullptr )  return CBotTypResult(CBotTypIntrinsic, "point");
-    if ( var->GetType() > CBotTypDouble )  return CBotTypResult(CBotErrBadNum);
-    var = var->GetNext();
+                if ( var != nullptr )
+                {
+                    if ( var->GetType() > CBotTypDouble )  return CBotTypResult(CBotErrBadNum);
+                    var = var->GetNext();
 
-    if ( var != nullptr )  return CBotTypResult(CBotErrOverParam);
-    return CBotTypResult(CBotTypIntrinsic, "point");
+                    if ( var != nullptr )  return CBotTypResult(CBotErrOverParam);
+                }
+            }
+        }
+    }
+
+    auto script = static_cast<CScript*>(user);
+    auto& context = script->m_main->GetCBotContextGlobal();
+    auto pClass = context->FindClass("point");
+
+    return CBotTypResult(CBotTypIntrinsic, pClass);
 }
 
 // Instruction "space(center, rMin, rMax, dist)".
@@ -1894,20 +1927,31 @@ CBotTypResult CScriptFunctions::cFlatSpace(CBotVar* &var, void* user)
     if ( var->GetType() > CBotTypDouble )  return CBotTypResult(CBotErrBadNum);
     var = var->GetNext();
 
-    if ( var == nullptr )  return CBotTypResult(CBotTypIntrinsic, "point");
-    if ( var->GetType() > CBotTypDouble )  return CBotTypResult(CBotErrBadNum);
-    var = var->GetNext();
+    if ( var != nullptr )
+    {
+        if (var->GetType() > CBotTypDouble) return CBotTypResult(CBotErrBadNum);
+        var = var->GetNext();
 
-    if ( var == nullptr )  return CBotTypResult(CBotTypIntrinsic, "point");
-    if ( var->GetType() > CBotTypDouble )  return CBotTypResult(CBotErrBadNum);
-    var = var->GetNext();
+        if ( var != nullptr )
+        {
+            if (var->GetType() > CBotTypDouble) return CBotTypResult(CBotErrBadNum);
+            var = var->GetNext();
 
-    if ( var == nullptr )  return CBotTypResult(CBotTypIntrinsic, "point");
-    if ( var->GetType() > CBotTypDouble )  return CBotTypResult(CBotErrBadNum);
-    var = var->GetNext();
+            if ( var != nullptr )
+            {
+                if (var->GetType() > CBotTypDouble) return CBotTypResult(CBotErrBadNum);
+                var = var->GetNext();
 
-    if ( var != nullptr )  return CBotTypResult(CBotErrOverParam);
-    return CBotTypResult(CBotTypIntrinsic, "point");
+                if ( var != nullptr )  return CBotTypResult(CBotErrOverParam);
+            }
+        }
+    }
+
+    auto script = static_cast<CScript*>(user);
+    auto& context = script->m_main->GetCBotContextGlobal();
+    auto pClass = context->FindClass("point");
+
+    return CBotTypResult(CBotTypIntrinsic, pClass);
 }
 
 bool CScriptFunctions::rFlatSpace(CBotVar* var, CBotVar* result, int& exception, void* user)
@@ -3282,97 +3326,6 @@ bool CScriptFunctions::rCameraFocus(CBotVar* var, CBotVar* result, int& exceptio
     return true;
 }
 
-
-// Compilation of class "point".
-
-CBotTypResult CScriptFunctions::cPointConstructor(CBotVar* pThis, CBotVar* &var)
-{
-    if ( !pThis->IsElemOfClass("point") )  return CBotTypResult(CBotErrBadNum);
-
-    if ( var == nullptr )  return CBotTypResult(0);  // ok if no parameter
-
-    // First parameter (x):
-    if ( var->GetType() > CBotTypDouble )  return CBotTypResult(CBotErrBadNum);
-    var = var->GetNext();
-
-    // Second parameter (y):
-    if ( var == nullptr )  return CBotTypResult(CBotErrLowParam);
-    if ( var->GetType() > CBotTypDouble )  return CBotTypResult(CBotErrBadNum);
-    var = var->GetNext();
-
-    // Third parameter (z):
-    if ( var == nullptr )  // only 2 parameters?
-    {
-        return CBotTypResult(0);  // this function returns void
-    }
-
-    if ( var->GetType() > CBotTypDouble )  return CBotTypResult(CBotErrBadNum);
-    var = var->GetNext();
-    if ( var != nullptr )  return CBotTypResult(CBotErrOverParam);
-
-    return CBotTypResult(0);  // this function returns void
-}
-
-//Execution of the class "point".
-
-bool CScriptFunctions::rPointConstructor(CBotVar* pThis, CBotVar* var, CBotVar* pResult, int& Exception, void* user)
-{
-    CBotVar     *pX, *pY, *pZ;
-
-    if ( var == nullptr )  return true;  // constructor with no parameters is ok
-
-    if ( var->GetType() > CBotTypDouble )
-    {
-        Exception = CBotErrBadNum;  return false;
-    }
-
-    pX = pThis->GetItem("x");
-    if ( pX == nullptr )
-    {
-        Exception = CBotErrUndefItem;  return false;
-    }
-    pX->SetValFloat( var->GetValFloat() );
-    var = var->GetNext();
-
-    if ( var == nullptr )
-    {
-        Exception = CBotErrLowParam;  return false;
-    }
-
-    if ( var->GetType() > CBotTypDouble )
-    {
-        Exception = CBotErrBadNum;  return false;
-    }
-
-    pY = pThis->GetItem("y");
-    if ( pY == nullptr )
-    {
-        Exception = CBotErrUndefItem;  return false;
-    }
-    pY->SetValFloat( var->GetValFloat() );
-    var = var->GetNext();
-
-    if ( var == nullptr )
-    {
-        return true;  // ok with only two parameters
-    }
-
-    pZ = pThis->GetItem("z");
-    if ( pZ == nullptr )
-    {
-        Exception = CBotErrUndefItem;  return false;
-    }
-    pZ->SetValFloat( var->GetValFloat() );
-    var = var->GetNext();
-
-    if ( var != nullptr )
-    {
-        Exception = CBotErrOverParam;  return false;
-    }
-
-    return  true;  // no interruption
-}
-
 class CBotFileColobot : public CBotFile
 {
 public:
@@ -3516,48 +3469,6 @@ bool CScriptFunctions::rDeleteFile(CBotVar* var, CBotVar* result, int& exception
     if (script->m_errMode != ERM_STOP) return true;
     exception = CBotErrRead;
     return false;
-}
-
-// Initializes all functions for module CBOT.
-
-void CScriptFunctions::Init()
-{
-    CBotProgram::Init();
-
-    CBotClass* bc;
-
-    const auto& context = CRobotMain::GetInstancePointer()->GetCBotContextGlobal();
-    bc = CBotClass::Find("file");
-    bc->SetContext(context);
-
-    // Add the class Point.
-    bc = CBotClass::Create("point", nullptr, true);  // intrinsic class
-    bc->AddItem("x", CBotTypFloat);
-    bc->AddItem("y", CBotTypFloat);
-    bc->AddItem("z", CBotTypFloat);
-    bc->AddFunction("point", rPointConstructor, cPointConstructor);
-    bc->SetContext(context);
-
-    // Adds the class Object.
-    bc = CBotClass::Create("object", nullptr);
-    bc->SetContext(context);
-
-    bc->AddItem("category",    CBotTypResult(CBotTypInt), CBotVar::ProtectionLevel::ReadOnly);
-    bc->AddItem("position",    CBotTypResult(CBotTypClass, "point"), CBotVar::ProtectionLevel::ReadOnly);
-    bc->AddItem("orientation", CBotTypResult(CBotTypFloat), CBotVar::ProtectionLevel::ReadOnly);
-    bc->AddItem("pitch",       CBotTypResult(CBotTypFloat), CBotVar::ProtectionLevel::ReadOnly);
-    bc->AddItem("roll",        CBotTypResult(CBotTypFloat), CBotVar::ProtectionLevel::ReadOnly);
-    bc->AddItem("energyLevel", CBotTypResult(CBotTypFloat), CBotVar::ProtectionLevel::ReadOnly);
-    bc->AddItem("shieldLevel", CBotTypResult(CBotTypFloat), CBotVar::ProtectionLevel::ReadOnly);
-    bc->AddItem("temperature", CBotTypResult(CBotTypFloat), CBotVar::ProtectionLevel::ReadOnly);
-    bc->AddItem("altitude",    CBotTypResult(CBotTypFloat), CBotVar::ProtectionLevel::ReadOnly);
-    bc->AddItem("lifeTime",    CBotTypResult(CBotTypFloat), CBotVar::ProtectionLevel::ReadOnly);
-    bc->AddItem("energyCell",  CBotTypResult(CBotTypPointer, "object"), CBotVar::ProtectionLevel::ReadOnly);
-    bc->AddItem("load",        CBotTypResult(CBotTypPointer, "object"), CBotVar::ProtectionLevel::ReadOnly);
-    bc->AddItem("id",          CBotTypResult(CBotTypInt), CBotVar::ProtectionLevel::ReadOnly);
-    bc->AddItem("team",        CBotTypResult(CBotTypInt), CBotVar::ProtectionLevel::ReadOnly);
-    bc->AddItem("dead",        CBotTypResult(CBotTypBoolean), CBotVar::ProtectionLevel::ReadOnly);
-    bc->AddItem("velocity",    CBotTypResult(CBotTypClass, "point"), CBotVar::ProtectionLevel::ReadOnly);
 }
 
 void CScriptFunctions::InitFunctions(const std::shared_ptr<CBot::CBotContext>& context)
@@ -3737,6 +3648,30 @@ void CScriptFunctions::InitContextGlobal(const std::shared_ptr<CBot::CBotContext
 
     AddConstant("PolskiPortalColobota", 1337);
 
+    // Find the class Point.
+    auto pnt = globalContext->FindClass("point");
+
+    const auto protectReadOnly = CBotVar::ProtectionLevel::ReadOnly;
+
+    auto bc = globalContext->CreateClass("object", nullptr);
+    bc->AddItem("category",    { CBotTypInt }, protectReadOnly);
+    bc->AddItem("position",    { CBotTypClass, pnt }, protectReadOnly);
+    bc->AddItem("orientation", { CBotTypFloat }, protectReadOnly);
+    bc->AddItem("pitch",       { CBotTypFloat }, protectReadOnly);
+    bc->AddItem("roll",        { CBotTypFloat }, protectReadOnly);
+    bc->AddItem("energyLevel", { CBotTypFloat }, protectReadOnly);
+    bc->AddItem("shieldLevel", { CBotTypFloat }, protectReadOnly);
+    bc->AddItem("temperature", { CBotTypFloat }, protectReadOnly);
+    bc->AddItem("altitude",    { CBotTypFloat }, protectReadOnly);
+    bc->AddItem("lifeTime",    { CBotTypFloat }, protectReadOnly);
+    bc->AddItem("energyCell",  { CBotTypPointer, bc }, protectReadOnly);
+    bc->AddItem("load",        { CBotTypPointer, bc }, protectReadOnly);
+    bc->AddItem("id",          { CBotTypInt }, protectReadOnly);
+    bc->AddItem("team",        { CBotTypInt }, protectReadOnly);
+    bc->AddItem("dead",        { CBotTypBoolean }, protectReadOnly);
+    bc->AddItem("velocity",    { CBotTypClass, pnt }, protectReadOnly);
+    bc->SetUpdateFunc(CScriptFunctions::uObject);
+
     globalContext->SetFileAccessHandler(std::make_unique<CBotFileAccessHandlerColobot>());
     globalContext->AddFunction("deletefile", rDeleteFile, cString);
 }
@@ -3907,13 +3842,11 @@ void CScriptFunctions::uObject(CBotVar* botThis, void* user)
 
 CBotVar* CScriptFunctions::CreateObjectVar(CObject* obj)
 {
-    CBotClass* bc = CBotClass::Find("object");
-    if ( bc != nullptr )
-    {
-        bc->SetUpdateFunc(CScriptFunctions::uObject);
-    }
+    const auto& context = CRobotMain::GetInstancePointer()->GetCBotContextGlobal();
+    auto pClass = context->FindClass("object");
+    pClass->SetUpdateFunc(CScriptFunctions::uObject);
 
-    CBotVar* botVar = CBotVar::Create("", CBotTypResult(CBotTypClass, "object"));
+    CBotVar* botVar = CBotVar::Create("", CBotTypResult(CBotTypClass, pClass));
     botVar->SetUserPointer(CBotUserPointer::Create(obj));
     return botVar;
 }

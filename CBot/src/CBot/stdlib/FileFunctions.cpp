@@ -410,7 +410,7 @@ CBotTypResult cfeof (CBotVar* pThis, CBotVar* &pVar)
 
 } // namespace
 
-void InitFileFunctions()
+void InitFileIOLibrary(const std::shared_ptr<CBotContext>& context)
 {
     // create a class for file management
     // the use is as follows:
@@ -420,22 +420,26 @@ void InitFileFunctions()
     // canal.close();   // close the file
 
     // create the class FILE
-    CBotClass* bc = CBotClass::Create("file", nullptr);
-    // adds the component ".filename"
-    bc->AddItem("filename", CBotTypString);
-    // adds the component ".handle"
-    bc->AddItem("handle", CBotTypInt, CBotVar::ProtectionLevel::Private);
+    auto bc = context->FindClass("file");
+    if (bc == nullptr)
+    {
+        bc = context->CreateClass("file", nullptr);
+        // adds the component ".filename"
+        bc->AddItem("filename", CBotTypString);
+        // adds the component ".handle"
+        bc->AddItem("handle", CBotTypInt, CBotVar::ProtectionLevel::Private);
 
-    // define a constructor and a destructor
-    bc->AddFunction("file", rfconstruct, cfconstruct);
-    bc->AddFunction("~file", rfdestruct, nullptr);
+        // define a constructor and a destructor
+        bc->AddFunction("file", rfconstruct, cfconstruct);
+        bc->AddFunction("~file", rfdestruct, nullptr);
 
-    // end of the methods associated
-    bc->AddFunction("open", rfopen, cfopen);
-    bc->AddFunction("close", rfclose, cfclose);
-    bc->AddFunction("writeln", rfwrite, cfwrite);
-    bc->AddFunction("readln", rfread, cfread);
-    bc->AddFunction("eof", rfeof, cfeof );
+        // end of the methods associated
+        bc->AddFunction("open", rfopen, cfopen);
+        bc->AddFunction("close", rfclose, cfclose);
+        bc->AddFunction("writeln", rfwrite, cfwrite);
+        bc->AddFunction("readln", rfread, cfread);
+        bc->AddFunction("eof", rfeof, cfeof );
+    }
 
     //m_pFuncFile = new CBotProgram( );
     //std::stringArray ListFonctions;

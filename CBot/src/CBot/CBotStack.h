@@ -30,6 +30,7 @@
 namespace CBot
 {
 
+class CBotClass;
 class CBotContext;
 class CBotInstr;
 class CBotExternalCall;
@@ -464,6 +465,8 @@ public:
 
     bool            IsCallFinished();
 
+    CBotClass*      FindClass(const std::string& name);
+
 private:
     CBotStack*        m_next;
     CBotStack*        m_next2;
@@ -492,6 +495,14 @@ private:
     CBotExternalCall* m_call;
 
     bool m_callFinished;
+};
+
+struct CBotStackDeleter
+{
+    void operator()(CBotStack* p)
+    {
+        if (p != nullptr) p->Delete();
+    }
 };
 
 } // namespace CBot

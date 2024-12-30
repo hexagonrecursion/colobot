@@ -64,11 +64,11 @@ CBotInstr* CBotDefClass::Compile(CBotToken* &p, CBotCStack* pStack, CBotClass* p
     if ( pClass == nullptr )
     {
         pStack->SetStartError(p->GetStart());
-        pClass = CBotClass::Find(p);
+        pClass = pStack->FindClass(p->GetString());
         if ( pClass == nullptr )
         {
             // not found? is bizare
-            pStack->SetError(CBotErrNotClass, p);
+            pStack->SetError(CBotErrNoClassName, p);
             return nullptr;
         }
         p = p->GetNext();
@@ -259,8 +259,7 @@ bool CBotDefClass::Execute(CBotStack* &pj)
         }
     }
 
-    CBotToken*  pt = &m_token;
-    CBotClass*  pClass = CBotClass::Find(pt);
+    auto pClass = pile->FindClass(m_token.GetString());
 
     bool bIntrincic = pClass->IsIntrinsic();
 
@@ -331,8 +330,7 @@ bool CBotDefClass::Execute(CBotStack* &pj)
 
             if ( !bIntrincic && pile->GetState() == 1)
             {
-                CBotToken*  pt = &m_token;
-                CBotClass* pClass = CBotClass::Find(pt);
+                auto pClass = pile->FindClass(m_token.GetString());
 
                 // creates an instance of the requested class
 
@@ -425,8 +423,7 @@ void CBotDefClass::RestoreState(CBotStack* &pj, bool bMain)
         }
     }
 
-    CBotToken*  pt = &m_token;
-    CBotClass*  pClass = CBotClass::Find(pt);
+    auto pClass = pile->FindClass(m_token.GetString());
     bool bIntrincic = pClass->IsIntrinsic();
 
     if ( bMain && pile->GetState()<3)
@@ -478,7 +475,7 @@ void CBotDefClass::RestoreState(CBotStack* &pj, bool bMain)
             ppVars[i] = nullptr;
 
             // creates a variable for the result
-            pClass->RestoreMethode(m_nMethodeIdent, pt, pThis, ppVars, pile2);
+            pClass->RestoreMethode(m_nMethodeIdent, &m_token, pThis, ppVars, pile2);
             return;
         }
     }

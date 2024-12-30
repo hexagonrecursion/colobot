@@ -21,8 +21,8 @@
 #include "CBot/CBotCStack.h"
 
 #include "CBot/CBotClass.h"
+#include "CBot/CBotProgram.h"
 #include "CBot/CBotToken.h"
-#include "CBot/CBotExternalCall.h"
 
 #include "CBot/CBotVar/CBotVar.h"
 
@@ -430,6 +430,11 @@ bool CBotCStack::CheckCall(CBotToken* &pToken, CBotDefParam* pParam, const std::
     }
 
     return false;
+}
+
+CBotClass* CBotCStack::FindClass(const std::string& name) const
+{
+    return GetContext()->FindClass(name);
 }
 
 } // namespace CBot

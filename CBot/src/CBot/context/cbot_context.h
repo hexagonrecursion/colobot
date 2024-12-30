@@ -29,7 +29,9 @@
 
 namespace CBot
 {
+class CBotClass;
 class CBotContext;
+class CBotProgram;
 class CBotVar;
 
 using CBotContextSPtr = std::shared_ptr<CBot::CBotContext>;
@@ -63,6 +65,16 @@ public:
         return m_globalData->m_nextUniqueID++;
     }
 
+    CBotClass* FindClass(const std::string& name) const;
+
+    CBotClass* CreateClass(const std::string& name, CBotClass* parent, bool intrinsic = false);
+
+    void FreeLock(CBotProgram* prog) const;
+
+    bool WriteStaticState(std::ostream& ostr) const;
+
+    static bool ReadStaticState(std::istream& istr, CBotContext& context);
+
     long FindInstance(CBotVar* var) const;
     CBotVar* FindInstance(long pos) const;
     void ClearInstanceList();
@@ -86,6 +98,8 @@ private:
         std::unordered_map<long, CBotVar*> m_instances;
     };
     std::shared_ptr<CBotContext::GlobalData> m_globalData;
+
+    std::unordered_map<std::string, std::unique_ptr<CBotClass>> m_classList;
 };
 
 } // namespace CBot

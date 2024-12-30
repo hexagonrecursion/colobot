@@ -23,6 +23,8 @@
 
 #include "CBot/context/cbot_context.h"
 
+#include "CBot/CBotClass.h"
+
 #include <cmath>
 #include <cstdlib>
 
@@ -276,6 +278,67 @@ bool rSizeOf( CBotVar* pVar, CBotVar* pResult, int& ex, void* pUser )
     return true;
 }
 
+// Compilation of class "point".
+
+CBotTypResult cPointConstructor(CBotVar* pThis, CBotVar* &var)
+{
+    if ( var == nullptr )  return CBotTypResult(0);  // ok if no parameter
+
+    if ( var->GetType() == CBotTypClass )  // takes a single point parameter
+    {
+        if ( !var->IsElemOfClass("point") )  return CBotTypResult(CBotErrBadParam);
+        var = var->GetNext();
+        if ( var != nullptr )  return CBotTypResult(CBotErrOverParam);
+        return CBotTypResult(CBotTypVoid);  // this function returns void
+    }
+
+    // First parameter (x):
+    if ( var->GetType() > CBotTypDouble )  return CBotTypResult(CBotErrBadNum);
+    var = var->GetNext();
+
+    // Second parameter (y):
+    if ( var == nullptr )  return CBotTypResult(CBotErrLowParam);
+    if ( var->GetType() > CBotTypDouble )  return CBotTypResult(CBotErrBadNum);
+    var = var->GetNext();
+
+    // Third parameter (z):
+    if ( var == nullptr )  // only 2 parameters?
+    {
+        return CBotTypResult(CBotTypVoid);  // this function returns void
+    }
+
+    if ( var->GetType() > CBotTypDouble )  return CBotTypResult(CBotErrBadNum);
+    var = var->GetNext();
+    if ( var != nullptr )  return CBotTypResult(CBotErrOverParam);
+
+    return CBotTypResult(CBotTypVoid);  // this function returns void
+}
+
+//Execution of the class "point".
+
+bool rPointConstructor(CBotVar* pThis, CBotVar* var, CBotVar* pResult, int& Exception, void* user)
+{
+    if ( var == nullptr )  return true;  // constructor with no parameters is ok
+
+    if ( var->GetType() == CBotTypClass )
+    {
+        pThis->Copy(var, false);
+        return true;  // no interruption
+    }
+
+    pThis->GetItem("x")->SetValFloat( var->GetValFloat() );
+
+    var = var->GetNext();
+    pThis->GetItem("y")->SetValFloat( var->GetValFloat() );
+
+    var = var->GetNext();
+    if ( var == nullptr ) return true;  // ok with only two parameters
+
+    pThis->GetItem("z")->SetValFloat( var->GetValFloat() );
+
+    return true;  // no interruption
+}
+
 } // namespace
 
 void InitErrorConstants(const std::shared_ptr<CBotContext>& context)
@@ -318,6 +381,16 @@ void InitMathLibrary(const std::shared_ptr<CBotContext>& context)
     context->AddFunction("isnan", rIsNAN, cIsNAN);
 
     context->AddFunction("sizeof", rSizeOf, cSizeOf);
+
+    auto pnt = context->FindClass("point");
+    if (pnt == nullptr)
+    {
+        pnt = context->CreateClass("point", nullptr, true);  // intrinsic class
+        pnt->AddItem("x", CBotTypFloat);
+        pnt->AddItem("y", CBotTypFloat);
+        pnt->AddItem("z", CBotTypFloat);
+        pnt->AddFunction("point", rPointConstructor, cPointConstructor);
+    }
 }
 
 } // namespace CBot
