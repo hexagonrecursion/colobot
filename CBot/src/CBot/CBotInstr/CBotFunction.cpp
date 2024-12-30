@@ -36,6 +36,8 @@
 
 #include "CBot/CBotVar/CBotVar.h"
 
+#include "CBot/context/cbot_context.h"
+
 #include <cassert>
 #include <sstream>
 
@@ -55,20 +57,15 @@ CBotFunction::CBotFunction()
     m_bSynchro    = false;
 }
 
-////////////////////////////////////////////////////////////////////////////////
-std::set<CBotFunction*> CBotFunction::m_publicFunctions{};
-
-////////////////////////////////////////////////////////////////////////////////
 CBotFunction::~CBotFunction()
 {
+    // remove from public list
+    if (m_bPublic) if (auto context = m_context.lock())
+    {
+        context->RemovePublicFunction(this);
+    }
     delete m_param;                // empty parameter list
     delete m_block;                // the instruction block
-
-    // remove public list if there is
-    if (m_bPublic)
-    {
-        m_publicFunctions.erase(this);
-    }
 }
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -534,12 +531,15 @@ CBotFunction* CBotFunction::FindLocalOrPublic(const std::list<CBotFunction*>& lo
         }
 
         // search the list of public functions
-        for (CBotFunction* pt : m_publicFunctions)
+        if (baseProg != nullptr)
         {
-            if (pt->m_nFuncIdent == nIdent)
+            for (CBotFunction* pt : baseProg->GetContext()->GetPublicFunctions())
             {
-                TypeOrError = pt->m_retTyp;
-                return pt;
+                if (pt->m_nFuncIdent == nIdent)
+                {
+                    TypeOrError = pt->m_retTyp;
+                    return pt;
+                }
             }
         }
     }
@@ -550,14 +550,15 @@ CBotFunction* CBotFunction::FindLocalOrPublic(const std::list<CBotFunction*>& lo
 
     CBotFunction::SearchList(localFunctionList, name, ppVars, TypeOrError, funcMap);
 
-    CBotFunction::SearchPublic(name, ppVars, TypeOrError, funcMap);
+    if (baseProg != nullptr)
+        CBotFunction::SearchList(baseProg->GetContext()->GetPublicFunctions(), name, ppVars, TypeOrError, funcMap);
 
     if (baseProg != nullptr && baseProg->m_thisVar != nullptr)
     {
         // find object:: functions
         CBotClass* pClass = baseProg->m_thisVar->GetClass();
         CBotFunction::SearchList(localFunctionList, name, ppVars, TypeOrError, funcMap, pClass);
-        CBotFunction::SearchPublic(name, ppVars, TypeOrError, funcMap, pClass);
+        CBotFunction::SearchList(baseProg->GetContext()->GetPublicFunctions(), name, ppVars, TypeOrError, funcMap, pClass);
     }
 
     return CBotFunction::BestFunction(funcMap, nIdent, TypeOrError);
@@ -635,83 +636,6 @@ void CBotFunction::SearchList(const std::list<CBotFunction*>& functionList,
                 continue;                   // not enough parameters
             }
             funcMap.insert( std::pair<CBotFunction*, int>(pt, alpha) );
-        }
-    }
-}
-
-////////////////////////////////////////////////////////////////////////////////
-void CBotFunction::SearchPublic(const std::string& name, CBotVar** ppVars, CBotTypResult& TypeOrError,
-                                std::map<CBotFunction*, int>& funcMap, CBotClass* pClass)
-{
-    {
-        for (CBotFunction* pt : m_publicFunctions)
-        {
-            if ( pt->m_token.GetString() == name )
-            {
-                if (pClass != nullptr) // looking for a method ?
-                {
-                    if (pt->m_MasterClass != pClass->GetName()) continue;
-                }
-                else                   // looking for a function
-                {
-                    if (!pt->m_MasterClass.empty()) continue;
-                }
-
-                int i = 0;
-                int alpha = 0;                          // signature of parameters
-                // are parameters compatible ?
-                CBotDefParam* pv = pt->m_param;         // list of expected parameters
-                CBotVar* pw = ppVars[i++];              // list of provided parameters
-                while ( pv != nullptr && (pw != nullptr || pv->HasDefault()) )
-                {
-                    if (pw == nullptr)     // end of arguments
-                    {
-                        pv = pv->GetNext();
-                        continue;          // skip params with default values
-                    }
-                    CBotTypResult paramType = pv->GetTypResult();
-                    CBotTypResult argType = pw->GetTypResult(CBotVar::GetTypeMode::CLASS_AS_INTRINSIC);
-
-                    if (!TypesCompatibles(paramType, argType))
-                    {
-                        if ( funcMap.empty() ) TypeOrError.SetType(CBotErrBadParam);
-                        break;
-                    }
-
-                    if (paramType.Eq(CBotTypPointer) && !argType.Eq(CBotTypNullPointer))
-                    {
-                        CBotClass* c1 = paramType.GetClass();
-                        CBotClass* c2 = argType.GetClass();
-                        while (c2 != c1 && c2 != nullptr)    // implicit cast
-                        {
-                            alpha += 10;
-                            c2 = c2->GetParent();
-                        }
-                    }
-                    else
-                    {
-                        int d = pv->GetType() - pw->GetType(CBotVar::GetTypeMode::CLASS_AS_INTRINSIC);
-                        alpha += d>0 ? d : -10*d;       // quality loss, 10 times more expensive!
-                    }
-                    pv = pv->GetNext();
-                    pw = ppVars[i++];
-                }
-                if ( pw != nullptr )
-                {
-                    if ( !funcMap.empty() ) continue; // previous useable function
-                    if ( TypeOrError.Eq(CBotErrLowParam) ) TypeOrError.SetType(CBotErrNbParam);
-                    if ( TypeOrError.Eq(CBotErrUndefCall)) TypeOrError.SetType(CBotErrOverParam);
-                    continue;                   // to many parameters
-                }
-                if ( pv != nullptr )
-                {
-                    if ( !funcMap.empty() ) continue; // previous useable function
-                    if ( TypeOrError.Eq(CBotErrOverParam) ) TypeOrError.SetType(CBotErrNbParam);
-                    if ( TypeOrError.Eq(CBotErrUndefCall) ) TypeOrError.SetType(CBotErrLowParam);
-                    continue;                   // not enough parameters
-                }
-                funcMap.insert( std::pair<CBotFunction*, int>(pt, alpha) );
-            }
         }
     }
 }
@@ -961,8 +885,8 @@ CBotFunction* CBotFunction::FindMethod(long& nIdent, const std::string& name,
             }
         }
 
-        bool skipPublic = false;
-        if (program != nullptr)
+        bool skipPublic = (program == nullptr);
+        if (!skipPublic)
         {
             // search the current program
             for (CBotFunction* pt : program->GetFunctions())
@@ -984,7 +908,7 @@ CBotFunction* CBotFunction::FindMethod(long& nIdent, const std::string& name,
         // search the list of public functions
         if (!skipPublic)
         {
-            for (CBotFunction* pt : m_publicFunctions)
+            for (CBotFunction* pt : program->GetContext()->GetPublicFunctions())
             {
                 if (pt->m_nFuncIdent == nIdent)
                 {
@@ -1006,10 +930,10 @@ CBotFunction* CBotFunction::FindMethod(long& nIdent, const std::string& name,
 
     // search the current program for methods
     if (program != nullptr)
+    {
         CBotFunction::SearchList(program->GetFunctions(), name, ppVars, TypeOrError, funcMap, pClass);
-
-    CBotFunction::SearchPublic(name, ppVars, TypeOrError, funcMap, pClass);
-
+        CBotFunction::SearchList(program->GetContext()->GetPublicFunctions(), name, ppVars, TypeOrError, funcMap, pClass);
+    }
     return CBotFunction::BestFunction(funcMap, nIdent, TypeOrError);
 }
 
@@ -1214,12 +1138,6 @@ std::string CBotFunction::GetParams()
 const std::string& CBotFunction::GetClassName() const
 {
     return m_MasterClass;
-}
-
-////////////////////////////////////////////////////////////////////////////////
-void CBotFunction::AddPublic(CBotFunction* func)
-{
-    m_publicFunctions.insert(func);
 }
 
 bool CBotFunction::HasReturn()

@@ -141,7 +141,11 @@ bool CBotProgram::Compile(const std::string& program, std::vector<std::string>& 
         {
             CBotFunction::Compile(p, pStack.get(), *next);
             if ((*next)->IsExtern()) externFunctions.push_back((*next)->GetName()/* + next->GetParams()*/);
-            if ((*next)->IsPublic()) CBotFunction::AddPublic(*next);
+            if ((*next)->IsPublic())
+            {
+                (*next)->m_context = m_context;
+                m_context->AddPublicFunction(*next);
+            }
             (*next)->m_pProg = this;                           // keeps pointers to the module
             ++next;
         }
@@ -154,7 +158,7 @@ bool CBotProgram::Compile(const std::string& program, std::vector<std::string>& 
         m_functions.clear();
     }
 
-    return !m_functions.empty();
+    return !externFunctions.empty();
 }
 
 bool CBotProgram::Start(const std::string& name)

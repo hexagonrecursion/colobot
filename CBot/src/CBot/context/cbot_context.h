@@ -24,6 +24,7 @@
 
 #include "CBot/stdlib/stdlib_public.h"
 
+#include <list>
 #include <memory>
 #include <unordered_map>
 
@@ -31,6 +32,7 @@ namespace CBot
 {
 class CBotClass;
 class CBotContext;
+class CBotFunction;
 class CBotProgram;
 class CBotVar;
 
@@ -88,8 +90,16 @@ public:
 
     void SetFileAccessHandler(CBotFileAccessHandlerUPtr fileHandler);
 
+    const std::list<CBotFunction*>& GetPublicFunctions() const;
+
+    void AddPublicFunction(CBotFunction* func);
+
+    void RemovePublicFunction(CBotFunction* func);
+
 private:
     CBotContextSPtr m_outerContext;
+
+    std::list<CBotFunction*> m_functions;
 
     struct GlobalData
     {

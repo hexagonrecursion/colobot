@@ -21,6 +21,7 @@
 
 #include "CBot/CBotClass.h"
 
+#include <algorithm>
 #include <cassert>
 
 namespace CBot
@@ -176,6 +177,22 @@ void CBotContext::SetFileAccessHandler(std::unique_ptr<CBotFileAccessHandler> fi
 CBotFileAccessHandler* CBotContext::GetFileAccessHandler() const
 {
     return m_globalData->m_fileHandler.get();
+}
+
+const std::list<CBotFunction*>& CBotContext::GetPublicFunctions() const
+{
+    return m_functions;
+}
+
+void CBotContext::AddPublicFunction(CBotFunction* func)
+{
+    m_functions.push_back(func);
+}
+
+void CBotContext::RemovePublicFunction(CBotFunction* func)
+{
+    auto it = std::find_if(m_functions.begin(), m_functions.end(), [&func](auto x) { return x == func; });
+    if (it != m_functions.end()) m_functions.erase(it);
 }
 
 } // namespace CBot
