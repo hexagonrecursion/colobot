@@ -94,7 +94,10 @@ bool CBotProgram::Compile(const std::string& program, std::vector<std::string>& 
         {
             CBotClass* newclass = CBotClass::Compile1(p, pStack.get());
             if (newclass != nullptr)
+            {
+                newclass->SetContext(m_context);
                 m_classes.push_back(newclass);
+            }
         }
         else
         {
@@ -159,7 +162,7 @@ bool CBotProgram::Start(const std::string& name)
     }
     m_entryPoint = *it;
 
-    m_stack = CBotStack::AllocateStack();
+    m_stack = CBotStack::AllocateStack(m_context.get());
     m_stack->SetProgram(this);
 
     return true; // we are ready for Run()
@@ -369,7 +372,7 @@ bool CBotProgram::RestoreState(std::istream &istr)
     {
         m_stack->Delete();
         m_stack = nullptr;
-        m_stack = CBotStack::AllocateStack(); // start from the top
+        m_stack = CBotStack::AllocateStack(m_context.get()); // start from the top
         m_stack->SetProgram(this);
         return false; // signal error
     }

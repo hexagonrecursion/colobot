@@ -29,6 +29,9 @@
 #include "CBot/CBotUtils.h"
 #include "CBot/CBotExternalCall.h"
 
+#include "CBot/context/cbot_context.h"
+#include "CBot/context/cbot_user_pointer.h"
+
 #include <cassert>
 #include <cstdint>
 #include <cstdlib>
@@ -51,6 +54,7 @@ struct CBotStack::Data
 
     std::string  labelBreak = "";
 
+    CBotContext* context    = nullptr;
     CBotProgram* baseProg   = nullptr;
     CBotStack*   topStack   = nullptr;
     void*        pUser      = nullptr;
@@ -58,7 +62,7 @@ struct CBotStack::Data
     std::unique_ptr<CBotVar> retvar;
 };
 
-CBotStack* CBotStack::AllocateStack()
+CBotStack* CBotStack::AllocateStack(CBotContext* context)
 {
     CBotStack*    p;
 
@@ -83,6 +87,7 @@ CBotStack* CBotStack::AllocateStack()
     }
 
     p->m_data = new CBotStack::Data;
+    p->m_data->context = context;
     p->m_data->topStack = p;
     return p;
 }
@@ -358,7 +363,7 @@ CBotVar* CBotStack::FindVar(CBotToken*& pToken, bool bUpdate)
             if (pp->GetName() == name)
             {
                 if ( bUpdate )
-                    pp->Update(m_data->pUser);
+                    pp->Update();
 
                 return pp;
             }
@@ -401,7 +406,7 @@ CBotVar* CBotStack::FindVar(long ident, bool bUpdate)
             if (pp->GetUniqNum() == ident)
             {
                 if ( bUpdate )
-                    pp->Update(m_data->pUser);
+                    pp->Update();
 
                 return pp;
             }
@@ -723,8 +728,8 @@ bool CBotStack::SaveState(std::ostream &ostr)
     if (!WriteWord(ostr, 0)) return false; // for backwards combatibility (m_bDontDelete)
     if (!WriteInt(ostr, m_step)) return false;
 
-    if (!SaveVars(ostr, m_var)) return false;          // current result
-    if (!SaveVars(ostr, m_listVar)) return false;      // local variables
+    if (!WriteVarList(ostr, m_var, *(m_data->context))) return false;            // current result
+    if (!WriteVarListAsArray(ostr, m_listVar, *(m_data->context))) return false; // local variables
 
     if (m_next != nullptr)
     {
@@ -735,18 +740,6 @@ bool CBotStack::SaveState(std::ostream &ostr)
         if (!WriteWord(ostr, 0)) return false; // 0 - CBotStack::SaveState terminator
     }
     return true;
-}
-
-bool SaveVars(std::ostream &ostr, CBotVar* pVar)
-{
-    while (pVar != nullptr)
-    {
-        if (!pVar->Save0State(ostr)) return false; // common header
-        if (!pVar->Save1State(ostr)) return false; // saves the data
-
-        pVar = pVar->GetNext();
-    }
-    return WriteWord(ostr, 0); // 0 - CBot::SaveVars terminator
 }
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -777,8 +770,8 @@ bool CBotStack::RestoreState(std::istream &istr, CBotStack* &pStack)
     if (!ReadInt(istr, state)) return false;
     pStack->m_step = state;
 
-    if (!CBotVar::RestoreState(istr, pStack->m_var)) return false;     // temp variable
-    if (!CBotVar::RestoreState(istr, pStack->m_listVar)) return false; // local variables
+    if (!ReadVarList(istr, pStack->m_var, *(m_data->context))) return false;              // temp variable
+    if (!ReadVarListFromArray(istr, pStack->m_listVar, *(m_data->context))) return false; // local variables
 
     return pStack->RestoreState(istr, pStack->m_next);
 }
@@ -792,7 +785,7 @@ bool CBotVar::Save0State(std::ostream &ostr)
 
     if (m_type.Eq(CBotTypPointer) && GetPointer() != nullptr)
     {
-        if (GetPointer()->m_bConstructor)                    // constructor was called?
+        if (std::static_pointer_cast<CBotVarClass>(GetPointer())->m_bConstructor) // constructor was called?
         {
             if (!WriteWord(ostr, (2000 + static_cast<unsigned short>(m_binit)) )) return false;
             return WriteString(ostr, m_token->GetString());  // and variable name
@@ -803,21 +796,14 @@ bool CBotVar::Save0State(std::ostream &ostr)
     return WriteString(ostr, m_token->GetString());          // and variable name
 }
 
-////////////////////////////////////////////////////////////////////////////////
-bool CBotVar::RestoreState(std::istream &istr, CBotVar* &pVar)
+bool CBotVar::RestoreVar(std::istream &istr, CBotVarUPtr& outVar, CBotContext& context)
 {
-    unsigned short        w, wi, prv, st;
-
-    delete pVar;
-
-                pVar    = nullptr;
-    CBotVar*    pNew    = nullptr;
-    CBotVar*    pPrev    = nullptr;
-
-    while ( true )            // retrieves a list
+    unsigned short w, wi, prv, st;
+    CBotVar* pNew = nullptr;
+    outVar.reset();
     {
         if (!ReadWord(istr, w)) return false;                      // private or type?
-        if ( w == 0 ) return true; // 0 - CBot::SaveVars terminator
+        if ( w == 0 ) return true; // 0 - CBot::WriteVarList terminator
 
         std::string defnum;
         if ( w == 200 )
@@ -914,41 +900,42 @@ bool CBotVar::RestoreState(std::istream &istr, CBotVar* &pVar)
             isClass = true;
         case CBotTypArrayBody:
             {
-                CBotTypResult    r;
-                long            id;
-                if (!ReadType(istr, r)) return false;               // complete type
-                if (!ReadLong(istr, id)) return false;
-
+                long pos;
+                if (!ReadLong(istr, pos)) return false;
+                if ( pos != 0 )
                 {
-                    CBotVar* p = nullptr;
-                    if ( id ) p = CBotVarClass::Find(id) ;
+                    CBotVar* pInstance = context.FindInstance(pos);
+                    if (pInstance == nullptr)
+                    {
+                        assert(false);
+                        return false;
+                    }
+                    pNew = pInstance;
+                    break;
+                }
 
+                pos = istr.tellg();
+                CBotTypResult    r;
+                if (!ReadType(istr, r, context)) return false;      // complete type
+                {
                     pNew = new CBotVarClass(token, r);                // directly creates an instance
                                                                     // attention cptuse = 0
-                    if (!RestoreState(istr, (static_cast<CBotVarClass*>(pNew))->m_pVar)) return false;
-                    pNew->SetIdent(id);
-
-                    if (isClass && p == nullptr) // set id for each item in this instance
+                    auto pClass = r.GetClass();
+                    if (pClass == nullptr || !pClass->IsIntrinsic())
                     {
-                        CBotClass* pClass = pNew->GetClass();
-                        CBotVar* pVars = (static_cast<CBotVarClass*>(pNew))->m_pVar;
-                        while (pClass != nullptr && pVars != nullptr)
-                        {
-                            CBotVar* pv = pClass->GetVar();
-                            while (pVars != nullptr && pv != nullptr)
-                            {
-                                pVars->m_ident = pv->m_ident;
-                                pVars = pVars->m_next;
-                                pv = pv->m_next;
-                            }
-                            pClass = pClass->GetParent();
-                        }
+                        context.DeclareInstance(pos, pNew);
                     }
 
-                    if ( p != nullptr )
+                    if (!ReadVarListFromArray(istr, (static_cast<CBotVarClass*>(pNew))->m_pVar, context)) return false;
+
+                    if (isClass) // read id for each item in this instance
                     {
-                        delete pNew;
-                        pNew = p;            // resume known element
+                        CBotVar* pVars = (static_cast<CBotVarClass*>(pNew))->m_pVar;
+                        while (pVars != nullptr)
+                        {
+                            if (!ReadLong(istr, pVars->m_ident)) return false;
+                            pVars = pVars->m_next;
+                        }
                     }
                 }
             }
@@ -960,50 +947,50 @@ bool CBotVar::RestoreState(std::istream &istr, CBotVar* &pVar)
             std::string className;
             if (!ReadString(istr, className)) return false; // name of the class
             {
-//                CBotVarClass* p = nullptr;
-                long id;
-                if (!ReadLong(istr, id)) return false;
-//                if ( id ) p = CBotVarClass::Find(id);        // found the instance (made by RestoreInstance)
-
-                CBotTypResult ptrType(w, className);
+                auto pClass = CBotClass::Find(className);
+                CBotTypResult ptrType(w, pClass);
                 pNew = CBotVar::Create(token, ptrType);        // creates a variable
-                // returns a copy of the original instance
+
+                // returns the original instance
                 CBotVar* pInstance = nullptr;
-                if (!CBotVar::RestoreState(istr, pInstance)) return false;
-                (static_cast<CBotVarPointer*>(pNew))->SetPointer( pInstance );            // and point over
+                if (!ReadVarList(istr, pInstance, context)) return false;
+
+                if (pInstance != nullptr)
+                {
+                    pNew->SetPointer( pInstance->GetPointer() );            // and point over
+                }
 
                 if (bConstructor) pNew->ConstructorSet(); // constructor was called
                 if (ptrType.Eq(CBotTypPointer)) pNew->SetType(ptrType); // keep pointer type
-
-//                if ( p != nullptr ) (static_cast<CBotVarPointer*>(pNew))->SetPointer( p );    // rather this one
-
             }
             break;
         }
         case CBotTypArrayPointer:
             {
                 CBotTypResult    r;
-                if (!ReadType(istr, r)) return false;
+                if (!ReadType(istr, r, context)) return false;
 
                 pNew = CBotVar::Create(token, r);                        // creates a variable
 
-                // returns a copy of the original instance
+                // returns the original instance
                 CBotVar* pInstance = nullptr;
-                if (!CBotVar::RestoreState(istr, pInstance)) return false;
-                (static_cast<CBotVarPointer*>(pNew))->SetPointer( pInstance );            // and point over
+                if (!ReadVarList(istr, pInstance, context)) return false;
+
+                if (pInstance != nullptr)
+                {
+                    pNew->SetPointer( pInstance->GetPointer() );            // and point over
+                }
             }
             break;
         default:
+            assert(false); // TODO: temporary
             return false; // signal error
         }
 
-        if ( pPrev != nullptr ) pPrev->m_next = pNew;
-        if ( pVar == nullptr  ) pVar = pNew;
-
-        pNew->m_binit = initType;        //        pNew->SetInit(wi);
+        pNew->m_binit = initType;
         pNew->SetStatic(st);
         pNew->SetPrivate(static_cast<ProtectionLevel>(prv-100));
-        pPrev = pNew;
+        outVar.reset(pNew);
     }
     return true;
 }

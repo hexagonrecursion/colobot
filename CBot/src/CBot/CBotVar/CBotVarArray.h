@@ -41,8 +41,9 @@ public:
      */
     ~CBotVarArray();
 
-    void SetPointer(CBotVar* p) override;
-    CBotVarClass* GetPointer() override;
+    void SetPointer(const CBotVarSPtr& p) override;
+    CBotVarSPtr GetPointer() override;
+    bool PointerIsUnique() const override;
 
     void Copy(CBotVar* pSrc, bool bName = true) override;
 
@@ -51,11 +52,11 @@ public:
 
     std::string GetValString() const override;
 
-    bool Save1State(std::ostream &ostr) override;
+    bool Save1State(std::ostream &ostr, CBotContext& context) override;
 
 private:
     //! Array data
-    CBotVarClass* m_pInstance;
+    CBotVarSPtr m_pInstance;
 };
 
 } // namespace CBot

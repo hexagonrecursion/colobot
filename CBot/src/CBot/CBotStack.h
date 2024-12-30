@@ -30,6 +30,7 @@
 namespace CBot
 {
 
+class CBotContext;
 class CBotInstr;
 class CBotExternalCall;
 class CBotVar;
@@ -64,7 +65,7 @@ public:
      * \brief Allocate the stack
      * \return pointer to created stack
      */
-    static CBotStack* AllocateStack();
+    static CBotStack* AllocateStack(CBotContext* context);
 
     /** \brief Remove the current stack */
     void Delete();

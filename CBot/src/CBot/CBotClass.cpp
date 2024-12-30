@@ -362,8 +362,7 @@ void CBotClass::RestoreMethode(long& nIdent,
     assert(false);
 }
 
-////////////////////////////////////////////////////////////////////////////////
-bool CBotClass::SaveStaticState(std::ostream &ostr)
+bool CBotClass::SaveStaticState(std::ostream &ostr, CBotContext& context)
 {
     if (!WriteLong(ostr, CBOTVERSION*2)) return false;
 
@@ -383,7 +382,7 @@ bool CBotClass::SaveStaticState(std::ostream &ostr)
                 if (!WriteString(ostr, pv->GetName())) return false;
 
                 if (!pv->Save0State(ostr)) return false;             // common header
-                if (!pv->Save1State(ostr)) return false;                // saves as the child class
+                if (!pv->Save1State(ostr, context)) return false;
                 if (!WriteWord(ostr, 0)) return false;
             }
             pv = pv->GetNext();
@@ -396,8 +395,7 @@ bool CBotClass::SaveStaticState(std::ostream &ostr)
     return true;
 }
 
-////////////////////////////////////////////////////////////////////////////////
-bool CBotClass::RestoreStaticState(std::istream &istr)
+bool CBotClass::RestoreStaticState(std::istream &istr, CBotContext& context)
 {
     std::string      ClassName, VarName;
     CBotClass*      pClass;
@@ -426,7 +424,12 @@ bool CBotClass::RestoreStaticState(std::istream &istr)
             if (!ReadString(istr, VarName)) return false;
             if ( pClass != nullptr ) pVar = pClass->GetItem(VarName);
 
-            if (!CBotVar::RestoreState(istr, pv)) return false; // the temp variable
+            if (!ReadVarList(istr, pv, context)) return false;  // the temp variable
+            if ( pv == nullptr )
+            {
+                assert(false);
+                return false;
+            }
 
             if ( pVar != nullptr ) pVar->Copy(pv);
             delete pv;
@@ -733,7 +736,7 @@ bool CBotClass::CompileDefItem(CBotToken* &p, CBotCStack* pStack, bool bSecond)
 
                 if ( pv->IsStatic() && pv->m_InitExpr != nullptr )
                 {
-                    CBotStack* pile = CBotStack::AllocateStack();              // independent stack
+                    CBotStack* pile = CBotStack::AllocateStack(pStack->GetContext()); // independent stack
                     if ( type2.Eq(CBotTypArrayPointer) )
                     {
                         while(pile->IsOk() && !pv->m_InitExpr->Execute(pile, pv));

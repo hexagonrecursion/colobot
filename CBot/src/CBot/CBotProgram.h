@@ -21,6 +21,8 @@
 
 #include "CBot/CBotEnums.h"
 
+#include "CBot/context/context_owner.h"
+
 #include <list>
 #include <memory>
 #include <string>
@@ -42,12 +44,16 @@ class CBotExternalCallList;
  * \section Init Engine initialization / destruction
  * To initialize the CBot engine, call CBotProgram::Init(). This function should be only called once.
  *
+ * Create context for public functions, classes, etc. See:
+ * * CBotContext
+ *
  * Afterwards, you can start defining custom functions, constants and classes. See:
  * * CBotProgram::AddFunction()
  * * CBotProgram::DefineNum()
  * * CBotClass::Create()
  *
  * Next, compile and run programs.
+ * * SetContext()
  * * Compile()
  * * Start()
  * * Run()
@@ -60,12 +66,17 @@ class CBotExternalCallList;
  * // Initialize the engine
  * CBotProgram::Init();
  *
+ * // Create context for public functions, classes, etc.
+ * auto context = CBotContext::Create();
+ *
  * // Add some standard functions
  * CBotProgram::AddFunction("message", rMessage, cMessage);
  *
  * // Compile the program
  * std::vector<std::string> externFunctions;
  * CBotProgram* program = new CBotProgram();
+ * program->SetContext(context);
+ *
  * bool ok = program->Compile(code.c_str(), externFunctions, nullptr);
  * if (!ok)
  * {
@@ -83,7 +94,7 @@ class CBotExternalCallList;
  * CBotProgram::Free();
  * \endcode
  */
-class CBotProgram
+class CBotProgram : public CBotContextOwner
 {
 public:
     /**

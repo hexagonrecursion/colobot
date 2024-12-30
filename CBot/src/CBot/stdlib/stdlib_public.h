@@ -21,6 +21,8 @@
 
 #include "CBot/stdlib/Compilation.h"
 
+#include "CBot/context/cbot_user_pointer.h"
+
 #include <memory>
 #include <filesystem>
 

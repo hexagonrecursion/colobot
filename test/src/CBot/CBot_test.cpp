@@ -33,6 +33,7 @@ class CBotUT : public testing::Test
 public:
     CBotUT()
     {
+        m_context = CBot::CBotContext::CreateGlobalContext();
         CBotProgram::Init();
         CBotProgram::AddFunction("FAIL", rFail, cFail);
         CBotProgram::AddFunction("ASSERT", rAssert, cAssert);
@@ -205,27 +206,34 @@ private:
     static void TestSaveAndRestore(CBotProgram* program)
     {
         std::stringstream sstr("");
+        const auto& context = program->GetContext();
         // save
+        context->ClearInstanceList();
         if (!program->SaveState(sstr))
             throw CBotTestFail("CBotProgram::SaveState Failed");
 
-        if (!CBotClass::SaveStaticState(sstr))
+        if (!CBotClass::SaveStaticState(sstr, *context))
             throw CBotTestFail("CBotClass::SaveStaticState Failed");
         // restore
+        context->ClearInstanceList();
         if (!program->RestoreState(sstr))
             throw CBotTestFail("CBotProgram::RestoreState Failed");
 
-        if (!CBotClass::RestoreStaticState(sstr))
+        if (!CBotClass::RestoreStaticState(sstr, *context))
             throw CBotTestFail("CBotClass::RestoreStaticState Failed");
     }
 
 protected:
+    std::shared_ptr<CBotContext> m_context;
+
     std::unique_ptr<CBotProgram> ExecuteTest(const std::string& code, CBotError expectedError = CBotNoErr)
     {
         CBotError expectedCompileError = expectedError < 6000 ? expectedError : CBotNoErr;
         CBotError expectedRuntimeError = expectedError >= 6000 ? expectedError : CBotNoErr;
 
-        auto program = std::unique_ptr<CBotProgram>(new CBotProgram());
+        auto program = std::make_unique<CBotProgram>(nullptr);
+        program->SetContext(m_context);
+
         std::vector<std::string> tests;
         program->Compile(code, tests);
 

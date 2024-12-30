@@ -181,6 +181,16 @@ bool ReadLong(std::istream &istr, long &l)
     return ReadSignedBinary<long>(istr, l);
 }
 
+bool WriteSize_t(std::ostream &ostr, std::size_t s)
+{
+    return WriteBinary<std::size_t>(ostr, s);
+}
+
+bool ReadSize_t(std::istream &istr, std::size_t &s)
+{
+    return ReadBinary<std::size_t>(istr, s);
+}
+
 bool WriteFloat(std::ostream &ostr, float f)
 {
     union TypeConverter
@@ -249,7 +259,7 @@ bool ReadDouble(std::istream &istr, double &d)
 
 bool WriteString(std::ostream &ostr, const std::string &s)
 {
-    if (!WriteBinary<size_t>(ostr, s.size())) return false;
+    if (!WriteSize_t(ostr, s.size())) return false;
     if (!ostr.write(&(s[0]), s.size())) return false;
 
     return true;
@@ -257,8 +267,8 @@ bool WriteString(std::ostream &ostr, const std::string &s)
 
 bool ReadString(std::istream &istr, std::string &s)
 {
-    size_t length = 0;
-    if (!ReadBinary<size_t>(istr, length)) return false;
+    std::size_t length = 0;
+    if (!ReadSize_t(istr, length)) return false;
 
     s.resize(length);
     if (length != 0)
@@ -296,7 +306,7 @@ bool WriteType(std::ostream &ostr, const CBotTypResult &type)
     return true;
 }
 
-bool ReadType(std::istream &istr, CBotTypResult &type)
+bool ReadType(std::istream &istr, CBotTypResult &type, CBotContext& context)
 {
     unsigned short  w, ww;
     if (!ReadWord(istr, w)) return false;
@@ -304,7 +314,8 @@ bool ReadType(std::istream &istr, CBotTypResult &type)
 
     if ( type.Eq( CBotTypIntrinsic ) )
     {
-        type = CBotTypResult( w, "point" );
+        assert(false);
+        return false;
     }
 
     if ( type.Eq( CBotTypClass ) )
@@ -319,7 +330,7 @@ bool ReadType(std::istream &istr, CBotTypResult &type)
     {
         CBotTypResult   r;
         if (!ReadWord(istr, ww)) return false;
-        if (!ReadType(istr, r)) return false;
+        if (!ReadType(istr, r, context)) return false;
         type = CBotTypResult( w, r );
         type.SetLimite(static_cast<short>(ww));
     }
@@ -360,6 +371,132 @@ bool ReadStream(std::istream& istr, std::ostream &ostr)
     while (length-- > 0)
     {
         if (!ostr.put(istr.get())) return false;
+    }
+    return true;
+}
+
+bool WriteVarList(std::ostream &ostr, CBotVar* pVar, CBotContext& context)
+{
+    while (pVar != nullptr)
+    {
+        if (!pVar->Save0State(ostr)) return false; // common header
+        if (!pVar->Save1State(ostr, context)) return false; // saves the data
+
+        pVar = pVar->GetNext();
+    }
+    return WriteWord(ostr, 0); // 0 - CBot::WriteVarList terminator
+}
+
+bool ReadVarList(std::istream &istr, CBotVar* &pVar, CBotContext& context)
+{
+    delete pVar;
+    pVar = nullptr;
+    CBotVar* pPrev = nullptr;
+    CBotVarUPtr outVar{nullptr};
+
+    while ( true )
+    {
+        CBotVarUPtr pNew{nullptr};
+        if (!CBotVar::RestoreVar(istr, pNew, context)) return false;
+
+        if ( !pNew ) break;             // 0 - CBot::WriteVarList terminator
+
+        if ( pPrev != nullptr )         // follow the end of the list
+        {
+            pPrev->AddNext(pNew.release());
+            pPrev = pPrev->GetNext();
+        }
+        else                            // set return param
+        {
+            outVar.reset(pPrev = pNew.release());
+        }
+    }
+    pVar = outVar.release();
+    return true;
+}
+
+bool WriteVarListAsArray(std::ostream &ostr, CBotVar* pVar, CBotContext& context)
+{
+    std::size_t numVar{0};
+    for (auto var = pVar; var != nullptr; var = var->GetNext())
+    {
+        ++numVar;
+    }
+    if (!WriteSize_t(ostr, numVar)) return false;
+
+    for (auto var = pVar; var != nullptr; var = var->GetNext())
+    {
+        if (!var->Save0State(ostr)) return false; // common header
+        if (!var->Save1State(ostr, context)) return false; // saves the data
+    }
+
+    return true;
+}
+
+bool ReadVarListFromArray(std::istream &istr, CBotVar*& pVar, CBotContext& context)
+{
+    delete pVar;
+    pVar = nullptr;
+    std::size_t numVar{0};
+    CBotVar* pPrev = nullptr;
+    CBotVarUPtr outVar{nullptr};
+
+    if (!ReadSize_t(istr, numVar)) return false;
+    while (numVar != 0 && 0 < numVar--)
+    {
+        CBotVarUPtr pNew{nullptr};
+        if (!CBotVar::RestoreVar(istr, pNew, context)) return false;
+        if (!pNew) // no empty pointers, unexpected 0 terminator
+        {
+            assert(false);
+            return false;
+        }
+
+        if ( pPrev != nullptr )         // follow the end of the list
+        {
+            pPrev->AddNext(pNew.release());
+            pPrev = pPrev->GetNext();
+        }
+        else                            // set the return param
+        {
+            outVar.reset(pPrev = pNew.release());
+        }
+    }
+    pVar = outVar.release();
+    return true;
+}
+
+bool WriteVarArray(std::ostream &ostr, const std::vector<CBotVarUPtr>& vars, CBotContext& context)
+{
+    if (!WriteSize_t(ostr, vars.size())) return false;
+    for (auto& var : vars)
+    {
+        if (!var) // no empty pointers
+        {
+            assert(false);
+            return false;
+        }
+        if (!var->Save0State(ostr)) return false; // common header
+        if (!var->Save1State(ostr, context)) return false; // saves the data
+    }
+    return true;
+}
+
+bool ReadVarArray(std::istream &istr, std::vector<CBotVarUPtr>& vars, CBotContext& context)
+{
+    std::size_t numVar{0};
+    if (!ReadSize_t(istr, numVar)) return false;
+    vars.resize(numVar);
+    auto it = vars.begin();
+    while (numVar != 0 && 0 < numVar--)
+    {
+        if (!CBotVar::RestoreVar(istr, *it, context)) return false;
+        if (*it == nullptr) // no empty pointers, unexpected 0 terminator
+        {
+            assert(false);
+            return false;
+        }
+        it++;
     }
     return true;
 }

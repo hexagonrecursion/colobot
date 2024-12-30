@@ -80,7 +80,6 @@ CScript::CScript(COldObject* object)
 
 CScript::~CScript()
 {
-    
 }
 
 
@@ -225,7 +224,6 @@ static bool isValidRange(const std::string& script, int cursor1, int cursor2)
 bool CScript::Compile()
 {
     std::vector<std::string> functionList;
-    std::string     p;
 
     m_error = CBot::CBotNoErr;
     m_cursor1 = 0;
@@ -243,6 +241,7 @@ bool CScript::Compile()
     if (m_botProg == nullptr)
     {
         m_botProg = std::make_unique<CBot::CBotProgram>(m_object->GetBotVar());
+        m_botProg->SetContext(m_main->GetCBotContextForTeam(m_object->GetTeam()));
     }
 
     if ( m_botProg->Compile(m_script, functionList, this) )
@@ -491,7 +490,7 @@ static void PutList(const std::string& baseName, bool bArray, CBot::CBotVar *var
     int index = 0;
     while (var != nullptr)
     {
-        var->Update(nullptr);
+        var->Update();
         CBot::CBotVar* pStatic = var->GetStaticVar();  // finds the static element
 
         std::string varName;

@@ -40,7 +40,14 @@ struct CBotCStack::Data
     int           errEnd = 0;
     //! The return type of the function currently being compiled
     CBotTypResult retTyp = CBotTypResult(CBotTypVoid);
+
+    CBotContext* context = nullptr;
 };
+
+CBotContext* CBotCStack::GetContext() const
+{
+    return m_data->context;
+}
 
 CBotCStack::CBotCStack(CBotCStack* ppapa)
 {
@@ -250,6 +257,7 @@ bool CBotCStack::NextToken(CBotToken* &p)
 void CBotCStack::SetProgram(CBotProgram* p)
 {
     m_data->prog = p;
+    m_data->context = p->GetContext().get();
 }
 
 ////////////////////////////////////////////////////////////////////////////////

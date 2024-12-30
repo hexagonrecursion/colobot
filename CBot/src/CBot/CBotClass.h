@@ -23,15 +23,16 @@
 #include "CBot/CBotTypResult.h"
 #include "CBot/CBotVar/CBotVar.h"
 
-#include <string>
+#include "CBot/context/context_observer.h"
+
 #include <deque>
-#include <set>
 #include <list>
+#include <set>
+#include <string>
 
 namespace CBot
 {
 
-class CBotCallMethode;
 class CBotFunction;
 class CBotProgram;
 class CBotStack;
@@ -104,7 +105,7 @@ class CBotExternalCallList;
  *  float y = var->GetValFloat();
  *  \endcode
  */
-class CBotClass
+class CBotClass : public CBotContextObserver
 {
 public:
     /*!
@@ -341,14 +342,14 @@ public:
      * \param ostr Output stream
      * \return true on success
      */
-    static bool SaveStaticState(std::ostream &ostr);
+    static bool SaveStaticState(std::ostream &ostr, CBotContext& context);
 
     /*!
      * \brief Restore all static variables in each public class
      * \param istr Input stream
      * \return true on success
      */
-    static bool RestoreStaticState(std::istream &istr);
+    static bool RestoreStaticState(std::istream &istr, CBotContext& context);
 
     /**
      * \brief Request a lock on this class (for "synchronized" keyword)

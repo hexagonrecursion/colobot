@@ -28,6 +28,7 @@
 namespace CBot
 {
 
+class CBotContext;
 class CBotInstr;
 class CBotDefParam;
 class CBotToken;
@@ -250,6 +251,8 @@ public:
      * \return
      */
     CBotProgram* GetProgram();
+
+    CBotContext* GetContext() const;
 
     /*!
      * \brief CompileCall

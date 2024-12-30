@@ -163,6 +163,11 @@ target_sources(CBot PRIVATE
     src/CBot/CBotVar/CBotVarShort.h
     src/CBot/CBotVar/CBotVarString.cpp
     src/CBot/CBotVar/CBotVarString.h
+    src/CBot/context/cbot_context.cpp
+    src/CBot/context/cbot_context.h
+    src/CBot/context/cbot_user_pointer.h
+    src/CBot/context/context_observer.h
+    src/CBot/context/context_owner.h
     src/CBot/stdlib/Compilation.cpp
     src/CBot/stdlib/Compilation.h
     src/CBot/stdlib/FileFunctions.cpp

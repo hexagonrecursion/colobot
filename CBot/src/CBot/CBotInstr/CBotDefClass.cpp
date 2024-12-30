@@ -195,12 +195,11 @@ CBotInstr* CBotDefClass::Compile(CBotToken* &p, CBotCStack* pStack, CBotClass* p
                 pStk->SetError(CBotErrBadType1, p->GetStart());
                 goto error;
             }
-//          if ( !bIntrinsic ) var->SetPointer(pStk->GetVar()->GetPointer());
             if ( !bIntrinsic )
             {
                 // does not use the result on the stack, to impose the class
                 CBotVar* pvar = CBotVar::Create("", pClass);
-                var->SetPointer( pvar );                    // variable already declared instance pointer
+                var->SetPointer( pvar->GetPointer() );      // variable already declared instance pointer
                 delete pvar;                                // removes the second pointer
             }
             var->SetInit(CBotVar::InitType::DEF);                         // marks the pointer as init
@@ -212,7 +211,7 @@ CBotInstr* CBotDefClass::Compile(CBotToken* &p, CBotCStack* pStack, CBotClass* p
             if ( !bIntrinsic )
             {
                 CBotVar* pvar = CBotVar::Create("", pClass);
-                var->SetPointer( pvar );                    // variable already declared instance pointer
+                var->SetPointer( pvar->GetPointer() );      // variable already declared instance pointer
                 delete pvar;                                // removes the second pointer
             }
             var->SetInit(CBotVar::InitType::IS_POINTER);                            // marks the pointer as init
@@ -301,7 +300,7 @@ bool CBotDefClass::Execute(CBotStack* &pj)
 
             if ( bIntrincic )
             {
-                if ( pv == nullptr || pv->GetPointer() == nullptr )
+                if ( pv == nullptr )
                 {
                     pile->SetError(CBotErrNull, &m_token);
                     return pj->Return(pile);
@@ -319,10 +318,8 @@ bool CBotDefClass::Execute(CBotStack* &pj)
                     }
                 }
 
-                CBotVarClass* pInstance;
-                pInstance = pv->GetPointer();    // value for the assignment
                 CBotTypResult type = pThis->GetTypResult();
-                pThis->SetPointer(pInstance);
+                pThis->SetPointer( pv->GetPointer() );
                 pThis->SetType(type);        // keep pointer type
             }
             pThis->SetInit(CBotVar::InitType::DEF);
@@ -339,10 +336,8 @@ bool CBotDefClass::Execute(CBotStack* &pj)
 
                 // creates an instance of the requested class
 
-                CBotVarClass* pInstance;
-                pInstance = static_cast<CBotVarClass*>(CBotVar::Create("", pClass));
-                pThis->SetPointer(pInstance);
-                delete pInstance;
+                CBotVarUPtr pInstance{CBotVar::Create("", pClass)};
+                pThis->SetPointer( pInstance->GetPointer() );
 
                 pile->IncState();
             }

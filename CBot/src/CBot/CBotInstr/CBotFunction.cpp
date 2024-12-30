@@ -433,7 +433,7 @@ bool CBotFunction::Execute(CBotVar** ppVars, CBotStack* &pj, CBotVar* pInstance)
             }
 
             pThis = CBotVar::Create("this", CBotTypResult( CBotTypPointer, m_MasterClass ));
-            pThis->SetPointer(pInstance);
+            pThis->SetPointer( pInstance->GetPointer() );
         }
         assert(pThis != nullptr);
         pThis->SetInit(CBotVar::InitType::IS_POINTER);
@@ -494,7 +494,7 @@ void CBotFunction::RestoreState(CBotVar** ppVars, CBotStack* &pj, CBotVar* pInst
     {
         CBotVar* pThis = pile->FindVar("this");
         pThis->SetInit(CBotVar::InitType::IS_POINTER);
-        pThis->SetPointer(pInstance);
+        pThis->SetPointer( pInstance->GetPointer() );
         pThis->SetUniqNum(-2);
     }
 
@@ -790,7 +790,7 @@ int CBotFunction::DoCall(CBotProgram* program, const std::list<CBotFunction*>& l
                     }
 
                     pThis = CBotVar::Create("this", CBotTypResult( CBotTypPointer, pt->m_MasterClass ));
-                    pThis->SetPointer(pInstance);
+                    pThis->SetPointer( pInstance->GetPointer() );
                 }
                 assert(pThis != nullptr);
                 pThis->SetInit(CBotVar::InitType::IS_POINTER);
@@ -874,7 +874,7 @@ void CBotFunction::RestoreCall(const std::list<CBotFunction*>& localFunctionList
                 // make "this" known
                 CBotVar* pThis = pStk1->FindVar("this");
                 pThis->SetInit(CBotVar::InitType::IS_POINTER);
-                pThis->SetPointer(pInstance);
+                pThis->SetPointer( pInstance->GetPointer() );
                 pThis->SetUniqNum(-2);
             }
         }

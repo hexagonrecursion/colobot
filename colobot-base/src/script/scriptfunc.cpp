@@ -328,7 +328,7 @@ bool CScriptFunctions::rGetObjectById(CBotVar* var, CBotVar* result, int& except
     }
     else
     {
-        result->SetPointer(pObj->GetBotVar());
+        result->SetPointer( pObj->GetBotVar()->GetPointer() );
     }
 
     return true;
@@ -350,7 +350,7 @@ bool CScriptFunctions::rGetObject(CBotVar* var, CBotVar* result, int& exception,
     }
     else
     {
-        result->SetPointer(pObj->GetBotVar());
+        result->SetPointer( pObj->GetBotVar()->GetPointer() );
     }
     return true;
 }
@@ -371,7 +371,7 @@ bool CScriptFunctions::rIsBusy(CBotVar* var, CBotVar* result, int& exception, vo
 
     exception = 0;
 
-    CObject* obj = static_cast<CObject*>(var->GetUserPtr());
+    CObject* obj = var->GetUserPointer()->GetPointerAs<CObject>();
     if (obj == nullptr)
     {
         exception = ERR_WRONG_OBJ;
@@ -408,7 +408,7 @@ bool CScriptFunctions::rDestroy(CBotVar* var, CBotVar* result, int& exception, v
     if (var == nullptr)
         obj = CObjectManager::GetInstancePointer()->FindNearest(pThis, OBJECT_DESTROYER);
     else
-        obj = static_cast<CObject*>(var->GetUserPtr());
+        obj = var->GetUserPointer()->GetPointerAs<CObject>();
 
     if (obj == nullptr)
     {
@@ -493,7 +493,7 @@ bool CScriptFunctions::rFactory(CBotVar* var, CBotVar* result, int& exception, v
     if (var == nullptr)
         factory = CObjectManager::GetInstancePointer()->FindNearest(pThis, OBJECT_FACTORY);
     else
-        factory = static_cast<CObject*>(var->GetUserPtr());
+        factory = var->GetUserPointer()->GetPointerAs<CObject>();
 
     if (factory == nullptr)
     {
@@ -583,7 +583,7 @@ bool CScriptFunctions::rResearch(CBotVar* var, CBotVar* result, int& exception, 
     if (var == nullptr)
         center = CObjectManager::GetInstancePointer()->FindNearest(pThis, OBJECT_RESEARCH);
     else
-        center = static_cast<CObject*>(var->GetUserPtr());
+        center = var->GetUserPointer()->GetPointerAs<CObject>();
 
     if (center == nullptr)
     {
@@ -668,7 +668,7 @@ bool CScriptFunctions::rTakeOff(CBotVar* var, CBotVar* result, int& exception, v
     if (var == nullptr)
         base = CObjectManager::GetInstancePointer()->FindNearest(pThis, OBJECT_BASE);
     else
-        base = static_cast<CObject*>(var->GetUserPtr());
+        base = var->GetUserPointer()->GetPointerAs<CObject>();
 
     if (base == nullptr)
     {
@@ -933,7 +933,7 @@ bool CScriptFunctions::rSearch(CBotVar* var, CBotVar* result, int& exception, vo
         }
         else
         {
-            result->SetPointer(pBest->GetBotVar());
+            result->SetPointer( pBest->GetBotVar()->GetPointer() );
         }
 
         return true;
@@ -952,7 +952,7 @@ bool CScriptFunctions::rSearchAll(CBotVar* var, CBotVar* result, int& exception,
         result->SetInit(CBotVar::InitType::DEF);
         for (CObject* obj : best)
         {
-            result->GetItem(i++, true)->SetPointer(obj->GetBotVar());
+            result->GetItem(i++, true)->SetPointer( obj->GetBotVar()->GetPointer() );
         }
 
         return true;
@@ -1124,7 +1124,7 @@ bool CScriptFunctions::rRadar(CBotVar* var, CBotVar* result, int& exception, voi
         }
         else
         {
-            result->SetPointer(best->GetBotVar());
+            result->SetPointer( best->GetBotVar()->GetPointer() );
         }
 
         return true;
@@ -1142,7 +1142,7 @@ bool CScriptFunctions::rRadarAll(CBotVar* var, CBotVar* result, int& exception, 
         result->SetInit(CBotVar::InitType::DEF);
         for (CObject* obj : best)
         {
-            result->GetItem(i++, true)->SetPointer(obj->GetBotVar());
+            result->GetItem(i++, true)->SetPointer( obj->GetBotVar()->GetPointer() );
         }
 
         return true;
@@ -3253,7 +3253,7 @@ bool CScriptFunctions::rCameraFocus(CBotVar* var, CBotVar* result, int& exceptio
     }
     else
     {
-        object = static_cast<CObject*>(var->GetUserPtr());
+        object = var->GetUserPointer()->GetPointerAs<CObject>();
         var = var->GetNext();
     }
     if (var != nullptr)
@@ -3585,15 +3585,22 @@ void CScriptFunctions::Init()
 
     CBotClass* bc;
 
+    const auto& context = CRobotMain::GetInstancePointer()->GetCBotContextGlobal();
+    bc = CBotClass::Find("file");
+    bc->SetContext(context);
+
     // Add the class Point.
     bc = CBotClass::Create("point", nullptr, true);  // intrinsic class
     bc->AddItem("x", CBotTypFloat);
     bc->AddItem("y", CBotTypFloat);
     bc->AddItem("z", CBotTypFloat);
     bc->AddFunction("point", rPointConstructor, cPointConstructor);
+    bc->SetContext(context);
 
     // Adds the class Object.
     bc = CBotClass::Create("object", nullptr);
+    bc->SetContext(context);
+
     bc->AddItem("category",    CBotTypResult(CBotTypInt), CBotVar::ProtectionLevel::ReadOnly);
     bc->AddItem("position",    CBotTypResult(CBotTypClass, "point"), CBotVar::ProtectionLevel::ReadOnly);
     bc->AddItem("orientation", CBotTypResult(CBotTypFloat), CBotVar::ProtectionLevel::ReadOnly);
@@ -3783,7 +3790,7 @@ void CScriptFunctions::uObject(CBotVar* botThis, void* user)
         }
         else if (power->Implements(ObjectInterfaceType::Old))
         {
-            pVar->SetPointer(power->GetBotVar());
+            pVar->SetPointer( power->GetBotVar()->GetPointer() );
         }
     }
 
@@ -3798,7 +3805,7 @@ void CScriptFunctions::uObject(CBotVar* botThis, void* user)
         }
         else if (cargo->Implements(ObjectInterfaceType::Old))
         {
-            pVar->SetPointer(cargo->GetBotVar());
+            pVar->SetPointer( cargo->GetBotVar()->GetPointer() );
         }
     }
 
@@ -3859,8 +3866,7 @@ CBotVar* CScriptFunctions::CreateObjectVar(CObject* obj)
     }
 
     CBotVar* botVar = CBotVar::Create("", CBotTypResult(CBotTypClass, "object"));
-    botVar->SetUserPtr(obj);
-    botVar->SetIdent(obj->GetID());
+    botVar->SetUserPointer(CBotUserPointer::Create(obj));
     return botVar;
 }
 
@@ -3868,7 +3874,10 @@ void CScriptFunctions::DestroyObjectVar(CBotVar* botVar, bool permanent)
 {
     if ( botVar == nullptr ) return;
 
-    botVar->SetUserPtr(OBJECTDELETED);
+    if (const auto& user = botVar->GetUserPointer())
+    {
+        user->SetPointerAs(nullptr);
+    }
     if (permanent)
         CBotVar::Destroy(botVar);
 }
