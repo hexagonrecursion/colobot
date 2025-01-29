@@ -729,7 +729,7 @@ bool CBotStack::SaveState(std::ostream &ostr)
     if (!WriteWord(ostr, 0)) return false; // for backwards combatibility (m_bDontDelete)
     if (!WriteInt(ostr, m_step)) return false;
 
-    if (!WriteVarList(ostr, m_var, *(m_data->context))) return false;            // current result
+    if (!WriteVarListAsArray(ostr, m_var, *(m_data->context))) return false;     // current result
     if (!WriteVarListAsArray(ostr, m_listVar, *(m_data->context))) return false; // local variables
 
     if (m_next != nullptr)
@@ -771,7 +771,7 @@ bool CBotStack::RestoreState(std::istream &istr, CBotStack* &pStack)
     if (!ReadInt(istr, state)) return false;
     pStack->m_step = state;
 
-    if (!ReadVarList(istr, pStack->m_var, *(m_data->context))) return false;              // temp variable
+    if (!ReadVarListFromArray(istr, pStack->m_var, *(m_data->context))) return false;     // temp variable
     if (!ReadVarListFromArray(istr, pStack->m_listVar, *(m_data->context))) return false; // local variables
 
     return pStack->RestoreState(istr, pStack->m_next);
@@ -804,7 +804,7 @@ bool CBotVar::RestoreVar(std::istream &istr, CBotVarUPtr& outVar, CBotContext& c
     outVar.reset();
     {
         if (!ReadWord(istr, w)) return false;                      // private or type?
-        if ( w == 0 ) return true; // 0 - CBot::WriteVarList terminator
+        if ( w == 0 ) return true; // 0 - list terminator or saved nullptr
 
         std::string defnum;
         if ( w == 200 )
@@ -954,7 +954,7 @@ bool CBotVar::RestoreVar(std::istream &istr, CBotVarUPtr& outVar, CBotContext& c
 
                 // returns the original instance
                 CBotVar* pInstance = nullptr;
-                if (!ReadVarList(istr, pInstance, context)) return false;
+                if (!ReadVarListFromArray(istr, pInstance, context)) return false;
 
                 if (pInstance != nullptr)
                 {
@@ -975,7 +975,7 @@ bool CBotVar::RestoreVar(std::istream &istr, CBotVarUPtr& outVar, CBotContext& c
 
                 // returns the original instance
                 CBotVar* pInstance = nullptr;
-                if (!ReadVarList(istr, pInstance, context)) return false;
+                if (!ReadVarListFromArray(istr, pInstance, context)) return false;
 
                 if (pInstance != nullptr)
                 {

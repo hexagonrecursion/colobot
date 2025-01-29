@@ -173,8 +173,8 @@ bool CBotVarPointer::Save1State(std::ostream &ostr, CBotContext& context)
         if (!WriteString(ostr, "")) return false;
     }
 
-    // also saves the proceedings copies
-    return WriteVarList(ostr, m_pVarClass.get(), context);
+    // save the instance
+    return WriteVarListAsArray(ostr, m_pVarClass.get(), context);
 }
 
 ////////////////////////////////////////////////////////////////////////////////

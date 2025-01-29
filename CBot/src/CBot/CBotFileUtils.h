@@ -227,9 +227,6 @@ bool WriteStream(std::ostream &ostr, std::istream& istr);
  */
 bool ReadStream(std::istream& istr, std::ostream &ostr);
 
-bool WriteVarList(std::ostream &ostr, CBotVar* pVar, CBotContext& context);
-bool ReadVarList(std::istream &istr, CBotVar* &pVar, CBotContext& context);
-
 bool WriteVarListAsArray(std::ostream &ostr, CBotVar* pVar, CBotContext& context);
 bool ReadVarListFromArray(std::istream &istr, CBotVar* &pVar, CBotContext& context);
 

@@ -383,46 +383,6 @@ bool ReadStream(std::istream& istr, std::ostream &ostr)
     return true;
 }
 
-bool WriteVarList(std::ostream &ostr, CBotVar* pVar, CBotContext& context)
-{
-    while (pVar != nullptr)
-    {
-        if (!pVar->Save0State(ostr)) return false; // common header
-        if (!pVar->Save1State(ostr, context)) return false; // saves the data
-
-        pVar = pVar->GetNext();
-    }
-    return WriteWord(ostr, 0); // 0 - CBot::WriteVarList terminator
-}
-
-bool ReadVarList(std::istream &istr, CBotVar* &pVar, CBotContext& context)
-{
-    delete pVar;
-    pVar = nullptr;
-    CBotVar* pPrev = nullptr;
-    CBotVarUPtr outVar{nullptr};
-
-    while ( true )
-    {
-        CBotVarUPtr pNew{nullptr};
-        if (!CBotVar::RestoreVar(istr, pNew, context)) return false;
-
-        if ( !pNew ) break;             // 0 - CBot::WriteVarList terminator
-
-        if ( pPrev != nullptr )         // follow the end of the list
-        {
-            pPrev->AddNext(pNew.release());
-            pPrev = pPrev->GetNext();
-        }
-        else                            // set return param
-        {
-            outVar.reset(pPrev = pNew.release());
-        }
-    }
-    pVar = outVar.release();
-    return true;
-}
-
 bool WriteVarListAsArray(std::ostream &ostr, CBotVar* pVar, CBotContext& context)
 {
     std::size_t numVar{0};
