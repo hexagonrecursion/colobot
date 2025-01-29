@@ -26,9 +26,10 @@ namespace CBot
 
 class CBotListConstantInterface
 {
-public:
-    virtual ~CBotListConstantInterface() {}
+protected:
+    ~CBotListConstantInterface() {}
 
+public:
     template<typename T>
     bool AddConstant(const std::string& name, const T& value)
     {

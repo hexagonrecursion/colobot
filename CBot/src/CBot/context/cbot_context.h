@@ -49,6 +49,9 @@ private:
 
     CBotContext(const CBotContextSPtr& outer);
 
+    CBotContext(const CBotContext&) = delete;
+    CBotContext& operator=(const CBotContext&) = delete;
+
 public:
     [[nodiscard]] static CBotContextSPtr CreateGlobalContext();
 
@@ -57,7 +60,7 @@ public:
     /**
      * \brief Destructor
      */
-    virtual ~CBotContext();
+    ~CBotContext();
 
     /**
      * \brief Generate unique identifier for functions, etc.

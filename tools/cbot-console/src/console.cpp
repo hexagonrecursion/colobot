@@ -72,8 +72,7 @@ int main(int argc, char* argv[])
 
     // Compile the program
     std::vector<std::string> externFunctions;
-    std::unique_ptr<CBotProgram> program{new CBotProgram(nullptr)};
-    program->SetContext(context);
+    auto program = std::make_unique<CBotProgram>(context);
     if (!program->Compile(code.c_str(), externFunctions, nullptr))
     {
         CBotError error;

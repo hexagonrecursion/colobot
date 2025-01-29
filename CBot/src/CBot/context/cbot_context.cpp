@@ -87,8 +87,7 @@ CBotClass* CBotContext::CreateClass(const std::string& name, CBotClass* parent, 
 {
     if (FindClass(name) != nullptr) return nullptr;
     auto& newClass = m_classList[name];
-    newClass.reset(CBotClass::Create(name, parent, intrinsic));
-    newClass->SetContext( shared_from_this() );
+    newClass.reset(CBotClass::Create(name, parent, shared_from_this(), intrinsic));
     return newClass.get();
 }
 

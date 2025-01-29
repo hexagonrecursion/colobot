@@ -120,6 +120,7 @@ private:
      */
     CBotClass(const std::string& name,
               CBotClass* parent,
+              const CBotContextSPtr& context,
               bool bIntrinsic = false);
 
 public:
@@ -137,11 +138,11 @@ public:
      */
     static CBotClass* Create(const std::string& name,
                              CBotClass* parent,
+                             const CBotContextSPtr& context,
                              bool intrinsic = false);
 
     /*!
      * \brief Add a function that can be called from CBot
-     * \see CBotProgram::AddFunction
      */
     bool AddFunction(const std::string& name,
                      ClassRuntimeFunc rExec,

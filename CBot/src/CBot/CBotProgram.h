@@ -41,39 +41,33 @@ class CBotExternalCallList;
 /**
  * \brief Class that manages a CBot program. This is the main entry point into the CBot engine.
  *
- * \section Init Engine initialization / destruction
- * To initialize the CBot engine, call CBotProgram::Init(). This function should be only called once.
- *
  * Create context for public functions, classes, etc. See:
  * * CBotContext
  *
  * Afterwards, you can start defining custom functions, constants and classes. See:
+ * * CBotContext::AddFunction()
  * * CBotContext::AddConstant()
+ * * CBotContext::CreateClass()
  *
  * Next, compile and run programs.
- * * SetContext()
  * * Compile()
  * * Start()
  * * Run()
  * * Stop()
  *
- * After you are finished, free the memory used by the CBot engine by calling CBotProgram::Free().
  *
  * \section Example Example usage
  * \code
- * // Initialize the engine
- * CBotProgram::Init();
  *
  * // Create context for public functions, classes, etc.
- * auto context = CBotContext::Create();
+ * auto context = CBotContext::CreateGlobalContext();
  *
  * // Add some standard functions
- * CBotProgram::AddFunction("message", rMessage, cMessage);
+ * context->AddFunction("message", rMessage, cMessage);
  *
  * // Compile the program
  * std::vector<std::string> externFunctions;
- * CBotProgram* program = new CBotProgram();
- * program->SetContext(context);
+ * CBotProgram* program = new CBotProgram(context);
  *
  * bool ok = program->Compile(code.c_str(), externFunctions, nullptr);
  * if (!ok)
@@ -88,8 +82,6 @@ class CBotExternalCallList;
  * program->Start(externFunctions[0]);
  * while (!program->Run());
  *
- * // Cleanup
- * CBotProgram::Free();
  * \endcode
  */
 class CBotProgram : public CBotContextOwner
@@ -97,14 +89,16 @@ class CBotProgram : public CBotContextOwner
 public:
     /**
      * \brief Constructor
+     * \param context
      */
-    CBotProgram();
+    CBotProgram(const CBotContextSPtr& context);
 
     /**
      * \brief Constructor
+     * \param context
      * \param thisVar Variable to pass to the program as "this"
      */
-    CBotProgram(CBotVar* thisVar);
+    CBotProgram(const CBotContextSPtr& context, CBotVar* thisVar);
 
     /**
      * \brief Destructor

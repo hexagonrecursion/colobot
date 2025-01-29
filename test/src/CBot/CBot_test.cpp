@@ -231,8 +231,7 @@ protected:
         CBotError expectedCompileError = expectedError < 6000 ? expectedError : CBotNoErr;
         CBotError expectedRuntimeError = expectedError >= 6000 ? expectedError : CBotNoErr;
 
-        auto program = std::make_unique<CBotProgram>(nullptr);
-        program->SetContext(m_context);
+        auto program = std::make_unique<CBotProgram>(m_context);
 
         std::vector<std::string> tests;
         program->Compile(code, tests);

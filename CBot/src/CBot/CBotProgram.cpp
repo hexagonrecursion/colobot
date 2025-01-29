@@ -38,12 +38,14 @@
 namespace CBot
 {
 
-CBotProgram::CBotProgram()
+CBotProgram::CBotProgram(const CBotContextSPtr& context) :
+    CBotContextOwner(context)
 {
 }
 
-CBotProgram::CBotProgram(CBotVar* thisVar)
-: m_thisVar(thisVar)
+CBotProgram::CBotProgram(const CBotContextSPtr& context, CBotVar* thisVar) :
+    CBotContextOwner(context),
+    m_thisVar(thisVar)
 {
 }
 
@@ -76,11 +78,6 @@ bool CBotProgram::Compile(const std::string& program, std::vector<std::string>& 
     externFunctions.clear();
     m_error = CBotNoErr;
 
-    if ( !m_context )
-    {
-        m_context = CBotContext::Create(nullptr);
-    }
-
     // Step 1. Process the code into tokens
     auto tokens = CBotToken::CompileTokens(program, *m_context);
     if (tokens == nullptr) return false;
@@ -102,7 +99,6 @@ bool CBotProgram::Compile(const std::string& program, std::vector<std::string>& 
             CBotClass* newclass = CBotClass::Compile1(p, pStack.get());
             if (newclass != nullptr)
             {
-                newclass->SetContext(m_context);
                 m_classes.push_back(newclass);
             }
         }
@@ -158,7 +154,7 @@ bool CBotProgram::Compile(const std::string& program, std::vector<std::string>& 
         m_functions.clear();
     }
 
-    return !externFunctions.empty();
+    return !m_functions.empty();
 }
 
 bool CBotProgram::Start(const std::string& name)

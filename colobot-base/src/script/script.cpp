@@ -242,8 +242,8 @@ bool CScript::Compile()
 
     if (m_botProg == nullptr)
     {
-        m_botProg = std::make_unique<CBot::CBotProgram>(m_object->GetBotVar());
-        m_botProg->SetContext(m_main->GetCBotContextForTeam(m_object->GetTeam()));
+        auto context = m_main->GetCBotContextForTeam(m_object->GetTeam());
+        m_botProg = std::make_unique<CBot::CBotProgram>(context, m_object->GetBotVar());
     }
 
     if ( m_botProg->Compile(m_script, functionList, this) )

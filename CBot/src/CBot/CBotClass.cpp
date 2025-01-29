@@ -47,7 +47,9 @@ namespace CBot
 
 CBotClass::CBotClass(const std::string& name,
                      CBotClass* parent,
-                     bool bIntrinsic)
+                     const CBotContextSPtr& context,
+                     bool bIntrinsic) :
+    CBotContextObserver(context)
 {
     m_parent    = parent;
     m_name      = name;
@@ -71,9 +73,10 @@ CBotClass::~CBotClass()
 ////////////////////////////////////////////////////////////////////////////////
 CBotClass* CBotClass::Create(const std::string& name,
                              CBotClass* parent,
+                             const CBotContextSPtr& context,
                              bool intrinsic)
 {
-    return new CBotClass(name, parent, intrinsic);
+    return new CBotClass(name, parent, context, intrinsic);
 }
 
 void CBotClass::Purge()

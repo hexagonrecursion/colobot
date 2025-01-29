@@ -29,15 +29,16 @@ namespace CBot
 
 class CBotExternalCallListInterface
 {
-public:
+protected:
     CBotExternalCallListInterface()
     {
     }
 
-    virtual ~CBotExternalCallListInterface()
+    ~CBotExternalCallListInterface()
     {
     }
 
+public:
     /**
      * \brief Add a function that can be called from CBOT
      *
@@ -136,7 +137,7 @@ public:
         return m_externalCallList.SetUserPtr(pUser);
     }
 
-protected:
+private:
     CBotExternalCallList m_externalCallList;
 };
 

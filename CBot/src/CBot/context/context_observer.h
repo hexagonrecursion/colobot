@@ -30,17 +30,14 @@ using CBotContextSPtr = std::shared_ptr<CBot::CBotContext>;
 
 class CBotContextObserver
 {
-public:
-    virtual ~CBotContextObserver() {}
+protected:
+    CBotContextObserver(const CBotContextSPtr& context) : m_context(context) {}
+    ~CBotContextObserver() {}
 
+public:
     CBotContextSPtr GetContext() const
     {
         return m_context.lock();
-    }
-
-    void SetContext(const CBotContextSPtr& context)
-    {
-        if (context && !m_context.lock()) m_context = context; // only once
     }
 
 protected:
