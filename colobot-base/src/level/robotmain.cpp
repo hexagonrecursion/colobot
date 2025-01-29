@@ -280,7 +280,7 @@ CRobotMain::CRobotMain()
     SelectPlayer(CPlayerProfile::GetLastName());
 
     m_globalCBotContext = CBot::CBotContext::CreateGlobalContext();
-    CScriptFunctions::InitContextGlobal(m_globalCBotContext);
+    CScriptFunctions::InitContextGlobal(*m_globalCBotContext);
 
 }
 
@@ -6283,7 +6283,7 @@ const std::shared_ptr<CBot::CBotContext>& CRobotMain::GetCBotContextGlobal()
     if ( !m_globalCBotContext )
     {
         m_globalCBotContext = CBot::CBotContext::CreateGlobalContext();
-        CScriptFunctions::InitContextGlobal(m_globalCBotContext);
+        CScriptFunctions::InitContextGlobal(*m_globalCBotContext);
     }
     return m_globalCBotContext;
 }
@@ -6292,8 +6292,8 @@ std::shared_ptr<CBot::CBotContext> CRobotMain::GetCBotContextForTeam(int team)
 {
     if (auto context = m_teamCBotContext[team].lock()) return context;
 
-    auto newContext = CBot::CBotContext::Create(m_globalCBotContext);
-    CScriptFunctions::InitFunctions(newContext);
+    auto newContext = CBot::CBotContext::Create(GetCBotContextGlobal());
+    CScriptFunctions::InitFunctions(*newContext);
 
     m_teamCBotContext[team] = newContext;
     return newContext;

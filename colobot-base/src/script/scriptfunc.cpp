@@ -69,6 +69,7 @@
 #include "ui/displaytext.h"
 
 #include <cmath>
+#include <string>
 
 using namespace CBot;
 
@@ -3471,11 +3472,11 @@ bool CScriptFunctions::rDeleteFile(CBotVar* var, CBotVar* result, int& exception
     return false;
 }
 
-void CScriptFunctions::InitFunctions(const std::shared_ptr<CBot::CBotContext>& context)
+void CScriptFunctions::InitFunctions(CBot::CBotContext& context)
 {
     auto AddFunction = [&context](const std::string& name, CBot::DefaultRuntimeFunc rExec, CBot::DefaultCompileFunc cComp)
     {
-        if (!context->AddFunction(name, rExec, cComp))
+        if (!context.AddFunction(name, rExec, cComp))
             GetLogger()->Error("Function '%s()' redefined", name.c_str());
     };
 
@@ -3553,11 +3554,11 @@ void CScriptFunctions::InitFunctions(const std::shared_ptr<CBot::CBotContext>& c
     AddFunction("destroy",   rDestroy,   cOneObject);
 }
 
-void CScriptFunctions::InitContextGlobal(const std::shared_ptr<CBot::CBotContext>& globalContext)
+void CScriptFunctions::InitContextGlobal(CBot::CBotContext& globalContext)
 {
     auto AddConstant = [&globalContext](const std::string& name, int num)
     {
-        if (!globalContext->AddConstant<int>(name, num))
+        if (!globalContext.AddConstant<int>(name, num))
             GetLogger()->Error("Constant '%%' redefined", name);
     };
 
@@ -3649,11 +3650,11 @@ void CScriptFunctions::InitContextGlobal(const std::shared_ptr<CBot::CBotContext
     AddConstant("PolskiPortalColobota", 1337);
 
     // Find the class Point.
-    auto pnt = globalContext->FindClass("point");
+    auto pnt = globalContext.FindClass("point");
 
     const auto protectReadOnly = CBotVar::ProtectionLevel::ReadOnly;
 
-    auto bc = globalContext->CreateClass("object", nullptr);
+    auto bc = globalContext.CreateClass("object", nullptr);
     bc->AddItem("category",    { CBotTypInt }, protectReadOnly);
     bc->AddItem("position",    { CBotTypClass, pnt }, protectReadOnly);
     bc->AddItem("orientation", { CBotTypFloat }, protectReadOnly);
@@ -3672,8 +3673,8 @@ void CScriptFunctions::InitContextGlobal(const std::shared_ptr<CBot::CBotContext
     bc->AddItem("velocity",    { CBotTypClass, pnt }, protectReadOnly);
     bc->SetUpdateFunc(CScriptFunctions::uObject);
 
-    globalContext->SetFileAccessHandler(std::make_unique<CBotFileAccessHandlerColobot>());
-    globalContext->AddFunction("deletefile", rDeleteFile, cString);
+    globalContext.SetFileAccessHandler(std::make_unique<CBotFileAccessHandlerColobot>());
+    globalContext.AddFunction("deletefile", rDeleteFile, cString);
 }
 
 // Updates the class Object.

@@ -410,7 +410,7 @@ CBotTypResult cfeof (CBotVar* pThis, CBotVar* &pVar)
 
 } // namespace
 
-void InitFileIOLibrary(const std::shared_ptr<CBotContext>& context)
+void InitFileIOLibrary(CBotContext& context)
 {
     // create a class for file management
     // the use is as follows:
@@ -420,10 +420,10 @@ void InitFileIOLibrary(const std::shared_ptr<CBotContext>& context)
     // canal.close();   // close the file
 
     // create the class FILE
-    auto bc = context->FindClass("file");
+    auto bc = context.FindClass("file");
     if (bc == nullptr)
     {
-        bc = context->CreateClass("file", nullptr);
+        bc = context.CreateClass("file", nullptr);
         // adds the component ".filename"
         bc->AddItem("filename", CBotTypString);
         // adds the component ".handle"

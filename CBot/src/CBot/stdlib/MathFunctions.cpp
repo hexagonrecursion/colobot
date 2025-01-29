@@ -341,51 +341,51 @@ bool rPointConstructor(CBotVar* pThis, CBotVar* var, CBotVar* pResult, int& Exce
 
 } // namespace
 
-void InitErrorConstants(const std::shared_ptr<CBotContext>& context)
+void InitErrorConstants(CBotContext& context)
 {
-    context->AddConstant<int>("CBotErrZeroDiv",    CBotErrZeroDiv);    // division by zero
-    context->AddConstant<int>("CBotErrNotInit",    CBotErrNotInit);    // uninitialized variable
-    context->AddConstant<int>("CBotErrBadThrow",   CBotErrBadThrow);   // throw a negative value
-    context->AddConstant<int>("CBotErrNoRetVal",   CBotErrNoRetVal);   // function did not return results
-    context->AddConstant<int>("CBotErrNoRun",      CBotErrNoRun);      // active Run () without a function // TODO: Is this actually a runtime error?
-    context->AddConstant<int>("CBotErrUndefFunc",  CBotErrUndefFunc);  // Calling a function that no longer exists
-    context->AddConstant<int>("CBotErrNotClass",   CBotErrNotClass);   // Class no longer exists
-    context->AddConstant<int>("CBotErrNull",       CBotErrNull);       // Attempted to use a null pointer
-    context->AddConstant<int>("CBotErrNan",        CBotErrNan);        // Can't do operations on nan
-    context->AddConstant<int>("CBotErrOutArray",   CBotErrOutArray);   // Attempted access out of bounds of an array
-    context->AddConstant<int>("CBotErrStackOver",  CBotErrStackOver);  // Stack overflow
-    context->AddConstant<int>("CBotErrDeletedPtr", CBotErrDeletedPtr); // Attempted to use deleted object
+    context.AddConstant<int>("CBotErrZeroDiv",    CBotErrZeroDiv);    // division by zero
+    context.AddConstant<int>("CBotErrNotInit",    CBotErrNotInit);    // uninitialized variable
+    context.AddConstant<int>("CBotErrBadThrow",   CBotErrBadThrow);   // throw a negative value
+    context.AddConstant<int>("CBotErrNoRetVal",   CBotErrNoRetVal);   // function did not return results
+    context.AddConstant<int>("CBotErrNoRun",      CBotErrNoRun);      // active Run () without a function // TODO: Is this actually a runtime error?
+    context.AddConstant<int>("CBotErrUndefFunc",  CBotErrUndefFunc);  // Calling a function that no longer exists
+    context.AddConstant<int>("CBotErrNotClass",   CBotErrNotClass);   // Class no longer exists
+    context.AddConstant<int>("CBotErrNull",       CBotErrNull);       // Attempted to use a null pointer
+    context.AddConstant<int>("CBotErrNan",        CBotErrNan);        // Can't do operations on nan
+    context.AddConstant<int>("CBotErrOutArray",   CBotErrOutArray);   // Attempted access out of bounds of an array
+    context.AddConstant<int>("CBotErrStackOver",  CBotErrStackOver);  // Stack overflow
+    context.AddConstant<int>("CBotErrDeletedPtr", CBotErrDeletedPtr); // Attempted to use deleted object
 
     // TODO: Check the other CBotError runtime codes to see if they should be included here too...
 }
 
-void InitMathLibrary(const std::shared_ptr<CBotContext>& context)
+void InitMathLibrary(CBotContext& context)
 {
-    context->AddConstant<float>("PI", PI);
+    context.AddConstant<float>("PI", PI);
 
-    context->AddFunction("sin",   rSin,   cOneFloat);
-    context->AddFunction("cos",   rCos,   cOneFloat);
-    context->AddFunction("tan",   rTan,   cOneFloat);
-    context->AddFunction("asin",  raSin,  cOneFloat);
-    context->AddFunction("acos",  raCos,  cOneFloat);
-    context->AddFunction("atan",  raTan,  cOneFloat);
-    context->AddFunction("atan2", raTan2, cTwoFloat);
-    context->AddFunction("sqrt",  rSqrt,  cOneFloat);
-    context->AddFunction("pow",   rPow,   cTwoFloat);
-    context->AddFunction("rand",  rRand,  cNull);
-    context->AddFunction("abs",   rAbs,   cAbs);
-    context->AddFunction("floor", rFloor, cOneFloat);
-    context->AddFunction("ceil",  rCeil,  cOneFloat);
-    context->AddFunction("round", rRound, cOneFloat);
-    context->AddFunction("trunc", rTrunc, cOneFloat);
-    context->AddFunction("isnan", rIsNAN, cIsNAN);
+    context.AddFunction("sin",   rSin,   cOneFloat);
+    context.AddFunction("cos",   rCos,   cOneFloat);
+    context.AddFunction("tan",   rTan,   cOneFloat);
+    context.AddFunction("asin",  raSin,  cOneFloat);
+    context.AddFunction("acos",  raCos,  cOneFloat);
+    context.AddFunction("atan",  raTan,  cOneFloat);
+    context.AddFunction("atan2", raTan2, cTwoFloat);
+    context.AddFunction("sqrt",  rSqrt,  cOneFloat);
+    context.AddFunction("pow",   rPow,   cTwoFloat);
+    context.AddFunction("rand",  rRand,  cNull);
+    context.AddFunction("abs",   rAbs,   cAbs);
+    context.AddFunction("floor", rFloor, cOneFloat);
+    context.AddFunction("ceil",  rCeil,  cOneFloat);
+    context.AddFunction("round", rRound, cOneFloat);
+    context.AddFunction("trunc", rTrunc, cOneFloat);
+    context.AddFunction("isnan", rIsNAN, cIsNAN);
 
-    context->AddFunction("sizeof", rSizeOf, cSizeOf);
+    context.AddFunction("sizeof", rSizeOf, cSizeOf);
 
-    auto pnt = context->FindClass("point");
+    auto pnt = context.FindClass("point");
     if (pnt == nullptr)
     {
-        pnt = context->CreateClass("point", nullptr, true);  // intrinsic class
+        pnt = context.CreateClass("point", nullptr, true);  // intrinsic class
         pnt->AddItem("x", CBotTypFloat);
         pnt->AddItem("y", CBotTypFloat);
         pnt->AddItem("z", CBotTypFloat);

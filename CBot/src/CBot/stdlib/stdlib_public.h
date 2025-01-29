@@ -32,10 +32,10 @@ namespace CBot
 
 class CBotContext;
 
-void InitErrorConstants(const std::shared_ptr<CBotContext>& context);
-void InitFileIOLibrary(const std::shared_ptr<CBotContext>& context);
-void InitMathLibrary(const std::shared_ptr<CBotContext>& context);
-void InitStringFunctions(const std::shared_ptr<CBotContext>& context);
+void InitErrorConstants(CBotContext& context);
+void InitFileIOLibrary(CBotContext& context);
+void InitMathLibrary(CBotContext& context);
+void InitStringFunctions(CBotContext& context);
 
 class CBotFile
 {

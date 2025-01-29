@@ -284,18 +284,18 @@ bool rStrLower( CBotVar* pVar, CBotVar* pResult, int& ex, void* pUser )
 
 } // namespace
 
-void InitStringFunctions(const std::shared_ptr<CBotContext>& context)
+void InitStringFunctions(CBotContext& context)
 {
-    context->AddFunction("strlen",   rStrLen,   cIntStr );
-    context->AddFunction("strleft",  rStrLeft,  cStrStrInt );
-    context->AddFunction("strright", rStrRight, cStrStrInt );
+    context.AddFunction("strlen",   rStrLen,   cIntStr );
+    context.AddFunction("strleft",  rStrLeft,  cStrStrInt );
+    context.AddFunction("strright", rStrRight, cStrStrInt );
 
-    context->AddFunction("strmid",   rStrMid,   cStrStrIntInt );
-    context->AddFunction("strval",   rStrVal,   cFloatStr );
+    context.AddFunction("strmid",   rStrMid,   cStrStrIntInt );
+    context.AddFunction("strval",   rStrVal,   cFloatStr );
 
-    context->AddFunction("strfind",  rStrFind,  cIntStrStr );
-    context->AddFunction("strupper", rStrUpper, cStrStr );
-    context->AddFunction("strlower", rStrLower, cStrStr );
+    context.AddFunction("strfind",  rStrFind,  cIntStrStr );
+    context.AddFunction("strupper", rStrUpper, cStrStr );
+    context.AddFunction("strlower", rStrLower, cStrStr );
 }
 
 } // namespace CBot

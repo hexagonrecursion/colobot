@@ -26,10 +26,6 @@
 
 #include "common/error.h"
 
-#include <string>
-#include <unordered_map>
-#include <memory>
-
 class CObject;
 class CScript;
 class CExchangePost;
@@ -44,8 +40,8 @@ class CBotVar;
 class CScriptFunctions
 {
 public:
-    static void InitFunctions(const std::shared_ptr<CBot::CBotContext>& context);
-    static void InitContextGlobal(const std::shared_ptr<CBot::CBotContext>& globalContext);
+    static void InitFunctions(CBot::CBotContext& context);
+    static void InitContextGlobal(CBot::CBotContext& globalContext);
 
     static CBot::CBotVar* CreateObjectVar(CObject* obj);
     static void DestroyObjectVar(CBot::CBotVar* botVar, bool permanent);

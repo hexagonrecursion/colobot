@@ -30,10 +30,10 @@ namespace CBot
 CBotContextSPtr CBotContext::CreateGlobalContext()
 {
     auto newContext = std::shared_ptr<CBotContext>(new CBotContext);
-    InitErrorConstants(newContext);
-    InitFileIOLibrary(newContext);
-    InitStringFunctions(newContext);
-    InitMathLibrary(newContext);
+    InitErrorConstants(*newContext);
+    InitFileIOLibrary(*newContext);
+    InitStringFunctions(*newContext);
+    InitMathLibrary(*newContext);
 
     return newContext;
 }
@@ -41,9 +41,9 @@ CBotContextSPtr CBotContext::CreateGlobalContext()
 CBotContextSPtr CBotContext::Create(const CBotContextSPtr& outer)
 {
     auto newContext = std::shared_ptr<CBotContext>(new CBotContext(outer));
-    InitErrorConstants(newContext);
-    InitStringFunctions(newContext);
-    InitMathLibrary(newContext);
+    InitErrorConstants(*newContext);
+    InitStringFunctions(*newContext);
+    InitMathLibrary(*newContext);
 
     return newContext;
 }
