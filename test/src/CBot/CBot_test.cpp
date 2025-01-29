@@ -224,6 +224,7 @@ private:
 
 protected:
     std::shared_ptr<CBotContext> m_context;
+    const std::shared_ptr<CBotContext>& GetCBotContext() { return m_context; }
 
     std::unique_ptr<CBotProgram> ExecuteTest(const std::string& code, CBotError expectedError = CBotNoErr)
     {
@@ -428,6 +429,44 @@ TEST_F(CBotUT, ClassCompileErrors)
         "public class TestClass extends 1234",
         CBotErrNoClassName
     );
+}
+
+TEST_F(CBotUT, DefinedConstants)
+{
+    ExecuteTest(R"(
+        extern void Error_Constants_Defined()
+        {
+            ASSERT( CBotErrZeroDiv    != 0 );
+            ASSERT( CBotErrNotInit    != 0 );
+            ASSERT( CBotErrBadThrow   != 0 );
+            ASSERT( CBotErrNoRetVal   != 0 );
+            ASSERT( CBotErrNoRun      != 0 );
+            ASSERT( CBotErrUndefFunc  != 0 );
+            ASSERT( CBotErrNotClass   != 0 );
+            ASSERT( CBotErrNull       != 0 );
+            ASSERT( CBotErrNan        != 0 );
+            ASSERT( CBotErrOutArray   != 0 );
+            ASSERT( CBotErrStackOver  != 0 );
+            ASSERT( CBotErrDeletedPtr != 0 );
+        }
+    )");
+
+    const auto& context = CBotUT::GetCBotContext();
+
+    context->AddConstant<std::string>("String_Constant", "a string");
+    context->AddConstant<float>("Float_Constant", 2.71828f);
+    context->AddConstant<int>("Int_Constant", 3210);
+    // TODO: Currently only int, float, and string.
+    // Other primitive types will work, but the specializations are not yet defined in list_constant.cpp
+
+    ExecuteTest(R"(
+        extern void Other_Constants_Defined()
+        {
+            ASSERT( String_Constant == "a string" );
+            ASSERT( Float_Constant == 2.71828 );
+            ASSERT( Int_Constant == 3210 );
+        }
+    )");
 }
 
 TEST_F(CBotUT, DivideByZero)

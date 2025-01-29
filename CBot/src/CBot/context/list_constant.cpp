@@ -67,7 +67,7 @@ bool CBotListConstant::AddConstant<float>(const std::string& name, const float& 
 }
 
 template<>
-bool CBotListConstant::AddConstant<const std::string>(const std::string& name, const std::string& value)
+bool CBotListConstant::AddConstant<std::string>(const std::string& name, const std::string& value)
 {
     auto& pt = m_list[name];
     if ( pt != nullptr ) return false;

@@ -59,6 +59,6 @@ template<>
 bool CBotListConstant::AddConstant<float>(const std::string& name, const float& value);
 
 template<>
-bool CBotListConstant::AddConstant<const std::string>(const std::string& name, const std::string& value);
+bool CBotListConstant::AddConstant<std::string>(const std::string& name, const std::string& value);
 
 } // namespace CBot
