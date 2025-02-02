@@ -596,13 +596,13 @@ void CBotStack::SetUserPtr(void* user)
 }
 
 ////////////////////////////////////////////////////////////////////////////////
-bool CBotStack::ExecuteCall(long& nIdent, CBotToken* token, CBotVar** ppVar, const CBotTypResult& rettype)
+bool CBotStack::ExecuteCall(long& nIdent, CBotToken& token, CBotVar** ppVar, const CBotTypResult& rettype)
 {
     int res;
 
     // first looks by the identifier
 
-    res = CBotFunction::DoCall(m_prog, m_prog->GetFunctions(), nIdent, "", ppVar, this, token);
+    res = CBotFunction::DoCall(m_prog, m_prog->GetFunctions(), nIdent, "", ppVar, this, &token);
     if (res >= 0) return res;
 
     // if not found (recompile?) seeks by name
@@ -611,10 +611,10 @@ bool CBotStack::ExecuteCall(long& nIdent, CBotToken* token, CBotVar** ppVar, con
     res = m_data->context->DoCall(token, nullptr, ppVar, this, rettype);
     if (res >= 0) return res;
 
-    res = CBotFunction::DoCall(m_prog, m_prog->GetFunctions(), nIdent, token->GetString(), ppVar, this, token);
+    res = CBotFunction::DoCall(m_prog, m_prog->GetFunctions(), nIdent, token.GetString(), ppVar, this, &token);
     if (res >= 0) return res;
 
-    SetError(CBotErrUndefFunc, token);
+    SetError(CBotErrUndefFunc, &token);
     return true;
 }
 
