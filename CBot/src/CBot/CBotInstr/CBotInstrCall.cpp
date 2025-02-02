@@ -153,7 +153,7 @@ bool CBotInstrCall::Execute(CBotStack* &pj)
     CBotStack* pile2 = pile->AddStack();
     if ( pile2->IfStep() ) return false;
 
-    if ( !pile2->ExecuteCall(m_nFuncIdent, *GetToken(), ppVars, m_typRes)) return false; // interrupt
+    if ( !pile2->ExecuteCall(m_nFuncIdent, GetToken(), ppVars, m_typRes)) return false; // interrupt
 
     if (m_exprRetVar != nullptr) // func().member
     {
@@ -210,7 +210,7 @@ void CBotInstrCall::RestoreState(CBotStack* &pj, bool bMain)
     CBotStack* pile2 = pile->RestoreStack();
     if ( pile2 == nullptr ) return;
 
-    pile2->RestoreCall(m_nFuncIdent, GetToken(), ppVars);
+    pile2->RestoreCall(m_nFuncIdent, &GetToken(), ppVars);
 }
 
 std::string CBotInstrCall::GetDebugData()

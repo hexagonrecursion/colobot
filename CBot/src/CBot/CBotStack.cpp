@@ -654,12 +654,12 @@ void CBotStack::GetRunPos(std::string& functionName, int& start, int& end)
 
     if ( funct == nullptr ) return;
 
-    CBotToken* t = funct->GetToken();
+    CBotToken* t = &funct->GetToken();
     functionName = t->GetString();
 
 //    if ( p->m_instr != nullptr ) instr = p->m_instr;
 
-    t = instr->GetToken();
+    t = &instr->GetToken();
     start = t->GetStart();
     end   = t->GetEnd();
 }
@@ -706,7 +706,7 @@ CBotVar* CBotStack::GetStackVars(std::string& functionName, int level)
 
     if ( pp == nullptr || pp->m_instr == nullptr ) return nullptr;
 
-    CBotToken* t = pp->m_instr->GetToken();
+    CBotToken* t = &pp->m_instr->GetToken();
     functionName = t->GetString();
 
     return p->m_listVar;

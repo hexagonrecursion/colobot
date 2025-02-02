@@ -366,7 +366,7 @@ bool CBotDefClass::Execute(CBotStack* &pj)
             ppVars[i] = nullptr;
 
             // creates a variable for the result
-            if ( !pClass->ExecuteMethode(m_nMethodeIdent, pThis, ppVars, CBotTypResult(CBotTypVoid), pile2, *GetToken())) return false; // interrupt
+            if ( !pClass->ExecuteMethode(m_nMethodeIdent, pThis, ppVars, CBotTypResult(CBotTypVoid), pile2, GetToken())) return false; // interrupt
 
             pThis->SetInit(CBotVar::InitType::DEF);
             pThis->ConstructorSet();        // indicates that the constructor has been called

@@ -178,7 +178,7 @@ bool CBotInstrMethode::ExecuteVar(CBotVar* &pVar, CBotStack* &pj, CBotToken* pre
     else
         pClass = pThis->GetClass();
 
-    if ( !pClass->ExecuteMethode(m_MethodeIdent, pThis, ppVars, m_typRes, pile2, *GetToken())) return false;
+    if ( !pClass->ExecuteMethode(m_MethodeIdent, pThis, ppVars, m_typRes, pile2, GetToken())) return false;
 
     if (m_exprRetVar != nullptr) // .func().member
     {
@@ -306,7 +306,7 @@ bool CBotInstrMethode::Execute(CBotStack* &pj)
     else
         pClass = pThis->GetClass();
 
-    if ( !pClass->ExecuteMethode(m_MethodeIdent, pThis, ppVars, m_typRes, pile2, *GetToken())) return false;    // interupted
+    if ( !pClass->ExecuteMethode(m_MethodeIdent, pThis, ppVars, m_typRes, pile2, GetToken())) return false;    // interupted
 
     // set the new value of this in place of the old variable
     CBotVar*    old = pile1->FindVar(m_token, false);
