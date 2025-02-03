@@ -159,7 +159,7 @@ public:
     /**
      * \brief Return the custom pointer associated with this variable
      */
-    virtual VarUserPointer GetUserPointer();
+    virtual CBotVarUserPointer GetUserPointer();
 
     //@}
 

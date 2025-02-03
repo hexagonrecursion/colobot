@@ -29,7 +29,7 @@ enum class PtrState
     Dead
 };
 
-class VarUserPointer
+class CBotVarUserPointer
 {
 public:
     PtrState GetState() const;
@@ -38,9 +38,9 @@ public:
     void Set(void* p);
     void Kill();
 
-    VarUserPointer() = default;
-    VarUserPointer(const VarUserPointer&) = default;
-    VarUserPointer& operator=(const VarUserPointer&) = default;
+    CBotVarUserPointer() = default;
+    CBotVarUserPointer(const CBotVarUserPointer&) = default;
+    CBotVarUserPointer& operator=(const CBotVarUserPointer&) = default;
 private:
     PtrState m_state = PtrState::UnInit;
     void* m_p = nullptr;

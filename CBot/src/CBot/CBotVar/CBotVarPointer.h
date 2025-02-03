@@ -60,7 +60,7 @@ public:
     void Update() override;
     void SetUserPointer(void* user) override;
     void KillUserPointer() override;
-    VarUserPointer GetUserPointer() override;
+    CBotVarUserPointer GetUserPointer() override;
 
     bool Eq(CBotVar* left, CBotVar* right) override;
     bool Ne(CBotVar* left, CBotVar* right) override;

@@ -104,7 +104,7 @@ void CBotVar::KillUserPointer()
 {
 }
 
-VarUserPointer CBotVar::GetUserPointer()
+CBotVarUserPointer CBotVar::GetUserPointer()
 {
     return {};
 }

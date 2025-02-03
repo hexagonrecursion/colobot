@@ -23,19 +23,19 @@
 namespace CBot
 {
 
-PtrState VarUserPointer::GetState() const
+PtrState CBotVarUserPointer::GetState() const
 {
     return m_state;
 }
 
-void VarUserPointer::Set(void* p)
+void CBotVarUserPointer::Set(void* p)
 {
     assert(p != nullptr);
     m_p = p;
     m_state = PtrState::Alive;
 }
 
-void VarUserPointer::Kill()
+void CBotVarUserPointer::Kill()
 {
     m_p = nullptr;
     m_state = PtrState::Dead;

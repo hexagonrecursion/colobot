@@ -57,7 +57,7 @@ public:
     void Update() override;
     void SetUserPointer(void* user) override;
     void KillUserPointer() override;
-    VarUserPointer GetUserPointer() override;
+    CBotVarUserPointer GetUserPointer() override;
 
     CBotVarSPtr GetPointer() override;
 
@@ -79,7 +79,7 @@ private:
     //! Set after constructor is called, allows destructor to be called
     bool m_bConstructor;
 
-    VarUserPointer m_userPtr;
+    CBotVarUserPointer m_userPtr;
 
     friend class CBotVar;
     friend class CBotVarPointer;

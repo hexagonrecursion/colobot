@@ -71,7 +71,7 @@ void CBotVarPointer::KillUserPointer()
     if (m_pVarClass) m_pVarClass->KillUserPointer();
 }
 
-VarUserPointer CBotVarPointer::GetUserPointer()
+CBotVarUserPointer CBotVarPointer::GetUserPointer()
 {
     if (m_pVarClass) return m_pVarClass->GetUserPointer();
     return {};

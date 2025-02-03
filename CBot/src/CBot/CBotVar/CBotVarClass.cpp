@@ -210,7 +210,7 @@ void CBotVarClass::KillUserPointer()
     m_userPtr.Kill();
 }
 
-VarUserPointer CBotVarClass::GetUserPointer()
+CBotVarUserPointer CBotVarClass::GetUserPointer()
 {
     return m_userPtr;
 }
